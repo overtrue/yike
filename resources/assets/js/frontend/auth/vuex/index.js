@@ -5,6 +5,12 @@ import plugin from './plugin'
 import * as actions from './actions'
 import * as getters from './getters'
 
-const module = { state, mutations, actions, getters }
-
-export default { module, plugin }
+export default {
+    module: {
+        state,
+        mutations,
+        actions,
+        getters
+    },
+    plugin
+}

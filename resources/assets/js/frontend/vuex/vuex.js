@@ -1,5 +1,5 @@
 import { isFunction } from 'lodash'
-import { vuex as Auth } from './auth'
+import { vuex as Auth } from '../auth'
 
 // start extraction data from vuex modules
 const vuex = { Auth };

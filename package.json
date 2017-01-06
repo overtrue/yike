@@ -1,17 +1,18 @@
 {
   "private": true,
   "scripts": {
-    "webpack": "cross-env NODE_ENV=development webpack --progress --hide-modules --config=webpack.config.js",
-    "dev": "cross-env NODE_ENV=development webpack --watch --progress --hide-modules --config=webpack.config.js",
-    "hmr": "cross-env NODE_ENV=development webpack-dev-server --inline --hot --config=webpack.config.js",
-    "production": "cross-env NODE_ENV=production webpack --progress --hide-modules --config=webpack.config.js"
+    "webpack": "cross-env NODE_ENV=development webpack --progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js",
+    "dev": "cross-env NODE_ENV=development webpack --watch --progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js",
+    "hmr": "cross-env NODE_ENV=development webpack-dev-server --inline --hot --config=node_modules/laravel-mix/setup/webpack.config.js",
+    "production": "cross-env NODE_ENV=production webpack --progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js"
   },
   "devDependencies": {
     "axios": "^0.15.2",
     "babel-preset-stage-2": "^6.18.0",
-    "bootstrap-sass": "^3.3.7",
+    "bootstrap": "github:twbs/bootstrap#v4-dev",
     "jquery": "^3.1.0",
     "laravel-mix": "^0.2.0",
+    "localforage": "^1.4.3",
     "lodash": "^4.16.2",
     "vue": "^2.0.1",
     "vue-router": "^2.0.1",

@@ -1,12 +1,12 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import beforeEach from './beforeEach'
-import { routes as app } from '../frontend'
+import { routes as auth } from '../auth'
 
 Vue.use(Router)
 
 // https://developer.mozilla.org/pt-BR/docs/Web/JavaScript/Reference/Operators/Spread_operator
-const routes = [...app]
+const routes = [...auth]
 
 const router = new Router({
   routes,
@@ -20,5 +20,5 @@ const router = new Router({
 * requireAuth.
 */
 router.beforeEach(beforeEach)
-console.log(router)
+
 export default router

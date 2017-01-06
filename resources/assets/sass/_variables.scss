@@ -1,6 +1,20 @@
+// Grid columns
+//
+// Set the number of columns and specify the width of the gutters.
+
+$grid-columns:               16 !default;
+$grid-gutter-width-base:     20px !default;
+$grid-gutter-widths: (
+  xs: $grid-gutter-width-base,
+  sm: $grid-gutter-width-base,
+  md: $grid-gutter-width-base,
+  lg: $grid-gutter-width-base,
+  xl: $grid-gutter-width-base
+) !default;
+
 
 // Body
-$body-bg: #f5f8fa;
+$body-bg: #fff;
 
 // Borders
 $laravel-border-color: darken($body-bg, 10%);
@@ -16,14 +30,16 @@ $brand-success: #2ab27b;
 $brand-warning: #cbb956;
 $brand-danger: #bf5329;
 
-// Typography
-$font-family-sans-serif: "Raleway", sans-serif;
-$font-size-base: 14px;
+// Fonts
+//
+// Font, line-height, and color for body text, headings, and more.
+$font-family-sans-serif: -apple-system, system-ui, PingFang SC,Hiragino Sans GB, Arial, Microsoft YaHei, Helvetica Neue, sans-serif !default;
+$font-family-serif:      Georgia, "Times New Roman", Times, serif !default;
+$font-family-monospace:  Operator mono light, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace !default;
+$font-family-base:       $font-family-sans-serif !default;
+
 $line-height-base: 1.6;
 $text-color: #636b6f;
-
-// Navbar
-$navbar-default-bg: #fff;
 
 // Buttons
 $btn-default-color: $text-color;
@@ -35,3 +51,8 @@ $input-color-placeholder: lighten($text-color, 30%);
 
 // Panels
 $panel-default-heading-bg: #fff;
+
+// Border radius
+$border-radius:          .15rem !default;
+$border-radius-lg:       .2rem !default;
+$border-radius-sm:       .1rem !default;

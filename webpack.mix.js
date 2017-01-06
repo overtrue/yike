@@ -1,4 +1,5 @@
 let mix = require('laravel-mix').mix;
+let path = require('path');
 
 // mix.config.versioning.enabled = true;
 
@@ -15,3 +16,20 @@ let mix = require('laravel-mix').mix;
 
 mix.js('resources/assets/js/app.js', 'public/js')
    .sass('resources/assets/sass/app.scss', 'public/css');
+
+
+mix.webpackConfig({
+    resolve: {
+        alias: {
+            'vue$': 'vue/dist/vue.common.js',
+            'src': 'resources/assets/js/',
+            'plugins': 'resources/assets/js/plugins/',
+            'utils': 'resources/assets/js/utils/',
+            'home': 'resources/assets/js/frontend/components/',
+        },
+        modules: [
+            path.resolve('node_modules'),
+            path.resolve('./'),
+        ]
+    }
+});

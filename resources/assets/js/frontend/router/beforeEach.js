@@ -1,4 +1,4 @@
-import store from '../store'
+import vuex from '../vuex'
 
 const needAuth = auth => auth === true
 
@@ -9,7 +9,7 @@ const beforeEach = (to, from, next) => {
   * Clears all global feedback message
   * that might be visible
   */
-  store.dispatch('resetMessages')
+  vuex.dispatch('resetMessages')
 
   /**
    * If route doesn't require authentication be normally accessed.
@@ -23,7 +23,7 @@ const beforeEach = (to, from, next) => {
   /**
    * Otherwise  if authentication is required login.
    */
-  store.dispatch('checkUserToken')
+  vuex.dispatch('checkUserToken')
     .then(() => {
       // There is a token and it is valid
       next() // can access the route

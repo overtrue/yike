@@ -1,17 +1,7 @@
 import { sync } from 'vuex-router-sync'
 import Vue from 'vue'
-import Home from './Home'
-
-/**
-* This is the Vuex store and it is
-* avaible to all your components
-*/
-import store from './store'
-
-/**
-* This is the Router
-*/
-import router from './router'
+import Home from './frontend/Home'
+import {vuex as store, router} from "./frontend"
 
 /**
 * $http plugin based on axios

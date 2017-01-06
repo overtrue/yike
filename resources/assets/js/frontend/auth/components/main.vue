@@ -1,7 +1,7 @@
 <template>
   <div class="container">
     <header class="page-header">
-      <h3>Codecasts - SPA - Starter Kit</h3>
+      <h3>登录</h3>
     </header>
     <div class="row">
       <div class="col-md-2"></div>
