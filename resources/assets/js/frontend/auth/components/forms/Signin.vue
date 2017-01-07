@@ -12,9 +12,6 @@
     <div class="form-group">
       <button class="btn btn-primary btn-block" type="submit">登录</button>
     </div>
-    <div class="form-group text-center">
-        <a class="social-login">其它方式登录</a>
-    </div>
   </form>
 </template>
 
@@ -66,16 +63,12 @@
 
 <style lang="scss" scoped>
     .form-group {
-        margin-top: 40px;
+        margin-top: 30px;
         .form-control {
+            padding: 10px 2px;
             border:none;
             border-radius: 0;
             border-bottom: 1px solid rgba(155, 155, 155, .5);
-        }
-
-        .social-login {
-            border-top: 1px solid #444;
-            padding: 8px;
         }
     }
 </style>

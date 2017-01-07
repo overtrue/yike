@@ -32,9 +32,15 @@
                     <div class="modal-body">
                         <div v-if="isSignin">
                             <signin></signin>
+                            <div class="form-group custom-actions text-center">
+                                <a href="#" class="social-login">其它方式登录</a>
+                            </div>
                         </div>
                         <div v-else>
                             <signup></signup>
+                            <div class="form-group custom-actions text-center">
+                                <a href="#" class="social-login" @click="isSignin=true">已有账号？去登录</a>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -72,8 +78,18 @@
         box-shadow: 0 2px 4px rgba(0, 0, 0, .04);
     }
 
+    .custom-actions {
+        margin-top: 40px;
+    }
+
+    .social-login {
+        border-top: 1px solid #444;
+        padding: 8px;
+    }
+
     #login-modal {
         .modal-dialog {
+            margin-top: 80px;
             max-width: 400px;
         }
         .modal-body {
