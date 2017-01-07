@@ -12,19 +12,50 @@ $grid-gutter-widths: (
   xl: $grid-gutter-width-base
 ) !default;
 
+// Start with assigning color names to specific hex values.
+$white:  #fff !default;
+$black:  #000 !default;
+$red:    #d9534f !default;
+$orange: #f0ad4e !default;
+$yellow: #ffd500 !default;
+$green:  #5cb85c !default;
+$blue:   #0275d8 !default;
+$teal:   #5bc0de !default;
+$pink:   #ff5b77 !default;
+$purple: #613d7c !default;
+
+// Create grayscale
+$gray-dark:                 #292b2c !default;
+$gray:                      #464a4c !default;
+$gray-light:                #636c72 !default;
+$gray-lighter:              #eceeef !default;
+$gray-lightest:             #f7f7f9 !default;
 
 // Body
-$body-bg: #fff;
+$body-bg: #FAFAFA;
+$body-color: #4a4a4a;
 
 // Borders
-$laravel-border-color: darken($body-bg, 10%);
+$laravel-border-color: darken($body-bg, 20%);
 $list-group-border: $laravel-border-color;
-$navbar-default-border: $laravel-border-color;
-$panel-default-border: $laravel-border-color;
-$panel-inner-border: $laravel-border-color;
+
+// Modal
+$modal-content-bg:               $white !default;
+$modal-content-border-color:     transparent !default;
+$modal-content-border-width:     0 !default;
+$modal-content-xs-box-shadow:    0 5px 10px rgba($black,.12) !default;
+$modal-content-sm-up-box-shadow: 0 5px 15px rgba($black,.12) !default;
+
+$modal-backdrop-bg:           $body-bg !default;
+$modal-backdrop-opacity:      .5 !default;
+$modal-header-border-color:   $gray-lighter !default;
+$modal-footer-border-color:   $modal-header-border-color !default;
+$modal-header-border-width:   $modal-content-border-width !default;
+$modal-footer-border-width:   $modal-header-border-width !default;
+$modal-header-padding:        15px !default;
 
 // Brands
-$brand-primary: #3097D1;
+$brand-primary: #4A4A4A;
 $brand-info: #8eb4cb;
 $brand-success: #2ab27b;
 $brand-warning: #cbb956;
@@ -34,12 +65,12 @@ $brand-danger: #bf5329;
 //
 // Font, line-height, and color for body text, headings, and more.
 $font-family-sans-serif: -apple-system, system-ui, PingFang SC,Hiragino Sans GB, Arial, Microsoft YaHei, Helvetica Neue, sans-serif !default;
-$font-family-serif:      Georgia, "Times New Roman", Times, serif !default;
+$font-family-serif:      Segoe UI, Georgia, "Times New Roman", Times, serif !default;
 $font-family-monospace:  Operator mono light, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace !default;
 $font-family-base:       $font-family-sans-serif !default;
 
 $line-height-base: 1.6;
-$text-color: #636b6f;
+$text-color: #4A4A4A;
 
 // Buttons
 $btn-default-color: $text-color;

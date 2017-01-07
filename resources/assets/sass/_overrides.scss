@@ -1,0 +1,15 @@
+button, input, optgroup, select, textarea {
+    font-family: $font-family-base;
+}
+
+a:hover,a:focus,a:visited {
+    text-decoration: none;
+}
+
+.modal-content {
+    box-shadow: $modal-content-xs-box-shadow;
+}
+
+a {
+    outline: none;
+}
