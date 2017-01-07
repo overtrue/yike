@@ -8,7 +8,10 @@
                 <div class="nav-right col-md-8">
                     <slot name="page-actions"></slot>
                     <div class="user-btn float-right">
-                        <div class="dropdown open">
+                        <div v-if="!isLogged">
+                            <button type="button" class="btn btn-primary">login</button>
+                        </div>
+                        <div class="dropdown open" v-else>
                             <div class="dropdown-toggle" id="nav-right-action-dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <avatar size="small"></avatar>
                             </div>
@@ -28,6 +31,9 @@
 
 <script>
     export default {
+        computed: {
+            isLogged: () => { return false; }
+        },
         components: {
             Logo: require("home/general/Logo"),
             Avatar: require("home/general/Avatar")
