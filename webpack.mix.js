@@ -25,6 +25,7 @@ mix.webpackConfig({
             'src': 'resources/assets/js/',
             'plugins': 'resources/assets/js/plugins/',
             'utils': 'resources/assets/js/utils/',
+            'app': 'resources/assets/js/frontend/',
             'home': 'resources/assets/js/frontend/components/',
         },
         modules: [

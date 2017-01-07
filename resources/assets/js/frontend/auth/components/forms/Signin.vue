@@ -10,7 +10,7 @@
       <input type="password" class="form-control" id="password" v-model="password" placeholder="密码">
     </div>
     <div class="form-group">
-      <button class="btn btn-primary btn-block" type="submit">登录</button>
+      <button class="btn btn-primary btn-block" type="submit" :class="{disabled:!canSumit}" :disabled="!canSumit">登录</button>
     </div>
   </form>
 </template>
@@ -20,18 +20,18 @@
   import Logo from 'home/general/Logo'
 
   export default {
-    /**
-    * Component's local state
-    */
     data() {
       return {
         email: '',
         password: '',
       }
     },
-    components: {
-      Logo
+    computed: {
+        canSumit: () => {
+            return this.email.length > 0 && this.password.length > 0;
+        }
     },
+    components: {Logo},
     methods: {
       /**
       * Map the actions from Vuex to this component.
@@ -44,6 +44,7 @@
       */
       submit() {
         const { email, password } = this // http://wesbos.com/destructuring-objects/
+
         this.attemptLogin({ email, password }) // this is a Vuex action
           .then(() => {
             this.setMessage({ type: 'error', message: [] }) // this is a Vuex action
