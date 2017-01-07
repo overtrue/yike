@@ -28,8 +28,8 @@
     */
     data() {
       return {
-        email: 'happy.developer@hel.com',
-        password: '123456',
+        email: '',
+        password: '',
       }
     },
     components: {

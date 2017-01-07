@@ -25,8 +25,8 @@
     */
     data() {
       return {
-        email: 'happy.developer@vuejsisawesome.com',
-        password: '123456',
+        email: '',
+        password: '',
       }
     },
     components: {
