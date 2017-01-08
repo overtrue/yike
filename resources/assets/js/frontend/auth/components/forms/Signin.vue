@@ -27,7 +27,7 @@
       }
     },
     computed: {
-        canSumit: () => {
+        canSumit() {
             return this.email.length > 0 && this.password.length > 0;
         }
     },
