@@ -18,9 +18,7 @@ export default {
 <template>
   <div id="app">
     <nav-bar v-show="shouldShowNavigation"></nav-bar>
-    <div class="container">
-      <alerts></alerts>
-      <router-view></router-view>
-    </div>
+    <router-view></router-view>
+    <alerts></alerts>
   </div>
 </template>

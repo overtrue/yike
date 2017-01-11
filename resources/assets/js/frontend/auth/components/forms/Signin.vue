@@ -27,9 +27,9 @@
       }
     },
     computed: {
-        canSumit() {
-            return this.email.length > 0 && this.password.length > 0;
-        }
+      canSumit() {
+        return this.email.length > 0 && this.password.length > 0;
+      }
     },
     components: {Logo},
     methods: {
