@@ -6,3 +6,4 @@
 
 /* eslint-disable global-require */
 export const User = require('../User');
+export const Edit = require('../Edit');

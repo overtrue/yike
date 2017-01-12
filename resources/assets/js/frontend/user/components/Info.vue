@@ -4,7 +4,7 @@
       <div class="container">
         <div class="row">
           <div class="col-md-2 offset-md-1">
-            <img :src="user.avatar" class="avatar img-circle img-xs">
+            <img :src="user.avatar" class="avatar img-circle">
           </div>
           <div class="user-info col-md-9">
             <h3 class="username">{{ user.username }}</h3>
