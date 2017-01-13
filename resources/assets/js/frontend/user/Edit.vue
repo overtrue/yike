@@ -126,6 +126,12 @@
     outline: none;
     color: #4a4a4a;
   }
+  .setting-social {
+    display: inline-block;
+    padding: .7em 4.2em;
+    font-size: 16px;
+
+  }
   .setting-edit {
     cursor: pointer;
     padding: .7em;
