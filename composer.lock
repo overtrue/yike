@@ -4,8 +4,48 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "eb61a2da6098728527483ea89ba405f3",
+    "content-hash": "f070a258b1934973ecd7bb729c0fcafd",
     "packages": [
+        {
+            "name": "caouecs/laravel-lang",
+            "version": "3.0.19",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/caouecs/Laravel-lang.git",
+                "reference": "ac508c7277c5f1088d8c9d27b7c82502dabdbbe3"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/caouecs/Laravel-lang/zipball/ac508c7277c5f1088d8c9d27b7c82502dabdbbe3",
+                "reference": "ac508c7277c5f1088d8c9d27b7c82502dabdbbe3",
+                "shasum": ""
+            },
+            "require-dev": {
+                "friendsofphp/php-cs-fixer": "^1.10"
+            },
+            "suggest": {
+                "overtrue/laravel-lang": "Command to add languages in your project"
+            },
+            "type": "library",
+            "notification-url": "http://pkg.overtrue.me/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "caouecs",
+                    "email": "caouecs@caouecs.net"
+                }
+            ],
+            "description": "Languages for Laravel",
+            "keywords": [
+                "lang",
+                "languages",
+                "laravel",
+                "lpm"
+            ],
+            "time": "2016-11-22T08:51:54+00:00"
+        },
         {
             "name": "dnoegel/php-xdg-base-dir",
             "version": "0.1",
@@ -412,12 +452,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/framework.git",
-                "reference": "41b58f9bace8898941f78f78862d1f2a01f56e00"
+                "reference": "305c007f3d01c229b2c68b4b30c4fe0d5da341bb"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/framework/zipball/41b58f9bace8898941f78f78862d1f2a01f56e00",
-                "reference": "41b58f9bace8898941f78f78862d1f2a01f56e00",
+                "url": "https://api.github.com/repos/laravel/framework/zipball/305c007f3d01c229b2c68b4b30c4fe0d5da341bb",
+                "reference": "305c007f3d01c229b2c68b4b30c4fe0d5da341bb",
                 "shasum": ""
             },
             "require": {
@@ -432,7 +472,7 @@
                 "paragonie/random_compat": "~1.4|~2.0",
                 "php": ">=5.6.4",
                 "ramsey/uuid": "~3.0",
-                "swiftmailer/swiftmailer": "~5.1",
+                "swiftmailer/swiftmailer": "~5.4",
                 "symfony/console": "~3.2",
                 "symfony/debug": "~3.2",
                 "symfony/finder": "~3.2",
@@ -478,6 +518,7 @@
             },
             "require-dev": {
                 "aws/aws-sdk-php": "~3.0",
+                "doctrine/dbal": "~2.5",
                 "mockery/mockery": "~0.9.4",
                 "pda/pheanstalk": "~3.0",
                 "phpunit/phpunit": "~5.7",
@@ -531,7 +572,7 @@
                 "framework",
                 "laravel"
             ],
-            "time": "2017-01-01T19:02:45+00:00"
+            "time": "2017-01-09T01:46:54+00:00"
         },
         {
             "name": "laravel/tinker",
@@ -1059,6 +1100,50 @@
             ],
             "description": "Laravel 5 User Based System",
             "time": "2017-01-02T07:26:09+00:00"
+        },
+        {
+            "name": "overtrue/laravel-lang",
+            "version": "3.0.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/overtrue/laravel-lang.git",
+                "reference": "f345f5bf4d66ce5207bfdc3691d4617e4c12fbc5"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/overtrue/laravel-lang/zipball/f345f5bf4d66ce5207bfdc3691d4617e4c12fbc5",
+                "reference": "f345f5bf4d66ce5207bfdc3691d4617e4c12fbc5",
+                "shasum": ""
+            },
+            "require": {
+                "caouecs/laravel-lang": "~3.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Overtrue\\LaravelLang\\": "src/"
+                },
+                "files": [
+                    "src/helpers.php"
+                ]
+            },
+            "notification-url": "http://pkg.overtrue.me/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "overtrue",
+                    "email": "anzhengchao@gmail.com"
+                }
+            ],
+            "description": "List of 52 languages for Laravel 5",
+            "keywords": [
+                "languages",
+                "laravel",
+                "overtrue"
+            ],
+            "time": "2016-05-30T12:22:46+00:00"
         },
         {
             "name": "overtrue/laravel-socialite",
@@ -2438,7 +2523,7 @@
             "dist": {
                 "type": "path",
                 "url": "./packages/jwt-auth",
-                "reference": "6ac8699818affe333ad46e3380b183029fe5c91b",
+                "reference": "fcad2017e449dd324016dbe60c1b08206ebff63d",
                 "shasum": null
             },
             "require": {
