@@ -12,6 +12,15 @@
                 <span class="username">{{ item.username }}</span>
                 <span class="times">{{ item.time }}</span>
               </div>
+              <div class="actions">
+                <div class="favour">
+                  <i class="fa fa-heart-o"></i>
+                  <span>123</span>
+                </div>
+                <div class="collect">
+                  <i class="fa fa-bookmark-o"></i>
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -58,11 +67,51 @@
     width: 100%;
     height: 160px;
   }
-  .extras img {
-    float: left;
-  }
-  .extras .avatar {
-    width: 39px;
+  .extras{
+    margin-top: 15px;
+    position: relative;
+
+    img {
+      float: left;
+    }
+    .avatar {
+      width: 39px;
+    }
+    .actions {
+      display: inline-block;
+      font-size: 16px;
+      position: absolute;
+      bottom: 0;
+      right: 0;
+
+      .favour, .collect{
+        position: relative;
+        padding: 0 5px;
+        cursor: pointer;
+        display: inline-block;
+        opacity: .6;
+
+        span {
+          font-size: 14px;
+          font-weight: 200;
+        }
+      }
+      .favour i {
+        color: #7ED321;
+      }
+      .favour:not(:last-child):after {
+        content: '';
+        position: absolute;
+        left: 100%;
+        top: 50%;
+        width: 1px;
+        height: 1em;
+        background-color: #2b445d;
+        -webkit-transform: translateY(-50%);
+        transform: translateY(-50%);
+        opacity: .1;
+      }
+    }
   }
   .extras .user-info {
     display: inline-block;
