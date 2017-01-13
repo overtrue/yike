@@ -9,7 +9,14 @@
           <div class="user-info col-md-9">
             <h3 class="username">{{ user.username }}</h3>
             <p class="description">{{ user.description }}</p>
-            <p class="place">{{ user.place }}</p>
+            <div class="place">
+              {{ user.place }}
+              <div class="social">
+                <a href=""><i class="fa fa-twitter"></i></a>
+                <a href=""><i class="fa fa-github"></i></a>
+                <a href=""><i class="fa fa-skype"></i></a>
+              </div>
+            </div>
           </div>
           <div class="col-md-3 text-right">
             <a href="#" class="btn btn-outline-secondary btn-sm">编辑资料</a><br>
@@ -102,6 +109,15 @@
 
     .username {
       margin:10px 0 20px;
+    }
+  }
+  .social {
+    display: inline-block;
+    margin-left: 20px;
+
+    a {
+      font-size: 18px;
+      margin-right: 10px;
     }
   }
   .avatar {
