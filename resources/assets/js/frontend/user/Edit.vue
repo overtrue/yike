@@ -4,7 +4,7 @@
       <div class="text-center col-md-8 offset-md-4">
         <div class="box">
           <div class="setting-items">
-            <img class="avatar img-circle" width="120" src="https://pigjian.com/uploads/default_avatar.png">
+            <img class="avatar img-circle" width="120" :src="user.avatar">
             <div class="setting-item">
               <label class="setting-label">昵称</label>
               <input type="text" class="setting-input" @click="click('username')" :value="user.username" id="username" placeholder="填写你的昵称">
@@ -76,6 +76,7 @@
           description: 'Nothing is impossible.',
           email: 'changejian@gmail.com',
           phone: '13112772627',
+          avatar: 'https://pigjian.com/uploads/default_avatar.png',
         },
       }
     },
