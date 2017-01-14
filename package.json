@@ -9,7 +9,7 @@
   "devDependencies": {
     "axios": "^0.15.2",
     "babel-preset-stage-2": "^6.18.0",
-    "bootstrap": "github:twbs/bootstrap#v4-dev",
+    "bootstrap": "v4.0.0-alpha.6",
     "jquery": "^3.1.0",
     "laravel-mix": "^0.2.0",
     "localforage": "^1.4.3",
