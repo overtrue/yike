@@ -2,11 +2,12 @@
 
 namespace App;
 
+use Tymon\JWTAuth\Contracts\JWTSubject;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Overtrue\LaravelFollow\FollowTrait;
 
-class User extends Authenticatable
+class User extends Authenticatable implements JWTSubject
 {
     use Notifiable, FollowTrait;
 
@@ -55,5 +56,15 @@ class User extends Authenticatable
     public function votes()
     {
         return $this->morphMany(Vote::class, 'votable');
+    }
+
+    public function getJWTIdentifier()
+    {
+        return $this->id;
+    }
+
+    public function getJWTCustomClaims()
+    {
+        return [];
     }
 }
