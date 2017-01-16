@@ -7,10 +7,10 @@
             <img :src="user.avatar" class="avatar img-circle">
           </div>
           <div class="user-info col-md-9">
-            <h3 class="username">{{ user.username }}</h3>
-            <p class="description">{{ user.description }}</p>
+            <h3 class="username">{{ user.name }}</h3>
+            <p class="description">{{ user.signature }}</p>
             <div class="place">
-              {{ user.place }}
+              北京
               <div class="social">
                 <a href=""><i class="fa fa-twitter"></i></a>
                 <a href=""><i class="fa fa-github"></i></a>
@@ -52,22 +52,26 @@
 </template>
 
 <script>
-  export default {
-    data() {
-      return {
-        user: {
-          avatar: 'https://dn-phphub.qbox.me/uploads/avatars/76_1451276555.png?imageView2/1/w/200/h/200',
-          username: '安正超',
-          description: '在空气中窒息 我忘了我自己',
-          place: '中国 . 北京',
-          article_count: 2324,
-          collection_count: 3534,
-          follow_count: 865,
-          fans_count: 64533,
-        }
-      }
+import { mapActions,mapGetters } from 'vuex'
+
+export default {
+  data() {
+    return {
+
     }
+  },
+  created() {
+    this.loadUser(this.$route.params.username);
+  },
+  computed: {
+    ...mapGetters({
+      user: 'getInterviewee'
+    })
+  },
+  methods: {
+    ...mapActions(['loadUser'])
   }
+}
 </script>
 
 <style lang="scss" scoped>
