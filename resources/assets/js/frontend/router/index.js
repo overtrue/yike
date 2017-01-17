@@ -5,6 +5,7 @@ import Home from '../Home'
 import NotFound from '../components/general/404'
 import { routes as auth } from '../auth'
 import { routes as user } from '../user'
+import { routes as article } from '../article'
 
 Vue.use(Router)
 
@@ -12,16 +13,15 @@ const HomeRoute = {
   name: 'home',
   path: '/',
   component: Home
-};
+}
 
 const NotFoundRoute = {
   name: '404',
   path: '*',
   component: NotFound
-};
+}
 
-// https://developer.mozilla.org/pt-BR/docs/Web/JavaScript/Reference/Operators/Spread_operator
-const routes = [HomeRoute, ...auth, ...user, NotFoundRoute]
+const routes = [HomeRoute, ...auth, ...user, ...article, NotFoundRoute]
 
 const router = new Router({
   routes,
