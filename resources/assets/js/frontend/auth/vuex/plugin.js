@@ -11,7 +11,6 @@ const subscribe = (store) => {
        * Set the Axios Authorization header with the token
        */
       httpSetToken(Auth.token)
-
       /**
        * Sets the token to the local storage
        * for auto-login purpose

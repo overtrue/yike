@@ -12,26 +12,20 @@ const beforeEach = (to, from, next) => {
   vuex.dispatch('resetMessages')
 
   /**
-   * If route doesn't require authentication be normally accessed.
-   */
-  if (!needAuth(auth)) {
-    next()
-    return // return to prevent the code from continuing in its flow
-    // With this flow `else` or `else if` is not necessary
-  }
-
-  /**
    * Otherwise  if authentication is required login.
    */
   vuex.dispatch('checkUserToken')
-    .then(() => {
+    .then((token) => {
       // There is a token and it is valid
-      next() // can access the route
+      next(); // can access the route
     })
     .catch(() => {
-      // No token, or it is invalid
-      next({ name: 'auth.singin' }) // redirect to login
-    })
+      if (needAuth(auth)) {
+        // No token, or it is invalid
+        next({ name: 'auth.singin' }) // redirect to login
+      }
+      next();
+    });
 }
 
 export default beforeEach

@@ -9,7 +9,7 @@ use Illuminate\Http\Request;
 use App\Transformers\UserTransformer;
 use Illuminate\Foundation\Auth\ThrottlesLogins;
 
-class AuthController extends Controller
+class AuthController extends ApiController
 {
     use ThrottlesLogins;
 

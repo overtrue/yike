@@ -16,6 +16,7 @@ class CreateUsersTable extends Migration
         Schema::create('users', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name');
+            $table->string('username')->index();
             $table->string('email')->unique();
             $table->string('password');
             $table->string('avatar')->nullable();
@@ -35,10 +36,10 @@ class CreateUsersTable extends Migration
             $table->integer('follower_cache')->default(0)->index();
 
             // 账户
-            $table->string('github_id')->index();
-            $table->string('linkedin_id')->nullable();
-            $table->string('twitter_id')->nullable();
-            $table->string('weibo_url')->nullable();
+            $table->string('github_id')->nullable()->index();
+            $table->string('linkedin_id')->nullable()->nullable();
+            $table->string('twitter_id')->nullable()->nullable();
+            $table->string('weibo_url')->nullable()->nullable();
 
             $table->timestamp('last_active_at')->nullable();
 
