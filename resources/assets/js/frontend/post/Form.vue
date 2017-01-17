@@ -1,11 +1,17 @@
+<navbar>
+    <span slot="page-actions">
+      <a class="text-success">发布</a>
+    </span>
+</navbar>
+
 <template>
   <div class="post-new">
     <div class="container pt-5">
       <div class="cover-picker">
         <div class="picker">&plus; 设置封面</div>
       </div>
-      <div class="post-title" placeholder="请输入标题" contenteditable="true" v-model="title"></div>
-      <div class="post-body" placeholder="请输入正文" contenteditable="true" v-model="body"></div>
+      <div class="post-title" placeholder="请输入标题" contenteditable="true"></div>
+      <div class="post-body" placeholder="请输入正文" contenteditable="true"></div>
     </div>
   </div>
 </template>

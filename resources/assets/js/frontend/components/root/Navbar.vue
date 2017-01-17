@@ -8,7 +8,7 @@
           </div>
           <div class="page-actions float-right text-right col-md-5">
             <slot name="page-actions">
-              <router-link :to="{name:'post.new'}">发布文章</router-link>
+              <router-link :to="{name:'post.new'}" v-if="isLogged">发布文章</router-link>
             </slot>
           </div>
           <div class="nav-right col-md-3">
@@ -16,12 +16,12 @@
               <div v-if="!isLogged">
                 <a href="#" data-toggle="modal" data-target="#login-modal" @click="isSignin=true">登录</a> / <a href="#" data-toggle="modal" data-target="#login-modal" @click="isSignin=false">注册</a>
               </div>
-              <div class="dropdown open" v-else>
+              <div class="dropdown" v-else>
                 <div class="dropdown-toggle" id="nav-right-action-dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                   <avatar size="small"></avatar>
                   <span class="name">{{ currentUser.name }}</span>
                 </div>
-                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="nav-right-action-dropdown">
+                <div class="dropdown-menu text-center dropdown-menu-right" aria-labelledby="nav-right-action-dropdown">
                     <router-link class="dropdown-item" :to="{name:'user.show', params:{username:currentUser.username}}">个人主页</router-link>
                     <router-link class="dropdown-item" :to="{name:'user.profile'}">账号设置</router-link>
                     <div class="dropdown-divider"></div>
@@ -61,6 +61,7 @@ import { mapActions, mapGetters } from 'vuex'
 import {Signin, Signup} from "../../auth/routes";
 
 export default {
+  name:"nav-bar",
   data() {
     return {
         isSignin: true
@@ -93,6 +94,7 @@ export default {
 <style lang="scss" scoped>
   .nav-bar {
     height: 60px;
+    line-height: 35px;
   }
   header {
     position: fixed;
@@ -109,10 +111,6 @@ export default {
       padding: 0 10px;
       font-size: 1em;
     }
-  }
-
-  .page-actions {
-    line-height: 35px;
   }
 
   .custom-actions {
