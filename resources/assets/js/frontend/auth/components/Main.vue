@@ -7,11 +7,11 @@
       <div class="col-md-2"></div>
       <div class="col-md-3">
         <ul class="nav nav-pills nav-stacked">
-          <router-link tag="li" :to="{ name: 'auth.singin' }">
-            <a>Sing in</a>
+          <router-link tag="li" :to="{ name: 'auth.signin' }">
+            <a>Sign in</a>
           </router-link>
-          <router-link tag="li" :to="{ name: 'auth.singup' }">
-            <a>Sing up</a>
+          <router-link tag="li" :to="{ name: 'auth.signup' }">
+            <a>Sign up</a>
           </router-link>
         </ul>
       </div>

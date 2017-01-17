@@ -1,4 +1,6 @@
-import { Signup, Signin, Main } from './components'
+export const Main = require('./components/Main');
+export const Signin = require('./components/forms/Signin');
+export const Signup = require('./components/forms/Signup');
 
 const children = [{
   name: 'auth.signin',

@@ -7,13 +7,13 @@
             <img class="avatar img-circle" width="120" :src="user.avatar">
             <div class="setting-item">
               <label class="setting-label">昵称</label>
-              <input type="text" class="setting-input" @click="click('username')" :value="user.username" id="username" placeholder="填写你的昵称">
+              <input type="text" class="setting-input" @click="click('name')" :value="user.name" id="name" placeholder="填写你的昵称">
               <div class="setting-edit" v-if="isEdit">
                   <span class="save">保存</span>
-                  <span class="cancel" @click="cancel('username')">取消</span>
+                  <span class="cancel" @click="cancel('name')">取消</span>
               </div>
               <div class="setting-edit" v-else>
-                  <i class="fa fa-pencil" @click="edit('username')"></i>
+                  <i class="fa fa-pencil" @click="edit('name')"></i>
               </div>
             </div>
             <div class="setting-item">
@@ -67,22 +67,20 @@
 </template>
 
 <script>
+import { mapActions, mapGetters } from 'vuex'
   export default {
     data() {
       return {
         isEdit: false,
-        user: {
-          username: 'Jiajian Chan',
-          description: 'Nothing is impossible.',
-          email: 'changejian@gmail.com',
-          phone: '13112772627',
-          avatar: 'https://pigjian.com/uploads/default_avatar.png',
-        },
       }
+    },
+    computed: {
+      ...mapGetters({
+        user: 'currentUser'
+      }),
     },
     methods: {
       edit(el) {
-        console.log('asdadas');
         let value = $('#' + el).val()
 
         $('#' + el).val('').focus().val(value)

@@ -1,19 +1,13 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import beforeEach from './beforeEach'
-import Home from '../Home'
 import NotFound from '../components/general/404'
+import { routes as home } from '../home'
 import { routes as auth } from '../auth'
 import { routes as user } from '../user'
-import { routes as article } from '../article'
+import { routes as post } from '../post'
 
 Vue.use(Router)
-
-const HomeRoute = {
-  name: 'home',
-  path: '/',
-  component: Home
-}
 
 const NotFoundRoute = {
   name: '404',
@@ -21,7 +15,7 @@ const NotFoundRoute = {
   component: NotFound
 }
 
-const routes = [HomeRoute, ...auth, ...user, ...article, NotFoundRoute]
+const routes = [...auth, ...home, ...user, ...post, NotFoundRoute]
 
 const router = new Router({
   routes,
