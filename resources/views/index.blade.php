@@ -10,7 +10,9 @@
         <link rel="stylesheet" type="text/css" href="{{ asset('css/app.css') }}">
     </head>
     <body>
-        <div id="app"></div>
+        <div id="app">
+            <router-view></router-view>
+        </div>
     </body>
     <script src="{{ mix('js/app.js') }}"></script>
 </html>

@@ -15,12 +15,13 @@
               <div class="dropdown open" v-else>
                 <div class="dropdown-toggle" id="nav-right-action-dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                   <avatar size="small"></avatar>
+                  {{ currentUser.name }}
                 </div>
                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="nav-right-action-dropdown">
-                    <a class="dropdown-item" href="#">个人主页</a>
+                    <router-link class="dropdown-item" :to="{name:'user.show', params:{username:currentUser.username}}">个人主页</router-link>
                     <a class="dropdown-item" href="#">账号设置</a>
                     <div class="dropdown-divider"></div>
-                    <a class="dropdown-item" href="#">注销</a>
+                    <a class="dropdown-item" href="#" @click="logout">注销</a>
                 </div>
               </div>
             </div>
@@ -52,24 +53,37 @@
 </template>
 
 <script>
-    import {Signin, Signup} from "../../auth/routes/components";
+import { mapActions, mapGetters } from 'vuex'
+import {Signin, Signup} from "../../auth/routes/components";
 
-    export default {
-        data() {
-            return {
-                isSignin: true
-            }
-        },
-        computed: {
-            isLogged: () => { return false; }
-        },
-        components: {
-            Signin,
-            Signup,
-            Logo: require("home/general/Logo"),
-            Avatar: require("home/general/Avatar"),
-        }
+export default {
+  data() {
+    return {
+        isSignin: true
     }
+  },
+  computed: {
+    ...mapGetters(['isLogged', 'currentUser']),
+  },
+  watch: {
+    isLogged(value) { // isLogged changes when the token changes
+      if (value === false) {
+        this.$router.push({ name: 'home' })
+      }
+
+      $('#login-modal').modal('hide');
+    },
+  },
+  methods: {
+    ...mapActions(['logout']),
+  },
+  components: {
+    Signin,
+    Signup,
+    Logo: require("home/general/Logo"),
+    Avatar: require("home/general/Avatar"),
+  }
+}
 </script>
 
 <style lang="scss" scoped>
