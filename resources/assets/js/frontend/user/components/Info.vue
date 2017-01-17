@@ -61,7 +61,7 @@ export default {
     }
   },
   created() {
-    this.loadUser(this.$route.params.username);
+    this.loadInterviewee(this.$route.params.username);
   },
   computed: {
     ...mapGetters({
@@ -69,7 +69,7 @@ export default {
     })
   },
   methods: {
-    ...mapActions(['loadUser'])
+    ...mapActions(['loadInterviewee'])
   }
 }
 </script>

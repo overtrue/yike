@@ -1,6 +1,7 @@
 import { sync } from 'vuex-router-sync'
 import Vue from 'vue'
 import {vuex as store, router} from "./frontend"
+import Root from "./frontend/Root"
 
 /**
 * $http plugin based on axios
@@ -35,5 +36,6 @@ sync(store, router) // https://github.com/vuejs/vuex-router-sync/tree/next
 new Vue({
   store, // injects the Store into all components
   router, // make Router work with the application
-  el: '#app'
+  el: '#app',
+  render: h => h(Root)
 })

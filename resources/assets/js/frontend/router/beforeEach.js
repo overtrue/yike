@@ -1,10 +1,8 @@
 import vuex from '../vuex'
 
-const needAuth = auth => auth === true
+const needAuth = route => route.meta.requiresAuth === true
 
 const beforeEach = (to, from, next) => {
-  const auth = to.meta.requiresAuth
-
   /**
   * Clears all global feedback message
   * that might be visible
@@ -17,12 +15,13 @@ const beforeEach = (to, from, next) => {
   vuex.dispatch('checkUserToken')
     .then((token) => {
       // There is a token and it is valid
-      next(); // can access the route
+      return next(); // can access the route
     })
-    .catch(() => {
-      if (needAuth(auth)) {
+    .catch((err, error) => {
+      if (needAuth(to)) {
+        console.log(err, error)
         // No token, or it is invalid
-        next({ name: 'auth.singin' }) // redirect to login
+        return next({ name: 'auth.signin' }) // redirect to login
       }
       next();
     });
