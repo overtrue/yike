@@ -22,8 +22,8 @@
                   <span class="name">{{ currentUser.name }}</span>
                 </div>
                 <div class="dropdown-menu text-center dropdown-menu-right" aria-labelledby="nav-right-action-dropdown">
-                    <router-link class="dropdown-item" :to="{name:'user.show', params:{username:currentUser.username}}">个人主页</router-link>
-                    <router-link class="dropdown-item" :to="{name:'user.profile'}">账号设置</router-link>
+                    <router-link class="dropdown-item" :to="{ name:'user.show', params: { username: currentUser.username }}">个人主页</router-link>
+                    <router-link class="dropdown-item" :to="{ name:'user.profile' }">账号设置</router-link>
                     <div class="dropdown-divider"></div>
                     <a class="dropdown-item" href="#" @click="logout">注销</a>
                 </div>
@@ -68,7 +68,7 @@ export default {
     }
   },
   computed: {
-    ...mapGetters(['isLogged', 'currentUser']),
+    ...mapGetters(['currentUser', 'isLogged']),
   },
   watch: {
     isLogged(value) { // isLogged changes when the token changes
