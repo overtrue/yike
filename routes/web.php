@@ -11,6 +11,10 @@
 |
 */
 
+Route::get('/dashboard/{name?}/{name2?}/{name3?}/{name4?}', function () {
+    return view('dashboard');
+})->middleware('admin');
+
 Route::get('/{name?}/{name2?}/{name3?}/{name4?}', function () {
     return view('index');
 });
