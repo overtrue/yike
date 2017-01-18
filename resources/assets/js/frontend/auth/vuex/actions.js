@@ -57,6 +57,7 @@ export const checkUserToken = ({ dispatch, state }) => {
         // Token is not saved in localstorage
         return Promise.reject('NO_TOKEN') // Reject promise
       }
+
       // Put the token in the vuex store
       return dispatch('setToken', token) // keep promise chain
     })

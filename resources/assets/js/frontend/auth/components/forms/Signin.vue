@@ -27,9 +27,9 @@
       }
     },
     computed: {
-        canSumit() {
-            return this.email.length > 0 && this.password.length > 0;
-        }
+      canSumit() {
+        return this.email.length > 0 && this.password.length > 0;
+      }
     },
     components: {Logo},
     methods: {
@@ -48,7 +48,7 @@
         this.attemptLogin({ email, password }) // this is a Vuex action
           .then(() => {
             this.setMessage({ type: 'error', message: [] }) // this is a Vuex action
-            this.$router.push({ name: 'dashboard.index' })
+            this.$router.push({ name: 'home' })
           })
       },
       /**

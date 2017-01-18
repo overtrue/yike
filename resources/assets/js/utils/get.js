@@ -12,4 +12,6 @@ import { get } from 'lodash'
  * - const getData = (obj, defaultValue) => get(obj, 'data', defaultValue)
  * seet https://lodash.com/docs#get for more details
  */
-export const getData = obj => get(obj, 'data')
+export const getData = obj => {
+  return get(obj, 'data')
+}

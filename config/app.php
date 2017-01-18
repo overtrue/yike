@@ -168,6 +168,9 @@ return [
          */
         Laravel\Tinker\TinkerServiceProvider::class,
         Tymon\JWTAuth\Providers\LaravelServiceProvider::class,
+        Overtrue\LaravelSocialite\ServiceProvider::class,
+//        Overtrue\LaravelPinyin\ServiceProvider::class,
+        Overtrue\LaravelFollow\FollowServiceProvider::class,
 
         /*
          * Application Service Providers...
@@ -227,6 +230,8 @@ return [
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
         'JWTFactory' => Tymon\JWTAuth\Facades\JWTFactory::class,
+        'Socialite' => Overtrue\LaravelSocialite\Socialite::class,
+//        'Pinyin' => Overtrue\LaravelPinyin\Facades\Pinyin::class,
     ],
 
 ];
