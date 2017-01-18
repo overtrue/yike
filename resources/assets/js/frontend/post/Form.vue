@@ -14,8 +14,8 @@
       <textarea class="post-body" id="post-body" placeholder="请输入内容"></textarea>
     </div>
     <div class="page-actions">
-      <a href="#" class="btn btn-outline-success" @click="handleSubmit()">发布</a>
-      <a href="#" class="btn btn-outline-secondary" @click="handleSubmit(false)">存为草稿</a>
+      <a href="#" class="btn btn-sm btn-outline-success" @click="handleSubmit()">发布</a>
+      <a href="#" class="btn btn-sm btn-outline-secondary" @click="handleSubmit(false)">存为草稿</a>
     </div>
   </div>
 </template>
