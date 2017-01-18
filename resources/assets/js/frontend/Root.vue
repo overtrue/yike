@@ -17,7 +17,7 @@ export default {
 
 <template>
     <div class="page-root">
-      <navbar v-show="shouldShowNavigation"></navbar>
+      <navbar v-if="shouldShowNavigation"></navbar>
       <router-view></router-view>
       <alerts></alerts>
     </div>
