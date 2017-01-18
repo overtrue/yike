@@ -6,10 +6,7 @@
           <div class="logo col-md-8">
           <router-link :to="{name:'home'}"><logo></logo></router-link>
           </div>
-          <div class="page-actions float-right text-right col-md-5">
-            <slot name="page-actions">
-              <router-link :to="{name:'post.new'}" v-if="isLogged">发布文章</router-link>
-            </slot>
+          <div class="page-actions-wrapper float-right text-right col-md-5">
           </div>
           <div class="nav-right col-md-3">
             <div class="user-btn float-right">
