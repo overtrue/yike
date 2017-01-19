@@ -31,9 +31,10 @@ class CreateUsersTable extends Migration
             $table->boolean('is_verified')->default(false)->index();
 
             // 数据缓存
-            $table->integer('post_cache')->default(0)->index();
-            $table->integer('comment_cache')->default(0)->index();
-            $table->integer('follower_cache')->default(0)->index();
+            $table->unsignedInteger('post_cache')->default(0)->index();
+            $table->unsignedInteger('comment_cache')->default(0)->index();
+            $table->unsignedInteger('follower_cache')->default(0)->index();
+            $table->unsignedInteger('view_cache')->default(0)->index();
 
             // 账户
             $table->string('github_id')->nullable()->index();

@@ -17,7 +17,7 @@ class AdminAuth
     public function handle($request, Closure $next)
     {
         if (Auth::guest() || !Auth::user()->is_admin) {
-            abort(403);
+            abort(403, '非法访问');
         }
 
         return $next($request);
