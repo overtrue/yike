@@ -33,5 +33,6 @@ return [
 
     'transformers' => [
         App\User::class => App\Transformers\UserTransformer::class,
+        App\Post::class => App\Transformers\PostTransformer::class,
     ],
 ];

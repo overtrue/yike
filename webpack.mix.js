@@ -15,6 +15,7 @@ let path = require('path');
  */
 
 mix.js('resources/assets/js/app.js', 'public/js')
+   .js('resources/assets/js/admin.js', 'public/js')
    .sass('resources/assets/sass/app.scss', 'public/css');
 
 
@@ -31,6 +32,25 @@ mix.webpackConfig({
         modules: [
             path.resolve('node_modules'),
             path.resolve('./'),
+        ]
+    },
+    module: {
+        rules: [
+          {
+            test: /\.css$/,
+            loader: 'style-loader!css-loader'
+          },
+          {
+            test: /\.(eot|svg|ttf|woff|woff2)(\?\S*)?$/,
+            loader: 'file-loader'
+          },
+          {
+            test: /\.(png|jpe?g|gif|svg)(\?\S*)?$/,
+            loader: 'file-loader',
+            query: {
+              name: '[name].[ext]?[hash]'
+            }
+          }
         ]
     }
 });

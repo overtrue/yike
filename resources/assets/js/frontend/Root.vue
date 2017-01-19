@@ -1,7 +1,7 @@
 <script>
 import { mapGetters } from 'vuex'
-import Navbar from './components/root/Navbar'
-import Alerts from './components/general/Alerts'
+import Navbar from './components/Navbar'
+import Alerts from './components/Alerts'
 
 export default {
   name: 'YiKe',

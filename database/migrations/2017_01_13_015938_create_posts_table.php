@@ -16,10 +16,16 @@ class CreatePostsTable extends Migration
         Schema::create('posts', function (Blueprint $table) {
             $table->increments('id')->unsigned();
             $table->unsignedInteger('user_id')->index();
-            $table->boolean('spam')->default(0);
+            $table->boolean('is_spammed')->default(0);
 
             $table->string('title');
             $table->string('slug')->unique();
+
+            // 封面
+            $table->unsignedInteger('image_id')->nullable();
+
+            // 类型
+            $table->enum('type', ['markdown','html'])->default('html')->index();
 
             // 状态缓存
             $table->unsignedInteger('comment_cache')->default(0)->index();
