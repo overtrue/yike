@@ -12,5 +12,5 @@
     <body>
         <div id="app"></div>
     </body>
-    <script src="{{ mix('js/admin.js') }}"></script>
+    <script src="{{ asset('js/admin.js') }}"></script>
 </html>

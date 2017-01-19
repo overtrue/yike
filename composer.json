@@ -7,6 +7,7 @@
     "require": {
         "php": ">=5.6.4",
         "erusev/parsedown": "^1.6",
+        "jellybool/translug": "^1.0",
         "laravel/framework": "5.4.*",
         "laravel/tinker": "~1.0",
         "league/fractal": "^0.14.0",
@@ -14,7 +15,7 @@
         "overtrue/laravel-lang": "^3.0",
         "overtrue/laravel-socialite": "^1.0",
         "predis/predis": "^1.1",
-        "tymon/jwt-auth": "dev-master"
+        "tymon/jwt-auth": "dev-develop"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",
@@ -28,8 +29,7 @@
         "psr-4": {
             "App\\": "app/",
             "Tests\\": "tests/"
-        },
-        "files": ["app/mix.php"]
+        }
     },
     "scripts": {
         "post-root-package-install": [
@@ -51,12 +51,6 @@
         "preferred-install": "dist",
         "sort-packages": true
     },
-    "repositories":[
-        {
-            "type":"path",
-            "url":"./packages/jwt-auth"
-        }
-    ],
     "minimum-stability": "dev",
     "prefer-stable": true
 }
