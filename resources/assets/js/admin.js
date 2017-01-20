@@ -1,5 +1,7 @@
-import { sync } from 'vuex-router-sync'
 import Vue from 'vue'
+import ElementUI from 'element-ui'
+import 'element-ui/lib/theme-default/index.css'
+import { sync } from 'vuex-router-sync'
 import {vuex as store, router} from "./dashboard"
 import Root from "./dashboard/Root"
 
@@ -17,6 +19,8 @@ import eventbus from './plugins/eventbus'
 * jQuery and Bootstrap includes
 */
 require('./bootstrap')
+
+Vue.use(ElementUI)
 
 /**
 * Make $http avaible to all components
