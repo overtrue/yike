@@ -12,7 +12,7 @@ class Post extends Model
     const TYPE_HTML = 'html';
 
     protected $fillable = [
-        'user_id', 'is_spammed', 'title', 'slug',
+        'user_id', 'is_spammed', 'title', 'slug', 'type',
         'content', 'content_original', 'published_at', 'image_id',
     ];
 
@@ -28,7 +28,7 @@ class Post extends Model
 
         static::saving(function($post){
             if ($post->type == self::TYPE_MARKDOWN) {
-                $post->content = Parsedown::text($post->content);
+                $post->content = preg_replace('/<code>/', '<code class="language-php">', Parsedown::text($post->content));
             }
         });
     }

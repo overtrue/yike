@@ -17,9 +17,9 @@ const beforeEach = (to, from, next) => {
       // There is a token and it is valid
       return next(); // can access the route
     })
-    .catch((err, error) => {
+    .catch((err) => {
       if (needAuth(to)) {
-        console.log(err, error)
+        console.log(err)
         // No token, or it is invalid
         return next({ name: 'auth.signin' }) // redirect to login
       }

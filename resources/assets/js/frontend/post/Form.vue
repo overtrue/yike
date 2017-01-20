@@ -57,6 +57,8 @@ export default {
       keyMap: "sublime",
       mode:  "markdown",
       lineWrapping: true,
+      autoCloseBrackets: true,
+      matchBrackets: true,
       value: vm.body,
     });
 
