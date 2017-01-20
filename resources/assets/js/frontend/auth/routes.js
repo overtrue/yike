@@ -1,6 +1,6 @@
 export const Main = require('./components/Main');
-export const Signin = require('./components/forms/Signin');
-export const Signup = require('./components/forms/Signup');
+export const Signin = require('./components/Signin');
+export const Signup = require('./components/Signup');
 
 const children = [{
   name: 'auth.signin',

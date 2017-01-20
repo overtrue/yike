@@ -3,7 +3,7 @@ export const Form = require('./Form');
 
 export default [{
   name: 'post.show',
-  path: '/:username(\\w+)/:slug(\\w+)',
+  path: '/:username(\\w+)/:slug([\\w-]+)',
   component: Show,
   meta: { requiresAuth: false },
 },{

@@ -171,6 +171,7 @@ return [
         Overtrue\LaravelSocialite\ServiceProvider::class,
 //        Overtrue\LaravelPinyin\ServiceProvider::class,
         Overtrue\LaravelFollow\FollowServiceProvider::class,
+        JellyBool\Translug\TranslugServiceProvider::class,
 
         /*
          * Application Service Providers...
@@ -231,6 +232,7 @@ return [
         'View' => Illuminate\Support\Facades\View::class,
         'JWTFactory' => Tymon\JWTAuth\Facades\JWTFactory::class,
         'Socialite' => Overtrue\LaravelSocialite\Socialite::class,
+        'Translug' => \JellyBool\Translug\TranslugFacade::class,
 //        'Pinyin' => Overtrue\LaravelPinyin\Facades\Pinyin::class,
     ],
 
