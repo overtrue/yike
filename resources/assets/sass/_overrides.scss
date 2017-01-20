@@ -32,6 +32,10 @@ pre,code {
   background: rgba(238,238,238,.35);
 }
 
+.CodeMirror-wrap pre {
+  box-shadow:none;
+}
+
 a:hover,a:focus,a:visited {
     text-decoration: none;
 }

@@ -23,14 +23,34 @@ class Post extends Model
         static::creating(function($post){
             $post->user_id = auth()->id();
             $post->content_original = $post->content_original ?: $post->content;
-            $post->slug = Translug::translug($post->title).'-'.uniqid();
+            $post->slug = self::makeUniqueSlug($post);
         });
 
         static::saving(function($post){
-            if ($post->type == self::TYPE_MARKDOWN) {
+            if ($post->isDirty('content') && $post->type == self::TYPE_MARKDOWN) {
                 $post->content = preg_replace('/<code>/', '<code class="language-php">', Parsedown::text($post->content));
             }
         });
+    }
+
+    public static function makeUniqueSlug($post)
+    {
+        $title = Translug::translug($post->title);
+        $uniqId = uniqid();
+        $i = 0;
+
+        while ($i < strlen($uniqId)) {
+            if (Post::whereSlug($title)->count()) {
+                if ($i == 0) {
+                    $title = $title.'-';
+                }
+                $title = $title.substr($uniqId, $i++, 5);
+            } else {
+                break;
+            }
+        }
+
+        return $title;
     }
 
     public function tags()

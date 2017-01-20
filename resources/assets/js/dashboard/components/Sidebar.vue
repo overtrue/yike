@@ -11,7 +11,7 @@
         <span class="email">{{ user.email }}</span>
       </div>
     </div>
-    <el-menu router :default-active="activeMenu" class="el-menu-bar" @open="handleOpen" @close="handleClose">
+    <el-menu router :default-active="$route.path" class="el-menu-bar" @open="handleOpen" @close="handleClose">
       <el-menu-item index="/dashboard"><i class="fa fa-tachometer"></i>Dashboard</el-menu-item>
       <el-menu-item index="/dashboard/user"><i class="fa fa-users"></i>Users</el-menu-item>
     </el-menu>
@@ -24,12 +24,6 @@
   export default {
     data() {
       return {
-        activeMenu: ''
-      }
-    },
-    watch: {
-      '$route'(to, from) {
-        this.activeMenu = this.$route.path
       }
     },
     computed: {

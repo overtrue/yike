@@ -1,5 +1,5 @@
 <template>
-  <el-breadcrumb separator="/">
+  <el-breadcrumb separator="/" class="text-right">
     <el-breadcrumb-item v-for="(item, index) in breadcrumbs" :to="item.path">
       {{ item.meta.title }}
     </el-breadcrumb-item>
@@ -21,10 +21,11 @@
 
 <style lang="scss">
 .el-breadcrumb {
-  float: right;
   height: 50px;
   line-height: 50px;
-  display: inline-block;
+}
+.el-breadcrumb__item {
+  float: none;
 }
 .el-breadcrumb__item__inner {
   color: #97a8be !important;

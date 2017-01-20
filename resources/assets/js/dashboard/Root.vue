@@ -1,30 +1,27 @@
 <template>
   <div class="body">
-    <side-bar></side-bar>
-    <div class="el-content-wrapper">
-      <navbar></navbar>
+    <transition name="fade">
       <router-view></router-view>
-    </div>
+    </transition>
+    <alerts></alerts>
   </div>
 </template>
 
 <script>
-  import SideBar from './components/Sidebar'
-  import Navbar from './components/Navbar'
+import Alerts from "./components/Alerts"
 
-  export default {
-    components: {
-      SideBar,
-      Navbar,
-    }
+export default {
+  components: {
+    Alerts
   }
+}
 </script>
 
-<style lang="scss" scoped>
-// content
-.el-content-wrapper {
-  width: 100%;
-  z-index: 97;
-  box-sizing: border-box;
+<style>
+.fade-enter-active, .fade-leave-active {
+  transition: opacity .5s
+}
+.fade-enter, .fade-leave-to /* .fade-leave-active in <2.1.8 */ {
+  opacity: 0
 }
 </style>

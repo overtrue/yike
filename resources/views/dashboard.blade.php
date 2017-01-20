@@ -12,10 +12,13 @@
             body {
                 background-color: #EAF0F3;
             }
+            [v-cloak] {
+                display: none;
+            }
         </style>
     </head>
     <body>
-        <div id="app"></div>
+        <div id="app" v-cloak></div>
     </body>
     <script src="{{ asset('js/admin.js') }}"></script>
 </html>
