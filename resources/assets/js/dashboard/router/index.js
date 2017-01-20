@@ -2,9 +2,9 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import beforeEach from './beforeEach'
 import NotFound from '../components/404'
+import Content from '../components/Content'
 import { routes as home } from '../home'
 import { routes as auth } from 'app/auth'
-import { routes as home } from '../home'
 import { routes as user } from '../user'
 
 Vue.use(Router)

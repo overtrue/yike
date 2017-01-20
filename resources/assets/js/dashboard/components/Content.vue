@@ -1,24 +1,28 @@
 <template>
-  <section class="el-content">
-    <el-row class="top">
-      <el-col :span="6" :offset="1">
-        <h3 class="title">{{ title }}</h3>
-      </el-col>
-      <el-col :span="6" :offset="10">
-        <breadcrumb :breadcrumbs="breadcrumbs"></breadcrumb>
-      </el-col>
-    </el-row>
-    <el-row>
-      <el-col :span="22" :offset="1">
-        <div class="el-content-inner">
-          <router-view></router-view>
-        </div>
-      </el-col>
-    </el-row>
-  </section>
+  <div class="dashboard-page">
+    <sidebar></sidebar>
+    <div class="el-content-wrapper">
+        <navbar></navbar>
+        <section class="el-content">
+          <el-row class="top" justify="space-between">
+            <el-col :span="6">
+              <h3 class="title">{{ title }}</h3>
+            </el-col>
+            <el-col :span="18">
+              <breadcrumb :breadcrumbs="breadcrumbs"></breadcrumb>
+            </el-col>
+          </el-row>
+          <div class="el-content-inner">
+            <router-view></router-view>
+          </div>
+        </section>
+      </div>
+  </div>
 </template>
 
 <script>
+import Sidebar from './Sidebar'
+import Navbar from './Navbar'
 import Breadcrumb from './Breadcrumb'
 
 export default {
@@ -31,14 +35,17 @@ export default {
     }
   },
   components: {
-    Breadcrumb,
+    Sidebar, Navbar, Breadcrumb,
   }
 }
-
 </script>
 
-
 <style lang="scss" scoped>
+.el-content-wrapper {
+  width: 100%;
+  z-index: 97;
+  box-sizing: border-box;
+}
 .top {
   padding-top: 60px;
   margin-bottom: 20px;
@@ -62,11 +69,13 @@ export default {
   bottom: 0;
   margin-left: 220px;
   min-height: 350px;
+  padding: 0 25px;
 
   .el-content-inner {
     background-color: #fff;
     height: 600px;
-    border-radius: 10px;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
   }
 }
 </style>

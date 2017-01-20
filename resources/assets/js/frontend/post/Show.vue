@@ -6,9 +6,9 @@
     <div class="row">
       <div class="col-md-8 offset-md-4">
         <div class="title">
-          <h3>{{ post.title }}</h3>
+          <h1>{{ post.title }}</h1>
         </div>
-        <div class="content" v-html="post.content"></div>
+        <article class="post-body" v-html="post.content"></article>
         <div class="footer">
           <div class="user">
             <div class="info-left">
@@ -28,6 +28,11 @@
 
 <script>
 import { mapActions, mapGetters } from 'vuex'
+require("clipboard")
+require("./theme/github.css")
+import Prism from "../../plugins/prism"
+require("../../plugins/prism.css")
+
 export default {
   data() {
     return {
@@ -40,16 +45,18 @@ export default {
       this.post = post, this.user = post.user.data
     });
   },
+  mounted() {
+    setTimeout(function(){
+      Prism.highlightAll('.post-body');
+    }, 500);
+  },
   methods: {
     ...mapActions(['loadPost'])
   }
 }
 </script>
 
-<style lang="scss" scoped>
-  .row > div {
-    display: block;
-  }
+<style lang="scss">
   .title {
     margin-top: 30px;
     margin-bottom: 30px;
@@ -58,9 +65,47 @@ export default {
       font-weight: 300;
     }
   }
-  .content {
-    font-weight: 200;
+  .post-body {
+    color: #333;
     margin-bottom: 60px;
+
+    h1 {
+      font-size: 48px;
+      font-weight: 200;
+    }
+
+    h2 {
+      font-size: 30px;
+      font-weight: 400;
+      margin-top: 55px;
+      position: relative;
+
+      &:first-of-type {
+          margin-top: 15px;
+      }
+    }
+
+    h3 {
+      font-size: 24px;
+      font-weight: 400;
+      margin-top: 45px;
+    }
+
+    h4 {
+      font-size: 16px;
+      font-weight: 700;
+      margin-top: 35px;
+    }
+
+    h5, h6 {
+      font-size: 14px;
+      font-weight: 700;
+      margin-top: 35px;
+    }
+    p {
+      font-size: 14.5px;
+      line-height: 1.7;
+    }
   }
   .footer {
     height: 80px;
@@ -104,6 +149,11 @@ export default {
       right: 0;
       top: 26.6667px;
     }
+  }
+  pre.code-toolbar > .toolbar a, pre.code-toolbar > .toolbar button, pre.code-toolbar > .toolbar span {
+    border-radius: 1px;
+    box-shadow: none;
+    margin: 0 3px;
   }
   #bitdim {
     width: 100%;

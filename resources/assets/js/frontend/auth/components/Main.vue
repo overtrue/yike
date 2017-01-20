@@ -22,7 +22,7 @@
 <script>
 export default {
   components: {
-    Logo: require("home/general/Logo"),
+    Logo: require("home/Logo"),
   }
 }
 </script>
