@@ -14,9 +14,19 @@ class PostController extends ApiController
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
+        $posts = tap(Post::with('user'), function($query) use ($request) {
+            if ($request->has('user')) {
+                $query->where('user_id', $request->user);
+
+                if (auth()->id() != $request->user) {
+                    $query->noDraft();
+                }
+            }
+        })->paginate(15);
+
+        return $this->response->collection($posts);
     }
 
     /**

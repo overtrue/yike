@@ -1,3 +1,4 @@
 export default {
-  user: {}
+  user: {},
+  posts: {}
 }

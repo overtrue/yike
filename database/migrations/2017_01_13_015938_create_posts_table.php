@@ -17,6 +17,7 @@ class CreatePostsTable extends Migration
             $table->increments('id')->unsigned();
             $table->unsignedInteger('user_id')->index();
             $table->boolean('is_spammed')->default(0);
+            $table->boolean('is_draft')->default(0);
 
             $table->string('title');
             $table->string('slug')->unique();

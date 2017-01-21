@@ -1,6 +1,5 @@
 <template>
     <div class="page-root">
-      <navbar v-if="shouldShowNavigation"></navbar>
       <transition name="fade">
         <router-view></router-view>
       </transition>
@@ -10,17 +9,12 @@
 
 <script>
 import { mapGetters } from 'vuex'
-import Navbar from './components/Navbar'
 import Alerts from './components/Alerts'
 
 export default {
   name: 'YiKe',
   components: {
-    Navbar,
     Alerts,
-  },
-  computed: {
-    ...mapGetters(['shouldShowNavigation']),
   },
 }
 </script>

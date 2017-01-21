@@ -12,7 +12,7 @@ class Post extends Model
     const TYPE_HTML = 'html';
 
     protected $fillable = [
-        'user_id', 'is_spammed', 'title', 'slug', 'type',
+        'user_id', 'is_spammed', 'is_draft', 'title', 'slug', 'type',
         'content', 'content_original', 'published_at', 'image_id',
     ];
 
@@ -67,5 +67,10 @@ class Post extends Model
     public function image()
     {
         return $this->belongsTo(Image::class);
+    }
+
+    public function scopeNoDraft($query)
+    {
+        return $query->where('is_draft', 0);
     }
 }
