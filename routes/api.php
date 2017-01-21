@@ -18,6 +18,7 @@ Route::group([
 
         Route::group(['prefix' => 'dashboard', 'namespace' => 'Admin'], function(){
             Route::resource('users', 'UserController');
+            Route::resource('posts', 'PostController');
         });
     });
 });

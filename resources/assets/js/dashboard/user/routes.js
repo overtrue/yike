@@ -1,9 +1,9 @@
-export const User = require('./User');
+export const List = require('./List');
 
 export default [{
   name: 'dashboard.user',
   path: 'user',
-  component: User,
+  component: List,
   meta: {
     title: 'User'
   }

@@ -14,6 +14,7 @@
     <el-menu router :default-active="$route.path" class="el-menu-bar" @open="handleOpen" @close="handleClose">
       <el-menu-item index="/dashboard"><i class="fa fa-tachometer"></i>Dashboard</el-menu-item>
       <el-menu-item index="/dashboard/user"><i class="fa fa-users"></i>Users</el-menu-item>
+      <el-menu-item index="/dashboard/post"><i class="fa fa-file-text"></i>Posts</el-menu-item>
     </el-menu>
   </aside>
 </template>

@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\User;
+use App\Post;
 use Illuminate\Http\Request;
 use App\Http\Controllers\ApiController;
 
-class UserController extends ApiController
+class PostController extends ApiController
 {
     /**
      * Display a listing of the resource.
@@ -15,7 +15,7 @@ class UserController extends ApiController
      */
     public function index()
     {
-        return $this->response->collection(User::all());
+        return $this->response->collection(Post::all());
     }
 
     /**

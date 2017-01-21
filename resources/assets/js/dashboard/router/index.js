@@ -6,6 +6,7 @@ import Content from '../components/Content'
 import { routes as home } from '../home'
 import { routes as auth } from 'app/auth'
 import { routes as user } from '../user'
+import { routes as post } from '../post'
 
 Vue.use(Router)
 
@@ -19,7 +20,7 @@ const routes = [{
   path: '/dashboard',
   component: Content,
   redirect: { name: 'dashboard.home' },
-  children: [...auth, ...home, ...user, NotFoundRoute]
+  children: [...auth, ...home, ...user, ...post, NotFoundRoute]
 }]
 
 const router = new Router({
