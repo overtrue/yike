@@ -4,8 +4,8 @@ import { http } from 'plugins/http'
 import { getData } from 'utils/get'
 
 // send login data and retrive a new token
-export const postLogin = ({ email, password }) =>
-  http.post('/auth/token/issue', { email, password })
+export const postLogin = ({ email, password }) => {
+  return http.post('/auth/token/issue', { email, password })
   /**
    * functional approach, more readable and generate minus code
    * examples:
@@ -19,6 +19,7 @@ export const postLogin = ({ email, password }) =>
    * (first-class function and higher-order function)
    */
  .then(getData) // .then(response => getData(response))
+}
 
 // get current user's data
 export const loadUserData = () => http.get('/me').then(getData)

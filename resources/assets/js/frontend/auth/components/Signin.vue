@@ -20,6 +20,7 @@
   import Logo from 'home/Logo'
 
   export default {
+    name: 'signin',
     data() {
       return {
         email: '',
