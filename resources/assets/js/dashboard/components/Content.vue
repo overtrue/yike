@@ -73,7 +73,8 @@ export default {
 
   .el-content-inner {
     background-color: #fff;
-    height: 600px;
+    min-height: 600px;
+    margin-bottom: 20px;
     border-top-left-radius: 5px;
     border-top-right-radius: 5px;
   }
