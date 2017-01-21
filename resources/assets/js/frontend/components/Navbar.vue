@@ -59,7 +59,8 @@
 
 <script>
 import { mapActions, mapGetters } from 'vuex'
-import {Signin, Signup} from "app/auth/routes"
+import Signin from "app/auth/components/Signin"
+import Signup from "app/auth/components/Signup"
 import Logo from "./Logo"
 import Avatar from "./Avatar"
 import Alerts from './Alerts'
