@@ -16,7 +16,7 @@ export default (http, store, router) => {
       * then redirect to login. On server side the error
       * messages can be changed on app/Providers/EventServiceProvider.php
       */
-      if ([401, 400].indexOf(response.status) > -1) {
+      if ([401, 400].indexOf(response.status) > -1 && !store.isAuthPage) {
         router.push({ name: 'auth.signin' })
       }
       /**

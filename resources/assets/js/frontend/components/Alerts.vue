@@ -66,3 +66,12 @@
 
   </div>
 </template>
+
+<style lang="scss">
+  .alert {
+    margin-top: 60px;
+    ul {
+      margin-bottom: 0;
+    }
+  }
+</style>

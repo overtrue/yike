@@ -11,7 +11,7 @@
               <router-link :to="{name:'post.new'}" class="btn btn-sm btn-outline-success" v-if="$route.name != 'post.new'">发布文章</router-link>
             </slot>
           </div>
-          <div class="nav-right" :class="{'col-md-2': isLogged, 'col-md-8': !isLogged}">
+          <div class="nav-right" :class="{'col-md-2': isLogged, 'col-md-8': !isLogged}" v-if="!isAuthPage">
             <div class="user-btn float-right">
               <div v-if="!isLogged">
                 <a href="#" data-toggle="modal" data-target="#login-modal" @click="isSignin=true">登录</a> / <a href="#" data-toggle="modal" data-target="#login-modal" @click="isSignin=false">注册</a>
@@ -33,7 +33,8 @@
         </div>
       </div>
     </header>
-    <div class="modal fade" id="login-modal">
+    <alerts></alerts>
+    <div class="modal fade" id="login-modal" v-if="!isAuthPage">
       <div class="modal-dialog" role="document">
         <div class="modal-content">
           <div class="modal-body">
@@ -59,18 +60,19 @@
 <script>
 import { mapActions, mapGetters } from 'vuex'
 import {Signin, Signup} from "app/auth/routes"
-import Logo from "home/Logo"
-import Avatar from "home/Avatar"
+import Logo from "./Logo"
+import Avatar from "./Avatar"
+import Alerts from './Alerts'
 
 export default {
-  name:"nav-bar",
+  name:"navbar",
   data() {
     return {
         isSignin: true
     }
   },
   computed: {
-    ...mapGetters(['currentUser', 'isLogged']),
+    ...mapGetters(['currentUser', 'isLogged', 'isAuthPage']),
   },
   watch: {
     isLogged(value) { // isLogged changes when the token changes
@@ -84,7 +86,7 @@ export default {
   methods: {
     ...mapActions(['logout']),
   },
-  components: { Signin, Signup, Logo, Avatar }
+  components: { Alerts, Signin, Signup, Logo, Avatar }
 }
 </script>
 
@@ -96,6 +98,7 @@ export default {
   header {
     position: fixed;
     z-index: 5;
+    top: 0;
     left: 0;
     right: 0;
     padding: 15px 0;

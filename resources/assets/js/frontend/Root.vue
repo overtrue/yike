@@ -3,19 +3,12 @@
       <transition name="fade">
         <router-view></router-view>
       </transition>
-      <alerts></alerts>
     </div>
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
-import Alerts from './components/Alerts'
-
 export default {
   name: 'YiKe',
-  components: {
-    Alerts,
-  },
 }
 </script>
 
