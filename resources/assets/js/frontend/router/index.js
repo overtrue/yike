@@ -2,6 +2,7 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import beforeEach from './beforeEach'
 import NotFound from '../components/404'
+import App from '../App'
 import { routes as home } from '../home'
 import { routes as auth } from '../auth'
 import { routes as user } from '../user'
@@ -15,7 +16,14 @@ const NotFoundRoute = {
   component: NotFound
 }
 
-const routes = [...auth, ...home, ...user, ...post, NotFoundRoute]
+const AppRoute = {
+  path: '/',
+  component: App,
+  redirect: {name: 'home'},
+  children: [...auth, ...home, ...user, ...post]
+}
+
+const routes = [AppRoute, NotFoundRoute]
 
 const router = new Router({
   routes,

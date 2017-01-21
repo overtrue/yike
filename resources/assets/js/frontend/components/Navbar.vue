@@ -7,7 +7,9 @@
           <router-link :to="{name:'home'}"><logo></logo></router-link>
           </div>
           <div class="page-actions-wrapper float-right text-right col-md-6" v-if="isLogged">
-            <router-link :to="{name:'post.new'}" class="btn btn-sm btn-outline-success" v-if="$route.path == '/'">发布文章</router-link>
+            <slot name="page-actions">
+              <router-link :to="{name:'post.new'}" class="btn btn-sm btn-outline-success" v-if="$route.name != 'post.new'">发布文章</router-link>
+            </slot>
           </div>
           <div class="nav-right" :class="{'col-md-2': isLogged, 'col-md-8': !isLogged}">
             <div class="user-btn float-right">

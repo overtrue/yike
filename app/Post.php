@@ -12,7 +12,7 @@ class Post extends Model
     const TYPE_HTML = 'html';
 
     protected $fillable = [
-        'user_id', 'is_spammed', 'title', 'slug',
+        'user_id', 'is_spammed', 'is_draft', 'title', 'slug', 'type',
         'content', 'content_original', 'published_at', 'image_id',
     ];
 
@@ -23,14 +23,25 @@ class Post extends Model
         static::creating(function($post){
             $post->user_id = auth()->id();
             $post->content_original = $post->content_original ?: $post->content;
-            $post->slug = Translug::translug($post->title).'-'.uniqid();
+            $post->slug = self::makeUniqueSlug($post);
         });
 
         static::saving(function($post){
-            if ($post->type == self::TYPE_MARKDOWN) {
-                $post->content = Parsedown::text($post->content);
+            if ($post->isDirty('content') && $post->type == self::TYPE_MARKDOWN) {
+                $post->content = preg_replace('/<code>/', '<code class="language-php">', Parsedown::text($post->content));
             }
         });
+    }
+
+    public static function makeUniqueSlug($post)
+    {
+        $title = Translug::translug($post->title);
+
+        while (Post::whereSlug($title)->count()) {
+            $title = "{$title}-".substr(mt_rand(1000, 9999), 0, 4);
+        }
+
+        return $title;
     }
 
     public function tags()
@@ -56,5 +67,10 @@ class Post extends Model
     public function image()
     {
         return $this->belongsTo(Image::class);
+    }
+
+    public function scopeNoDraft($query)
+    {
+        return $query->where('is_draft', 0);
     }
 }

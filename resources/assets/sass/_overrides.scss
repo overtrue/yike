@@ -7,16 +7,44 @@ button, input, optgroup, select, textarea {
     font-family: $font-family-base;
 }
 
+pre,code {
+  color: black;
+  background: none;
+  text-shadow: 0 1px white;
+  font-family: "Operator Mono","Fira Code",Consolas,Monaco,"Andale Mono",monospace;
+  text-align: left;
+  white-space: pre;
+  word-spacing: normal;
+  word-break: normal;
+  word-wrap: normal;
+  line-height: 2;
+  font-size: 11px;
+
+  -moz-tab-size: 4;
+  -o-tab-size: 4;
+  tab-size: 4;
+
+  -webkit-hyphens: none;
+  -moz-hyphens: none;
+  -ms-hyphens: none;
+  hyphens: none;
+  font-weight: 300;
+  background: rgba(238,238,238,.35);
+}
+
+.CodeMirror-wrap pre {
+  box-shadow:none;
+}
+
+a {
+    outline: none;
+}
 a:hover,a:focus,a:visited {
     text-decoration: none;
 }
 
 .modal-content {
     box-shadow: $modal-content-xs-box-shadow;
-}
-
-a {
-    outline: none;
 }
 
 .btn {

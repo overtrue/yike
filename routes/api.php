@@ -7,6 +7,7 @@ Route::group([
     Route::post('/auth/token/issue', 'AuthController@issueToken');
     Route::post('/auth/token/refresh', 'AuthController@refreshToken');
     Route::resource('/users', 'UserController');
+    Route::resource('/posts', 'PostController');
     Route::group([
         'middleware' => 'jwt.auth',
     ], function () {

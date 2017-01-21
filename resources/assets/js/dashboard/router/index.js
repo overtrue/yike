@@ -2,8 +2,10 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import beforeEach from './beforeEach'
 import NotFound from '../components/404'
+import Content from '../components/Content'
 import { routes as home } from '../home'
 import { routes as auth } from 'app/auth'
+import { routes as user } from '../user'
 
 Vue.use(Router)
 
@@ -15,11 +17,9 @@ const NotFoundRoute = {
 
 const routes = [{
   path: '/dashboard',
-  component: {
-    template: `<router-view></router-view>`
-  },
+  component: Content,
   redirect: { name: 'dashboard.home' },
-  children: [...auth, ...home, NotFoundRoute]
+  children: [...auth, ...home, ...user, NotFoundRoute]
 }]
 
 const router = new Router({

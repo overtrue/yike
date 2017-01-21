@@ -34,11 +34,11 @@
         }
 
         &.medium {
-            height: 50px;
+            height: 40px;
         }
 
         &.small {
-            height: 35px;
+            height: 30px;
         }
     }
     p.slogan {
