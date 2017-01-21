@@ -36,18 +36,9 @@ class Post extends Model
     public static function makeUniqueSlug($post)
     {
         $title = Translug::translug($post->title);
-        $uniqId = uniqid();
-        $i = 0;
 
-        while ($i < strlen($uniqId)) {
-            if (Post::whereSlug($title)->count()) {
-                if ($i == 0) {
-                    $title = $title.'-';
-                }
-                $title = $title.substr($uniqId, $i++, 5);
-            } else {
-                break;
-            }
+        while (Post::whereSlug($title)->count()) {
+            $title = "{$title}-".substr(mt_rand(1000, 9999), 0, 4);
         }
 
         return $title;
