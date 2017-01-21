@@ -34,7 +34,7 @@
       </div>
     </header>
     <alerts></alerts>
-    <div class="modal fade" id="login-modal" v-if="!isAuthPage">
+    <div class="modal" id="login-modal" v-if="!isAuthPage">
       <div class="modal-dialog" role="document">
         <div class="modal-content">
           <div class="modal-body">

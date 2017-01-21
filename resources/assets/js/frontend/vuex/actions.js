@@ -1,6 +1,5 @@
 // https://vuex.vuejs.org/en/actions.html
 export default {
-
   setFetching({ commit }, obj) {
     commit('MAIN_SET_FETCHING', obj)
   },

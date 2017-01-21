@@ -15,10 +15,9 @@ const children = [{
 }]
 
 export default [{
-  children,
-  name: 'auth',
   path: 'auth',
   component: Main,
   redirect: { name: 'auth.signin' },
+  children,
   meta: { requiresAuth: false },
 }]

@@ -1,7 +1,9 @@
-import { sync } from 'vuex-router-sync'
 import Vue from 'vue'
+import { sync } from 'vuex-router-sync'
 import {vuex as store, router} from "./frontend"
 import Root from "./frontend/Root"
+import { Message } from 'element-ui'
+import 'element-ui/lib/theme-default/message.css'
 
 /**
 * $http plugin based on axios
@@ -28,6 +30,7 @@ Vue.use(httpPlugin, { store, router })
 * Make $bus avaible to all components
 */
 Vue.use(eventbus)
+Vue.prototype.$message = Message
 
 // Effortlessly keep vue-router and vuex store in sync.
 sync(store, router) // https://github.com/vuejs/vuex-router-sync/tree/next

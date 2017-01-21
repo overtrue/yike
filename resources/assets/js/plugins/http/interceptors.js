@@ -16,13 +16,14 @@ export default (http, store, router) => {
       * then redirect to login. On server side the error
       * messages can be changed on app/Providers/EventServiceProvider.php
       */
-      if ([401, 400].indexOf(response.status) > -1 && !store.isAuthPage) {
+      if ([401, 400].indexOf(response.status) > -1 && !store.isAuthPage && !document.querySelector('#login-modal')) {
         router.push({ name: 'auth.signin' })
       }
+
       /**
       * Error messages are sent in arrays
       */
-      if (isArray(response.data)) {
+      if (isArray(response.data.messages)) {
         store.dispatch('setMessage', { type: 'error', message: response.data.messages })
       /**
       * Laravel generated validation errors are
