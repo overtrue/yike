@@ -1,21 +1,17 @@
-<navbar>
-    <span slot="page-actions">
-      <a class="text-success">发布</a>
-    </span>
-</navbar>
-
 <template>
   <div class="post-new">
-    <div class="container pt-5">
+    <navbar>
+      <div class="page-actions" slot="page-actions">
+        <a href="#" class="btn btn-sm btn-outline-success" :disabled="!canSubmit" @click="handleSubmit()">发布</a>
+        <a href="#" class="btn btn-sm btn-outline-secondary" :disabled="!canSubmit" @click="handleSubmit(false)">存为草稿</a>
+      </div>
+    </navbar>
+    <div class="container post-container pt-5">
       <div class="cover-picker">
         <div class="picker">&plus; 设置封面</div>
       </div>
       <input class="post-title" placeholder="请输入标题" v-model="title" />
       <textarea class="post-body" id="post-body" placeholder="请输入内容"></textarea>
-    </div>
-    <div class="page-actions">
-      <a href="#" class="btn btn-sm btn-outline-success" @click="handleSubmit()">发布</a>
-      <a href="#" class="btn btn-sm btn-outline-secondary" @click="handleSubmit(false)">存为草稿</a>
     </div>
   </div>
 </template>
@@ -23,6 +19,7 @@
 <script>
 import CodeMirror from "codemirror"
 import localforage from "localforage"
+import Navbar from "home/Navbar"
 import { mapActions, mapGetters } from 'vuex'
 
 require("./theme/yike.scss")
@@ -32,20 +29,25 @@ require("codemirror/keymap/sublime")
 
 export default {
   name: 'post-form',
+  components: { Navbar },
   data() {
     return {
       cover: null,
       title: '',
       body: '',
+      publishing: false
+    }
+  },
+  computed: {
+    canSubmit: function() {
+      return !this.publishing && this.title.trim().length > 0 && this.body.trim().length > 0
     }
   },
   watch: {
     title: function(value) {
-      console.log(value)
       localforage.setItem("post.cache.title", value);
     },
     body: function(content) {
-      console.log(content)
       localforage.setItem("post.cache.body", content);
     }
   },
@@ -67,23 +69,27 @@ export default {
     editor.on('change', function(editor){
         vm.body = editor.getValue();
       });
-
-    var pageActionsBox = document.querySelector('.page-actions-wrapper');
-    pageActionsBox.appendChild(document.querySelector('.page-actions'));
   },
   methods: {
     ...mapActions(['createPost']),
     handleSubmit(publish = true) {
+      if (this.title.trim().length <= 0 || this.body.trim().length <= 0) {
+        return;
+      }
       this.createPost({
         title: this.title,
         content: this.body,
+        is_draft: !publish,
         type: 'markdown',
       }).then((post) => {
         localforage.removeItem("post.cache.body")
         localforage.removeItem("post.cache.title")
+        this.title = '';
+        this.body = '';
+
         this.$router.push(post.data.url);
       }).catch((err) => {
-        alert(err);
+        console.error(err);
       })
     }
   }

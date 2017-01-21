@@ -36,16 +36,15 @@ pre,code {
   box-shadow:none;
 }
 
+a {
+    outline: none;
+}
 a:hover,a:focus,a:visited {
     text-decoration: none;
 }
 
 .modal-content {
     box-shadow: $modal-content-xs-box-shadow;
-}
-
-a {
-    outline: none;
 }
 
 .btn {

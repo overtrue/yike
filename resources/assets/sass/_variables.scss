@@ -74,6 +74,7 @@ $text-color: #4A4A4A;
 
 // Buttons
 $btn-default-color: $text-color;
+$btn-secondary-border: lighten($text-color, 30%);
 
 // Inputs
 $input-border: lighten($text-color, 40%);

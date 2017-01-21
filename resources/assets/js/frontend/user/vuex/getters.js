@@ -1,3 +1,4 @@
 export default {
-  getInterviewee: ({user}) => user
+  getInterviewee: ({user}) => user,
+  getIntervieweePosts: ({posts}) => posts,
 }

@@ -1,10 +1,11 @@
 <template>
-  <div class="container-fulid">
-    <div class="bitmap" v-if="post.cover">
-      <div id="bitdim"></div>
-    </div>
-    <div class="row">
-      <div class="col-md-8 offset-md-4">
+  <div class="post-show">
+    <navbar></navbar>
+    <div class="container-fulid">
+      <div class="bitmap" v-if="post.cover">
+        <div id="bitdim"></div>
+      </div>
+      <div class="post-container">
         <div class="title">
           <h1>{{ post.title }}</h1>
         </div>
@@ -28,12 +29,16 @@
 
 <script>
 import { mapActions, mapGetters } from 'vuex'
+import Navbar from "home/Navbar"
+
 require("clipboard")
 require("./theme/github.css")
 import Prism from "../../plugins/prism"
 require("../../plugins/prism.css")
 
 export default {
+  name: 'post-show',
+  components: { Navbar },
   data() {
     return {
       post: {},
