@@ -1,11 +1,11 @@
 <template>
   <div class="user-articles row">
     <div class="container">
-      <div class="col-md-12 offset-md-2">
-        <div class="card" v-for="post in posts">
-          <img class="card-img-top" :src="post.cover" :alt="post.title">
+      <div class="col-md-24">
+        <div class="card col-md-6" v-for="post in posts">
+          <router-link :to="{ name: 'post.show', params: { user: post.user.username, slug: post.slug}}"><img class="card-img-top" :src="post.cover || '/img/default-post-cover.png'" :alt="post.title"></router-link>
           <div class="card-block">
-            <div class="card-title">{{ post.title }}</div>
+            <router-link :to="{ name: 'post.show', params: { user: post.user.username, slug: post.slug}}"><div class="card-title">{{ post.title }}</div></router-link>
             <div class="extras">
               <img class="avatar img-circle" :src="post.user.data.avatar">
               <div class="user-info">
