@@ -4,7 +4,6 @@
       <div class="login">
         <router-view></router-view>
       </div>
-    </div>
   </div>
 </template>
 
