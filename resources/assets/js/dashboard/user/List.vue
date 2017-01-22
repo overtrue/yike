@@ -1,5 +1,5 @@
 <template>
-  <div class="table-wrapper">
+  <div class="wrapper">
     <el-table :data="users" style="width: 100%">
       <el-table-column prop="id" label="ID" width="50"></el-table-column>
       <el-table-column label="Avatar" width="100">
@@ -58,7 +58,7 @@ export default {
   computed: {
     ...mapGetters({
       users: 'getUsers',
-      pagination: 'getPagination'
+      pagination: 'getUserPagination'
     })
   },
   methods: {

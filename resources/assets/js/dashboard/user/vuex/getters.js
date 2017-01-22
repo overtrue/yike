@@ -1,4 +1,4 @@
 export default {
   getUsers: ({ users }) => users,
-  getPagination: ({ pagination }) => pagination,
+  getUserPagination: ({ pagination }) => pagination,
 }

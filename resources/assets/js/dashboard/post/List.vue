@@ -54,7 +54,7 @@ export default {
   computed: {
     ...mapGetters({
       posts: 'getPosts',
-      pagination: 'getPagination'
+      pagination: 'getPostPagination'
     })
   },
   methods: {
