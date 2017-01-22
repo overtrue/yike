@@ -1,6 +1,5 @@
 import Vue from 'vue'
 import ElementUI from 'element-ui'
-import 'element-ui/lib/theme-default/index.css'
 import { sync } from 'vuex-router-sync'
 import {vuex as store, router} from "./dashboard"
 import Root from "./dashboard/Root"

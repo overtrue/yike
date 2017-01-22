@@ -1,4 +1,4 @@
 import { http } from 'plugins/http'
 import { getData } from 'utils/get'
 
-export const getUsers = () => http.get('/dashboard/users').then(getData);
+export const getUsers = (number, page) => http.get('/dashboard/users/' + number + '?page=' + page).then(getData);

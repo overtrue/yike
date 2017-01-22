@@ -1,3 +1,4 @@
 export default {
-  getPosts: ({ posts }) => posts
+  getPosts: ({ posts }) => posts,
+  getPostPagination: ({ pagination }) => pagination,
 }

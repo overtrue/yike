@@ -1,10 +1,10 @@
 <template>
-  <div class="table-wrapper">
+  <div class="wrapper">
     <el-table :data="posts" style="width: 100%">
       <el-table-column prop="id" label="ID" width="80"></el-table-column>
       <el-table-column prop="title" label="Title" width="150"></el-table-column>
       <el-table-column prop="slug" label="Slug"></el-table-column>
-      <el-table-column prop="type" label="Type"></el-table-column>
+      <el-table-column prop="user.data.name" label="Author"></el-table-column>
       <el-table-column prop="is_draft" label="Is Draft" width="120">
         <template scope="scope">
           <el-tag
@@ -23,6 +23,18 @@
         </template>
       </el-table-column>
     </el-table>
+
+    <div class="pagination-wrapper">
+      <el-pagination
+        @size-change="handleSizeChange"
+        @current-change="handleCurrentChange"
+        :current-page="pagination.current_page"
+        :page-sizes="[10, 20, 30, 40]"
+        :page-size="number"
+        layout="total, sizes, prev, pager, next, jumper"
+        :total="pagination.total">
+      </el-pagination>
+    </div>
   </div>
 </template>
 
@@ -30,22 +42,40 @@
 import { mapActions, mapGetters } from 'vuex'
 
 export default {
+  data() {
+    return {
+      number: 10,
+      page: 1,
+    }
+  },
   created() {
-    this.loadPosts()
+    this.loadPosts({ number: this.number, page: this.page })
   },
   computed: {
     ...mapGetters({
-      posts: 'getPosts'
+      posts: 'getPosts',
+      pagination: 'getPostPagination'
     })
   },
   methods: {
-    ...mapActions(['loadPosts'])
+    ...mapActions(['loadPosts']),
+    handleSizeChange(val) {
+      this.loadPosts({ number: val, page: this.page })
+      this.number = val
+    },
+    handleCurrentChange(val) {
+      this.loadPosts({ number: this.number, page: val })
+    }
   }
 }
 </script>
 
 <style lang="scss" scoped>
-  .table-wrapper {
+  .wrapper {
     padding: 20px;
+  }
+  .pagination-wrapper {
+    text-align: center;
+    margin: 20px 0;
   }
 </style>

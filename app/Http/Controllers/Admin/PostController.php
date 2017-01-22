@@ -13,9 +13,9 @@ class PostController extends ApiController
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index($page)
     {
-        return $this->response->collection(Post::all());
+        return $this->response->collection(Post::paginate($page ?? 10));
     }
 
     /**
