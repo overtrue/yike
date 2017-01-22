@@ -13,9 +13,9 @@ class UserController extends ApiController
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index($page)
     {
-        return $this->response->collection(User::all());
+        return $this->response->collection(User::paginate($page ?? 10));
     }
 
     /**

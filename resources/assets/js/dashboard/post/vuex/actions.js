@@ -2,13 +2,13 @@ import * as services from '../services'
 
 export default {
   getPosts: ({ dispatch, state }) => {
-    console.log(state)
     return state.posts
   },
-  loadPosts: ({ commit }, posts) => {
-    return services.getPosts()
+  loadPosts: ({ commit }, { number, page }) => {
+    return services.getPosts(number, page)
             .then(posts => {
               commit('POST//SET_POSTS', posts.data)
+              commit('POST//SET_PAGINATION', posts.meta.pagination)
             }).catch(response => console.log(response))
   }
 }

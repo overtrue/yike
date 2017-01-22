@@ -27,6 +27,18 @@
         </template>
       </el-table-column>
     </el-table>
+
+    <div class="pagination-wrapper">
+      <el-pagination
+        @size-change="handleSizeChange"
+        @current-change="handleCurrentChange"
+        :current-page="pagination.current_page"
+        :page-sizes="[10, 20, 30, 40]"
+        :page-size="number"
+        layout="total, sizes, prev, pager, next, jumper"
+        :total="pagination.total">
+      </el-pagination>
+    </div>
   </div>
 </template>
 
@@ -34,23 +46,41 @@
 import { mapActions, mapGetters } from 'vuex'
 
 export default {
+  data() {
+    return {
+      number: 10,
+      page: 1,
+    }
+  },
   created() {
-    this.loadUsers()
+    this.loadUsers({ number: this.number, page: this.page })
   },
   computed: {
     ...mapGetters({
-      users: 'getUsers'
+      users: 'getUsers',
+      pagination: 'getPagination'
     })
   },
   methods: {
-    ...mapActions(['loadUsers'])
+    ...mapActions(['loadUsers']),
+    handleSizeChange(val) {
+      this.loadUsers({ number: val, page: this.page })
+      this.number = val
+    },
+    handleCurrentChange(val) {
+      this.loadUsers({ number: this.number, page: val })
+    }
   }
 }
 </script>
 
 <style lang="scss" scoped>
-  .table-wrapper {
+  .wrapper {
     padding: 20px;
+  }
+  .pagination-wrapper {
+    text-align: center;
+    margin: 20px 0;
   }
   .avatar {
     width: 50px;
