@@ -17,9 +17,9 @@ Route::group([
         Route::patch('/posts/{slug}', 'PostController@update');
 
         Route::group(['prefix' => 'dashboard', 'namespace' => 'Admin'], function(){
-            Route::get('users/{page}', 'UserController@index')->name('users.index');
+            Route::get('users/{page?}', 'UserController@index')->name('users.index');
             Route::resource('users', 'UserController', ['except' => 'index']);
-            Route::get('posts/{page}', 'PostController@index')->name('posts.index');
+            Route::get('posts/{page?}', 'PostController@index')->name('posts.index');
             Route::resource('posts', 'PostController', ['except' => 'index']);
         });
     });
