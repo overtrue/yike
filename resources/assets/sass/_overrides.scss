@@ -53,18 +53,23 @@ a:hover,a:focus,a:visited {
 
 
 .el-message {
-    display: flex;
+  display: flex;
 
-    img {
-      width: 20px;
-      height: 20px;
-      border-radius: 100%;
-      vertical-align: middle;
-      display: flex;
-      position: relative;
-    }
-    .el-message__group {
-      margin-left: 15px;
-      display: flex;
-    }
+  img {
+    width: 20px;
+    height: 20px;
+    border-radius: 100%;
+    vertical-align: middle;
+    display: flex;
+    position: relative;
   }
+  .el-message__group {
+    margin-left: 15px;
+    display: flex;
+  }
+}
+
+.material-icons {
+  font-size: inherit;
+  vertical-align: middle;
+}
