@@ -2,7 +2,7 @@
   <aside class="el-menu-wrapper">
     <div class="header">
       <div class="logo">Yike Dashboard</div>
-      <div class="bar"><i class="fa fa-bars bar"></i></div>
+      <div class="bar"><i class="bar material-icons">graphic_eq</i></div>
     </div>
     <div class="user-info">
       <img :src="user.avatar">
@@ -12,9 +12,9 @@
       </div>
     </div>
     <el-menu router :default-active="$route.path" class="el-menu-bar" @open="handleOpen" @close="handleClose">
-      <el-menu-item index="/dashboard"><i class="fa fa-tachometer"></i>Dashboard</el-menu-item>
-      <el-menu-item index="/dashboard/user"><i class="fa fa-users"></i>Users</el-menu-item>
-      <el-menu-item index="/dashboard/post"><i class="fa fa-file-text"></i>Posts</el-menu-item>
+      <el-menu-item index="/dashboard"><i class="material-icons">palette</i>Dashboard</el-menu-item>
+      <el-menu-item index="/dashboard/user"><i class="material-icons">people</i>Users</el-menu-item>
+      <el-menu-item index="/dashboard/post"><i class="material-icons">description</i>Posts</el-menu-item>
     </el-menu>
   </aside>
 </template>
@@ -60,8 +60,9 @@
   }
   .bar {
     position: absolute;
-    top: 11px;
+    top: 10px;
     right: 10px;
+    font-size: 18px;
     cursor: pointer;
   }
 }
@@ -122,9 +123,8 @@
 
   i {
     color: #9795E4;
-    font-size: 14px;
+    font-size: 20px;
     padding: 0 10px;
-    vertical-align: baseline;
     margin-right: 10px;
   }
 }

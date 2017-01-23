@@ -1,7 +1,7 @@
 <template>
   <el-menu mode="horizontal" class="pull-right" @select="handleSelect">
-    <el-menu-item index="1"><i class="fa fa-bell"></i></el-menu-item>
-    <el-menu-item index="logout"><span>Logout</span> <i class="fa fa-sign-out"></i></el-menu-item>
+    <el-menu-item index="1"><i class="material-icons">notifications</i></el-menu-item>
+    <el-menu-item index="logout"><span>Logout</span> <i class="material-icons">power_settings_new</i></el-menu-item>
   </el-menu>
 </template>
 
@@ -31,11 +31,13 @@
 }
 .el-menu-item {
   color: #fff;
-  font-size: 16px;
 
   span {
     font-size: 12px;
     font-weight: 300;
+  }
+  i {
+    font-size: 18px;
   }
 }
 .el-menu-item:last-child {
