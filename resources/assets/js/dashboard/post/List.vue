@@ -39,7 +39,7 @@
 </template>
 
 <script>
-import { mapActions, mapGetters } from 'vuex'
+import { mapActions, mapState } from 'vuex'
 
 export default {
   data() {
@@ -49,22 +49,27 @@ export default {
     }
   },
   created() {
-    this.loadPosts({ number: this.number, page: this.page })
+    this.fetch(this.number, this.page)
   },
   computed: {
-    ...mapGetters({
-      posts: 'getPosts',
-      pagination: 'getPostPagination'
-    })
+    ...mapState({
+      posts: state => state.Post.posts,
+      pagination: state => state.Post.pagination,
+    }),
   },
   methods: {
-    ...mapActions(['loadPosts']),
+    ...mapActions(['postSetData']),
+    fetch(number, page) {
+      this.$http.get('/dashboard/posts/' + number + '?page=' + page)
+          .then(({ data }) => this.postSetData(data))
+          .catch(response => console.log(response))
+    },
     handleSizeChange(val) {
-      this.loadPosts({ number: val, page: this.page })
+      this.fetch(val, this.page)
       this.number = val
     },
     handleCurrentChange(val) {
-      this.loadPosts({ number: this.number, page: val })
+      this.fetch(this.number, val)
     }
   }
 }

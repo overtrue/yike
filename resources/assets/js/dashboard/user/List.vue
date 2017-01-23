@@ -43,7 +43,7 @@
 </template>
 
 <script>
-import { mapActions, mapGetters } from 'vuex'
+import { mapActions, mapState } from 'vuex'
 
 export default {
   data() {
@@ -53,22 +53,27 @@ export default {
     }
   },
   created() {
-    this.loadUsers({ number: this.number, page: this.page })
+    this.fetch(this.number, this.page)
   },
   computed: {
-    ...mapGetters({
-      users: 'getUsers',
-      pagination: 'getUserPagination'
+    ...mapState({
+      users: state => state.User.users,
+      pagination: state => state.User.pagination,
     })
   },
   methods: {
-    ...mapActions(['loadUsers']),
+    ...mapActions(['userSetData']),
+    fetch(number, page) {
+      this.$http.get('/dashboard/users/' + number + '?page=' + page)
+          .then(({ data }) => this.userSetData(data))
+          .catch(response => console.log(response))
+    },
     handleSizeChange(val) {
-      this.loadUsers({ number: val, page: this.page })
+      this.fetch(val, this.page)
       this.number = val
     },
     handleCurrentChange(val) {
-      this.loadUsers({ number: this.number, page: val })
+      this.fetch(this.number, val)
     }
   }
 }
