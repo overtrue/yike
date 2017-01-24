@@ -25,11 +25,12 @@ export default (http, store, router) => {
       */
       if (isArray(response.data.messages)) {
         store.dispatch('setMessage', { type: 'error', message: response.data.messages })
+
       /**
       * Laravel generated validation errors are
       * sent in an object
       */
-      } else {
+      } else if (response.status === 422 && isObject(response.data)) {
         store.dispatch('setMessage', { type: 'validation', message: response.data })
       }
 
