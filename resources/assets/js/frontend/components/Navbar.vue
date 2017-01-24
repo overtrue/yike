@@ -3,32 +3,33 @@
     <header>
       <div class="container">
         <div class="row">
-          <div class="logo col-md-8">
-          <router-link :to="{name:'home'}"><logo></logo></router-link>
+          <div class="nav-left col-md-8">
+            <router-link :to="{name:'home'}" class="logo"><logo></logo></router-link>
           </div>
-          <div class="page-actions-wrapper float-right text-right col-md-6" v-if="isLogged">
-            <slot name="page-actions">
-              <router-link :to="{name:'post.new'}" class="btn btn-sm btn-outline-success" v-if="$route.name != 'post.new'">发布文章</router-link>
+          <div class="nav-right col-md-8 d-flex flex-row align-items-center justify-content-end" v-if="!isAuthPage">
+            <slot name="page-actions" v-if="!isAuthPage && isLogged">
+              <router-link :to="{name:'post.new'}" class="nav-item" v-if="$route.name != 'post.new'"><i class="material-icons">add</i></router-link>
             </slot>
-          </div>
-          <div class="nav-right" :class="{'col-md-2': isLogged, 'col-md-8': !isLogged}" v-if="!isAuthPage">
-            <div class="user-btn float-right">
-              <div v-if="!isLogged">
-                <a href="#" data-toggle="modal" data-target="#login-modal" @click="isSignin=true">登录</a> / <a href="#" data-toggle="modal" data-target="#login-modal" @click="isSignin=false">注册</a>
-              </div>
-              <div class="dropdown" v-else>
-                <div class="dropdown-toggle" id="nav-right-action-dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                  <avatar size="small"></avatar>
+            <template v-if="!isLogged" scope>
+              <a href="#" data-toggle="modal" data-target="#login-modal" @click="isSignin=true">登录</a> / <a href="#" data-toggle="modal" data-target="#login-modal" @click="isSignin=false">注册</a>
+            </template>
+            <template v-else scope>
+              <a href="#" class="nav-item"><i class="material-icons">notifications</i></a>
+              <div class="nav-item">
+                <div class="dropdown">
+                  <div class="dropdown-toggle" id="nav-right-action-dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <avatar size="small"></avatar>
+                  </div>
+                  <div class="dropdown-menu text-center dropdown-menu-right" aria-labelledby="nav-right-action-dropdown">
+                      <router-link class="dropdown-item" :to="{ name:'user.show', params: { username: currentUser.username }}">个人主页</router-link>
+                      <router-link class="dropdown-item" :to="{ name:'user.profile' }">账号设置</router-link>
+                      <a class="dropdown-item" href="/dashboard" v-if="currentUser.is_admin">管理中心</a>
+                      <div class="dropdown-divider"></div>
+                      <a class="dropdown-item" href="#" @click="logout">注销</a>
+                  </div>
                 </div>
-                <div class="dropdown-menu text-center dropdown-menu-right" aria-labelledby="nav-right-action-dropdown">
-                    <router-link class="dropdown-item" :to="{ name:'user.show', params: { username: currentUser.username }}">个人主页</router-link>
-                    <router-link class="dropdown-item" :to="{ name:'user.profile' }">账号设置</router-link>
-                    <a class="dropdown-item" href="/dashboard" v-if="currentUser.is_admin">管理中心</a>
-                    <div class="dropdown-divider"></div>
-                    <a class="dropdown-item" href="#" @click="logout">注销</a>
-                </div>
               </div>
-            </div>
+            </template>
           </div>
         </div>
       </div>
@@ -98,7 +99,24 @@ export default {
 <style lang="scss" scoped>
   .nav-bar {
     height: 60px;
-    line-height: 35px;
+
+    .nav-item {
+      justify-content: center;
+      cursor: pointer;
+      color: #555;
+      text-align: center;
+      white-space: nowrap;
+      vertical-align: middle;
+      user-select: none;
+      padding: 0 0.8rem;
+      font-size: 1rem;
+      transition: all 0.2s ease-in-out;
+
+      .material-icons {
+        color: #888;
+        font-size: 1.4em;
+      }
+    }
   }
   header {
     position: fixed;

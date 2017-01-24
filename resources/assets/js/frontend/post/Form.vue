@@ -2,8 +2,8 @@
   <div class="post-new">
     <navbar>
       <div class="page-actions" slot="page-actions">
-        <a href="#" class="btn btn-sm btn-outline-success" :disabled="!canSubmit" @click="handleSubmit()">发布</a>
-        <a href="#" class="btn btn-sm btn-outline-secondary" :disabled="!canSubmit" @click="handleSubmit(false)">存为草稿</a>
+        <a href="#" class="nav-item text-success" :disabled="!canSubmit" @click="handleSubmit()">发布</a>
+        <a href="#" class="nav-item text-secondary" :disabled="!canSubmit" @click="handleSubmit(false)">存为草稿</a>
       </div>
     </navbar>
     <div class="container post-container pt-5">
@@ -45,15 +45,15 @@ export default {
   },
   watch: {
     title: function(value) {
-      localforage.setItem("post.cache.title", value);
+      localforage.setItem("post.cache.title", value)
     },
     body: function(content) {
-      localforage.setItem("post.cache.body", content);
+      localforage.setItem("post.cache.body", content)
     }
   },
   mounted() {
-    var vm = this;
-    localforage.getItem("post.cache.title").then(title => vm.title = title);
+    var vm = this
+    localforage.getItem("post.cache.title").then(title => vm.title = title || '')
 
     const editor = CodeMirror.fromTextArea(document.getElementById('post-body'), {
       keyMap: "sublime",
@@ -62,19 +62,20 @@ export default {
       autoCloseBrackets: true,
       matchBrackets: true,
       value: vm.body,
-    });
+      profile: 'html'
+    })
 
-    localforage.getItem("post.cache.body").then(body => editor.setValue(body || ''));
+    localforage.getItem("post.cache.body").then(body => editor.setValue(body || ''))
 
     editor.on('change', function(editor){
-        vm.body = editor.getValue();
-      });
+        vm.body = editor.getValue()
+      })
   },
   methods: {
     ...mapActions(['createPost']),
     handleSubmit(publish = true) {
       if (this.title.trim().length <= 0 || this.body.trim().length <= 0) {
-        return;
+        return
       }
       this.createPost({
         title: this.title,
@@ -84,12 +85,12 @@ export default {
       }).then((post) => {
         localforage.removeItem("post.cache.body")
         localforage.removeItem("post.cache.title")
-        this.title = '';
-        this.body = '';
+        this.title = ''
+        this.body = ''
 
-        this.$router.push(post.data.url);
+        this.$router.push(post.data.url)
       }).catch((err) => {
-        console.error(err);
+        console.error(err)
       })
     }
   }
