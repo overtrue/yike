@@ -1,4 +1,5 @@
 // https://vuex.vuejs.org/en/state.html
+import { default as entrypoints } from '../entrypoints'
 
 export default {
   messages: {
@@ -7,5 +8,6 @@ export default {
     warning: '',
     validation: {},
   },
+  entrypoints: entrypoints,
   fetching: false,
 }

@@ -126,6 +126,7 @@
     font-size: 20px;
     padding: 0 10px;
     margin-right: 10px;
+    vertical-align: text-bottom;
   }
 }
 .el-menu-item:hover, .el-submenu__title:hover, .el-menu li.el-menu-item:hover {
