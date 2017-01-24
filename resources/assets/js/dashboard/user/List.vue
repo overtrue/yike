@@ -43,11 +43,11 @@
 </template>
 
 <script>
-import { mapActions, mapState } from 'vuex'
-
 export default {
   data() {
     return {
+      users: [],
+      pagination: {},
       number: 10,
       page: 1,
     }
@@ -55,17 +55,13 @@ export default {
   created() {
     this.fetch(this.number, this.page)
   },
-  computed: {
-    ...mapState({
-      users: state => state.User.users,
-      pagination: state => state.User.pagination,
-    })
-  },
   methods: {
-    ...mapActions(['userSetData']),
     fetch(number, page) {
-      this.$http.get('/dashboard/users/' + number + '?page=' + page)
-          .then(({ data }) => this.userSetData(data))
+      this.$http.get(this.$store.state.entrypoints.users + number + '?page=' + page)
+          .then(({ data }) => {
+            this.users = data.data
+            this.pagination = data.meta.pagination
+          })
           .catch(response => console.log(response))
     },
     handleSizeChange(val) {
