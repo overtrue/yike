@@ -64,9 +64,11 @@ import Signup from "app/auth/components/Signup"
 import Logo from "./Logo"
 import Avatar from "./Avatar"
 import Alerts from './Alerts'
+import Headroom from "headroom.js/dist/headroom.js"
 
 export default {
   name:"navbar",
+  components: { Alerts, Signin, Signup, Logo, Avatar },
   data() {
     return {
         isSignin: true
@@ -87,7 +89,9 @@ export default {
   methods: {
     ...mapActions(['logout']),
   },
-  components: { Alerts, Signin, Signup, Logo, Avatar }
+  mounted() {
+    (new Headroom(document.querySelector("header"))).init()
+  }
 }
 </script>
 
