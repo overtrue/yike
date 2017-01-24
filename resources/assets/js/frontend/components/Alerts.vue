@@ -1,7 +1,7 @@
 
 <script>
   import { mapState, mapActions } from 'vuex'
-  import { isEmpty } from 'lodash'
+  import { isEmpty, values } from 'lodash'
 
   export default {
     computed: {
@@ -21,7 +21,7 @@
       },
       hasValidationMessages() {
         if (!isEmpty(this.messages.validation)) {
-          this.$message.error(this.messages.validation.join('\n'))
+          this.$message.error(values(this.messages.validation).join('\n'))
         }
         return false;
       },
