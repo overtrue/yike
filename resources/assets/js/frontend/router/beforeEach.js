@@ -9,6 +9,9 @@ const beforeEach = (to, from, next) => {
   */
   vuex.dispatch('resetMessages')
 
+  if (to.path.indexOf('auth') > 0) {
+    return next()
+  }
   /**
    * Otherwise  if authentication is required login.
    */
@@ -19,7 +22,6 @@ const beforeEach = (to, from, next) => {
     })
     .catch((err) => {
       if (needAuth(to)) {
-        console.log(err)
         // No token, or it is invalid
         return next({ name: 'auth.signin' }) // redirect to login
       }

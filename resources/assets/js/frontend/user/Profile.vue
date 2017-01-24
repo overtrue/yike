@@ -1,68 +1,69 @@
 <template>
   <div class="user-profile">
     <navbar></navbar>
-    <div class="container">
-      <div class="row">
-        <div class="text-center col-md-8 offset-md-4">
-          <div class="box">
-            <div class="setting-items">
-              <img class="avatar img-circle" width="120" :src="user.avatar">
-              <div class="setting-item">
-                <label class="setting-label">昵称</label>
-                <input type="text" class="setting-input" @click="click('name')" :value="user.name" id="name" placeholder="填写你的昵称">
-                <div class="setting-edit" v-if="isEdit">
-                    <span class="save">保存</span>
-                    <span class="cancel" @click="cancel('name')">取消</span>
-                </div>
-                <div class="setting-edit" v-else>
-                    <i class="fa fa-pencil" @click="edit('name')"></i>
-                </div>
-              </div>
-              <div class="setting-item">
-                <label class="setting-label">个人简介</label>
-                <input type="text" class="setting-input" :value="user.description" id="description" placeholder="填写你的个人简介">
-                <div class="setting-edit" v-if="isEdit">
-                    <span class="save">保存</span>
-                    <span class="cancel" @click="cancel('description')">取消</span>
-                </div>
-                <div class="setting-edit" v-else>
-                    <i class="fa fa-pencil" @click="edit('description')"></i>
-                </div>
-              </div>
-              <div class="setting-item">
-                <label class="setting-label">社交账号</label>
-                <div class="setting-social">
-                  <a href=""><i class="fa fa-twitter"></i></a>
-                  <a href=""><i class="fa fa-github"></i></a>
-                  <a href=""><i class="fa fa-skype"></i></a>
-                  <a href=""><i class="fa fa-plus-circle"></i></a>
-                </div>
-              </div>
-              <div class="setting-item">
-                <label class="setting-label">邮箱</label>
-                <input type="text" class="setting-input" :value="user.email" id="email" placeholder="填写你的邮箱">
-                <div class="setting-edit" v-if="isEdit">
-                    <span class="save">保存</span>
-                    <span class="cancel" @click="cancel('email')">取消</span>
-                </div>
-                <div class="setting-edit" v-else>
-                    <i class="fa fa-pencil" @click="edit('email')"></i>
-                </div>
-              </div>
-              <div class="setting-item">
-                <label class="setting-label">手机号</label>
-                <input type="text" class="setting-input" :value="user.phone" id="phone" placeholder="填写你的手机号">
-                <div class="setting-edit" v-if="isEdit">
-                    <span class="save">保存</span>
-                    <span class="cancel" @click="cancel('phone')">取消</span>
-                </div>
-                <div class="setting-edit" v-else>
-                    <i class="fa fa-pencil" @click="edit('phone')"></i>
-                </div>
-              </div>
-
+    <div class="text-center setting-box">
+      <div class="setting-items">
+        <img class="avatar img-circle" width="120" :src="user.avatar">
+        <div class="setting-item row">
+          <label class="col-form-label col-4">昵称</label>
+          <div class="col-9">
+            <input type="text" class="form-control" @click="click('name')" :value="user.name" id="name" placeholder="填写你的昵称" />
+          </div>
+          <div class="actions col-3" v-if="isEdit">
+            <span class="save">保存</span>
+            <span class="cancel" @click="cancel('name')">取消</span>
+          </div>
+          <div class="actions col-3" v-else><i class="material-icons" @click="edit('name')">edit</i></div>
+        </div>
+        <div class="setting-item row">
+          <label class="col-form-label col-4">个人简介</label>
+          <div class="col-9">
+            <input type="text" class="form-control" :value="user.description" id="description" placeholder="填写你的个人简介" /></div>
+          <div class="actions col-3" v-if="isEdit">
+            <span class="save">保存</span>
+            <span class="cancel" @click="cancel('description')">取消</span>
+          </div>
+          <div class="actions col-3" v-else><i class="material-icons" @click="edit('description')">edit</i></div>
+        </div>
+        <div class="setting-item row">
+          <label class="col-form-label col-4">社交账号</label>
+          <div class="col-9">
+            <div class="setting-social form-control">
+              <a href=""><i class="ion-social-twitter"></i></a>
+              <a href=""><i class="ion-social-github"></i></a>
+              <a href=""><i class="ion-social-pinterest"></i></a>
+              <a href=""><i class="ion-social-facebook"></i></a>
+              <a href=""><i class="ion-social-reddit"></i></a>
+              <a href=""><i class="ion-social-linkedin"></i></a>
+              <a href=""><i class="ion-social-googleplus"></i></a>
             </div>
           </div>
+          <div class="actions col-3">
+            <i class="material-icons">add</i>
+          </div>
+        </div>
+        <div class="setting-item row">
+          <label class="col-form-label col-4">邮箱</label>
+          <div class="col-9">
+            <input type="text" class="form-control" :value="user.email" id="email" placeholder="填写你的邮箱" />
+          </div>
+          <div class="actions col-3" v-if="isEdit">
+            <span class="save">保存</span>
+            <span class="cancel" @click="cancel('email')">取消</span>
+          </div>
+          <div class="actions col-3" v-else>
+            <i class="material-icons" @click="edit('email')">edit</i>
+          </div>
+        </div>
+        <div class="setting-item row">
+          <label class="col-form-label col-4">手机号</label>
+          <div class="col-9">
+            <input type="text" class="form-control" :value="user.phone" id="phone" placeholder="填写你的手机号"></div>
+          <div class="actions col-3" v-if="isEdit">
+            <span class="save">保存</span>
+            <span class="cancel" @click="cancel('phone')">取消</span>
+          </div>
+          <div class="actions col-3" v-else><i class="material-icons" @click="edit('phone')">edit</i></div>
         </div>
       </div>
     </div>
@@ -111,39 +112,27 @@ export default {
     text-align: left;
     width: 80%;
     margin: 0 auto;
-    padding: 1em 0 0;
+    padding: 1em 0;
     border-bottom: 1px solid #f1f1f1;
   }
-  .setting-label {
+  .col-form-label {
     text-align: left;
-    padding: .7em 0;
-    width: 7em;
-    font-size: .9em;
   }
-  .setting-input {
-    padding: .7em 6em;
+  .form-control {
     border: none;
     color: #909090;
-    font-size: .9em;
-    margin-bottom: .5rem;
   }
-  .setting-input:focus {
+  .form-control:focus {
     outline: none;
     color: #4a4a4a;
   }
   .setting-social {
     display: inline-block;
-    padding: .7em 4.2em;
     font-size: 16px;
-
   }
-  .setting-edit {
+  .actions {
     cursor: pointer;
-    padding: .7em;
-    display: inline-block;
-    margin-bottom: .5rem;
-    float: right;
-
+    text-align: right;
     i {
       width: 14px;
       height: 14px;
@@ -156,8 +145,9 @@ export default {
       cursor: pointer;
     }
   }
-  .box {
-    font-size: .8rem;
+  .setting-box {
+    max-width: 550px;
+    margin: 0 auto;
     margin-top: 50px;
     background-color: #fff;
     border-radius: 4px;
