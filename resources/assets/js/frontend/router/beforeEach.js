@@ -25,7 +25,6 @@ const beforeEach = (to, from, next) => {
         // No token, or it is invalid
         return next({ name: 'auth.signin' }) // redirect to login
       }
-      next();
     });
 }
 

@@ -3,6 +3,10 @@ html, body, .page-root {
   height: 100%;
 }
 
+body, body * {
+  font-weight: 300;
+}
+
 button, input, optgroup, select, textarea {
     font-family: $font-family-base;
 }
@@ -40,17 +44,12 @@ a {
     outline: none;
 }
 a:hover,a:focus,a:visited {
-    text-decoration: none;
+    text-decoration: none !important;
 }
 
 .modal-content {
     box-shadow: $modal-content-xs-box-shadow;
 }
-
-.btn {
-  font-weight: 300;
-}
-
 
 .el-message {
   display: flex;

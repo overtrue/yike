@@ -2,8 +2,8 @@
   <div class="post-new">
     <navbar>
       <div class="page-actions" slot="page-actions">
-        <a href="#" class="btn btn-sm btn-outline-success" :disabled="!canSubmit" @click="handleSubmit()">发布</a>
-        <a href="#" class="btn btn-sm btn-outline-secondary" :disabled="!canSubmit" @click="handleSubmit(false)">存为草稿</a>
+        <a href="#" class="nav-item text-success" :disabled="!canSubmit" @click="handleSubmit()">发布</a>
+        <a href="#" class="nav-item text-secondary" :disabled="!canSubmit" @click="handleSubmit(false)">存为草稿</a>
       </div>
     </navbar>
     <div class="container post-container pt-5">
@@ -53,7 +53,7 @@ export default {
   },
   mounted() {
     var vm = this
-    localforage.getItem("post.cache.title").then(title => vm.title = title)
+    localforage.getItem("post.cache.title").then(title => vm.title = title || '')
 
     const editor = CodeMirror.fromTextArea(document.getElementById('post-body'), {
       keyMap: "sublime",
