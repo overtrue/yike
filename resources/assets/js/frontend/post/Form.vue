@@ -22,7 +22,7 @@ import localforage from "localforage"
 import Navbar from "home/Navbar"
 import { mapActions, mapGetters } from 'vuex'
 
-require("./theme/yike.scss")
+require("./theme/yike.css")
 require("codemirror/mode/gfm/gfm")
 require("codemirror/addon/display/placeholder")
 require("codemirror/keymap/sublime")
