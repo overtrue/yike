@@ -11,9 +11,7 @@
         <link rel="stylesheet" type="text/css" href="{{ asset('css/app.css') }}">
     </head>
     <body>
-        <div id="app">
-            <router-view></router-view>
-        </div>
+        <div id="app"></div>
     </body>
     <script src="{{ asset('js/app.js') }}"></script>
 </html>
