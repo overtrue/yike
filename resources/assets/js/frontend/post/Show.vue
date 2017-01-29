@@ -1,6 +1,11 @@
 <template>
   <div class="post-show">
-    <navbar></navbar>
+    <navbar>
+      <div class="page-actions" slot="page-actions" v-if="canEdit">
+        <a href="#" class="nav-item text-success" @click="handleEdit()">编辑</a>
+        <a href="#" class="nav-item text-danger" @click="handleDelete()">删除</a>
+      </div>
+    </navbar>
     <div class="container-fulid">
       <div class="bitmap" v-if="post.cover">
         <div id="bitdim"></div>
@@ -28,12 +33,13 @@
 </template>
 
 <script>
-import { mapActions, mapGetters } from 'vuex'
 import Navbar from "home/Navbar"
+import { getData } from 'utils/get'
+import { mapGetters } from "vuex"
+import Prism from "../../plugins/prism"
 
 require("clipboard")
 require("./theme/github.css")
-import Prism from "../../plugins/prism"
 require("../../plugins/prism.css")
 
 export default {
@@ -46,17 +52,35 @@ export default {
     }
   },
   created() {
-    this.loadPost(this.$route.params.slug).then((post) => {
-      this.post = post, this.user = post.user.data
-    });
+    this.loadPost(this.$route.params.slug)
   },
   mounted() {
     setTimeout(function(){
       Prism.highlightAll('.post-body');
     }, 500);
   },
+  computed: {
+    ...mapGetters(['currentUser']),
+    canEdit: function() {
+      return this.post.user_id == this.currentUser.id
+    }
+  },
   methods: {
-    ...mapActions(['loadPost'])
+    loadPost: function(slug) {
+      this.$http.get(this.$config.entrypoints.posts + slug)
+              .then((post) => {
+                this.post = getData(post).data
+                this.user = this.post.user.data
+              }).catch(function(err){
+                console.log(err)
+              });
+    },
+    handleDelete() {
+      console.log('deleting')
+    },
+    handleEdit() {
+      this.$router.push({name: 'post.edit', params: {username: this.user.username, slug: this.post.slug}})
+    }
   }
 }
 </script>
