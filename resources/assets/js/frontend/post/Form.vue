@@ -95,6 +95,9 @@ export default {
 
     localforage.getItem("post.cache").then(post => {
       if (!post) { return }
+      if (vm.mode == 'new' && post.id) {
+        return localforage.removeItem("post.cache")
+      }
       vm.form = Object.assign(vm.form, post)
       vm.editor.setValue(post.content || '')
     })
