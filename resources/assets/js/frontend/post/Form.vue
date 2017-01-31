@@ -101,6 +101,7 @@ export default {
   },
   methods: {
     handleCancel() {
+      localforage.removeItem("post.cache")
       this.$router.push({name: 'post.show', params: this.$route.params})
     },
     handleSubmit(messageType = '发布', publish = true) {
