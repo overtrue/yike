@@ -17,14 +17,14 @@ const beforeEach = (to, from, next) => {
    */
   vuex.dispatch('checkUserToken')
     .then((token) => {
-      // There is a token and it is valid
-      return next(); // can access the route
+      return next()
     })
     .catch((err) => {
       if (needAuth(to)) {
         // No token, or it is invalid
         return next({ name: 'auth.signin' }) // redirect to login
       }
+      next()
     });
 }
 
