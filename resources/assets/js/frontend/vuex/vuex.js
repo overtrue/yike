@@ -1,10 +1,16 @@
 import { isFunction } from 'lodash'
 import { vuex as Auth } from '../auth'
+<<<<<<< Updated upstream
 import { vuex as User } from '../user'
 import { vuex as Post } from '../post'
 
 // start extraction data from vuex modules
 const vuex = { Auth, User, Post };
+=======
+
+// start extraction data from vuex modules
+const vuex = { Auth };
+>>>>>>> Stashed changes
 const keys = Object.keys(vuex);
 
 // process and extract data (modules and plugins)

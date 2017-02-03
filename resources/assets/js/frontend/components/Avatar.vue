@@ -1,19 +1,27 @@
 <template>
-    <img src="/img/default-avatar.png" alt="" class="avatar" :class="size">
+    <img :src="user.avatar" alt="" class="avatar rounded-circle" :class="size">
 </template>
 
 <script>
     export default {
         props: {
-            size: {
-                type: String,
-                default() {
-                    return 'small';
-                },
-                validator(value) {
-                    return ["small", "medium", "large"].indexOf(value) >= 0;
+          user: {
+              type: Object,
+              default: function(){
+                return {
+                  avatar: '/img/default-avatar.png'
                 }
-            }
+              }
+          },
+          size: {
+              type: String,
+              default() {
+                  return 'small';
+              },
+              validator(value) {
+                  return ["small", "medium", "large"].indexOf(value) >= 0;
+              }
+          }
         }
     }
 </script>
@@ -22,7 +30,7 @@
     .avatar {
         border-radius: 50%;
 
-        &.larage {
+        &.large {
             height: 150px;
         }
 
