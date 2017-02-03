@@ -16,6 +16,11 @@ class Post extends Model
         'content', 'content_original', 'published_at', 'image_id',
     ];
 
+    protected $casts = [
+        'is_spammed' => 'boolean',
+        'is_draft' => 'boolean',
+    ];
+
     public static function boot()
     {
         parent::boot();
@@ -27,7 +32,11 @@ class Post extends Model
         });
 
         static::saving(function($post){
+            $post->is_draft = (bool) $post->is_draft;
+            $post->is_spammed = (bool) $post->is_spammed;
+
             if ($post->isDirty('content') && $post->type == self::TYPE_MARKDOWN) {
+                $post->content_original = $post->content;
                 $post->content = preg_replace('/<code>/', '<code class="language-php">', Parsedown::text($post->content));
             }
         });

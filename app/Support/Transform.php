@@ -107,6 +107,10 @@ class Transform
             return get_class(array_first($object));
         }
 
+        if (!is_string($object) && !is_object($object)) {
+            throw new \Exception("No transformer of \"{$object}\"found.");
+        }
+
         return get_class($object);
     }
 }
