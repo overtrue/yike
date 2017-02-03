@@ -320,3 +320,9 @@ span.CodeMirror-selectedtext { background: none; }
 pre.CodeMirror-placeholder {
   color: #ccc;
 }
+
+pre.code-toolbar > .toolbar a, pre.code-toolbar > .toolbar button, pre.code-toolbar > .toolbar span {
+border-radius: 1px;
+box-shadow: none;
+margin: 0 3px;
+}

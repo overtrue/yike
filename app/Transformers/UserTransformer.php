@@ -34,6 +34,7 @@ class UserTransformer extends TransformerAbstract
             'linkedin_id' => $user->linkedin_id,
             'twitter_id' => $user->twitter_id,
             'weibo_url' => $user->weibo_url,
+            'url' => url($user->username),
             'created_at' => $user->created_at->toIso8601String(),
             'updated_at' => $user->updated_at->toIso8601String(),
         ];
