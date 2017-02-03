@@ -1,26 +1,24 @@
 <template>
   <div class="post-show">
-    <navbar></navbar>
+    <navbar>
+      <div class="page-actions" slot="page-actions" v-if="canEdit">
+        <a href="#" class="nav-item text-success" @click="handleEdit()">编辑</a>
+        <a href="#" class="nav-item text-danger" @click="handleDelete()">删除</a>
+      </div>
+    </navbar>
     <div class="container-fulid">
-      <div class="bitmap" v-if="post.cover">
-        <div id="bitdim"></div>
+      <div class="post-cover" v-if="post.cover">
+        <div id="post-cover-img"></div>
       </div>
       <div class="post-container">
-        <div class="title">
+        <div class="post-meta">
+          <user :user="user"></user>
+        </div>
+        <div class="post-title">
           <h1>{{ post.title }}</h1>
         </div>
         <article class="post-body" v-html="post.content"></article>
         <div class="footer">
-          <div class="user">
-            <div class="info-left">
-              <img class="avatar img-circle" width="60" :src="user.avatar">
-            </div>
-            <div class="info">
-              <p class="username" v-text="user.name"></p>
-              <p class="description" v-text="user.signature"></p>
-            </div>
-            <button class="follow btn btn-outline-secondary btn-sm">关注</button>
-          </div>
         </div>
       </div>
     </div>
@@ -28,17 +26,19 @@
 </template>
 
 <script>
-import { mapActions, mapGetters } from 'vuex'
 import Navbar from "home/Navbar"
+import User from "./components/User"
+import { getData } from 'utils/get'
+import { mapGetters } from "vuex"
+import Prism from "../../plugins/prism"
 
 require("clipboard")
 require("./theme/github.css")
-import Prism from "../../plugins/prism"
 require("../../plugins/prism.css")
 
 export default {
   name: 'post-show',
-  components: { Navbar },
+  components: { Navbar, User },
   data() {
     return {
       post: {},
@@ -46,29 +46,50 @@ export default {
     }
   },
   created() {
-    this.loadPost(this.$route.params.slug).then((post) => {
-      this.post = post, this.user = post.user.data
-    });
+    this.loadPost(this.$route.params.slug)
   },
   mounted() {
     setTimeout(function(){
       Prism.highlightAll('.post-body');
     }, 500);
   },
+  computed: {
+    ...mapGetters(['currentUser']),
+    canEdit: function() {
+      return this.post.user_id == this.currentUser.id
+    }
+  },
   methods: {
-    ...mapActions(['loadPost'])
+    loadPost: function(slug) {
+      this.$http.get(this.$config.entrypoints.posts + slug)
+              .then((post) => {
+                this.post = getData(post).data
+                this.user = this.post.user.data
+              }).catch(function(err){
+                console.log(err)
+              });
+    },
+    handleDelete() {
+      console.log('deleting')
+    },
+    handleEdit() {
+      this.$router.push({name: 'post.edit', params: {username: this.user.username, slug: this.post.slug}})
+    }
   }
 }
 </script>
 
 <style lang="scss">
-  .title {
+  .post-title {
     margin-top: 30px;
     margin-bottom: 30px;
 
     h3 {
       font-weight: 300;
     }
+  }
+  .post-meta {
+    padding: 10px 0 30px;
   }
   .post-body {
     color: #333;
@@ -112,55 +133,8 @@ export default {
       line-height: 1.7;
     }
   }
-  .footer {
-    height: 80px;
-    margin-bottom: 50px;
-    border-top: 1px solid rgba(0, 0, 0, 0.04);
-  }
-  .user {
-    position: relative;
 
-    .info-left, .info {
-      display: inline-block;
-    }
-    .info-left {
-      position: absolute;
-      left: 0;
-      display: inline-block;
-      margin: 10px 11px;
-      line-height: 20px;
-    }
-    .info {
-      position: absolute;
-      left: 80px;
-      display: inline-block;
-      margin: 10px;
-      height: 60px;
-      line-height: 20px;
-
-      p {
-        margin: 9px 0;
-      }
-      .username {
-        font-weight: 200;
-      }
-      .description {
-        font-size: 12px;
-        font-weight: 200;
-      }
-    }
-    .follow {
-      position: absolute;
-      right: 0;
-      top: 26.6667px;
-    }
-  }
-  pre.code-toolbar > .toolbar a, pre.code-toolbar > .toolbar button, pre.code-toolbar > .toolbar span {
-    border-radius: 1px;
-    box-shadow: none;
-    margin: 0 3px;
-  }
-  #bitdim {
+  #post-cover-img {
     width: 100%;
     height: 100%;
     position: absolute;
@@ -171,7 +145,7 @@ export default {
     background: radial-gradient(ellipse at center, rgba(36,44,51,0) -1%,rgba(36,44,51,0.01) 0%,rgba(32,39,47,0.2) 22%,rgba(19,19,35,0.65) 100%);
     filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00242c33', endColorstr='#a6131323',GradientType=1 );
   }
-  .bitmap {
+  .post-cover {
     background-attachment: fixed;
     background-size: cover;
     background-position: 50% 100%;
