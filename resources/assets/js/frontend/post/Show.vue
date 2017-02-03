@@ -89,7 +89,7 @@ export default {
     }
   }
   .post-meta {
-    padding: 10px 0 30px;
+    padding: 30px 0 10px;
   }
   .post-body {
     color: #333;

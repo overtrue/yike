@@ -14,7 +14,7 @@
       </div>
       <div class="post">
         <div class="post-title">
-          <router-link :to="post.url"><img src="https://cdn-images-1.medium.com/fit/t/1600/480/1*1uO2NznNGici7cGqgL-FoA.jpeg" alt="" class="post-cover-img w-100"></router-link>
+          <router-link :to="post.url"><img v-if="post.cover" :src="post.cover" :alt="post.title" class="post-cover-img w-100"></router-link>
           <router-link :to="post.url"><h2 v-text="post.title" class="mt-2"></h2></router-link>
         </div>
       </div>
