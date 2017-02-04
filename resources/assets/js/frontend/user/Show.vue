@@ -4,7 +4,7 @@
     <div class="wrapper">
       <div class="container">
         <div class="row justify-content-center">
-          <div class="col-10">
+          <div class="col-lg-10">
             <div class="user-info d-flex justify-content-start">
               <div class="user-avatar"><avatar :user="user" size="large"></avatar></div>
               <div class="user-info">
@@ -38,7 +38,7 @@
     </div>
     <div class="container">
       <div class="row justify-content-md-center">
-        <div class="col-10" v-for="post in posts">
+        <div class="col-lg-10" v-for="post in posts">
           <post-card :post="post" class="mt-3"></post-card>
         </div>
       </div>
