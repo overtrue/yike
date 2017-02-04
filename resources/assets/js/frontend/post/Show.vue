@@ -91,48 +91,6 @@ export default {
   .post-meta {
     padding: 30px 0 10px;
   }
-  .post-body {
-    color: #333;
-    margin-bottom: 60px;
-
-    h1 {
-      font-size: 48px;
-      font-weight: 200;
-    }
-
-    h2 {
-      font-size: 30px;
-      font-weight: 400;
-      margin-top: 55px;
-      position: relative;
-
-      &:first-of-type {
-          margin-top: 15px;
-      }
-    }
-
-    h3 {
-      font-size: 24px;
-      font-weight: 400;
-      margin-top: 45px;
-    }
-
-    h4 {
-      font-size: 16px;
-      font-weight: 700;
-      margin-top: 35px;
-    }
-
-    h5, h6 {
-      font-size: 14px;
-      font-weight: 700;
-      margin-top: 35px;
-    }
-    p {
-      font-size: 14.5px;
-      line-height: 1.7;
-    }
-  }
 
   #post-cover-img {
     width: 100%;

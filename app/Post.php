@@ -82,4 +82,25 @@ class Post extends Model
     {
         return $query->where('is_draft', 0);
     }
+
+    public function scopeHot($query)
+    {
+        return $query->orderBy('view_cache', 'desc');
+    }
+
+    public function scopeLatest($query)
+    {
+        return $query->orderBy('created_at', 'desc');
+    }
+
+    public function scopeRecommends($query)
+    {
+        return $query->orderBy('vote_cache', 'desc');
+    }
+
+    public function scopeFeatured($query)
+    {
+        //TODO: 未实现
+        return $query;
+    }
 }

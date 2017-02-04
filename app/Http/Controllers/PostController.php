@@ -17,12 +17,15 @@ class PostController extends ApiController
     public function index(Request $request)
     {
         $posts = tap(Post::with('user'), function($query) use ($request) {
-            if ($request->has('user')) {
-                $query->where('user_id', $request->user);
+            if ($request->has('user_id')) {
+                $query->where('user_id', $request->user_id);
 
-                if (auth()->id() != $request->user) {
+                if (auth()->id() != $request->user_id) {
                     $query->noDraft();
                 }
+            }
+            if ($request->has('sort_by')) {
+                $query->{$request->sort_by}();
             }
         })->paginate(15);
 
