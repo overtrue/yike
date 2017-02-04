@@ -1,5 +1,5 @@
 <template>
-  <div class="post-show bg-white">
+  <div class="post-show bg-white full-height">
     <navbar>
       <div class="page-actions" slot="page-actions" v-if="canEdit">
         <a href="#" class="nav-item text-success" @click="handleEdit()">编辑</a>
@@ -87,7 +87,7 @@ export default {
     }
   }
   .post-meta {
-    padding: 30px 0 10px;
+    padding: 50px 0 10px;
   }
 
   #post-cover-img {
