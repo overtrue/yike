@@ -4,11 +4,14 @@ html, body, .page-root {
 }
 
 body, body * {
-  font-weight: 300;
+  -webkit-font-smoothing: antialiased;
+  -ms-text-size-adjust: 100%;
+  -webkit-text-size-adjust: 100%;
+  word-wrap: break-word;
 }
 
 button, input, optgroup, select, textarea {
-    font-family: $font-family-base;
+  font-family: $font-family-base;
 }
 
 pre,code {
@@ -32,7 +35,6 @@ pre,code {
   -moz-hyphens: none;
   -ms-hyphens: none;
   hyphens: none;
-  font-weight: 300;
   background: rgba(238,238,238,.35);
 }
 

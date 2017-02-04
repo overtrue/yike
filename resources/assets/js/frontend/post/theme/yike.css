@@ -10,6 +10,7 @@
 
 .CodeMirror pre {
   padding: 0 4px;
+  font-family: "Operator Mono", Monaco, PingFang SC, Hiragino Sans GB, Arial, Microsoft YaHei, Helvetica Neue, sans-serif;
 }
 
 .CodeMirror-scrollbar-filler, .CodeMirror-gutter-filler {
@@ -83,8 +84,8 @@
   position: absolute;
 }
 
-.cm-s-default .cm-header {color: blue;}
-.cm-s-default .cm-quote {color: #090;}
+.cm-s-default .cm-header {color: #444;}
+.cm-s-default .cm-quote {color: #999;}
 .cm-negative {color: #d44;}
 .cm-positive {color: #292;}
 .cm-header, .cm-strong {font-weight: bold;}
@@ -102,7 +103,7 @@
 .cm-s-default .cm-operator {}
 .cm-s-default .cm-variable-2 {color: #05a;}
 .cm-s-default .cm-variable-3 {color: #085;}
-.cm-s-default .cm-comment {color: #a50;}
+.cm-s-default .cm-comment {color: #888;}
 .cm-s-default .cm-string {color: #a11;}
 .cm-s-default .cm-string-2 {color: #f50;}
 .cm-s-default .cm-meta {color: #555;}
@@ -215,7 +216,6 @@ div.CodeMirror span.CodeMirror-nonmatchingbracket {color: #f22;}
   -moz-border-radius: 0; -webkit-border-radius: 0; border-radius: 0;
   border-width: 0;
   background: transparent;
-  font-family: inherit;
   font-size: inherit;
   margin: 0;
   white-space: pre;
@@ -319,4 +319,10 @@ span.CodeMirror-selectedtext { background: none; }
 
 pre.CodeMirror-placeholder {
   color: #ccc;
+}
+
+pre.code-toolbar > .toolbar a, pre.code-toolbar > .toolbar button, pre.code-toolbar > .toolbar span {
+border-radius: 1px;
+box-shadow: none;
+margin: 0 3px;
 }
