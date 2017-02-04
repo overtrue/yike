@@ -1,5 +1,5 @@
 <template>
-  <div class="post-new">
+  <div class="bg-white full-height">
     <post-form :post="post"></post-form>
   </div>
 </template>
