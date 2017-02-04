@@ -1,5 +1,5 @@
 <template>
-  <div class="post-new">
+  <div class="post-form">
     <navbar>
       <div class="page-actions" slot="page-actions" v-if="mode == 'new'">
         <a href="#" class="nav-item text-success" :disabled="!canSubmit" @click="handleSubmit('发布')">发布</a>
@@ -12,7 +12,7 @@
     </navbar>
     <div class="container post-container pt-5">
       <div class="cover-picker">
-        <div class="picker">&plus; 设置封面</div>
+        <div class="picker"><i class="material-icons">image</i> 设置封面</div>
       </div>
       <input class="post-title" placeholder="请输入标题" v-model="form.title" />
       <textarea class="post-content" id="post-content" placeholder="请输入内容"></textarea>
@@ -136,13 +136,7 @@ export default {
 
 
 <style lang="scss" scoped>
-  $placeholder-color: #ccc;
-
-  .post-new {
-    background: #fff;
-    position: relative;
-    height: 100%;
-  }
+  $placeholder-color: #bbb;
 
   input, textarea {
     outline: none;
@@ -150,11 +144,12 @@ export default {
   }
 
   .cover-picker {
+    cursor: pointer;
     text-align: center;
     padding: 15px;
     margin: 15px 0;
+    border-radius: 2px;
     color: $placeholder-color;
-    font-weight: 300;
     background: rgba(216, 216, 216, .2);
     border:1px dashed rgba(151, 151, 151, .5);
   }
@@ -165,7 +160,7 @@ export default {
     width: 100%;
   }
 
-  .post-new .CodeMirror {
+  .post-form .CodeMirror {
     min-height: 300px;
     color: black;
   }

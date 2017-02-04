@@ -1,25 +1,23 @@
 <template>
-  <div class="post-show">
+  <div class="post-show bg-white">
     <navbar>
       <div class="page-actions" slot="page-actions" v-if="canEdit">
         <a href="#" class="nav-item text-success" @click="handleEdit()">编辑</a>
         <a href="#" class="nav-item text-danger" @click="handleDelete()">删除</a>
       </div>
     </navbar>
-    <div class="container-fulid">
-      <div class="post-cover" v-if="post.cover">
-        <div id="post-cover-img"></div>
+    <div class="post-cover" v-if="post.cover">
+      <div id="post-cover-img"></div>
+    </div>
+    <div class="post-container">
+      <div class="post-meta">
+        <user :user="user"></user>
       </div>
-      <div class="post-container">
-        <div class="post-meta">
-          <user :user="user"></user>
-        </div>
-        <div class="post-title">
-          <h1>{{ post.title }}</h1>
-        </div>
-        <article class="post-body" v-html="post.content"></article>
-        <div class="footer">
-        </div>
+      <div class="post-title">
+        <h1>{{ post.title }}</h1>
+      </div>
+      <article class="post-body" v-html="post.content"></article>
+      <div class="footer">
       </div>
     </div>
   </div>
