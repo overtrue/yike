@@ -16,6 +16,9 @@ class EventServiceProvider extends ServiceProvider
         'Illuminate\Database\Events\QueryExecuted' => [
             'App\Listeners\QueryListener',
         ],
+        'App\Events\ViewPost' => [
+            'App\Listeners\UpdatePostViewCache',
+        ],
     ];
 
     /**
