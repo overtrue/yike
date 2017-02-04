@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Post;
 use App\User;
+use App\Events\ViewPost;
 use App\Http\Requests\CreatePostRequest;
 use Illuminate\Http\Request;
 
@@ -49,7 +50,11 @@ class PostController extends ApiController
      */
     public function show($id)
     {
-        return $this->response->item(Post::whereId($id)->orWhere('slug', $id)->firstOrFail());
+        $post = Post::whereId($id)->orWhere('slug', $id)->firstOrFail();
+
+        event(new ViewPost($post));
+
+        return $this->response->item($post);
     }
 
     /**
