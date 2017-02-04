@@ -12,9 +12,9 @@
       </div>
     </div>
     <el-menu router :default-active="$route.path" class="el-menu-bar" @open="handleOpen" @close="handleClose">
-      <el-menu-item index="/dashboard"><i class="material-icons">palette</i>Dashboard</el-menu-item>
-      <el-menu-item index="/dashboard/user"><i class="material-icons">people</i>Users</el-menu-item>
-      <el-menu-item index="/dashboard/post"><i class="material-icons">description</i>Posts</el-menu-item>
+      <el-menu-item index="/dashboard"><i class="material-icons">palette</i><span>Dashboard</span></el-menu-item>
+      <el-menu-item index="/dashboard/user"><i class="material-icons">people</i><span>Users</span></el-menu-item>
+      <el-menu-item index="/dashboard/post"><i class="material-icons">description</i><span>Posts</span></el-menu-item>
     </el-menu>
   </aside>
 </template>
@@ -60,7 +60,6 @@
   }
   .bar {
     position: absolute;
-    top: 10px;
     right: 10px;
     font-size: 18px;
     cursor: pointer;
@@ -126,7 +125,10 @@
     font-size: 20px;
     padding: 0 10px;
     margin-right: 10px;
-    vertical-align: text-bottom;
+  }
+  span {
+    display: inline-block;
+    line-height: inherit;
   }
 }
 .el-menu-item:hover, .el-submenu__title:hover, .el-menu li.el-menu-item:hover {
