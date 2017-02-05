@@ -16,6 +16,7 @@ class CreatePostsTable extends Migration
         Schema::create('posts', function (Blueprint $table) {
             $table->increments('id')->unsigned();
             $table->unsignedInteger('user_id')->index();
+            $table->unsignedInteger('last_edit_user_id');
             $table->boolean('is_spammed')->default(0);
             $table->boolean('is_draft')->default(0);
 

@@ -13,7 +13,7 @@ class Post extends Model
 
     protected $fillable = [
         'user_id', 'is_spammed', 'is_draft', 'title', 'slug', 'type',
-        'content', 'content_original', 'published_at', 'image_id',
+        'content', 'content_original', 'published_at', 'image_id', 'last_edit_user_id',
     ];
 
     protected $casts = [
@@ -32,6 +32,7 @@ class Post extends Model
         });
 
         static::saving(function($post){
+            $post->last_edit_user_id = auth()->id();
             $post->is_draft = (bool) $post->is_draft;
             $post->is_spammed = (bool) $post->is_spammed;
 
