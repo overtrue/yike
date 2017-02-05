@@ -54,7 +54,7 @@ export default {
   computed: {
     ...mapGetters(['currentUser']),
     canEdit: function() {
-      return this.post.user_id == this.currentUser.id
+      return this.currentUser.is_admin || this.post.user_id == this.currentUser.id
     }
   },
   methods: {
