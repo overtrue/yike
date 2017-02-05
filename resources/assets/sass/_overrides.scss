@@ -38,17 +38,6 @@ pre,code {
   background: rgba(238,238,238,.35);
 }
 
-// Prisim
-.token.operator, .token.entity, .token.url, .language-css .token.string, .style .token.string {
-  background: transparent !important;
-}
-
-// Code mirror
-.CodeMirror-wrap pre {
-  box-shadow:none;
-}
-
-// Globals
 a {
     outline: none;
 }
@@ -59,6 +48,23 @@ a:hover,a:focus,a:visited {
 .modal-content {
     box-shadow: $modal-content-xs-box-shadow;
 }
+
+.dropdown-menu {
+  min-width: auto;
+  padding: 15px;
+}
+
+// Prisim
+.token.operator, .token.entity, .token.url, .language-css .token.string, .style .token.string {
+  background: transparent !important;
+}
+
+// Code mirror
+.CodeMirror-wrap pre {
+  box-shadow:none;
+}
+
+// Element-UI
 
 .el-message {
   display: flex;
