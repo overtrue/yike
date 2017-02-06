@@ -2,16 +2,11 @@
   <div class="wrapper">
     <el-table :data="posts" style="width: 100%">
       <el-table-column prop="id" label="ID" width="80"></el-table-column>
-      <el-table-column prop="title" label="Title" width="150"></el-table-column>
+      <el-table-column prop="name" label="Name" width="150"></el-table-column>
       <el-table-column prop="slug" label="Slug"></el-table-column>
-      <el-table-column prop="user.data.name" label="Author"></el-table-column>
-      <el-table-column prop="is_draft" label="Is Draft" width="120">
-        <template scope="scope">
-          <el-tag
-            :type="scope.row.is_draft ? 'warning' : 'primary'"
-            close-transition>{{scope.row.is_draft ? '是' : '否'}}</el-tag>
-        </template>
-      </el-table-column>
+      <el-table-column prop="order" label="Order"></el-table-column>
+      <el-table-column prop="description" label="Description"></el-table-column>
+      <el-table-column prop="user.data.name" label="Last Edit User"></el-table-column>
       <el-table-column prop="created_at" label="Created"></el-table-column>
       <el-table-column label="Actions">
         <template scope="scope">
@@ -62,7 +57,7 @@ export default {
       query['page'] = this.pagination.current_page
       query['per_page'] = this.pagination.per_page
 
-      this.$http.get(this.$store.state.entrypoints.posts, { params: query })
+      this.$http.get(this.$store.state.entrypoints.categories, { params: query })
           .then(({ data }) => {
             this.posts = data.data
             this.pagination = data.meta.pagination

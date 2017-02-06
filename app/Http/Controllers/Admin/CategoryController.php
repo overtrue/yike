@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Post;
+use App\Category;
 use Illuminate\Http\Request;
 use App\Http\Controllers\ApiController;
 
-class PostController extends ApiController
+class CategoryController extends ApiController
 {
     /**
      * Display a listing of the resource.
@@ -15,9 +15,9 @@ class PostController extends ApiController
      */
     public function index(Request $request)
     {
-        $posts = Post::paginate($request->get('per_page', 20));
+        $categories = Category::paginate($request->get('per_page', 20));
 
-        return $this->response->collection($posts);
+        return $this->response->collection($categories);
     }
 
     /**

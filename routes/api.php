@@ -18,8 +18,8 @@ Route::group([
 
         Route::group(['prefix' => 'dashboard', 'namespace' => 'Admin'], function(){
             Route::resource('users', 'UserController');
-            Route::get('posts/{page?}', 'PostController@index')->name('posts.index');
-            Route::resource('posts', 'PostController', ['except' => 'index']);
+            Route::resource('posts', 'PostController');
+            Route::resource('categories', 'CategoryController');
         });
     });
 });
