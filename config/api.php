@@ -35,5 +35,6 @@ return [
         App\User::class => App\Transformers\UserTransformer::class,
         App\Post::class => App\Transformers\PostTransformer::class,
         App\Category::class => App\Transformers\CategoryTransformer::class,
+        App\Tag::class => App\Transformers\TagTransformer::class,
     ],
 ];

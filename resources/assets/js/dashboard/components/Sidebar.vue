@@ -16,6 +16,8 @@
       <el-menu-item index="/dashboard/user"><i class="material-icons">people</i><span>Users</span></el-menu-item>
       <el-menu-item index="/dashboard/post"><i class="material-icons">description</i><span>Posts</span></el-menu-item>
       <el-menu-item index="/dashboard/category"><i class="material-icons">clear_all</i><span>Categories</span></el-menu-item>
+      <el-menu-item index="/dashboard/tag"><i class="material-icons">label</i><span>Tags</span></el-menu-item>
+      <el-menu-item index="/dashboard/role"><i class="material-icons">security</i><span>Roles</span></el-menu-item>
     </el-menu>
   </aside>
 </template>

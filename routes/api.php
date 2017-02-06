@@ -20,6 +20,7 @@ Route::group([
             Route::resource('users', 'UserController');
             Route::resource('posts', 'PostController');
             Route::resource('categories', 'CategoryController');
+            Route::resource('tags', 'TagController');
         });
     });
 });
