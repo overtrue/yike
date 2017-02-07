@@ -32,6 +32,11 @@ Vue.use(httpPlugin, { store, router })
 */
 Vue.use(eventbus)
 
+Vue.component(
+  'data-table',
+  require('./dashboard/components/Table')
+);
+
 // Effortlessly keep vue-router and vuex store in sync.
 sync(store, router) // https://github.com/vuejs/vuex-router-sync/tree/next
 

@@ -7,46 +7,17 @@
         </el-button>
       </el-col>
     </el-row>
-    <el-table :data="users" style="width: 100%">
-      <el-table-column prop="id" label="ID" width="80"></el-table-column>
-      <el-table-column label="Avatar" width="100">
-        <template scope="scope">
-          <img class="avatar" :src="scope.row.avatar">
-        </template>
-      </el-table-column>
-      <el-table-column prop="name" label="Name" width="150"></el-table-column>
-      <el-table-column prop="username" label="Username"></el-table-column>
-      <el-table-column prop="email" label="Email"></el-table-column>
-      <el-table-column prop="tag" label="Is Admin?" width="120">
-        <template scope="scope">
-          <el-tag
-            :type="scope.row.is_admin ? 'primary' : 'success'"
-            close-transition>{{scope.row.is_admin ? '管理员' : '成员'}}</el-tag>
-        </template>
-      </el-table-column>
-      <el-table-column label="Actions">
-        <template scope="scope">
-          <el-button
-            size="small"
-            @click="onEdit(scope.row)">编辑</el-button>
-          <el-button
-            size="small"
-            type="danger"
-            @click="onDelete(scope.$index, scope.row)">删除</el-button>
-        </template>
-      </el-table-column>
-    </el-table>
 
-    <el-pagination
-      @size-change="handleSizeChange"
-      @current-change="handleCurrentChange"
-      :current-page="pagination.current_page"
-      :page-sizes="[10, 20, 30, 40]"
-      :page-size="pagination.per_page"
-      layout="total, sizes, prev, pager, next, jumper"
-      :total="pagination.total"
-      class="pagination-wrapper">
-    </el-pagination>
+    <data-table api="users" :columns="columns" @table-action="tableActions">
+      <template slot="avatar" scope="props">
+          <img class="avatar" :src="props.data.row.avatar">
+      </template>
+      <template slot="admin" scope="props">
+        <el-tag
+          :type="props.data.row.is_admin ? 'primary' : 'success'"
+          close-transition>{{props.data.row.is_admin ? '管理员' : '成员'}}</el-tag>
+      </template>
+    </data-table>
 
     <el-dialog title="新建用户" v-model="dialogFormVisible" size="tiny">
       <user-form @canceled="onCloseForm" @succeed="onUserCreated" :user="currentUser"></user-form>
@@ -61,67 +32,73 @@ export default {
   components: { UserForm },
   data() {
     return {
-      users: [],
       currentUser: {},
-      query: {},
       dialogFormVisible: false,
-      pagination: {
-        count: 0,
-        current_page: 1,
-        per_page: 20,
-        total: 0,
-        total_pages: 1,
-      },
+      columns: [
+        {
+          prop: 'id',
+          label: 'ID',
+          width: '80',
+        },
+        {
+          label: 'Avatar',
+          width: '100',
+          name: 'avatar',
+        },
+        {
+          prop: 'name',
+          label: 'Name',
+          width: '150',
+        },
+        {
+          prop: 'username',
+          label: 'User Name',
+        },
+        {
+          prop: 'email',
+          label: 'Email',
+        },
+        {
+          label: 'Is Admin?',
+          width: '120',
+          name: 'admin',
+        },
+        {
+          label: 'Actions',
+          name: '__actions',
+        },
+      ]
     }
-  },
-  created() {
-    this.fetch()
   },
   methods: {
     onEdit(user) {
       this.currentUser = user
       this.dialogFormVisible = true
     },
-    onDelete(index, row) {
-      this.users.splice(index, 1)
-
+    onDelete(row) {
       this.$http.delete(this.$store.state.entrypoints.users + row.id)
           .then(({ data }) => {
-            console.log(data)
             this.$message.success('删除成功')
+            this.$emit('reload')
           })
           .catch(response => console.log(response))
-    },
-    fetch() {
-      let query = this.query
-
-      query['page'] = this.pagination.current_page
-      query['per_page'] = this.pagination.per_page
-
-      this.$http.get(this.$store.state.entrypoints.users, { params:query })
-          .then(({ data }) => {
-            this.users = data.data
-            this.pagination = data.meta.pagination
-          })
-          .catch(response => console.log(response))
-    },
-    handleSizeChange(val) {
-      this.pagination.per_page = val
-      this.fetch()
-    },
-    handleCurrentChange(val) {
-      this.pagination.current_page = val
-      this.fetch()
     },
     onCloseForm() {
       this.dialogFormVisible = false
       this.currentUser = {}
     },
     onUserCreated() {
-      this.fetch()
+      this.$emit('reload')
       this.dialogFormVisible = false
       this.currentUser = {}
-    }
+    },
+    tableActions(action, data) {
+      if (action == 'edit-item') {
+        this.onEdit(data.row)
+      } else if (action == 'delete-item') {
+        this.onDelete(data.row)
+      }
+    },
   }
 }
 </script>
