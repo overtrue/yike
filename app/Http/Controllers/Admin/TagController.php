@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Category;
+use App\Tag;
 use Illuminate\Http\Request;
 use App\Http\Controllers\ApiController;
 
-class CategoryController extends ApiController
+class TagController extends ApiController
 {
     /**
      * Display a listing of the resource.
@@ -15,9 +15,9 @@ class CategoryController extends ApiController
      */
     public function index(Request $request)
     {
-        $categories = Category::paginate($request->get('per_page', 20));
+        $tags = Tag::paginate($request->get('per_page', 20));
 
-        return $this->response->collection($categories);
+        return $this->response->collection($tags);
     }
 
     /**
