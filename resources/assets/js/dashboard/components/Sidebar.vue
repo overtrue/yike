@@ -15,6 +15,9 @@
       <el-menu-item index="/dashboard"><i class="material-icons">palette</i><span>Dashboard</span></el-menu-item>
       <el-menu-item index="/dashboard/user"><i class="material-icons">people</i><span>Users</span></el-menu-item>
       <el-menu-item index="/dashboard/post"><i class="material-icons">description</i><span>Posts</span></el-menu-item>
+      <el-menu-item index="/dashboard/category"><i class="material-icons">clear_all</i><span>Categories</span></el-menu-item>
+      <el-menu-item index="/dashboard/tag"><i class="material-icons">label</i><span>Tags</span></el-menu-item>
+      <el-menu-item index="/dashboard/role"><i class="material-icons">security</i><span>Roles</span></el-menu-item>
     </el-menu>
   </aside>
 </template>
@@ -125,10 +128,12 @@
     font-size: 20px;
     padding: 0 10px;
     margin-right: 10px;
+    vertical-align: text-bottom;
   }
   span {
     display: inline-block;
     line-height: inherit;
+    vertical-align: text-bottom;
   }
 }
 .el-menu-item:hover, .el-submenu__title:hover, .el-menu li.el-menu-item:hover {

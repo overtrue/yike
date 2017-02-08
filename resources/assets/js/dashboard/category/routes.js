@@ -1,10 +1,10 @@
 export const List = require('./List')
 
 export default [{
-  name: 'dashboard.user',
-  path: 'user',
+  name: 'dashboard.category',
+  path: 'category',
   component: List,
   meta: {
-    title: 'User'
+    title: 'Category'
   }
 }]

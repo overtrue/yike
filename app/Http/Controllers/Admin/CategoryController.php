@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Post;
+use App\Category;
 use Illuminate\Http\Request;
 use App\Http\Controllers\ApiController;
 
-class PostController extends ApiController
+class CategoryController extends ApiController
 {
     /**
      * Display a listing of the resource.
@@ -15,19 +15,9 @@ class PostController extends ApiController
      */
     public function index(Request $request)
     {
-        $posts = Post::paginate($request->get('per_page', 20));
+        $categories = Category::paginate($request->get('per_page', 20));
 
-        return $this->response->collection($posts);
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
+        return $this->response->collection($categories);
     }
 
     /**
@@ -48,17 +38,6 @@ class PostController extends ApiController
      * @return \Illuminate\Http\Response
      */
     public function show($id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
     {
         //
     }

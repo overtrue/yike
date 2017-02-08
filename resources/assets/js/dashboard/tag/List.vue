@@ -1,12 +1,6 @@
 <template>
   <div class="wrapper">
-    <data-table api="posts" :columns="columns" @table-action="tableActions">
-      <template slot="draft" scope="props">
-        <el-tag
-          :type="props.data.row.is_draft ? 'warning' : 'primary'"
-          close-transition>{{props.data.row.is_draft ? '是' : '否'}}</el-tag>
-      </template>
-    </data-table>
+    <data-table api="tags" :columns="columns" @table-action="tableActions"></data-table>
   </div>
 </template>
 
@@ -21,8 +15,8 @@ export default {
           width: '80',
         },
         {
-          prop: 'title',
-          label: 'Title',
+          prop: 'name',
+          label: 'Name',
           width: '150',
         },
         {
@@ -31,12 +25,7 @@ export default {
         },
         {
           prop: 'user.data.name',
-          label: 'Author',
-        },
-        {
-          label: 'Is Draft',
-          width: '120',
-          name: 'draft',
+          label: 'Creator',
         },
         {
           prop: 'created_at',
@@ -64,5 +53,9 @@ export default {
 <style lang="scss" scoped>
   .wrapper {
     padding: 20px;
+  }
+  .pagination-wrapper {
+    text-align: center;
+    margin: 20px 0;
   }
 </style>
