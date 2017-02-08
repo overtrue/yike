@@ -20,8 +20,8 @@
                 </div>
               </div>
               <div class="ml-auto text-right">
-                <a href="#" class="btn btn-outline-secondary btn-sm">编辑资料</a><br>
-                <a href="#" class="btn btn-outline-secondary btn-sm" style="margin-top: 30px;">关注</a>
+                <a href="#" class="btn btn-outline-primary btn-sm">编辑资料</a><br>
+                <a href="#" class="btn btn-outline-primary btn-sm" style="margin-top: 30px;">关注</a>
               </div>
             </div>
             <div class="post-menus mt-5 pt-3">

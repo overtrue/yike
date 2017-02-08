@@ -2,6 +2,7 @@
 
 namespace App\Support;
 
+use Illuminate\Http\Request;
 use League\Fractal\Manager;
 use League\Fractal\TransformerAbstract;
 use Illuminate\Database\Eloquent\Collection;
@@ -22,9 +23,9 @@ class Transform
     /**
      * Create a new class instance.
      */
-    public function __construct(Manager $fractal)
+    public function __construct(Manager $fractal, Request $request)
     {
-        $this->fractal = $fractal;
+        $this->fractal = $fractal->parseIncludes($request->get('include', ''));
     }
 
     /**
