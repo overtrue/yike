@@ -7,7 +7,6 @@ import { routes as home } from '../home'
 import { routes as auth } from 'app/auth'
 import { routes as user } from '../user'
 import { routes as post } from '../post'
-import { routes as category } from '../category'
 import { routes as tag } from '../tag'
 
 Vue.use(Router)
@@ -22,7 +21,7 @@ const routes = [{
   path: '/dashboard',
   component: Content,
   redirect: { name: 'dashboard.home' },
-  children: [...auth, ...home, ...user, ...post, ...category, ...tag, NotFoundRoute]
+  children: [...auth, ...home, ...user, ...post, ...tag, NotFoundRoute]
 }]
 
 const router = new Router({
