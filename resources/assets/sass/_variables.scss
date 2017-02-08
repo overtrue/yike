@@ -55,7 +55,7 @@ $modal-footer-border-width:   $modal-header-border-width !default;
 $modal-header-padding:        15px !default;
 
 // Brands
-$brand-primary: #4A4A4A;
+$brand-primary: #00ab6b;
 $brand-info: #8eb4cb;
 $brand-success: #2ab27b;
 $brand-warning: #cbb956;
@@ -76,6 +76,14 @@ $text-color: #4A4A4A;
 $btn-default-color: $text-color;
 $btn-secondary-border: lighten($text-color, 30%);
 
+$btn-border-radius:      1000em;
+$btn-border-radius-lg:      1000em;
+$btn-border-radius-sm:      1000em;
+
+$btn-padding-x: 1em;
+$btn-padding-x-lg: 1.5em;
+$btn-padding-x-sm: 1em;
+
 // Inputs
 $input-border: lighten($text-color, 40%);
 $input-border-focus: lighten($brand-primary, 25%);
@@ -85,6 +93,7 @@ $input-color-placeholder: lighten($text-color, 30%);
 $panel-default-heading-bg: #fff;
 
 // Border radius
+
 $border-radius:          .15rem !default;
 $border-radius-lg:       .2rem !default;
 $border-radius-sm:       .1rem !default;

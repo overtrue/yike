@@ -48,4 +48,7 @@ export default {
     line-height: 1.3;
     font-weight: 300;
   }
+  .post-title, .post-title a {
+    color: #4a4a4a;
+  }
 </style>

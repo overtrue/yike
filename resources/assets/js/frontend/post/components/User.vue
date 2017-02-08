@@ -7,7 +7,7 @@
       <a :href="user.url"><h4 class="username" v-text="user.name"></h4></a>
       <div class="description" v-text="user.signature"></div>
     </div>
-    <button class="follow btn btn-outline-secondary btn-sm">关注</button>
+    <button class="follow btn btn-outline-primary btn-sm">关注</button>
   </div>
 </template>
 
