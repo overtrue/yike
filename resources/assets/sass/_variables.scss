@@ -33,7 +33,7 @@ $gray-lightest:             #f7f7f9 !default;
 
 // Body
 $body-bg: #FAFAFA;
-$body-color: #6d7075;
+$body-color: #464a4c;
 
 // Borders
 $laravel-border-color: darken($body-bg, 20%);
@@ -64,7 +64,8 @@ $brand-danger: #bf5329;
 // Fonts
 //
 // Font, line-height, and color for body text, headings, and more.
-$font-family-sans-serif: -apple-system, system-ui, PingFang SC,Hiragino Sans GB, Arial, Microsoft YaHei, Helvetica Neue, sans-serif !default;
+$font-family-sans-serif: "Helvetica Neue", Helvetica, -apple-system, system-ui, Arial, "PingFang SC", "Hiragino Sans GB","Microsoft YaHei",
+"WenQuanYi Micro Hei", sans-serif !default;
 $font-family-serif:      Segoe UI, Georgia, "Times New Roman", Times, serif !default;
 $font-family-monospace:  Operator mono light, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace !default;
 $font-family-base:       $font-family-sans-serif !default;
