@@ -6,6 +6,7 @@ use League\Fractal\Manager;
 use League\Fractal\TransformerAbstract;
 use Illuminate\Database\Eloquent\Collection;
 use League\Fractal\Resource\Item as FractalItem;
+use App\Transformers\EmptyTransformer;
 use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 use League\Fractal\Pagination\IlluminatePaginatorAdapter;
 use League\Fractal\Resource\Collection as FractalCollection;
@@ -73,13 +74,23 @@ class Transform
      */
     protected function fetchDefaultTransformer($data)
     {
+        if (($data instanceof LengthAwarePaginator || $data instanceof Collection) && $data->isEmpty()) {
+            return new EmptyTransformer();
+        }
+
         $classname = $this->getClassnameFrom($data);
 
         if ($this->hasDefaultTransformer($classname)) {
             $transformer = config('api.transformers.'.$classname);
+        } else {
+            $classBasename = class_basename($classname);
 
-            return new $transformer;
+            if (!class_exists($transformer = "App\\Transformers\\{$classBasename}Transformer")) {
+                throw new \Exception("No transformer for {$classname}");
+            }
         }
+
+        return new $transformer;
     }
 
     /**
