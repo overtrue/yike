@@ -15,7 +15,7 @@
       </el-form-item>
       <el-form-item>
         <el-button type="primary" :disabled="busying" @click="onSubmit" v-text="actionLabel"></el-button>
-        <el-button @click="onCancle">取消</el-button>
+        <el-button @click="onCancel">取消</el-button>
       </el-form-item>
     </el-form>
   </div>
@@ -28,7 +28,7 @@ export default {
   props: {
     user: {
       type: Object,
-      default: function() {
+      default() {
         return {
           id: null,
           name: '',
@@ -69,8 +69,6 @@ export default {
   },
   methods: {
     onSubmit() {
-      let that = this
-
       this.$refs.user.validate((passed) => {
         if (passed) {
           this.busying = true
@@ -78,16 +76,16 @@ export default {
           let method = this.user.id ? 'patch' : 'post'
 
           this.$http[method](url, this.user).then((response) => {
-            that.busying = false
-            that.$emit('succeed', response.data)
-            that.$message.success(that.actionLabel + '成功')
+            this.busying = false
+            this.$emit('succeed', response.data)
+            this.$message.success(this.actionLabel + '成功')
           })
         } else {
           this.busying = false
         }
       })
     },
-    onCancle() {
+    onCancel() {
       this.$emit('canceled')
     }
   }

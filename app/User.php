@@ -58,6 +58,11 @@ class User extends Authenticatable implements JWTSubject
         return $this->morphMany(Vote::class, 'votable');
     }
 
+    public function series()
+    {
+        return $this->hasMany(Series::class);
+    }
+
     public function getJWTIdentifier()
     {
         return $this->id;

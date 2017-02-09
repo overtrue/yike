@@ -79,6 +79,11 @@ class Post extends Model
         return $this->belongsTo(Image::class);
     }
 
+    public function series()
+    {
+        return $this->hasManyThrough(Series::class, 'series_post');
+    }
+
     public function scopeNoDraft($query)
     {
         return $query->where('is_draft', 0);

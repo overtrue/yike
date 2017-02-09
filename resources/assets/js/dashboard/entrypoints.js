@@ -7,4 +7,5 @@ export default {
   tags: prefix + '/tags/',
   roles: prefix + '/roles/',
   permissions: prefix + '/permissions/',
+  series: prefix + '/series/',
 }

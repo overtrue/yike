@@ -15,6 +15,7 @@
       <el-menu-item index="/dashboard"><i class="material-icons">palette</i><span>Dashboard</span></el-menu-item>
       <el-menu-item index="/dashboard/user"><i class="material-icons">people</i><span>Users</span></el-menu-item>
       <el-menu-item index="/dashboard/post"><i class="material-icons">description</i><span>Posts</span></el-menu-item>
+      <el-menu-item index="/dashboard/series"><i class="material-icons">featured_play_list</i><span>Series</span></el-menu-item>
       <el-menu-item index="/dashboard/tag"><i class="material-icons">label</i><span>Tags</span></el-menu-item>
       <el-menu-item index="/dashboard/role"><i class="material-icons">security</i><span>Roles</span></el-menu-item>
     </el-menu>
