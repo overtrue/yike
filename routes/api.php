@@ -20,6 +20,9 @@ Route::group([
             Route::resource('users', 'UserController');
             Route::resource('posts', 'PostController');
             Route::resource('tags', 'TagController');
+            Route::resource('roles', 'RoleController');
+            Route::get('permissions', 'RoleController@permissions');
+            Route::patch('roles/{id}/permission', 'RoleController@updatePermission');
         });
     });
 });
