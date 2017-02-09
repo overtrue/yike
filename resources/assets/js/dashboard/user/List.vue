@@ -19,7 +19,7 @@
       </template>
     </data-table>
 
-    <el-dialog title="新建用户" v-model="dialogFormVisible" size="tiny">
+    <el-dialog title="currentUser.id?'修改用户':'新建用户'" v-model="dialogFormVisible" size="tiny">
       <user-form @canceled="onCloseForm" @succeed="onUserCreated" :user="currentUser"></user-form>
     </el-dialog>
   </div>

@@ -6,7 +6,8 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
         <title>Yike Dashboard</title>
-        <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-default/index.css">
+        {{-- <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-default/index.css"> --}}
+        <link href="http://cdn.bootcss.com/element-ui/1.1.6/theme-default/index.css" rel="stylesheet">
         <link rel="stylesheet" type="text/css" href="{{ vendor('material-design-icons/material-icons.css') }}">
         <link rel="stylesheet" type="text/css" href="{{ asset('css/app.css') }}">
         <style>
