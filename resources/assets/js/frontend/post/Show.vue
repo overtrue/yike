@@ -9,15 +9,43 @@
     <div class="post-cover" v-if="post.cover">
       <div id="post-cover-img"></div>
     </div>
-    <div class="post-container">
-      <div class="post-meta">
-        <user :user="user"></user>
-      </div>
-      <div class="post-title">
-        <h1>{{ post.title }}</h1>
-      </div>
-      <article class="post-body" v-html="post.content"></article>
+    <div class="w760">
+      <article class="post-container">
+        <header>
+          <div class="post-meta">
+            <div class="user-panel d-flex">
+              <div class="left avatar-box">
+                <a :href="user.url"><avatar :user="user" size="medium"></avatar></a>
+              </div>
+              <div class="right">
+                <a :href="user.url">
+                  <h4 class="username d-inline-block" v-text="user.name"></h4>
+                  <button class="d-inline-block btn-follow btn btn-outline-primary btn-sm">关注</button>
+                </a>
+                <div class="description" v-text="user.signature"></div>
+              </div>
+            </div>
+          </div>
+          <div class="post-title">
+            <h1>{{ post.title }}</h1>
+          </div>
+        </header><!-- /header -->
+        <section class="post-body" v-html="post.content"></section>
+      </article>
       <div class="footer">
+        <div class="post-actions">
+          <div class="d-flex justify-content-between">
+            <div class="left-actions">
+              <a href="#" class="unactive"><i class="material-icons">favorite</i> 0</a>
+            </div>
+            <div class="right-actions d-flex justify-content-end">
+              <a href="#"><i class="material-icons">share</i> 分享</a>
+            </div>
+          </div>
+        </div>
+        <div class="post-author">
+          <user-card :user="user"></user-card>
+        </div>
       </div>
     </div>
   </div>
@@ -25,7 +53,8 @@
 
 <script>
 import Navbar from "home/Navbar"
-import User from "./components/User"
+import Avatar from "home/Avatar"
+import UserCard from "home/UserCard"
 import { getData } from 'utils/get'
 import { mapGetters } from "vuex"
 import Prism from "../../plugins/prism"
@@ -36,7 +65,7 @@ require("../../plugins/prism.css")
 
 export default {
   name: 'post-show',
-  components: { Navbar, User },
+  components: { Navbar, Avatar, UserCard },
   data() {
     return {
       post: {},
@@ -78,6 +107,9 @@ export default {
 </script>
 
 <style lang="scss">
+.post-container {
+  padding: 20px;
+
   .post-title {
     margin-top: 30px;
     margin-bottom: 30px;
@@ -86,8 +118,42 @@ export default {
       font-weight: 300;
     }
   }
+
   .post-meta {
     padding: 50px 0 10px;
+  }
+}
+
+  .post-actions {
+    margin-top: 2em;
+    padding: 20px;
+    border-bottom: 1px solid rgba(0,0,0,.05);
+
+    .unactive {
+      color: #ccc;
+    }
+    i {
+      font-size: 20px;
+      line-height: 20px;
+    }
+  }
+
+  .user-panel {
+    position: relative;
+
+    .avatar-box {
+      margin-right: 10px;
+    }
+
+    .username {
+      font-weight: 400;
+    }
+
+    .btn-follow {
+      margin-left: .5em;
+      vertical-align: text-bottom;
+      font-size: 0.775em;
+    }
   }
 
   #post-cover-img {
