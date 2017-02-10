@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Tag;
 use Illuminate\Http\Request;
+use App\Http\Requests\TagRequest;
 use App\Http\Controllers\ApiController;
 
 class TagController extends ApiController
@@ -26,7 +27,7 @@ class TagController extends ApiController
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(TagRequest $request)
     {
         return $this->response->item(Tag::create($request->all()));
     }
@@ -49,7 +50,7 @@ class TagController extends ApiController
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(TagRequest $request, $id)
     {
         $tag = Tag::findOrFail($id);
 

@@ -66,6 +66,7 @@ export default {
       this.currentTag = {}
     },
     onCloseForm() {
+      this.$emit('reload')
       this.dialogFormVisible = false
       this.currentTag = {}
     },

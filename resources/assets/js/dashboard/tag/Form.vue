@@ -57,6 +57,10 @@ export default {
             this.busying = false
             this.$emit('succeed', response.data)
             this.$message.success(this.actionLabel + '成功')
+          }).catch((error) => {
+            console.log(error)
+            this.$message.error(this.$store.state.messages.validation.name[0])
+            this.busying = false
           })
         } else {
           this.busying = false
