@@ -9,6 +9,7 @@ import { routes as user } from '../user'
 import { routes as post } from '../post'
 import { routes as tag } from '../tag'
 import { routes as role } from '../role'
+import { routes as series } from '../series'
 
 Vue.use(Router)
 
@@ -22,7 +23,7 @@ const routes = [{
   path: '/dashboard',
   component: Content,
   redirect: { name: 'dashboard.home' },
-  children: [...auth, ...home, ...user, ...post, ...tag, ...role, NotFoundRoute]
+  children: [...auth, ...home, ...user, ...post, ...tag, ...role, ...series, NotFoundRoute]
 }]
 
 const router = new Router({

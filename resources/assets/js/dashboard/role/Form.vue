@@ -12,7 +12,7 @@
       </el-form-item>
       <el-form-item>
         <el-button type="primary" :disabled="busying" @click="onSubmit" v-text="actionLabel"></el-button>
-        <el-button @click="onCancle">取消</el-button>
+        <el-button @click="onCancel">取消</el-button>
       </el-form-item>
     </el-form>
   </div>
@@ -25,7 +25,7 @@
     props: {
       role: {
         type: Object,
-        default: function() {
+        default() {
           return {
             id: null,
             name: '',
@@ -54,32 +54,30 @@
             { type: 'string', required: true, message: '请填写角色名', trigger: 'blur' }
           ],
           description: [
-            { type: 'string', required: false, message: '请填写角色秒速', trigger: 'blur' }
+            { type: 'string', required: false, message: '请填写角色描述', trigger: 'blur' }
           ],
         }
       },
     },
     methods: {
       onSubmit() {
-        let that = this
-
         this.$refs.role.validate((passed) => {
           if (passed) {
             this.busying = true
-            let url = this.entrypoints.roles + ((this.role.id) || '')
+            let url = this.entrypoints.roles + (this.role.id || '')
             let method = this.role.id ? 'patch' : 'post'
 
             this.$http[method](url, this.role).then((response) => {
               this.busying = false
               this.$emit('succeed')
-              this.$message.success(that.actionLabel + '成功')
+              this.$message.success(this.actionLabel + '成功')
             })
           } else {
             this.busying = false
           }
         })
       },
-      onCancle() {
+      onCancel() {
         this.$emit('canceled')
       }
     }

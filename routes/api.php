@@ -23,6 +23,7 @@ Route::group([
             Route::resource('roles', 'RoleController');
             Route::get('permissions', 'RoleController@permissions');
             Route::patch('roles/{id}/permission', 'RoleController@updatePermission');
+            Route::resource('series', 'SeriesController');
         });
     });
 });
