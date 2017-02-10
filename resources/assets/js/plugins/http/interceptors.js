@@ -1,4 +1,4 @@
-import { isArray } from 'lodash'
+import { isArray, isObject } from 'lodash'
 
 export default (http, store, router) => {
   // https://github.com/mzabriskie/axios#interceptors
