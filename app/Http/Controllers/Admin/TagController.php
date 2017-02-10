@@ -28,7 +28,7 @@ class TagController extends ApiController
      */
     public function store(Request $request)
     {
-        //
+        return $this->response->item(Tag::create($request->all()));
     }
 
     /**
@@ -39,7 +39,7 @@ class TagController extends ApiController
      */
     public function show($id)
     {
-        //
+        return $this->response->item(Tag::findOrFail($id));
     }
 
     /**
@@ -51,7 +51,11 @@ class TagController extends ApiController
      */
     public function update(Request $request, $id)
     {
-        //
+        $tag = Tag::findOrFail($id);
+
+        $tag->update($request->all());
+
+        return $this->response->item($tag);
     }
 
     /**
@@ -62,6 +66,8 @@ class TagController extends ApiController
      */
     public function destroy($id)
     {
-        //
+        Tag::destroy($id);
+
+        return $this->response->withNoContent();
     }
 }
