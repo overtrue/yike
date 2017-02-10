@@ -36,10 +36,11 @@
         <div class="post-actions">
           <div class="d-flex justify-content-between">
             <div class="left-actions">
-              <a href="#" class="unactive"><i class="material-icons">favorite</i> 0</a>
+              <a href="#" class=""><i class="material-icons">favorite</i> 0</a>
             </div>
             <div class="right-actions d-flex justify-content-end">
               <a href="#"><i class="material-icons">share</i> 分享</a>
+              <a href="#"><i class="material-icons">report</i> 举报</a>
             </div>
           </div>
         </div>
@@ -129,9 +130,11 @@ export default {
     padding: 20px;
     border-bottom: 1px solid rgba(0,0,0,.05);
 
-    .unactive {
-      color: #ccc;
+    a {
+      color: #444;
+      padding: 0 10px;
     }
+
     i {
       font-size: 20px;
       line-height: 20px;
