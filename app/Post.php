@@ -2,12 +2,15 @@
 
 namespace App;
 
-use Facades\Parsedown;
 use Translug;
+use Facades\Parsedown;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Post extends Model
 {
+    use SoftDeletes;
+
     const TYPE_MARKDOWN = 'markdown';
     const TYPE_HTML = 'html';
 
@@ -15,6 +18,13 @@ class Post extends Model
         'user_id', 'is_spammed', 'is_draft', 'title', 'slug', 'type',
         'content', 'content_original', 'published_at', 'image_id', 'last_edit_user_id',
     ];
+
+    /**
+     * The attributes that should be mutated to dates.
+     *
+     * @var array
+     */
+    protected $dates = ['deleted_at'];
 
     protected $casts = [
         'is_spammed' => 'boolean',
