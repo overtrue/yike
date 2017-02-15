@@ -14,10 +14,10 @@
         <div class="col-md-12">
           <div class="post-box">
             <!-- Host Post -->
-            <div class="top">
+            <div class="box-title">
               <h5>热门文章</h5>
             </div>
-            <div class="cards">
+            <div class="card-deck">
               <div class="card" v-for="n in 3">
                 <div class="card-img-top">
                   <img src="https://dn-phphub.qbox.me/uploads/banners/Ltw9l2xdkQX2gEv63sUG.jpg?imageView2/1/w/424/h/212" alt="">
@@ -47,10 +47,10 @@
 
           <!-- Weekly Host Post -->
           <div class="post-box">
-            <div class="top">
+            <div class="box-title">
               <h5>本周热门</h5>
             </div>
-            <div class="cards">
+            <div class="card-deck">
               <div class="card" v-for="n in 3">
                 <div class="card-img-top">
                   <img src="https://dn-phphub.qbox.me/uploads/banners/Ltw9l2xdkQX2gEv63sUG.jpg?imageView2/1/w/424/h/212" alt="">
@@ -82,7 +82,7 @@
         <div class="col-md-4">
           <!-- Ranking -->
           <div class="ranking">
-            <div class="top">
+            <div class="box-title">
               <h5>排行榜</h5>
             </div>
             <ol>
@@ -136,7 +136,7 @@ export default {
   .el-carousel__item:nth-child(2n+1) {
     background-color: #d3dce6;
   }
-  .top {
+  .box-title {
     margin-top: 20px;
     margin-bottom: 20px;
   }
@@ -146,8 +146,11 @@ export default {
     border-bottom: 1px solid rgba(49, 43, 43, 0.04);
   }
   .ranking {
+    margin-left: 10px;
+
     ol {
       font-size: 14px;
+      padding-left: 30px;
 
       li {
         margin-bottom:10px;
