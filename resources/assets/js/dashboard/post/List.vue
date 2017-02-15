@@ -1,6 +1,6 @@
 <template>
   <div class="wrapper">
-    <data-table api="posts" :columns="columns" @table-action="tableActions">
+    <data-table api="posts" :columns="columns" @table-action="tableActions" :itemActions="itemActions">
       <template slot="draft" scope="props">
         <el-tag
           :type="props.data.row.is_draft ? 'warning' : 'primary'"
@@ -23,7 +23,6 @@ export default {
         {
           prop: 'title',
           label: 'Title',
-          width: '150',
         },
         {
           prop: 'slug',
@@ -34,8 +33,8 @@ export default {
           label: 'Author',
         },
         {
-          label: 'Is Draft',
-          width: '120',
+          label: 'Draft?',
+          width: '80',
           name: 'draft',
         },
         {
@@ -47,14 +46,26 @@ export default {
           name: '__actions',
         },
       ],
+      itemActions: [
+        { name: 'preview-item', label: '预览', type: 'success' },
+        { name: 'delete-item', label: '删除', type: 'danger' }
+      ],
     }
   },
   methods: {
+    onDelete(row) {
+      this.$http.delete(this.$store.state.entrypoints.posts + row.id)
+          .then(({ data }) => {
+            this.$message.success('删除成功')
+            this.$emit('reload')
+          })
+          .catch(response => console.log(response))
+    },
     tableActions(action, data) {
-      if (action == 'edit-item') {
-        console.log('Edit')
+      if (action == 'preview-item') {
+        window.open('/' + data.row.user.data.username + '/' + data.row.slug)
       } else if (action == 'delete-item') {
-        console.log('Deleted')
+        this.onDelete(data.row)
       }
     },
   }
