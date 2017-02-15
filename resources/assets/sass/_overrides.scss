@@ -77,7 +77,7 @@ h1, h2, h3 {
 }
 
 // Element-UI
-
+// Element Message
 .el-message {
   display: flex;
 
@@ -95,9 +95,99 @@ h1, h2, h3 {
   }
 }
 
+// Element Carousel
+button.el-carousel__arrow {
+  font-size: 20px;
+}
+
 // Material icons
 .material-icons {
   font-size: inherit;
   line-height: inherit;
   vertical-align: middle;
+}
+
+// Bootstrap Card
+.card-block {
+  padding: 1rem;
+}
+.card {
+  margin-top: 10px;
+  background-color: #fff;
+  border: 0;
+  border-radius: 4px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
+
+  .card-img-top {
+    height: 110px;
+    overflow: hidden;
+    border-top-right-radius: 4px;
+    border-top-left-radius: 4px;
+
+    img {
+      width: 100%;
+    }
+  }
+  .card-title {
+    font-size: 16px;
+    font-weight: 400;
+  }
+}
+.card .extras{
+  margin-top: 15px;
+  position: relative;
+
+  .avatar {
+    width: 39px;
+    float: left;
+  }
+  .user-info {
+    display: inline-block;
+    margin-left: 10px;
+    font-size: 13px;
+
+    span {
+      display: block;
+      padding: 0;
+    }
+    .times {
+      font-size: 11px;
+      color: rgba(0,0,0,.4);
+    }
+  }
+  .actions {
+    display: inline-block;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    font-size: 16px;
+
+    .favour, .collect{
+      display: inline-block;
+      position: relative;
+      padding: 0 5px;
+      cursor: pointer;
+      opacity: .6;
+
+      span {
+        font-size: 14px;
+        font-weight: 200;
+      }
+    }
+    .favour i {
+      color: #7ED321;
+    }
+    .favour:not(:last-child):after {
+      content: '';
+      position: absolute;
+      left: 100%;
+      top: 50%;
+      width: 1px;
+      height: 1em;
+      background-color: #2b445d;
+      -webkit-transform: translateY(-50%);
+      transform: translateY(-50%);
+      opacity: .1;
+    }
+  }
 }
