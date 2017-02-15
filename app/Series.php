@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Series extends Model
 {
     protected $fillable = [
-        'user_id', 'title', 'post_cache',
+        'creator_id', 'title', 'post_cache',
     ];
 
     public static function boot()
@@ -15,11 +15,11 @@ class Series extends Model
         parent::boot();
 
         static::creating(function($series){
-            $series->user_id = auth()->id();
+            $series->creator_id = auth()->id();
         });
     }
 
-    public function user()
+    public function creator()
     {
         return $this->belongsTo(User::class);
     }

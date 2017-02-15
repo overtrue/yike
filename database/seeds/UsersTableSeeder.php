@@ -16,6 +16,7 @@ class UsersTableSeeder extends Seeder
                 'username' => 'Admin',
                 'email' => 'admin@yike.io',
                 'password' => bcrypt('yikeio'),
+                'is_admin' => true,
             ]);
     }
 }

@@ -16,7 +16,7 @@ class CreateSeriesTable extends Migration
         // 系列表
         Schema::create('series', function (Blueprint $table) {
             $table->increments('id');
-            $table->unsignedInteger('user_id')->unsigned();
+            $table->unsignedInteger('creator_id')->unsigned();
 
             $table->string('title')->nullable();
 
@@ -24,6 +24,12 @@ class CreateSeriesTable extends Migration
             $table->unsignedInteger('post_cache')->default(0)->index();
 
             $table->timestamps();
+
+            $table->foreign('creator_id')
+                ->references('id')
+                ->on('users')
+                ->onUpdate('cascade')
+                ->onDelete('cascade');
         });
 
         // 系列文章关系表

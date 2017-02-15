@@ -15,7 +15,7 @@ class Post extends Model
     const TYPE_HTML = 'html';
 
     protected $fillable = [
-        'user_id', 'is_spammed', 'is_draft', 'title', 'slug', 'type',
+        'creator_id', 'is_spammed', 'is_draft', 'title', 'slug', 'type',
         'content', 'content_original', 'published_at', 'image_id', 'last_edit_user_id',
     ];
 
@@ -36,7 +36,7 @@ class Post extends Model
         parent::boot();
 
         static::creating(function($post){
-            $post->user_id = auth()->id();
+            $post->creator_id = auth()->id();
             $post->content_original = $post->content_original ?: $post->content;
             $post->slug = self::makeUniqueSlug($post);
         });
@@ -74,7 +74,7 @@ class Post extends Model
         return $this->morphToMany(Category::class, 'categorizable');
     }
 
-    public function user()
+    public function creator()
     {
         return $this->belongsTo(User::class);
     }
