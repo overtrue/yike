@@ -13,7 +13,7 @@ class PostTransformer extends TransformerAbstract
      * @var array
      */
     protected $availableIncludes = [
-        'user',
+        'creator',
     ];
 
     /**
@@ -22,7 +22,7 @@ class PostTransformer extends TransformerAbstract
      * @var array
      */
     protected $defaultIncludes = [
-        'user',
+        'creator',
     ];
 
     /**
@@ -36,7 +36,7 @@ class PostTransformer extends TransformerAbstract
     {
         return [
             'id' => $post->id,
-            'user_id' => $post->user_id,
+            'creator_id' => $post->creator_id,
             'title' => $post->title,
             'slug' => $post->slug,
             'cover' => $post->image_id ? $post->image->url : null,
@@ -48,23 +48,23 @@ class PostTransformer extends TransformerAbstract
             'vote_count' => $post->vote_cache,
             'view_count' => $post->view_cache,
             'type' => $post->type,
-            'url' => '/'.$post->user->username.'/'.$post->slug,
+            'url' => '/'.$post->creator->username.'/'.$post->slug,
             'created_at' => $post->created_at->toIso8601String(),
             'updated_at' => $post->updated_at->toIso8601String(),
         ];
     }
 
     /**
-     * Include user.
+     * Include creator.
      *
      * @param  Post $post
      *
      * @return \League\Fractal\Resource\Item|null
      */
-    public function includeUser(Post $post)
+    public function includeCreator(Post $post)
     {
-        if ($post->user) {
-            return $this->item($post->user, new UserTransformer);
+        if ($post->creator) {
+            return $this->item($post->creator, new UserTransformer);
         }
     }
 }

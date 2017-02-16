@@ -71,7 +71,7 @@ export default {
   methods: {
     loadPosts(sortBy) {
       this.sortBy = sortBy
-      http.get(this.$endpoints.posts, {params:{user_id: this.user.id, sort_by: this.sortBy}}).then((data) => {
+      http.get(this.$endpoints.posts, {params:{creator_id: this.user.id, sort_by: this.sortBy}}).then((data) => {
         this.posts = data.data.data
       })
     }

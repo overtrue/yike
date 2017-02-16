@@ -41,7 +41,7 @@ export default {
           label: 'Slug',
         },
         {
-          prop: 'user.data.name',
+          prop: 'creator.data.name',
           label: 'Creator',
         },
         {

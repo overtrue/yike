@@ -13,7 +13,7 @@ class TagTransformer extends TransformerAbstract
      * @var array
      */
     protected $availableIncludes = [
-        'user',
+        'creator',
     ];
 
     /**
@@ -22,7 +22,7 @@ class TagTransformer extends TransformerAbstract
      * @var array
      */
     protected $defaultIncludes = [
-        'user',
+        'creator',
     ];
 
     /**
@@ -44,16 +44,16 @@ class TagTransformer extends TransformerAbstract
     }
 
     /**
-     * Include user.
+     * Include creator.
      *
      * @param  Tag $tag
      *
      * @return \League\Fractal\Resource\Item|null
      */
-    public function includeUser(Tag $tag)
+    public function includeCreator(Tag $tag)
     {
-        if ($tag->user) {
-            return $this->item($tag->user, new UserTransformer);
+        if ($tag->creator) {
+            return $this->item($tag->creator, new UserTransformer);
         }
     }
 }
