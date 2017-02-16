@@ -16,10 +16,10 @@
           size: {
               type: String,
               default() {
-                  return 'small';
+                  return 'xs';
               },
               validator(value) {
-                  return ["small", "medium", "large"].indexOf(value) >= 0;
+                  return ["xxs", "xs", "sm", "md", "lg", "xlg"].indexOf(value) >= 0;
               }
           }
         }
@@ -30,15 +30,31 @@
     .avatar {
         border-radius: 50%;
 
-        &.large {
+        &.xlg {
             height: 150px;
         }
 
-        &.medium {
+        &.lg {
+            height: 120px;
+        }
+
+        &.md {
+            height: 80px;
+        }
+
+        &.sm {
             height: 60px;
         }
 
-        &.small {
+        &.xs {
+            height: 48px;
+        }
+
+        &.xxs {
+            height: 40px;
+        }
+
+        &.xxxs {
             height: 35px;
         }
     }

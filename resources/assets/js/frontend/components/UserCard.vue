@@ -2,11 +2,11 @@
   <div class="user-card d-flex justify-content-between">
     <div class="user-info d-flex">
       <div class="left avatar-box">
-        <a :href="user.url"><avatar :user="user" size="medium"></avatar></a>
+        <a :href="user.url"><avatar :user="user" size="sm"></avatar></a>
       </div>
       <div class="right">
         <a :href="user.url">
-          <h4 class="username" v-text="user.name"></h4>
+          <h5 class="username" v-text="user.name"></h5>
         </a>
         <div class="description" v-text="user.signature"></div>
       </div>

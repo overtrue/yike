@@ -6,7 +6,7 @@
         <div class="row justify-content-center">
           <div class="col-lg-10">
             <div class="user-info d-flex justify-content-start">
-              <div class="user-avatar"><avatar :user="user" size="large"></avatar></div>
+              <div class="user-avatar"><avatar :user="user" size="lg"></avatar></div>
               <div class="user-info">
                 <h3 class="username">{{ user.name }}</h3>
                 <p class="description">{{ user.signature }}</p>
