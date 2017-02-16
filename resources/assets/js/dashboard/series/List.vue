@@ -70,7 +70,7 @@
         this.currentSeries = {}
       },
       onDelete(row) {
-        this.$http.delete(this.$store.state.entrypoints.series + row.id)
+        this.$http.delete(this.$endpoints.series + row.id)
             .then(({ data }) => {
               this.$message.success('删除成功')
               this.$emit('reload')

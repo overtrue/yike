@@ -37,6 +37,8 @@ Vue.component(
   require('./dashboard/components/Table')
 );
 
+Vue.prototype.$endpoints = require("./dashboard/endpoints").default
+
 // Effortlessly keep vue-router and vuex store in sync.
 sync(store, router) // https://github.com/vuejs/vuex-router-sync/tree/next
 

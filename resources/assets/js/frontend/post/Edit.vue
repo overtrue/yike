@@ -17,7 +17,7 @@ export default {
     }
   },
   created() {
-    this.$http.get(this.$config.entrypoints.posts + this.$route.params.slug)
+    this.$http.get(this.$endpoints.posts + this.$route.params.slug)
               .then((post) => {
                 post = getData(post).data
 

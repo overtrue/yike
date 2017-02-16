@@ -19,8 +19,6 @@
 </template>
 
 <script>
-  import { mapState } from 'vuex'
-
   export default {
     props: {
       role: {
@@ -41,7 +39,6 @@
       }
     },
     computed: {
-      ...mapState(['entrypoints']),
       actionLabel() {
         return this.role.id ? '更新' : '创建'
       },
@@ -64,7 +61,7 @@
         this.$refs.role.validate((passed) => {
           if (passed) {
             this.busying = true
-            let url = this.entrypoints.roles + (this.role.id || '')
+            let url = this.$endpoints.roles + (this.role.id || '')
             let method = this.role.id ? 'patch' : 'post'
 
             this.$http[method](url, this.role).then((response) => {

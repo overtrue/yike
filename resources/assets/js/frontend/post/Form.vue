@@ -10,7 +10,7 @@
         <a href="#" class="nav-item text-success" :disabled="!canSubmit" @click="handleSubmit('更新')">保存</a>
       </div>
     </navbar>
-    <div class="container post-container pt-5">
+    <div class="container w760 pt-5">
       <div class="cover-picker">
         <div class="picker"><i class="material-icons">image</i> 设置封面</div>
       </div>
@@ -112,7 +112,7 @@ export default {
         return
       }
 
-      let url = this.$config.entrypoints.posts + (this.form.id || '')
+      let url = this.$endpoints.posts + (this.form.id || '')
       let method = this.mode == 'new' ? 'post' : 'patch'
 
       this.form.is_draft = publish

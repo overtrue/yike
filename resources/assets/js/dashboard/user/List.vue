@@ -76,7 +76,7 @@ export default {
       this.dialogFormVisible = true
     },
     onDelete(row) {
-      this.$http.delete(this.$store.state.entrypoints.users + row.id)
+      this.$http.delete(this.$endpoints.users + row.id)
           .then(({ data }) => {
             this.$message.success('删除成功')
             this.$emit('reload')

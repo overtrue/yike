@@ -22,8 +22,6 @@
 </template>
 
 <script>
-import { mapState } from "vuex"
-
 export default {
   props: {
     user: {
@@ -46,7 +44,6 @@ export default {
     }
   },
   computed: {
-    ...mapState(['entrypoints']),
     actionLabel() {
       return this.user.id ? '更新' : '创建'
     },
@@ -72,7 +69,7 @@ export default {
       this.$refs.user.validate((passed) => {
         if (passed) {
           this.busying = true
-          let url = this.entrypoints.users + (this.user.id || '')
+          let url = this.$endpoints.users + (this.user.id || '')
           let method = this.user.id ? 'patch' : 'post'
 
           this.$http[method](url, this.user).then((response) => {

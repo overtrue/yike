@@ -13,8 +13,6 @@
 </template>
 
 <script>
-import { mapState } from "vuex"
-
 export default {
   props: {
     tag: {
@@ -33,7 +31,6 @@ export default {
     }
   },
   computed: {
-    ...mapState(['entrypoints']),
     actionLabel() {
       return this.tag.id ? '更新' : '创建'
     },
@@ -50,7 +47,7 @@ export default {
       this.$refs.tag.validate((passed) => {
         if (passed) {
           this.busying = true
-          let url = this.entrypoints.tags + (this.tag.id || '')
+          let url = this.$endpoints.tags + (this.tag.id || '')
           let method = this.tag.id ? 'patch' : 'post'
 
           this.$http[method](url, this.tag).then((response) => {
