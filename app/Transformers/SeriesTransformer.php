@@ -13,7 +13,7 @@ class SeriesTransformer extends TransformerAbstract
      * @var array
      */
     protected $availableIncludes = [
-        'creator',
+        'user',
     ];
 
     /**
@@ -22,7 +22,7 @@ class SeriesTransformer extends TransformerAbstract
      * @var array
      */
     protected $defaultIncludes = [
-        'creator',
+        'user',
     ];
 
     /**
@@ -44,16 +44,16 @@ class SeriesTransformer extends TransformerAbstract
     }
 
     /**
-     * Include creator.
+     * Include user.
      *
      * @param  Series $series
      *
      * @return \League\Fractal\Resource\Item|null
      */
-    public function includeCreator(Series $series)
+    public function includeUser(Series $series)
     {
-        if ($series->creator) {
-            return $this->item($series->creator, new UserTransformer);
+        if ($series->user) {
+            return $this->item($series->user, new UserTransformer);
         }
     }
 }

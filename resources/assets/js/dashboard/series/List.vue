@@ -37,7 +37,7 @@
             width: '150',
           },
           {
-            prop: 'creator.data.name',
+            prop: 'user.data.name',
             label: 'Author',
           },
           {

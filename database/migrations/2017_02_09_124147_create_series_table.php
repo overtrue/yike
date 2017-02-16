@@ -16,7 +16,7 @@ class CreateSeriesTable extends Migration
         // 系列表
         Schema::create('series', function (Blueprint $table) {
             $table->increments('id');
-            $table->unsignedInteger('creator_id')->unsigned();
+            $table->unsignedInteger('user_id');
 
             $table->string('title')->nullable();
 
@@ -25,7 +25,7 @@ class CreateSeriesTable extends Migration
 
             $table->timestamps();
 
-            $table->foreign('creator_id')
+            $table->foreign('user_id')
                 ->references('id')
                 ->on('users')
                 ->onUpdate('cascade')
