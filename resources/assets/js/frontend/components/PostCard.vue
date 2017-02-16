@@ -15,7 +15,7 @@
       <div class="post">
         <div class="post-title">
           <router-link :to="post.url"><img v-if="post.cover" :src="post.cover" :alt="post.title" class="post-cover-img w-100"></router-link>
-          <router-link :to="post.url"><h2 v-text="post.title" class="mt-2"></h2></router-link>
+          <router-link :to="post.url"><h2 v-text="post.title" class="mt-3"></h2></router-link>
         </div>
       </div>
       <div class="post-actions d-flex pt-2">
