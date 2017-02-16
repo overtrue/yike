@@ -17,11 +17,11 @@ class PostController extends ApiController
      */
     public function index(Request $request)
     {
-        $posts = tap(Post::with('creator'), function($query) use ($request) {
-            if ($request->has('creator_id')) {
-                $query->where('creator_id', $request->creator_id);
+        $posts = tap(Post::with('user'), function($query) use ($request) {
+            if ($request->has('user_id')) {
+                $query->where('user_id', $request->user_id);
 
-                if (auth()->id() != $request->creator_id) {
+                if (auth()->id() != $request->user_id) {
                     $query->noDraft();
                 }
             }
