@@ -17,11 +17,11 @@ class CreateTagsTable extends Migration
             $table->increments('id');
             $table->string('name')->unique();
             $table->string('slug', 50)->unique();
-            $table->unsignedInteger('user_id')->nullable()->default(null);
+            $table->unsignedInteger('creator_id')->nullable()->default(null);
             $table->timestamps();
             $table->softDeletes();
 
-            $table->foreign('user_id')
+            $table->foreign('creator_id')
                 ->references('id')->on('users')
                 ->onUpdate('cascade')
                 ->onDelete('set null');
@@ -49,7 +49,7 @@ class CreateTagsTable extends Migration
     public function down()
     {
         Schema::table('tags', function ($table) {
-            $table->dropForeign('tags_user_id_foreign');
+            $table->dropForeign('tags_creator_id_foreign');
         });
 
         Schema::table('taggables', function ($table) {

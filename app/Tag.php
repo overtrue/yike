@@ -11,7 +11,7 @@ class Tag extends Model
     use SoftDeletes;
 
     protected $fillable = [
-        'user_id', 'name', 'slug',
+        'creator_id', 'name', 'slug',
     ];
 
     /**
@@ -26,7 +26,7 @@ class Tag extends Model
         parent::boot();
 
         static::creating(function($tag) {
-            $tag->user_id = auth()->id();
+            $tag->creator_id = auth()->id();
             $tag->slug = self::makeUniqueSlug($tag);
         });
     }
@@ -47,7 +47,7 @@ class Tag extends Model
         return $this->morphedByMany(Post::class, 'taggable');
     }
 
-    public function user()
+    public function creator()
     {
         return $this->belongsTo(User::class);
     }
