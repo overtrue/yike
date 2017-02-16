@@ -41,7 +41,7 @@ export default {
           label: 'Slug',
         },
         {
-          prop: 'user.data.name',
+          prop: 'creator.data.name',
           label: 'Creator',
         },
         {
@@ -71,7 +71,7 @@ export default {
       this.currentTag = {}
     },
     onDelete(row) {
-      this.$http.delete(this.$store.state.entrypoints.tags + row.id)
+      this.$http.delete(this.$endpoints.tags + row.id)
           .then(({ data }) => {
             this.$message.success('删除成功')
             this.$emit('reload')

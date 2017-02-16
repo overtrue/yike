@@ -104,7 +104,7 @@
         query['page'] = this.pagination.current_page
         query['per_page'] = this.pagination.per_page
 
-        this.$http.get(this.$store.state.entrypoints[this.api], { params: query })
+        this.$http.get(this.$endpoints[this.api], { params: query })
             .then(({ data }) => {
               this.items = data.data
               this.pagination = data.meta.pagination

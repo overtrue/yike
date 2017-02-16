@@ -11,9 +11,9 @@
     <data-table api="roles" :columns="columns" @table-action="tableActions" :itemActions="itemActions"></data-table>
 
     <el-dialog :title="currentRole.id?'修改角色':'新增角色'" v-model="dialogFormVisible" size="tiny" @close="onCloseForm">
-      <role-form @canceled="onCloseForm" @succeed="onRoleCreated" :role="currentRole" :permissions="permissions"></role-form>
+      <role-form @canceled="onCloseForm" @succeed="onRoleCreated" :role="currentRole"></role-form>
     </el-dialog>
-    <el-dialog title="权限" v-model="editPermissionVisible" size="tiny">
+    <el-dialog title="权限" v-model="editPermissionVisible" size="tiny" @close="onCloseForm">
       <permission-form :permissions="permissions" :role="currentRole"></permission-form>
     </el-dialog>
   </div>
@@ -67,7 +67,7 @@ export default {
     }
   },
   created() {
-    this.$http.get(this.$store.state.entrypoints.permissions)
+    this.$http.get(this.$endpoints.permissions)
         .then((response) => {
           this.permissions = response.data.data
         })
@@ -82,7 +82,7 @@ export default {
       this.editPermissionVisible = true
     },
     onDelete(row) {
-      this.$http.delete(this.$store.state.entrypoints.roles + row.id)
+      this.$http.delete(this.$endpoints.roles + row.id)
           .then(({ data }) => {
             this.$message.success('删除成功')
             this.$emit('reload')
@@ -91,6 +91,7 @@ export default {
     },
     onCloseForm() {
       this.dialogFormVisible = false
+      this.editPermissionVisible = false
       this.currentRole = {}
     },
     onRoleCreated() {

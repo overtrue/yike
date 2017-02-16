@@ -39,7 +39,7 @@ export default {
   },
   computed: {
     user: function() {
-      return this.post.user.data
+      return this.post.creator.data
     }
   }
 }

@@ -32,6 +32,7 @@ Vue.use(httpPlugin, { store, router })
 Vue.use(eventbus)
 Vue.prototype.$message = Message
 Vue.prototype.$config = require("./config")
+Vue.prototype.$endpoints = require("./frontend/endpoints").default
 
 // Effortlessly keep vue-router and vuex store in sync.
 sync(store, router) // https://github.com/vuejs/vuex-router-sync/tree/next

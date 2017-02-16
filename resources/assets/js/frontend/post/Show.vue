@@ -90,15 +90,15 @@ export default {
   computed: {
     ...mapGetters(['currentUser']),
     canEdit: function() {
-      return this.currentUser.is_admin || this.post.user_id == this.currentUser.id
+      return this.currentUser.is_admin || this.post.creator_id == this.currentUser.id
     }
   },
   methods: {
     loadPost: function(slug) {
-      this.$http.get(this.$config.entrypoints.posts + slug)
+      this.$http.get(this.$endpoints.posts + slug)
               .then((post) => {
                 this.post = getData(post).data
-                this.user = this.post.user.data
+                this.user = this.post.creator.data
               }).catch(function(err){
                 console.log(err)
               });

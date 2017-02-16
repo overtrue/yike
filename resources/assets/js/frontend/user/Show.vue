@@ -62,7 +62,7 @@ export default {
     }
   },
   created() {
-    http.get(this.$config.entrypoints.users+this.$route.params.username).then((data) => {
+    http.get(this.$endpoints.users+this.$route.params.username).then((data) => {
       this.user = data.data.data
     })
 
@@ -71,7 +71,7 @@ export default {
   methods: {
     loadPosts(sortBy) {
       this.sortBy = sortBy
-      http.get(this.$config.entrypoints.posts, {params:{user_id: this.user.id, sort_by: this.sortBy}}).then((data) => {
+      http.get(this.$endpoints.posts, {params:{creator_id: this.user.id, sort_by: this.sortBy}}).then((data) => {
         this.posts = data.data.data
       })
     }
