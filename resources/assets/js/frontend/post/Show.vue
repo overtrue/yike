@@ -89,7 +89,7 @@ export default {
   },
   methods: {
     loadPost: function(slug) {
-      this.$http.get(this.$config.entrypoints.posts + slug)
+      this.$http.get(this.$endpoints.posts + slug)
               .then((post) => {
                 this.post = getData(post).data
                 this.user = this.post.user.data

@@ -13,8 +13,6 @@
 </template>
 
 <script>
-  import { mapState } from 'vuex'
-
   export default {
     props: {
       series: {
@@ -33,7 +31,6 @@
       }
     },
     computed: {
-      ...mapState(['entrypoints']),
       actionLabel() {
         return this.series.id ? '更新' : '创建'
       },
@@ -50,7 +47,7 @@
         this.$refs.series.validate((passed) => {
           if (passed) {
             this.busying = true
-            let url = this.entrypoints.series + (this.series.id || '')
+            let url = this.$endpoints.series + (this.series.id || '')
             let method = this.series.id ? 'patch' : 'post'
 
             this.$http[method](url, this.series).then((response) => {

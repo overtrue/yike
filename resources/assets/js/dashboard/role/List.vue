@@ -67,7 +67,7 @@ export default {
     }
   },
   created() {
-    this.$http.get(this.$store.state.entrypoints.permissions)
+    this.$http.get(this.$endpoints.permissions)
         .then((response) => {
           this.permissions = response.data.data
         })
@@ -82,7 +82,7 @@ export default {
       this.editPermissionVisible = true
     },
     onDelete(row) {
-      this.$http.delete(this.$store.state.entrypoints.roles + row.id)
+      this.$http.delete(this.$endpoints.roles + row.id)
           .then(({ data }) => {
             this.$message.success('删除成功')
             this.$emit('reload')

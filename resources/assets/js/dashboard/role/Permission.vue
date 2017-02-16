@@ -35,7 +35,7 @@
     methods: {
       handleCheckedChange(value) {
         console.log(this.role);
-        this.$http.patch(this.$store.state.entrypoints.roles + this.role.id + '/permission', { permissions: value })
+        this.$http.patch(this.$endpoints.roles + this.role.id + '/permission', { permissions: value })
             .then((response) => {
               this.$message.success('权限修改成功')
             })
