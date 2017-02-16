@@ -12,22 +12,27 @@
     <div class="w760">
       <article class="post-container">
         <header>
-          <div class="post-meta">
-            <div class="user-panel d-flex">
-              <div class="left avatar-box">
-                <a :href="user.url"><avatar :user="user" size="medium"></avatar></a>
-              </div>
-              <div class="right">
-                <a :href="user.url">
-                  <h4 class="username d-inline-block" v-text="user.name"></h4>
-                  <button class="d-inline-block btn-follow btn btn-outline-primary btn-sm">关注</button>
-                </a>
-                <div class="description" v-text="user.signature"></div>
-              </div>
-            </div>
-          </div>
           <div class="post-title">
             <h1>{{ post.title }}</h1>
+          </div>
+          <div class="post-meta">
+            <div class="user-panel d-flex">
+              <div class="avatar-box">
+                <a :href="user.url"><avatar :user="user" size="xs"></avatar></a>
+              </div>
+              <div class="d-flex flex-column justify-content-around">
+                <div class="author">
+                  <a :href="user.url">
+                    <h5 class="username d-inline-block" v-text="user.name"></h5>
+                  </a>
+                  <button class="d-inline-block btn-follow btn btn-outline-primary btn-xs">关注</button>
+                </div>
+                <div><small><relative-time :datetime="post.created_at" v-text="post.created_at"></relative-time></small></div>
+              </div>
+              <div class="btns">
+
+              </div>
+            </div>
           </div>
         </header><!-- /header -->
         <section class="post-body" v-html="post.content"></section>
@@ -56,6 +61,7 @@
 import Navbar from "home/Navbar"
 import Avatar from "home/Avatar"
 import UserCard from "home/UserCard"
+import RelativeTime from "home/RelativeTime"
 import { getData } from 'utils/get'
 import { mapGetters } from "vuex"
 import Prism from "../../plugins/prism"
@@ -66,7 +72,7 @@ require("../../plugins/prism.css")
 
 export default {
   name: 'post-show',
-  components: { Navbar, Avatar, UserCard },
+  components: { Navbar, Avatar, UserCard, RelativeTime },
   data() {
     return {
       post: {},
@@ -113,7 +119,7 @@ export default {
 
   .post-title {
     margin-top: 30px;
-    margin-bottom: 30px;
+    margin-bottom: 10px;
 
     h3 {
       font-weight: 300;
@@ -121,7 +127,13 @@ export default {
   }
 
   .post-meta {
-    padding: 50px 0 10px;
+    padding: 25px 0 30px;
+    vertical-align: middle;
+    line-height:1;
+
+    .username {
+      margin:0;
+    }
   }
 }
 

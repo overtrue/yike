@@ -18,7 +18,7 @@
               <div class="nav-item">
                 <div class="dropdown">
                   <div class="dropdown-toggle" id="nav-right-action-dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    <avatar size="small"></avatar>
+                    <avatar size="xxs"></avatar>
                   </div>
                   <div class="dropdown-menu text-center dropdown-menu-right" aria-labelledby="nav-right-action-dropdown">
                       <router-link class="dropdown-item" :to="{ name:'user.show', params: { username: currentUser.username }}">个人主页</router-link>

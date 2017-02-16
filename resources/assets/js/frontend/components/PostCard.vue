@@ -4,11 +4,11 @@
       <div class="author">
         <div class="user-panel d-flex">
           <div class="left">
-            <a :href="user.url"><avatar :user="user"></avatar></a>
+            <a :href="user.url"><avatar :user="user" size="xxs"></avatar></a>
           </div>
           <div class="post-meta-heading pl-2">
             <a :href="user.url" class="author" v-text="user.name"></a>
-            <div class="post-published-at small text-gray-lighter" v-text="post.created_at"></div>
+            <div><small><relative-time :datetime="post.created_at"></relative-time></small></div>
           </div>
         </div>
       </div>
@@ -28,8 +28,10 @@
 
 <script>
 import Avatar from "home/Avatar"
+import RelativeTime from "home/RelativeTime"
+
 export default {
-  components: { Avatar },
+  components: { Avatar, RelativeTime },
   props: {
     post: {
       type: Object

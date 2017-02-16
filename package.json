@@ -23,5 +23,8 @@
     "vue-router": "^2.0.1",
     "vuex": "^2.0.0",
     "vuex-router-sync": "^3.0.0"
+  },
+  "dependencies": {
+    "timeago.js": "^2.0.5"
   }
 }
