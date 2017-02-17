@@ -18,6 +18,7 @@
       <el-menu-item index="/dashboard/series"><i class="material-icons">featured_play_list</i><span>Series</span></el-menu-item>
       <el-menu-item index="/dashboard/tag"><i class="material-icons">label</i><span>Tags</span></el-menu-item>
       <el-menu-item index="/dashboard/role"><i class="material-icons">security</i><span>Roles</span></el-menu-item>
+      <el-menu-item index="/dashboard/banner"><i class="material-icons">view_carousel</i><span>Banners</span></el-menu-item>
     </el-menu>
   </aside>
 </template>

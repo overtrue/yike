@@ -19,6 +19,9 @@ class EventServiceProvider extends ServiceProvider
         'App\Events\ViewPost' => [
             'App\Listeners\UpdatePostViewCache',
         ],
+        'Overtrue\LaravelUploader\Events\FileUploaded' => [
+            'App\Listeners\FileUploadedListener',
+        ],
     ];
 
     /**

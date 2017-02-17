@@ -54,7 +54,7 @@ export default {
   },
   methods: {
     onDelete(row) {
-      this.$http.delete(this.$store.state.entrypoints.posts + row.id)
+      this.$http.delete(this.$endpoints.posts + row.id)
           .then(({ data }) => {
             this.$message.success('删除成功')
             this.$emit('reload')

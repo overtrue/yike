@@ -18,7 +18,7 @@ class CreateImagesTable extends Migration
             $table->string('path')->comment('存储路径');
             $table->string('title')->comment('文件名');
             $table->string('size')->nullable()->comment('w x h');
-            $table->unsignedInteger('creator')->comment('创建者');
+            $table->unsignedInteger('creator_id')->comment('创建者');
             $table->timestamps();
         });
     }
