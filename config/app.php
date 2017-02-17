@@ -172,6 +172,7 @@ return [
 //        Overtrue\LaravelPinyin\ServiceProvider::class,
         Overtrue\LaravelFollow\FollowServiceProvider::class,
         JellyBool\Translug\TranslugServiceProvider::class,
+        Overtrue\LaravelUploader\UploadServiceProvider::class,
 
         /*
          * Application Service Providers...

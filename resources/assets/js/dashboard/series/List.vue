@@ -17,7 +17,7 @@
 </template>
 
 <script>
- import SeriesForm from './Form'
+  import SeriesForm from './Form'
 
   export default {
     components: { SeriesForm },

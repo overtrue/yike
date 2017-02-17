@@ -8,4 +8,5 @@ export default {
   roles: prefix + '/roles/',
   permissions: prefix + '/permissions/',
   series: prefix + '/series/',
+  banners: prefix + '/banners/',
 }

@@ -10,6 +10,7 @@ import { routes as post } from '../post'
 import { routes as tag } from '../tag'
 import { routes as role } from '../role'
 import { routes as series } from '../series'
+import { routes as banner } from '../banner'
 
 Vue.use(Router)
 
@@ -23,7 +24,17 @@ const routes = [{
   path: '/dashboard',
   component: Content,
   redirect: { name: 'dashboard.home' },
-  children: [...auth, ...home, ...user, ...post, ...tag, ...role, ...series, NotFoundRoute]
+  children: [
+    ...auth,
+    ...home,
+    ...user,
+    ...post,
+    ...tag,
+    ...role,
+    ...series,
+    ...banner,
+    NotFoundRoute,
+  ]
 }]
 
 const router = new Router({
