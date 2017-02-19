@@ -11,39 +11,39 @@
         <span class="email">{{ user.email }}</span>
       </div>
     </div>
-    <el-menu router :default-active="$route.path" class="el-menu-bar" @open="handleOpen" @close="handleClose">
-      <el-menu-item index="/dashboard"><i class="material-icons">palette</i><span>Dashboard</span></el-menu-item>
-      <el-menu-item index="/dashboard/user"><i class="material-icons">people</i><span>Users</span></el-menu-item>
-      <el-menu-item index="/dashboard/post"><i class="material-icons">description</i><span>Posts</span></el-menu-item>
-      <el-menu-item index="/dashboard/series"><i class="material-icons">featured_play_list</i><span>Series</span></el-menu-item>
-      <el-menu-item index="/dashboard/tag"><i class="material-icons">label</i><span>Tags</span></el-menu-item>
-      <el-menu-item index="/dashboard/role"><i class="material-icons">security</i><span>Roles</span></el-menu-item>
-      <el-menu-item index="/dashboard/banner"><i class="material-icons">view_carousel</i><span>Banners</span></el-menu-item>
+    <el-menu router :default-active="$route.path" class="el-menu-bar">
+      <el-menu-item-group title="Content Management">
+        <el-menu-item index="/dashboard"><i class="material-icons">palette</i><span>Dashboard</span></el-menu-item>
+        <el-menu-item index="/dashboard/user"><i class="material-icons">people</i><span>Users</span></el-menu-item>
+        <el-menu-item index="/dashboard/post"><i class="material-icons">description</i><span>Posts</span></el-menu-item>
+        <el-menu-item index="/dashboard/series"><i class="material-icons">featured_play_list</i><span>Series</span></el-menu-item>
+        <el-menu-item index="/dashboard/tag"><i class="material-icons">label</i><span>Tags</span></el-menu-item>
+        <el-menu-item index="/dashboard/role"><i class="material-icons">security</i><span>Roles</span></el-menu-item>
+        <el-menu-item index="/dashboard/banner"><i class="material-icons">view_carousel</i><span>Banners</span></el-menu-item>
+      </el-menu-item-group>
+      <el-menu-item-group title="System Management">
+        <el-submenu index="/dashboard/settings">
+          <template slot="title"><i class="material-icons">settings</i><span>Settings</span></template>
+          <el-menu-item index="/dashboard/settings/system">System</el-menu-item>
+          <el-menu-item index="/dashboard/settings/rank">Rank</el-menu-item>
+        </el-submenu>
+        <el-menu-item index="/dashboard/logs"><i class="material-icons">warning</i><span>Logs</span></el-menu-item>
+      </el-menu-item-group>
     </el-menu>
   </aside>
 </template>
 
 <script>
   import { mapActions, mapGetters } from 'vuex'
+  import ElSubmenu from './Submenu'
 
   export default {
-    data() {
-      return {
-      }
-    },
+    components: { ElSubmenu },
     computed: {
       ...mapGetters({
         user: 'currentUser'
       })
     },
-    methods: {
-      handleOpen(key, keyPath) {
-        console.log(key, keyPath);
-      },
-      handleClose(key, keyPath) {
-        console.log(key, keyPath);
-      }
-    }
   }
 </script>
 
@@ -100,51 +100,5 @@
       font-weight: 200;
     }
   }
-}
-// Menu
-.el-menu-wrapper {
-  position: fixed;
-  left: 0;
-  top: 0;
-  background: #383856;
-  height: 100%;
-  overflow: auto;
-  z-index: 98;
-}
-.el-menu {
-  background-color: transparent !important;
-}
-.el-menu-bar {
-  flex-grow: 0;
-  width: 220px;
-  border-radius: 0;
-}
-.el-menu-item, .el-submenu__title {
-  color: #fff;
-  opacity: .6;
-  font-size: 12px;
-
-  i {
-    color: #9795E4;
-    font-size: 20px;
-    padding: 0 10px;
-    margin-right: 10px;
-    vertical-align: text-bottom;
-  }
-  span {
-    display: inline-block;
-    line-height: inherit;
-    vertical-align: text-bottom;
-  }
-}
-.el-menu-item:hover, .el-submenu__title:hover, .el-menu li.el-menu-item:hover {
-  background-color: rgba(255, 255, 255, .05);
-  color: #fff !important;
-  opacity: 1 !important;
-}
-.is-active {
-  background-color: #30304D;
-  color: #fff !important;
-  opacity: 1 !important;
 }
 </style>
