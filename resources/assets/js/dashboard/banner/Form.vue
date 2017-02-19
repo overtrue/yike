@@ -115,7 +115,7 @@ export default {
   },
   methods: {
     handleSuccess(file, fileList) {
-      this.banner.image_url = file.url
+      this.banner.image_id = file.image_id
     },
     handlePreview(file) {
       this.$emit('preview', file)
