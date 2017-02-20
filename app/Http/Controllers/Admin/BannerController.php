@@ -36,7 +36,6 @@ class BannerController extends ApiController
 
         $data['enabled_at'] = Carbon::parse($data['enabled_at']);
         $data['expired_at'] = Carbon::parse($data['expired_at']);
-        $data['image_id'] = Image::where('path', $data['image_url'])->first()->id;
 
         return $this->response->item(Banner::create($data));
     }
@@ -67,7 +66,6 @@ class BannerController extends ApiController
 
         $data['enabled_at'] = Carbon::parse($data['enabled_at']);
         $data['expired_at'] = Carbon::parse($data['expired_at']);
-        $data['image_id'] = Image::where('path', $data['image_url'])->first()->id;
 
         $banner->update($data);
 

@@ -31,6 +31,10 @@ class FileUploadedListener
             'size' => "{$width} x {$height}",
         ];
 
-        Image::create($data);
+        $image = Image::create($data);
+
+        $result['image_id'] = $image->id;
+
+        return $result;
     }
 }
