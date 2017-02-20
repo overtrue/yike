@@ -77,6 +77,77 @@ h1, h2, h3 {
 }
 
 // Element-UI
+// Element Menu
+.el-menu-wrapper {
+  position: fixed;
+  left: 0;
+  top: 0;
+  background: #383856;
+  height: 100%;
+  overflow: auto;
+  z-index: 98;
+}
+.el-menu {
+  background-color: transparent !important;
+}
+.el-menu-bar {
+  flex-grow: 0;
+  width: 220px;
+  border-radius: 0;
+}
+.el-menu-item, .el-submenu__title {
+  color: #fff;
+  opacity: .6;
+  font-size: 12px;
+
+  i {
+    color: #9795E4;
+    font-size: 20px;
+    padding: 0 10px;
+    margin-right: 10px;
+    vertical-align: text-bottom;
+  }
+  span {
+    display: inline-block;
+    line-height: inherit;
+    vertical-align: text-bottom;
+  }
+}
+.el-menu-item:hover, .el-submenu__title:hover, .el-menu li.el-menu-item:hover {
+  background-color: rgba(255, 255, 255, .05);
+  color: #fff !important;
+  opacity: 1 !important;
+}
+.is-active {
+  background-color: #30304D;
+  color: #fff !important;
+  opacity: 1 !important;
+}
+.el-submenu.is-active {
+  background-color: transparent !important;
+}
+.el-menu-item-group__title {
+  padding: 10px 15px !important;
+  font-size: 13px;
+  font-weight: 200;
+}
+.el-menu-item-group {
+  margin-top: 10px;
+
+  &:first-child {
+    margin-top: 0;
+  }
+}
+.el-submenu__icon-arrow {
+  margin-top: 0;
+  top: 0;
+}
+.el-submenu .el-menu-item {
+  height: 40px;
+  line-height: 40px;
+  margin-left: 30px;
+}
+
 // Element Message
 .el-message {
   display: flex;
