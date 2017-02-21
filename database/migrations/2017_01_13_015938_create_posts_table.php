@@ -15,7 +15,7 @@ class CreatePostsTable extends Migration
     {
         Schema::create('posts', function (Blueprint $table) {
             $table->increments('id')->unsigned();
-            $table->unsignedInteger('creator_id')->index();
+            $table->unsignedInteger('user_id')->index();
             $table->unsignedInteger('last_edit_user_id');
             $table->boolean('is_spammed')->default(0);
             $table->boolean('is_draft')->default(0);
@@ -44,7 +44,7 @@ class CreatePostsTable extends Migration
             $table->timestamps();
             $table->softDeletes();
 
-            $table->foreign('creator_id')
+            $table->foreign('user_id')
                 ->references('id')->on('users')
                 ->onUpdate('cascade')
                 ->onDelete('cascade');
@@ -59,7 +59,7 @@ class CreatePostsTable extends Migration
     public function down()
     {
         Schema::table('posts', function ($table) {
-            $table->dropForeign('posts_creator_id_foreign');
+            $table->dropForeign('posts_user_id_foreign');
         });
         Schema::dropIfExists('posts');
     }
