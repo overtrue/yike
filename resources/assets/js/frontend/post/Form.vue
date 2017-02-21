@@ -11,7 +11,14 @@
       </div>
     </navbar>
     <div class="container w760 pt-5">
-      <div class="cover-picker">
+      <div class="post-cover" v-if="form.cover">
+        <img :src="form.cover">
+        <div class="toolbox d-flex align-items-center justify-content-center">
+          <a class="btn-reupload" @click.prevent="reUploadCover()"><i class="material-icons">cloud_upload</i> 重新上传</a>
+          <a class="btn-remove" @click.prevent="removeCover()"><i class="material-icons">delete</i> 移除</a>
+        </div>
+      </div>
+      <div class="cover-picker" id="cover-picker"  v-show="!form.cover">
         <div class="picker"><i class="material-icons">image</i> 设置封面</div>
       </div>
       <input class="post-title" placeholder="请输入标题" v-model="form.title" />
@@ -25,6 +32,8 @@ import CodeMirror from "codemirror"
 import localforage from "localforage"
 import Navbar from "home/Navbar"
 import { getData } from 'utils/get'
+import FineUploader from 'fine-uploader/lib/core'
+import { userTokenStorageKey } from 'src/config'
 
 require("./theme/yike.css")
 require("codemirror/mode/gfm/gfm")
@@ -42,6 +51,7 @@ export default {
           cover: null,
           title: '',
           content: '',
+          image_id: null,
         }
       }
     }
@@ -78,29 +88,8 @@ export default {
     }
   },
   mounted() {
-    var vm = this
-    this.editor = CodeMirror.fromTextArea(document.getElementById('post-content'), {
-      keyMap: "sublime",
-      mode:  "markdown",
-      lineWrapping: true,
-      autoCloseBrackets: true,
-      matchBrackets: true,
-      value: vm.form.content || '',
-      profile: 'html'
-    })
-
-    this.editor.on('change', function(editor){
-      vm.form.content = editor.getValue()
-    })
-
-    localforage.getItem("post.cache").then(post => {
-      if (!post) { return }
-      if (vm.mode == 'new' && post.id) {
-        return localforage.removeItem("post.cache")
-      }
-      vm.form = Object.assign(vm.form, post)
-      vm.editor.setValue(post.content || '')
-    })
+    this.setupEditor()
+    this.setupUploader()
   },
   methods: {
     handleCancel() {
@@ -129,6 +118,66 @@ export default {
       }).catch((err) => {
         console.error(err)
       })
+    },
+    reUploadCover() {
+      document.querySelector('#cover-picker input').click()
+    },
+    removeCover() {
+      this.form.cover = null
+    },
+    setupEditor() {
+      var vm = this
+      this.editor = CodeMirror.fromTextArea(document.getElementById('post-content'), {
+        keyMap: "sublime",
+        mode:  "markdown",
+        lineWrapping: true,
+        autoCloseBrackets: true,
+        matchBrackets: true,
+        value: vm.form.content || '',
+        profile: 'html'
+      })
+
+      this.editor.on('change', function(editor){
+        vm.form.content = editor.getValue()
+      })
+
+      localforage.getItem("post.cache").then(post => {
+        if (!post) { return }
+        if (vm.mode == 'new' && post.id) {
+          return localforage.removeItem("post.cache")
+        }
+        vm.form = Object.assign(vm.form, post)
+        vm.editor.setValue(post.content || '')
+      })
+    },
+    setupUploader() {
+      var vm = this
+      localforage.getItem(userTokenStorageKey, (err, token) => {
+        const uploader = new FineUploader.FineUploaderBasic({
+          button: document.getElementById("cover-picker"),
+          request: {
+            endpoint: '/files/upload',
+            inputName: 'file',
+            customHeaders: {
+              Authorization: `Bearer ${token}`
+            },
+          },
+          validation: {
+            acceptFiles: 'image/jpeg',
+          },
+          sizeLimit: 4294967296, // 4096 * 1024 * 1024
+          retry: {
+             enableAuto: true, // defaults to false
+             maxAutoAttempts: 2,
+          },
+          callbacks: {
+            onComplete(id, name, responseJSON) {
+              vm.form.image_id = responseJSON.image_id
+              vm.form.cover = '/' + responseJSON.relative_url
+            }
+          }
+        })
+      })
     }
   }
 }
@@ -141,6 +190,37 @@ export default {
   input, textarea {
     outline: none;
     border: none;
+  }
+
+  .post-cover {
+    position: relative;
+    img {
+      width: 100%;
+    }
+
+    .toolbox {
+      position: absolute;
+      top:0;
+      height: 100%;
+      width: 100%;
+      opacity: 0;
+      text-align: center;
+
+      a {
+        padding: 8px 15px;
+        color: #eee;
+        cursor: pointer;
+        border-radius: 3px;
+        &:hover {
+          background: rgba(0,0,0, .3);
+        }
+      }
+    }
+
+    &:hover .toolbox {
+      opacity: 1;
+      background: rgba(0,0,0, .4);
+    }
   }
 
   .cover-picker {

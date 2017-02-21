@@ -7,7 +7,7 @@
       </div>
     </navbar>
     <div class="post-cover" v-if="post.cover">
-      <div id="post-cover-img"></div>
+      <div id="post-cover-img"><img :src="post.cover" alt="post.title"></div>
     </div>
     <div class="w760">
       <article class="post-container">
@@ -181,6 +181,10 @@ export default {
     background: -webkit-radial-gradient(center, ellipse cover, rgba(36,44,51,0) -1%,rgba(36,44,51,0.01) 0%,rgba(32,39,47,0.2) 22%,rgba(19,19,35,0.65) 100%);
     background: radial-gradient(ellipse at center, rgba(36,44,51,0) -1%,rgba(36,44,51,0.01) 0%,rgba(32,39,47,0.2) 22%,rgba(19,19,35,0.65) 100%);
     filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00242c33', endColorstr='#a6131323',GradientType=1 );
+
+    img {
+      width: 100%;
+    }
   }
   .post-cover {
     background-attachment: fixed;

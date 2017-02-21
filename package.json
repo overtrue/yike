@@ -25,6 +25,7 @@
     "vuex-router-sync": "^3.0.0"
   },
   "dependencies": {
+    "fine-uploader": "^5.14.0",
     "timeago.js": "^2.0.5"
   }
 }
