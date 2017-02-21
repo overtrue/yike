@@ -1244,12 +1244,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/overtrue/laravel-uploader.git",
-                "reference": "7ee397d0fc10282691c394e607daac4c265861fa"
+                "reference": "c3e5ed8d6e864a466f0c14d38a13bbcc4b4ac0e5"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/overtrue/laravel-uploader/zipball/7ee397d0fc10282691c394e607daac4c265861fa",
-                "reference": "7ee397d0fc10282691c394e607daac4c265861fa",
+                "url": "https://api.github.com/repos/overtrue/laravel-uploader/zipball/c3e5ed8d6e864a466f0c14d38a13bbcc4b4ac0e5",
+                "reference": "c3e5ed8d6e864a466f0c14d38a13bbcc4b4ac0e5",
                 "shasum": ""
             },
             "require": {
@@ -1274,7 +1274,7 @@
                     "email": "i@overtrue.me"
                 }
             ],
-            "time": "2017-02-19T12:08:15+00:00"
+            "time": "2017-02-21T12:42:57+00:00"
         },
         {
             "name": "overtrue/socialite",
