@@ -19,6 +19,8 @@ class HandleImage implements ShouldQueue
     /**
      * Create a new job instance.
      *
+     * @param array $image
+     *
      * @return void
      */
     public function __construct(array $image)
