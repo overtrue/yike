@@ -20,7 +20,7 @@ class Image extends Model
         });
     }
 
-    public function url()
+    public function getUrlAttribute()
     {
         return asset($this->path);
     }

@@ -2,6 +2,7 @@
 
 namespace App;
 
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 
 class Banner extends Model
@@ -34,5 +35,12 @@ class Banner extends Model
     public function creator()
     {
         return $this->belongsTo(User::class);
+    }
+
+    public function scopeEnabled($query)
+    {
+        $now = Carbon::now();
+
+        return $query->where('enabled_at', '<=', $now)->where('expired_at', '>=', $now);
     }
 }

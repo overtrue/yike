@@ -39,7 +39,7 @@ class PostTransformer extends TransformerAbstract
             'user_id' => $post->user_id,
             'title' => $post->title,
             'slug' => $post->slug,
-            'cover' => $post->image_id ? $post->image->url() : null,
+            'cover' => $post->image_id ? $post->image->url : null,
             'content' => $post->content,
             'raw_content' => $post->content_original,
             'signature' => $post->signature,
