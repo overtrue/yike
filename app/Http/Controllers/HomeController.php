@@ -9,6 +9,6 @@ class HomeController extends ApiController
 {
     public function banners()
     {
-        return $this->response->collection(Banner::enabled()->get());
+        return $this->response->collection(Banner::enabled()->take(6)->get());
     }
 }
