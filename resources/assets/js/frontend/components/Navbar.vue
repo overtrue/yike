@@ -89,7 +89,7 @@ export default {
     },
   },
   methods: {
-    ...mapActions(['logout']),
+    ...mapActions(['logout'])
   },
   mounted() {
     (new Headroom(document.querySelector("header"))).init()

@@ -16,11 +16,10 @@ export const attemptLogin = ({ dispatch }, payload) =>
 
 export const logout = ({ dispatch }) => {
   services.revokeToken()
-  // call actions
-  return Promise.all([
-    dispatch('setToken', null),
-    dispatch('setUser', {})
-  ])
+
+  return localforage.removeItem(userTokenStorageKey)
+                  .then(dispatch('setToken', null))
+                  .then(dispatch('setUser', {}))
 }
 
 export const setUser = ({ commit }, user) => {
@@ -57,7 +56,6 @@ export const checkUserToken = ({ dispatch, state }) => {
         // Token is not saved in localstorage
         return Promise.reject('NO_TOKEN') // Reject promise
       }
-
       // Put the token in the vuex store
       return dispatch('setToken', token) // keep promise chain
     })
