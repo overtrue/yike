@@ -10,7 +10,7 @@ use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
 
-class HandleImage implements ShouldQueue
+class ResizeImage implements ShouldQueue
 {
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
 
@@ -19,11 +19,11 @@ class HandleImage implements ShouldQueue
     /**
      * Create a new job instance.
      *
-     * @param array $image
+     * @param \App\Image $image
      *
      * @return void
      */
-    public function __construct(array $image)
+    public function __construct(ImageModel $image)
     {
         $this->image = $image;
     }
@@ -35,12 +35,11 @@ class HandleImage implements ShouldQueue
      */
     public function handle()
     {
-        $image = Image::make($this->image['url'])->widen(2200, function ($constraint) {
+        $image = Image::make($this->image['path'])->widen(2200, function ($constraint) {
                     $constraint->upsize();
-                })->save($this->image['relative_url']);
+                })->save($this->image['path']);
 
-        ImageModel::findOrFail($this->image['image_id'])->update([
-            'size' => "{$image->width()} x {$image->height()}"
-        ]);
+        $this->image->size = "{$image->width()} x {$image->height()}";
+        $this->image->save();
     }
 }

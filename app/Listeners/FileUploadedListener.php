@@ -3,7 +3,6 @@
 namespace App\Listeners;
 
 use App\Image;
-use App\Jobs\HandleImage;
 use Overtrue\LaravelUploader\Events\FileUploaded;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
@@ -28,15 +27,13 @@ class FileUploadedListener
         $data = [
             'creator_id' => auth()->id(),
             'title' => $result['original_name'],
-            'path' => $result['url'],
+            'path' => $result['relative_url'],
             'size' => "{$width} x {$height}",
         ];
 
         $image = Image::create($data);
 
         $result['image_id'] = $image->id;
-
-        dispatch(new HandleImage($result));
 
         return $result;
     }
