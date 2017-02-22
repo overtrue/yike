@@ -169,10 +169,9 @@ return [
         Laravel\Tinker\TinkerServiceProvider::class,
         Tymon\JWTAuth\Providers\LaravelServiceProvider::class,
         Overtrue\LaravelSocialite\ServiceProvider::class,
-//        Overtrue\LaravelPinyin\ServiceProvider::class,
         Overtrue\LaravelFollow\FollowServiceProvider::class,
-        JellyBool\Translug\TranslugServiceProvider::class,
         Overtrue\LaravelUploader\UploadServiceProvider::class,
+        JellyBool\Translug\TranslugServiceProvider::class,
         Intervention\Image\ImageServiceProvider::class,
 
         /*

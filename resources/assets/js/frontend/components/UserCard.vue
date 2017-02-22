@@ -12,16 +12,17 @@
       </div>
     </div>
     <div class="user-card-actions d-flex justify-content-end align-items-center">
-      <button class="btn-follow btn btn-outline-primary">关注</button>
+      <follow-button :user="user"></follow-button>
     </div>
   </div>
 </template>
 
 <script>
 import Avatar from "home/Avatar"
+import FollowButton from "home/FollowButton"
 
 export default {
-  components: { Avatar },
+  components: { Avatar, FollowButton },
   props: {
     user: {
       type: Object
