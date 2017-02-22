@@ -166,12 +166,11 @@ export default {
             acceptFiles: 'image/*',
           },
           sizeLimit: 4294967296, // 4096 * 1024 * 1024
-          retry: {
-             enableAuto: true, // defaults to false
-             maxAutoAttempts: 2,
-          },
           callbacks: {
             onComplete(id, name, responseJSON) {
+              if (typeof responseJSON['image_id'] == 'undefined') {
+                return vm.$store.dispatch('setMessage', { type: 'error', message: ['图片上传失败'] })
+              }
               vm.form.image_id = responseJSON.image_id
               vm.form.cover = '/' + responseJSON.relative_url
             }
