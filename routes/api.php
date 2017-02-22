@@ -1,7 +1,7 @@
 <?php
 
 Route::group([
-    'middleware' => ['api'],
+    'middleware' => ['api', 'jwt.check'],
 ], function () {
     Route::get('home/banners', 'HomeController@banners');
     Route::get('/posts/{slug}', 'PostController@show');
@@ -13,6 +13,8 @@ Route::group([
         'middleware' => 'jwt.auth',
     ], function () {
         Route::get('/me', 'MeController@show');
+        Route::get('/me/followers', 'MeController@getFollowers');
+        Route::post('/me/followers', 'MeController@postFollowers');
         Route::post('/auth/token/revoke', 'AuthController@revokeToken');
         Route::post('/posts', 'PostController@store');
         Route::patch('/posts/{id}', 'PostController@update');

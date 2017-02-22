@@ -16,8 +16,10 @@ export default (http, store, router) => {
       * then redirect to login. On server side the error
       * messages can be changed on app/Providers/EventServiceProvider.php
       */
-      if ([401, 400].indexOf(response.status) > -1 && !store.isAuthPage && !document.querySelector('#login-modal')) {
-        router.push({ name: 'auth.signin' })
+      if ([401].indexOf(response.status) >= 0 && !store.isAuthPage) {
+        if (document.querySelector('#login-modal')) {
+          $('#login-modal').modal('show')
+        }
       }
 
       /**

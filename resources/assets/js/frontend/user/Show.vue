@@ -20,7 +20,7 @@
                 </div>
               </div>
               <div class="ml-auto text-right">
-                <a href="#" class="btn btn-outline-primary">关注</a>
+                <follow-button :user="user"></follow-button>
               </div>
             </div>
             <div class="post-menus mt-5 pt-3">
@@ -50,10 +50,11 @@ import { http } from 'plugins/http'
 import Navbar from 'home/Navbar'
 import Avatar from 'home/Avatar'
 import PostCard from "home/PostCard"
+import FollowButton from "home/FollowButton"
 
 export default {
   name: 'user-show',
-  components: { Navbar, Avatar, PostCard },
+  components: { Navbar, Avatar, PostCard, FollowButton },
   data() {
     return {
       user: {},

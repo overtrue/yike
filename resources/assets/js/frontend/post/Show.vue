@@ -25,7 +25,7 @@
                   <a :href="user.url">
                     <h5 class="username d-inline-block" v-text="user.name"></h5>
                   </a>
-                  <button class="d-inline-block btn-follow btn btn-outline-primary btn-xs">关注</button>
+                  <follow-button :user="user" class="d-inline-block btn-xs"></follow-button>
                 </div>
                 <div><small><relative-time :datetime="post.created_at" v-text="post.created_at"></relative-time></small></div>
               </div>
@@ -58,6 +58,7 @@
 </template>
 
 <script>
+import FollowButton from "home/FollowButton"
 import Navbar from "home/Navbar"
 import Avatar from "home/Avatar"
 import UserCard from "home/UserCard"
@@ -72,7 +73,7 @@ require("../../plugins/prism.css")
 
 export default {
   name: 'post-show',
-  components: { Navbar, Avatar, UserCard, RelativeTime },
+  components: { Navbar, Avatar, FollowButton, UserCard, RelativeTime },
   data() {
     return {
       post: {},

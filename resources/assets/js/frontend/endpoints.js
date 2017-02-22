@@ -4,4 +4,5 @@ export default {
   posts: '/posts/',
   tags: '/tags/',
   series: '/series/',
+  followers: '/me/followers',
 }

@@ -163,7 +163,7 @@ export default {
             },
           },
           validation: {
-            acceptFiles: 'image/jpeg',
+            acceptFiles: 'image/*',
           },
           sizeLimit: 4294967296, // 4096 * 1024 * 1024
           retry: {
