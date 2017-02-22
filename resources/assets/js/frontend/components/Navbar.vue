@@ -8,12 +8,12 @@
           </div>
           <div class="nav-right col-md-8 d-flex flex-row align-items-center justify-content-end" v-if="!isAuthPage">
             <slot name="page-actions" v-if="!isAuthPage && isLogged">
-              <router-link :to="{name:'post.new'}" class="nav-item" v-if="$route.name != 'post.new'"><i class="material-icons">add</i></router-link>
             </slot>
             <template v-if="!isLogged" scope>
             <a href="#" data-toggle="modal" data-target="#login-modal" @click="isSignin=true">登 录</a> <span class="p-1 text-primary"> / </span> <a href="#" data-toggle="modal" data-target="#login-modal" @click="isSignin=false">注 册</a>
             </template>
             <template v-else scope>
+              <router-link :to="{name:'post.new'}" class="nav-item" v-if="$route.name != 'post.new'"><i class="material-icons">add</i></router-link>
               <a href="#" class="nav-item"><i class="material-icons">notifications</i></a>
               <div class="nav-item">
                 <div class="dropdown">
