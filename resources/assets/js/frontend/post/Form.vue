@@ -215,7 +215,7 @@ export default {
             if (typeof file.type == 'undefined' || file.type.indexOf('image/')) {
               return promise.failure('not a image.')
             }
-            if (file.size > 4 * 1024 * 1024) {
+            if (file.size > 1 * 1024 * 1024) {
               vm.$store.dispatch('setMessage', {type: 'error', message: ['您粘贴的图片过大']})
               return promise.failure('您粘贴的图片过大')
             }
