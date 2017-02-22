@@ -72,6 +72,9 @@ export default {
             customHeaders: {
               Authorization: ''
             },
+            params: {
+              strategy: 'post'
+            }
           },
           validation: {
             acceptFiles: 'image/*',

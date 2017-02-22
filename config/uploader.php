@@ -16,19 +16,24 @@ return [
          */
         'default' => [
             'mimes' => ['image/jpeg', 'image/png', 'image/bmp', 'image/gif'],
-            'storeage' => 'public',
-            'directory' => '', // directory,
+            'storeage' => 'images',
+            'directory' => '/{Y}/{m}/{d}', // directory,
             'max_file_size' => '2m',
         ],
 
         // banner extends default
         'banner' => [
-            'directory' => 'banners',
+            'directory' => 'banners/{Y}/{m}/{d}',
         ],
 
         // avatar extends default
         'avatar' => [
-            'directory' => 'avatars',
+            'directory' => 'avatars/{Y}/{m}/{d}',
+        ],
+
+        // post
+        'post' => [
+            'directory' => 'posts/{Y}/{m}/{d}',
         ],
     ],
 ];
