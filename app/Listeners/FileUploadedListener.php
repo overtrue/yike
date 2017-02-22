@@ -27,7 +27,7 @@ class FileUploadedListener
         $data = [
             'creator_id' => auth()->id(),
             'title' => $result['original_name'],
-            'path' => $result['url'],
+            'path' => $result['relative_url'],
             'size' => "{$width} x {$height}",
         ];
 
