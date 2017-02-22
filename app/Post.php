@@ -58,7 +58,7 @@ class Post extends Model
         $title = Translug::translug($post->title);
 
         while (Post::whereSlug($title)->count()) {
-            $title = "{$title}-".substr(mt_rand(1000, 9999), 0, 4);
+            $title = substr(mt_rand(10, 99), 0, 4)."-{$title}";
         }
 
         return $title;
