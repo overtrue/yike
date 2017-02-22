@@ -32,7 +32,7 @@ import CodeMirror from "codemirror"
 import localforage from "localforage"
 import Navbar from "home/Navbar"
 import { getData } from 'utils/get'
-import FineUploader from 'fine-uploader/lib/core'
+import FineUploader from 'fine-uploader/lib/traditional'
 import { userTokenStorageKey } from 'src/config'
 
 require("./theme/yike.css")
@@ -64,7 +64,20 @@ export default {
         content: '',
       },
       editor: {},
-      publishing: false
+      publishing: false,
+      uploadConfig: {
+          request: {
+            endpoint: '/files/upload',
+            inputName: 'file',
+            customHeaders: {
+              Authorization: ''
+            },
+          },
+          validation: {
+            acceptFiles: 'image/*',
+          },
+          sizeLimit: 4194304, // 4 * 1024 * 1024
+      }
     }
   },
   computed: {
@@ -89,7 +102,7 @@ export default {
   },
   mounted() {
     this.setupEditor()
-    this.setupUploader()
+    this.fetchAuthToken().then(this.setupCoverUploader).then(this.setupContentImageUploader)
   },
   methods: {
     handleCancel() {
@@ -150,32 +163,91 @@ export default {
         vm.editor.setValue(post.content || '')
       })
     },
-    setupUploader() {
+    fetchAuthToken() {
+      return localforage.getItem(userTokenStorageKey, (err, token) => {
+        this.uploadConfig.request.customHeaders.Authorization = `Bearer ${token}`
+      })
+    },
+    getPlaceholderOfContentImage(name) {
+      return '\n![Uploading '+name+'...]()\n'
+    },
+    createdContentImagePlaceholder(name) {
+      this.editor.getDoc().replaceSelection(this.getPlaceholderOfContentImage(name))
+    },
+    replaceContentImagePlaceholder(name, url) {
+      let result = ''
+
+      if (url) {
+        result = '\n!['+name+'](/'+url+')\n'
+      }
+
+      this.editor.setValue(this.editor.getValue().replace(this.getPlaceholderOfContentImage(name), result))
+    },
+    setupCoverUploader() {
       var vm = this
-      localforage.getItem(userTokenStorageKey, (err, token) => {
-        const uploader = new FineUploader.FineUploaderBasic({
-          button: document.getElementById("cover-picker"),
-          request: {
-            endpoint: '/files/upload',
-            inputName: 'file',
-            customHeaders: {
-              Authorization: `Bearer ${token}`
-            },
-          },
-          validation: {
-            acceptFiles: 'image/*',
-          },
-          sizeLimit: 4294967296, // 4096 * 1024 * 1024
-          callbacks: {
-            onComplete(id, name, responseJSON) {
-              if (typeof responseJSON['image_id'] == 'undefined') {
-                return vm.$store.dispatch('setMessage', { type: 'error', message: ['图片上传失败'] })
-              }
-              vm.form.image_id = responseJSON.image_id
-              vm.form.cover = '/' + responseJSON.relative_url
+
+      const coverUploader = new FineUploader.FineUploaderBasic(Object.assign({}, this.uploadConfig, {
+        callbacks: {
+          onComplete(id, name, responseJSON) {
+            if (typeof responseJSON['image_id'] == 'undefined') {
+              return vm.$store.dispatch('setMessage', { type: 'error', message: ['图片上传失败'] })
             }
+            vm.form.image_id = responseJSON.image_id
+            vm.form.cover = '/' + responseJSON.relative_url
           }
-        })
+        }
+      }))
+    },
+
+    setupContentImageUploader() {
+      var vm = this
+      vm.editor.on('paste', function(editor, event){
+        event.preventDefault()
+      })
+      const contentUploader = new FineUploader.FineUploaderBasic(Object.assign({}, this.uploadConfig, {
+        paste: {
+          targetElement: document.querySelector('.CodeMirror')
+        },
+        callbacks: {
+          onPasteReceived(file) {
+            var promise = new FineUploader.Promise();
+
+            if (typeof file.type == 'undefined' || file.type.indexOf('image/')) {
+              return promise.failure('not a image.')
+            }
+            if (file.size > 1 * 1024 * 1024) {
+              vm.$store.dispatch('setMessage', {type: 'error', message: ['您粘贴的图片过大']})
+              return promise.failure('您粘贴的图片过大')
+            }
+
+            return promise.then(() => {
+              vm.createdContentImagePlaceholder('image.png')
+            }).success('image')
+          },
+          onComplete(id, name, responseJSON) {
+            let url = ''
+            if (typeof responseJSON['relative_url'] !== 'undefined') {
+              url = responseJSON.relative_url
+            }
+            vm.replaceContentImagePlaceholder(name, url)
+          },
+          onError() {
+            vm.$store.dispatch('setMessage', {type: 'error', message: ['图片上传失败']})
+            vm.replaceContentImagePlaceholder(name, '')
+          }
+        }
+      }))
+
+      let dragAndDropModule = new FineUploader.DragAndDrop({
+        dropZoneElements: [document.querySelector('.CodeMirror')],
+        callbacks: {
+          processingDroppedFilesComplete(files, dropTarget) {
+            files.forEach((file) => {
+              vm.createdContentImagePlaceholder(file.name)
+            })
+            contentUploader.addFiles(files); //this submits the dropped files to Fine Uploader
+          }
+        }
       })
     }
   }
