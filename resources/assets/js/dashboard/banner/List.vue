@@ -10,7 +10,7 @@
 
     <data-table api="banners" :columns="columns" @table-action="tableActions">
       <template slot="image" scope="props">
-          <img class="w-100 my-3" :src="props.data.row.image.data.path">
+          <img class="w-100 my-3" :src="'/'+props.data.row.image.data.path">
       </template>
     </data-table>
 
