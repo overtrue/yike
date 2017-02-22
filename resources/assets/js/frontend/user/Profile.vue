@@ -5,7 +5,7 @@
       <div class="setting-items">
         <img class="avatar img-circle" width="120" :src="user.avatar">
         <div class="setting-item row">
-          <label class="col-form-label col-4">昵称</label>
+          <label class="col-form-label col-3">昵称</label>
           <div class="col-9">
             <input type="text" class="form-control" @click="click('name')" :value="user.name" id="name" placeholder="填写你的昵称" />
           </div>
@@ -44,26 +44,9 @@
         </div>
         <div class="setting-item row">
           <label class="col-form-label col-4">邮箱</label>
-          <div class="col-9">
-            <input type="text" class="form-control" :value="user.email" id="email" placeholder="填写你的邮箱" />
+          <div class="col-12">
+            <div v-html="user.email"></div>
           </div>
-          <div class="actions col-3" v-if="isEdit">
-            <span class="save">保存</span>
-            <span class="cancel" @click="cancel('email')">取消</span>
-          </div>
-          <div class="actions col-3" v-else>
-            <i class="material-icons" @click="edit('email')">edit</i>
-          </div>
-        </div>
-        <div class="setting-item row">
-          <label class="col-form-label col-4">手机号</label>
-          <div class="col-9">
-            <input type="text" class="form-control" :value="user.phone" id="phone" placeholder="填写你的手机号"></div>
-          <div class="actions col-3" v-if="isEdit">
-            <span class="save">保存</span>
-            <span class="cancel" @click="cancel('phone')">取消</span>
-          </div>
-          <div class="actions col-3" v-else><i class="material-icons" @click="edit('phone')">edit</i></div>
         </div>
       </div>
     </div>
