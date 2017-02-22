@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Post;
 use App\User;
 use App\Events\ViewPost;
-use App\Http\Requests\CreatePostRequest;
+use App\Http\Requests\PostRequest;
 use Illuminate\Http\Request;
 
 class PostController extends ApiController
@@ -36,11 +36,11 @@ class PostController extends ApiController
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \App\Http\Requests\CreatePostRequest  $request
+     * @param  \App\Http\Requests\PostRequest  $request
      *
      * @return \Illuminate\Http\Response
      */
-    public function store(CreatePostRequest $request)
+    public function store(PostRequest $request)
     {
         return $this->response->item(Post::create($request->all()));
     }
@@ -63,11 +63,11 @@ class PostController extends ApiController
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  \App\Http\Requests\PostRequest $request
+     * @param  int                            $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(PostRequest $request, $id)
     {
         $post = Post::findOrFail($id);
         $post->update($request->all());

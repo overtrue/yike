@@ -173,6 +173,7 @@ return [
         Overtrue\LaravelFollow\FollowServiceProvider::class,
         JellyBool\Translug\TranslugServiceProvider::class,
         Overtrue\LaravelUploader\UploadServiceProvider::class,
+        Intervention\Image\ImageServiceProvider::class,
 
         /*
          * Application Service Providers...
@@ -235,6 +236,7 @@ return [
         'Socialite' => Overtrue\LaravelSocialite\Socialite::class,
         'Translug' => \JellyBool\Translug\TranslugFacade::class,
 //        'Pinyin' => Overtrue\LaravelPinyin\Facades\Pinyin::class,
+        'Image' => Intervention\Image\Facades\Image::class,
     ],
 
 ];
