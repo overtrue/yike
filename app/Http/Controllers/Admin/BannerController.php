@@ -34,8 +34,8 @@ class BannerController extends ApiController
     {
         $data = $request->all();
 
-        $data['enabled_at'] = Carbon::parse($data['enabled_at']);
-        $data['expired_at'] = Carbon::parse($data['expired_at']);
+        $data['enabled_at'] = Carbon::parse($request->get('enabled_at'));
+        $data['expired_at'] = Carbon::parse($request->get('expired_at', date('Y-m-d H:i:s', '+10 day')));
 
         return $this->response->item(Banner::create($data));
     }

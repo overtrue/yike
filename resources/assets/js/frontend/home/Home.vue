@@ -3,9 +3,9 @@
     <navbar></navbar>
     <!-- Banner -->
     <div class="banner">
-      <carousel :interval="4000" indicator-position="none" type="card" height="260px">
-        <carousel-item v-for="item in 6">
-          <h3>{{ item }}</h3>
+      <carousel :interval="4000" indicator-position="none" type="card" height="260px" v-if="banners.length > 0">
+        <carousel-item v-for="banner in banners">
+          <h3><img :src="banner.image.data.url" alt="banner.image.data.title"></h3>
         </carousel-item>
       </carousel>
     </div>
@@ -114,6 +114,22 @@ export default {
     Navbar,
     Carousel,
     CarouselItem,
+  },
+  data() {
+    return {
+      banners: []
+    }
+  },
+  methods: {
+    loadBanners() {
+      let vm = this
+      this.$http.get(this.$endpoints.banners).then((response) => {
+        vm.banners = response.data.data
+      })
+    }
+  },
+  created() {
+    this.loadBanners()
   }
 }
 </script>
@@ -129,6 +145,10 @@ export default {
     line-height: 260px;
     margin: 0;
     text-align: center;
+
+    img {
+      width: 100%;
+    }
   }
   .el-carousel__item:nth-child(2n) {
     background-color: #99a9bf;

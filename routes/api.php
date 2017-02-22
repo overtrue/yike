@@ -3,6 +3,7 @@
 Route::group([
     'middleware' => ['api'],
 ], function () {
+    Route::get('home/banners', 'HomeController@banners');
     Route::get('/posts/{slug}', 'PostController@show');
     Route::post('/auth/token/issue', 'AuthController@issueToken');
     Route::post('/auth/token/refresh', 'AuthController@refreshToken');

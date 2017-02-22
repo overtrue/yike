@@ -22,7 +22,7 @@ class BannerTransformer extends TransformerAbstract
      * @var array
      */
     protected $defaultIncludes = [
-        'creator', 'image',
+        'image',
     ];
 
     /**

@@ -21,6 +21,7 @@ class ImageTransformer extends TransformerAbstract
             'path' => $image->path,
             'title' => $image->title,
             'size' => $image->size,
+            'url' => $image->url,
             'creator' => $image->creator,
             'created_at' => $image->created_at,
             'updated_at' => $image->updated_at,

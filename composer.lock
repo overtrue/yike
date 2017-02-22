@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "d1707479a02499a4ce45240dec251eb7",
+    "content-hash": "1823692710069824d9669b5d6b6d8762",
     "packages": [
         {
             "name": "caouecs/laravel-lang",
@@ -365,6 +365,68 @@
                 "url"
             ],
             "time": "2017-02-21T01:20:32+00:00"
+        },
+        {
+            "name": "intervention/image",
+            "version": "2.3.11",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Intervention/image.git",
+                "reference": "e8881fd99b9804b29e02d6d1c2c15ee459335cf1"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Intervention/image/zipball/e8881fd99b9804b29e02d6d1c2c15ee459335cf1",
+                "reference": "e8881fd99b9804b29e02d6d1c2c15ee459335cf1",
+                "shasum": ""
+            },
+            "require": {
+                "ext-fileinfo": "*",
+                "guzzlehttp/psr7": "~1.1",
+                "php": ">=5.4.0"
+            },
+            "require-dev": {
+                "mockery/mockery": "~0.9.2",
+                "phpunit/phpunit": "3.*"
+            },
+            "suggest": {
+                "ext-gd": "to use GD library based image processing.",
+                "ext-imagick": "to use Imagick based image processing.",
+                "intervention/imagecache": "Caching extension for the Intervention Image library"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "2.3-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Intervention\\Image\\": "src/Intervention/Image"
+                }
+            },
+            "notification-url": "http://pkg.overtrue.me/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Oliver Vogel",
+                    "email": "oliver@olivervogel.net",
+                    "homepage": "http://olivervogel.net/"
+                }
+            ],
+            "description": "Image handling and manipulation library with support for Laravel integration",
+            "homepage": "http://image.intervention.io/",
+            "keywords": [
+                "gd",
+                "image",
+                "imagick",
+                "laravel",
+                "thumbnail",
+                "watermark"
+            ],
+            "time": "2017-02-04T10:37:19+00:00"
         },
         {
             "name": "jakub-onderka/php-console-color",
@@ -1244,12 +1306,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/overtrue/laravel-uploader.git",
-                "reference": "c3e5ed8d6e864a466f0c14d38a13bbcc4b4ac0e5"
+                "reference": "9b46ba831037a438dedc496d11b1e1ece0ec1992"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/overtrue/laravel-uploader/zipball/c3e5ed8d6e864a466f0c14d38a13bbcc4b4ac0e5",
-                "reference": "c3e5ed8d6e864a466f0c14d38a13bbcc4b4ac0e5",
+                "url": "https://api.github.com/repos/overtrue/laravel-uploader/zipball/9b46ba831037a438dedc496d11b1e1ece0ec1992",
+                "reference": "9b46ba831037a438dedc496d11b1e1ece0ec1992",
                 "shasum": ""
             },
             "require": {
@@ -1274,7 +1336,7 @@
                     "email": "i@overtrue.me"
                 }
             ],
-            "time": "2017-02-21T12:42:57+00:00"
+            "time": "2017-02-21T13:52:04+00:00"
         },
         {
             "name": "overtrue/socialite",

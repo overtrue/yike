@@ -102,7 +102,7 @@ export default {
   computed: {
     fileList() {
       return this.banner.id
-            ? [{ name: this.banner.image.data.title, url: this.banner.image.data.path }]
+            ? [{ name: this.banner.image.data.title, url: '/'+this.banner.image.data.path }]
             : []
     },
     actionLabel() {
