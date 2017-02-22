@@ -40,7 +40,7 @@
       * Map the actions from Vuex to this component.
       * https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Spread_operator
       */
-      ...mapActions(['attemptLogin', 'setMessage']),
+      ...mapActions(['attemptLogin', 'resetMessages']),
 
       /**
       * Handle form's submit event
@@ -49,8 +49,15 @@
         const { email, password } = this // http://wesbos.com/destructuring-objects/
         this.attemptLogin({ email, password }) // this is a Vuex action
           .then(() => {
-            this.setMessage({ type: 'error', message: [] }) // this is a Vuex action
-            this.$router.push({ name: 'dashboard.index' })
+            this.resetMessages()
+
+            let redirect = {name: 'home'}
+
+            if (this.$route.query.redirect) {
+              redirect = this.$route.query.redirect.replace(window.location.origin, '')
+            }
+
+            this.$router.push(redirect)
           })
       },
       /**
