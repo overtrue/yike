@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Auth;
 use Illuminate\Http\Request;
+use App\Http\Requests\MeRequest;
 
 class MeController extends ApiController
 {
@@ -35,10 +36,11 @@ class MeController extends ApiController
         return $this->response->collection(auth()->user()->followers());
     }
 
-    public function update(Request $request)
+    public function update(MeRequest $request)
     {
         $user = auth()->user();
-        $user->update($request->only('name', 'avatar', 'real_name', 'signature'));
+
+        $user->update($request->onlyThem(['name', 'signature']));
 
         return $this->response->item($user);
     }

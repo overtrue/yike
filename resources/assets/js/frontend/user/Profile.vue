@@ -4,29 +4,21 @@
     <div class="text-center setting-box">
       <div class="setting-items">
         <img class="avatar img-circle" width="120" :src="user.avatar">
-        <div class="setting-item row">
-          <label class="col-form-label col-3">昵称</label>
+
+        <div class="setting-item row" v-for="item in items">
+          <label class="col-form-label col-3">{{ item.label }}</label>
           <div class="col-9">
-            <input type="text" class="form-control" @click="click('name')" :value="user.name" id="name" placeholder="填写你的昵称" />
+            <input type="text" class="form-control" @click="click(item)" :value="user[item.name]" :id="item.name" :placeholder="item.placeholder" />
           </div>
-          <div class="actions col-3" v-if="isEdit">
-            <span class="save">保存</span>
-            <span class="cancel" @click="cancel('name')">取消</span>
+          <div class="actions col-3" v-if="item.isEdit">
+            <span class="save" @click="save(item)">保存</span>
+            <span class="cancel" @click="cancel(item)">取消</span>
           </div>
-          <div class="actions col-3" v-else><i class="material-icons" @click="edit('name')">edit</i></div>
+          <div class="actions col-3" v-else><i class="material-icons" @click="edit(item)">edit</i></div>
         </div>
+
         <div class="setting-item row">
-          <label class="col-form-label col-4">个人简介</label>
-          <div class="col-9">
-            <input type="text" class="form-control" :value="user.description" id="description" placeholder="填写你的个人简介" /></div>
-          <div class="actions col-3" v-if="isEdit">
-            <span class="save">保存</span>
-            <span class="cancel" @click="cancel('description')">取消</span>
-          </div>
-          <div class="actions col-3" v-else><i class="material-icons" @click="edit('description')">edit</i></div>
-        </div>
-        <div class="setting-item row">
-          <label class="col-form-label col-4">社交账号</label>
+          <label class="col-form-label col-3">社交账号</label>
           <div class="col-9">
             <div class="setting-social form-control">
               <a href=""><i class="ion-social-twitter"></i></a>
@@ -38,14 +30,11 @@
               <a href=""><i class="ion-social-googleplus"></i></a>
             </div>
           </div>
-          <div class="actions col-3">
-            <i class="material-icons">add</i>
-          </div>
         </div>
         <div class="setting-item row">
-          <label class="col-form-label col-4">邮箱</label>
-          <div class="col-12">
-            <div v-html="user.email"></div>
+          <label class="col-form-label col-3">邮箱</label>
+          <div class="col-9">
+            <div class="form-control" v-html="user.email"></div>
           </div>
         </div>
       </div>
@@ -58,30 +47,49 @@ import { mapActions, mapGetters } from 'vuex'
 import Navbar from 'home/Navbar'
 
 export default {
+  components: { Navbar },
   data() {
     return {
-      isEdit: false,
+      items: [
+        { label: '昵称', name: 'name', placeholder: '填写你的昵称', isEdit: false },
+        { label: '个人简介', name: 'signature', placeholder: '填写你的个人简介', isEdit: false },
+      ],
     }
   },
-  components: { Navbar},
   computed: {
     ...mapGetters({
       user: 'currentUser'
     }),
   },
   methods: {
-    edit(el) {
-      let value = $('#' + el).val()
+    ...mapActions(['setUser']),
+    edit(item) {
+      let value = $('#' + item.name).val()
 
-      $('#' + el).val('').focus().val(value)
+      $('#' + item.name).val('').focus().val(value)
 
-      this.isEdit = true
+      item.isEdit = true
     },
-    cancel(el) {
-      $('#' + el).blur()
+    cancel(item) {
+      $('#' + item.name).blur()
 
-      this.isEdit = false
-    }
+      item.isEdit = false
+    },
+    click(item) {
+      item.isEdit = true
+    },
+    save(item) {
+      let data = {
+        [item.name]: $('#' + item.name).val()
+      }
+
+      this.$http.patch(this.$endpoints.me, data)
+          .then((response) => {
+            this.setUser(response.data.data)
+
+            item.isEdit = false
+          })
+    },
   }
 }
 </script>
@@ -89,6 +97,7 @@ export default {
 <style lang="scss" scoped>
   .setting-items {
     padding-bottom: 60px;
+    font-size: .9rem;
   }
   .setting-item {
     position: relative;
@@ -104,6 +113,7 @@ export default {
   .form-control {
     border: none;
     color: #909090;
+    font-size: .9rem;
   }
   .form-control:focus {
     outline: none;
@@ -112,13 +122,33 @@ export default {
   .setting-social {
     display: inline-block;
     font-size: 16px;
+
+    a {
+      display: inline-block;
+      width: 25px;
+      height: 25px;
+      line-height: 25px;
+      text-align: center;
+      border: 1px solid;
+      border-radius: 50%;
+
+      &:hover {
+        color: #fff;
+        background-color: #00ab6b;
+      }
+    }
   }
   .actions {
     cursor: pointer;
-    text-align: right;
+    position: absolute;
+    right: 0;
+    padding: 0;
+    height: 35px;
+    line-height: 35px;
+    text-align: center;
+
     i {
       width: 14px;
-      height: 14px;
       text-align: center;
     }
     .save {
