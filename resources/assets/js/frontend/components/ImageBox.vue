@@ -1,6 +1,6 @@
 <template>
   <div class="image-box d-flex justify-content-center align-items-center">
-    <img :src="src" :alt="alt">
+    <img :src="src" :alt="alt" @error="onImageLoadFail">
   </div>
 </template>
 
@@ -16,6 +16,12 @@ export default {
       default() {
         return 'image'
       }
+    }
+  },
+  methods: {
+    onImageLoadFail() {
+      console.error('image load fail:' + this.src)
+      document.querySelector('.image-box [src="'+this.src+'"]').parentNode.remove()
     }
   }
 }
