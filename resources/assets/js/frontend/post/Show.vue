@@ -1,56 +1,58 @@
 <template>
   <div class="post-show bg-white full-height">
-    <navbar>
+    <navbar :toleranceOffset="320">
       <div class="page-actions" slot="page-actions" v-if="canEdit">
         <a href="#" class="nav-item text-success" @click="handleEdit()">编辑</a>
         <a href="#" class="nav-item text-danger" @click="handleDelete()">删除</a>
       </div>
     </navbar>
     <div class="post-cover" v-if="post.cover">
-      <div id="post-cover-img"><img :src="post.cover" alt="post.title"></div>
+      <image-box :src="post.cover" :alt="post.title"></image-box>
     </div>
-    <div class="w760">
-      <article class="post-container">
-        <header>
-          <div class="post-title">
-            <h1>{{ post.title }}</h1>
-          </div>
-          <div class="post-meta">
-            <div class="user-panel d-flex">
-              <div class="avatar-box">
-                <a :href="user.url"><avatar :user="user" size="xs"></avatar></a>
-              </div>
-              <div class="d-flex flex-column justify-content-around">
-                <div class="author">
-                  <a :href="user.url">
-                    <h5 class="username d-inline-block" v-text="user.name"></h5>
-                  </a>
-                  <follow-button :user="user" class="d-inline-block btn-xs"></follow-button>
+    <div class="bg-white" :class="{'with-cover': post.cover}">
+      <div class="w760">
+        <article class="post-container">
+          <header>
+            <div class="post-title">
+              <h1>{{ post.title }}</h1>
+            </div>
+            <div class="post-meta">
+              <div class="user-panel d-flex">
+                <div class="avatar-box">
+                  <a :href="user.url"><avatar :user="user" size="xs"></avatar></a>
                 </div>
-                <div><small><relative-time :datetime="post.created_at" v-text="post.created_at"></relative-time></small></div>
-              </div>
-              <div class="btns">
+                <div class="d-flex flex-column justify-content-around">
+                  <div class="author">
+                    <a :href="user.url">
+                      <h5 class="username d-inline-block" v-text="user.name"></h5>
+                    </a>
+                    <follow-button :user="user" class="d-inline-block btn-xs"></follow-button>
+                  </div>
+                  <div><small><relative-time :datetime="post.created_at" v-text="post.created_at"></relative-time></small></div>
+                </div>
+                <div class="btns">
 
+                </div>
+              </div>
+            </div>
+          </header><!-- /header -->
+          <section class="post-body" v-html="post.content"></section>
+        </article>
+        <div class="footer">
+          <div class="post-actions">
+            <div class="d-flex justify-content-between">
+              <div class="left-actions">
+                <a href="#" class=""><i class="material-icons">favorite</i> 0</a>
+              </div>
+              <div class="right-actions d-flex justify-content-end">
+                <a href="#"><i class="material-icons">share</i> 分享</a>
+                <a href="#"><i class="material-icons">report</i> 举报</a>
               </div>
             </div>
           </div>
-        </header><!-- /header -->
-        <section class="post-body" v-html="post.content"></section>
-      </article>
-      <div class="footer">
-        <div class="post-actions">
-          <div class="d-flex justify-content-between">
-            <div class="left-actions">
-              <a href="#" class=""><i class="material-icons">favorite</i> 0</a>
-            </div>
-            <div class="right-actions d-flex justify-content-end">
-              <a href="#"><i class="material-icons">share</i> 分享</a>
-              <a href="#"><i class="material-icons">report</i> 举报</a>
-            </div>
+          <div class="post-author">
+            <user-card :user="user"></user-card>
           </div>
-        </div>
-        <div class="post-author">
-          <user-card :user="user"></user-card>
         </div>
       </div>
     </div>
@@ -62,6 +64,7 @@ import FollowButton from "home/FollowButton"
 import Navbar from "home/Navbar"
 import Avatar from "home/Avatar"
 import UserCard from "home/UserCard"
+import ImageBox from "home/ImageBox"
 import RelativeTime from "home/RelativeTime"
 import { getData } from 'utils/get'
 import { mapGetters } from "vuex"
@@ -73,7 +76,7 @@ require("../../plugins/prism.css")
 
 export default {
   name: 'post-show',
-  components: { Navbar, Avatar, FollowButton, UserCard, RelativeTime },
+  components: { Navbar, Avatar, ImageBox, FollowButton, UserCard, RelativeTime },
   data() {
     return {
       post: {},
@@ -115,8 +118,13 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.post-container {
-  padding: 20px;
+$cover-height: 400px;
+
+.post-show {
+
+  .post-container {
+    padding: 20px;
+  }
 
   .post-title {
     margin-top: 30px;
@@ -136,8 +144,11 @@ export default {
       margin:0;
     }
   }
-}
-
+  .with-cover {
+    margin-top: $cover-height;
+    position: relative;
+    z-index: 2;
+  }
   .post-actions {
     margin-top: 2em;
     padding: 20px;
@@ -172,34 +183,24 @@ export default {
     }
   }
 
-  #post-cover-img {
-    width: 100%;
-    height: 100%;
-    position: absolute;
-    top: 0px;
-    left: 0px;
-    background: -moz-radial-gradient(center, ellipse cover, rgba(36,44,51,0) -1%, rgba(36,44,51,0.01) 0%, rgba(32,39,47,0.2) 22%, rgba(19,19,35,0.65) 100%);
-    background: -webkit-radial-gradient(center, ellipse cover, rgba(36,44,51,0) -1%,rgba(36,44,51,0.01) 0%,rgba(32,39,47,0.2) 22%,rgba(19,19,35,0.65) 100%);
-    background: radial-gradient(ellipse at center, rgba(36,44,51,0) -1%,rgba(36,44,51,0.01) 0%,rgba(32,39,47,0.2) 22%,rgba(19,19,35,0.65) 100%);
-    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00242c33', endColorstr='#a6131323',GradientType=1 );
-
-    img {
-      width: 100%;
-    }
-  }
   .post-cover {
+    width: 100%;
+    height: $cover-height;
+    position: fixed;
+    top: 70px;
+    z-index: 0;
     background-attachment: fixed;
     background-size: cover;
     background-position: 50% 100%;
-    overflow: hidden;
-    padding-top: 30px;
     -webkit-animation: article-bg 8s ease-in;
     -moz-animation: article-bg 8s ease-in;
     -o-animation: article-bg 8s ease-in;
     animation: article-bg 8s ease-in;
-    position: relative;
-    height: 500px;
     overflow: hidden;
+
+    img {
+      width: 100%;
+    }
   }
   @-webkit-keyframes article-bg {
     0%   { background-position: 50% 0%; }
@@ -217,4 +218,7 @@ export default {
     0%   { background-position: 50% 0%; }
     100% { background-position: 50% 100%; }
   }
+
+}
+
 </style>
