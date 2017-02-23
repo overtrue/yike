@@ -13,6 +13,7 @@ Route::group([
         'middleware' => 'jwt.auth',
     ], function () {
         Route::get('/me', 'MeController@show');
+        Route::patch('/me', 'MeController@update');
         Route::get('/me/followers', 'MeController@getFollowers');
         Route::post('/me/followers', 'MeController@postFollowers');
         Route::post('/auth/token/revoke', 'AuthController@revokeToken');
