@@ -71,6 +71,14 @@ import Headroom from "headroom.js/dist/headroom.js"
 export default {
   name:"navbar",
   components: { Alerts, Signin, Signup, Logo, Avatar },
+  props: {
+    toleranceOffset: {
+      type: Number,
+      default() {
+        return 200;
+      }
+    }
+  },
   data() {
     return {
         isSignin: true
@@ -92,7 +100,13 @@ export default {
     ...mapActions(['logout'])
   },
   mounted() {
-    (new Headroom(document.querySelector("header"))).init()
+    (new Headroom(document.querySelector("header"), {
+      tolerance: {
+        down : 10,
+        up : 20
+      },
+      offset: this.toleranceOffset || 200
+    })).init()
   }
 }
 </script>

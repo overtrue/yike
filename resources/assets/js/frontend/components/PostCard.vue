@@ -14,7 +14,7 @@
       </div>
       <div class="post">
         <div class="post-title">
-          <router-link :to="post.url"><img v-if="post.cover" :src="post.cover" :alt="post.title" class="post-cover-img w-100 mt-3"></router-link>
+          <router-link :to="post.url"><image-box v-if="post.cover" :src="post.cover" :alt="post.title" class="post-cover-img w-100 mt-3"></image-box></router-link>
           <router-link :to="post.url"><h2 v-text="post.title" class="mt-3"></h2></router-link>
         </div>
       </div>
@@ -28,10 +28,11 @@
 
 <script>
 import Avatar from "home/Avatar"
+import ImageBox from "home/ImageBox"
 import RelativeTime from "home/RelativeTime"
 
 export default {
-  components: { Avatar, RelativeTime },
+  components: { Avatar, RelativeTime, ImageBox },
   props: {
     post: {
       type: Object
@@ -52,5 +53,8 @@ export default {
   }
   .post-title, .post-title a {
     color: #4a4a4a;
+  }
+  .post-cover-img {
+    max-height: 300px;
   }
 </style>

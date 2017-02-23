@@ -206,7 +206,9 @@ export default {
     setupContentImageUploader() {
       var vm = this
       vm.editor.on('paste', function(editor, event){
-        event.preventDefault()
+        if (event.clipboardData.types.indexOf("Files") >= 0) {
+          event.preventDefault()
+        }
       })
       const contentUploader = new FineUploader.FineUploaderBasic(Object.assign({}, this.uploadConfig, {
         paste: {
