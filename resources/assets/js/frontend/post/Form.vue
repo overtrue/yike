@@ -190,6 +190,7 @@ export default {
       var vm = this
 
       const coverUploader = new FineUploader.FineUploaderBasic(Object.assign({}, this.uploadConfig, {
+        button: document.getElementById('cover-picker'),
         callbacks: {
           onComplete(id, name, responseJSON) {
             if (typeof responseJSON['image_id'] == 'undefined') {
