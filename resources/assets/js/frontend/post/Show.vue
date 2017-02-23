@@ -10,47 +10,49 @@
       <image-box :src="post.cover" :alt="post.title"></image-box>
     </div>
     <div class="bg-white" :class="{'with-cover': post.cover}">
-      <article class="post-container w760">
-        <header>
-          <div class="post-title">
-            <h1>{{ post.title }}</h1>
-          </div>
-          <div class="post-meta">
-            <div class="user-panel d-flex">
-              <div class="avatar-box">
-                <a :href="user.url"><avatar :user="user" size="xs"></avatar></a>
-              </div>
-              <div class="d-flex flex-column justify-content-around">
-                <div class="author">
-                  <a :href="user.url">
-                    <h5 class="username d-inline-block" v-text="user.name"></h5>
-                  </a>
-                  <follow-button :user="user" class="d-inline-block btn-xs"></follow-button>
+      <div class="w760">
+        <article class="post-container">
+          <header>
+            <div class="post-title">
+              <h1>{{ post.title }}</h1>
+            </div>
+            <div class="post-meta">
+              <div class="user-panel d-flex">
+                <div class="avatar-box">
+                  <a :href="user.url"><avatar :user="user" size="xs"></avatar></a>
                 </div>
-                <div><small><relative-time :datetime="post.created_at" v-text="post.created_at"></relative-time></small></div>
-              </div>
-              <div class="btns">
+                <div class="d-flex flex-column justify-content-around">
+                  <div class="author">
+                    <a :href="user.url">
+                      <h5 class="username d-inline-block" v-text="user.name"></h5>
+                    </a>
+                    <follow-button :user="user" class="d-inline-block btn-xs"></follow-button>
+                  </div>
+                  <div><small><relative-time :datetime="post.created_at" v-text="post.created_at"></relative-time></small></div>
+                </div>
+                <div class="btns">
 
+                </div>
+              </div>
+            </div>
+          </header><!-- /header -->
+          <section class="post-body" v-html="post.content"></section>
+        </article>
+        <div class="footer">
+          <div class="post-actions">
+            <div class="d-flex justify-content-between">
+              <div class="left-actions">
+                <a href="#" class=""><i class="material-icons">favorite</i> 0</a>
+              </div>
+              <div class="right-actions d-flex justify-content-end">
+                <a href="#"><i class="material-icons">share</i> 分享</a>
+                <a href="#"><i class="material-icons">report</i> 举报</a>
               </div>
             </div>
           </div>
-        </header><!-- /header -->
-        <section class="post-body" v-html="post.content"></section>
-      </article>
-      <div class="footer">
-        <div class="post-actions">
-          <div class="d-flex justify-content-between">
-            <div class="left-actions">
-              <a href="#" class=""><i class="material-icons">favorite</i> 0</a>
-            </div>
-            <div class="right-actions d-flex justify-content-end">
-              <a href="#"><i class="material-icons">share</i> 分享</a>
-              <a href="#"><i class="material-icons">report</i> 举报</a>
-            </div>
+          <div class="post-author">
+            <user-card :user="user"></user-card>
           </div>
-        </div>
-        <div class="post-author">
-          <user-card :user="user"></user-card>
         </div>
       </div>
     </div>
