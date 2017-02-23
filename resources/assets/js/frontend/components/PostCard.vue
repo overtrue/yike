@@ -54,4 +54,7 @@ export default {
   .post-title, .post-title a {
     color: #4a4a4a;
   }
+  .post-cover-img {
+    max-height: 300px;
+  }
 </style>
