@@ -1,5 +1,5 @@
 <template>
-  <div class="post-show bg-white full-height">
+  <div class="post-show bg-white">
     <navbar :toleranceOffset="320">
       <div class="page-actions" slot="page-actions" v-if="canEdit">
         <a href="#" class="nav-item text-success" @click="handleEdit()">编辑</a>
