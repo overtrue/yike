@@ -8,5 +8,5 @@ export default {
   },
   [TYPES.SET_USER] (state, value) {
     state.user = value
-  }
+  },
 }

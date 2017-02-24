@@ -8,7 +8,6 @@
 
         <title>{{ config('app.name') }}</title>
         <link rel="stylesheet" type="text/css" href="{{ vendor('material-design-icons/material-icons.css') }}">
-        <link rel="stylesheet" type="text/css" href="http://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
         <link rel="stylesheet" type="text/css" href="{{ asset('css/app.css') }}">
     </head>
     <body>
