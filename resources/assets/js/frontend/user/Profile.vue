@@ -53,7 +53,7 @@ export default {
     }),
   },
   methods: {
-    ...mapActions(['setAvatar']),
+    ...mapActions(['loadUser']),
     upload(e) {
       let files = e.target.files
       let formData = new FormData()
@@ -67,8 +67,8 @@ export default {
             this.dialogVisible = true
           })
     },
-    succeed(image) {
-      this.setAvatar(image.url)
+    succeed() {
+      this.loadUser()
 
       this.dialogVisible = false
     },

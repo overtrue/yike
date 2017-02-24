@@ -72,7 +72,7 @@ export default {
 
         axios.post('/files/upload?strategy=avatar', formData)
             .then((response) => {
-              that.$emit('succeed', response.data)
+              that.$emit('succeed')
             })
       })
 
