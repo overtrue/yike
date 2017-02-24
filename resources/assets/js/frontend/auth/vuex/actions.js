@@ -29,6 +29,12 @@ export const setUser = ({ commit }, user) => {
   Promise.resolve(user) // keep promise chain
 }
 
+export const setAvatar = ({ commit }, avatar) => {
+  commit(TYPES.SET_AVATAR, avatar)
+
+  Promise.resolve(avatar)
+}
+
 export const setToken = ({ commit }, payload) => {
   // prevent if payload is a object
   const token = (isEmpty(payload)) ? null : payload.token || payload

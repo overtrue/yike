@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Auth;
+use App\Image;
 use Illuminate\Http\Request;
 use App\Http\Requests\MeRequest;
 
