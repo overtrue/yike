@@ -6,21 +6,21 @@
 export default {
     props: {
       user: {
-          type: Object,
-          default: function(){
-            return {
-              avatar: '/img/default-avatar.png'
-            }
+        type: Object,
+        default: function(){
+          return {
+            avatar: '/img/default-avatar.png'
           }
+        }
       },
       size: {
-          type: String,
-          default() {
-              return 'xs';
-          },
-          validator(value) {
-              return ["xxs", "xs", "sm", "md", "lg", "xlg"].indexOf(value) >= 0;
-          }
+        type: String,
+        default() {
+          return 'xs';
+        },
+        validator(value) {
+          return ["xxs", "xs", "sm", "md", "lg", "xlg"].indexOf(value) >= 0;
+        }
       }
     }
 }
