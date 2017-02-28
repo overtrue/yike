@@ -2,16 +2,22 @@
   <div class="banner-form">
     <el-form ref="banner" :model="banner" :rules="rules" label-width="90px">
       <el-upload
+        class="uploader"
         action="/files/upload?strategy=banner"
         :headers="headers"
-        type="drag"
-        :thumbnail-mode="true"
+        :file-list="fileList"
         :on-preview="handlePreview"
-        :default-file-list="fileList"
         :on-success="handleSuccess"
+        :on-remove="handleRemove"
+        drag
       >
-        <i class="el-icon-upload"></i>
-        <div class="el-dragger__text">将文件拖到此处，或<em>点击上传</em></div>
+        <template v-if="image">
+          <img :src="image.url" class="cover-image">
+        </template>
+        <template v-else>
+          <i class="el-icon-upload"></i>
+          <div class="el-dragger__text">将文件拖到此处，或<em>点击上传</em></div>
+        </template>
         <div class="el-upload__tip" slot="tip">只能上传jpg/png文件，且不超过500kb</div>
       </el-upload>
       <el-form-item label="链接" prop="link">
@@ -80,8 +86,13 @@ export default {
           description: '',
           enabled_at: '',
           expired_at: '',
-          image_url: '',
         }
+      }
+    },
+    image: {
+      type: Object,
+      default() {
+        return undefined
       }
     },
   },
@@ -111,14 +122,18 @@ export default {
     rules() {
       return {
       }
-    }
+    },
   },
   methods: {
-    handleSuccess(file, fileList) {
-      this.banner.image_id = file.image_id
+    handleSuccess(response, file, fileList) {
+      this.banner.image_id = response.image_id
+      this.image = response
     },
     handlePreview(file) {
       this.$emit('preview', file)
+    },
+    handleRemove(file, fileList) {
+      console.log(file, fileList)
     },
     onSubmit() {
       this.$refs.banner.validate((passed) => {
@@ -145,3 +160,13 @@ export default {
   }
 }
 </script>
+
+<style lang="scss" scoped>
+  .cover-image {
+    width: 100%;
+  }
+  .uploader {
+    text-align: center;
+    margin-bottom: 15px;
+  }
+</style>
