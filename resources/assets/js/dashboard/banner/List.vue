@@ -15,7 +15,7 @@
     </data-table>
 
     <el-dialog :title="currentBanner?'修改 Banner':'新增 Banner'" v-model="dialogFormVisible" size="small" @close="onCloseForm">
-      <banner-form @canceled="onCloseForm" @succeed="onBannerCreated" @preview="onPreview" :banner="currentBanner" :image="image"></banner-form>
+      <banner-form @canceled="onCloseForm" @succeed="onBannerCreated" @preview="onPreview" :banner="currentBanner" :image="currentImage"></banner-form>
     </el-dialog>
     <el-dialog title="预览图片" v-model="previewImage" size="middle">
       <img class="w-100" :src="imagePath">
@@ -30,7 +30,7 @@
     components: { BannerForm },
     data() {
       return {
-        image: undefined,
+        currentImage: undefined,
         currentBanner: undefined,
         dialogFormVisible: false,
         previewImage: false,
@@ -72,7 +72,7 @@
       },
       onEdit(row) {
         this.currentBanner = row
-        this.image = row.image.data
+        this.currentImage = row.image.data
         this.dialogFormVisible = true
       },
       onDelete(row) {
@@ -86,13 +86,13 @@
       onBannerCreated() {
         this.$emit('reload')
         this.dialogFormVisible = false
-        this.currentBanner = {}
-        this.image = undefined
+        this.currentBanner = undefined
+        this.currentImage = undefined
       },
       onCloseForm() {
         this.dialogFormVisible = false
-        this.currentBanner = {}
-        this.image = undefined
+        this.currentBanner = undefined
+        this.currentImage = undefined
       },
       tableActions(action, data) {
         if (action == 'edit-item') {

@@ -21,7 +21,7 @@ class FileUploadedListener
     {
         $result = $event->result;
 
-        $image = $this->createImage($event->file, $result);
+        $image = $this->createImage($event->file, $result, $event->strategy);
 
         if ($event->strategy == 'avatar') auth()->user()->update(['avatar' => $result['url']]);
 
@@ -35,9 +35,10 @@ class FileUploadedListener
      *
      * @param  Illuminate\Http\UploadedFile $file
      * @param  array $result
+     * @param  string $strategy
      * @return array
      */
-    public function createImage($file, $result)
+    public function createImage($file, $result, $strategy)
     {
         [$width, $height] = getimagesize($file);
 
@@ -45,7 +46,9 @@ class FileUploadedListener
             'creator_id' => auth()->id(),
             'title' => $result['original_name'],
             'path' => $result['relative_url'],
-            'size' => "{$width} x {$height}",
+            'mime' => $result['mime'],
+            'size' => json_encode(['width' => $width, 'height' => $height]),
+            'strategy' => $strategy,
         ];
 
         return Image::create($data);
