@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Image extends Model
 {
     protected $fillable = [
-        'creator_id', 'path', 'title', 'size',
+        'creator_id', 'path', 'title', 'size', 'mime', 'strategy'
     ];
 
     public static function boot()

@@ -11,8 +11,8 @@
         :on-remove="handleRemove"
         drag
       >
-        <template v-if="image">
-          <img :src="image.url" class="cover-image">
+        <template v-if="currentImage">
+          <img :src="currentImage.url" class="cover-image">
         </template>
         <template v-else>
           <i class="el-icon-upload"></i>
@@ -108,7 +108,13 @@ export default {
         {name: '_parent'},
         {name: '_top'},
       ],
+      currentImage: this.image,
     }
+  },
+  watch: {
+    image() {
+      this.currentImage = this.image
+    },
   },
   computed: {
     fileList() {
@@ -127,7 +133,7 @@ export default {
   methods: {
     handleSuccess(response, file, fileList) {
       this.banner.image_id = response.image_id
-      this.image = response
+      this.currentImage = response
     },
     handlePreview(file) {
       this.$emit('preview', file)

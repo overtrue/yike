@@ -16,9 +16,11 @@ class CreateImagesTable extends Migration
         Schema::create('images', function (Blueprint $table) {
             $table->increments('id');
             $table->string('path')->comment('存储路径');
-            $table->boolean('cdn')->default(false);
+            $table->string('strategy')->nullable()->comment('类型');
+            $table->string('mime')->nullable()->comment('MIME 类型');
+            $table->boolean('cdn_enabled')->default(false);
             $table->string('title')->comment('文件名');
-            $table->string('size')->nullable()->comment('w x h');
+            $table->json('size')->nullable()->comment('width/height');
             $table->unsignedInteger('creator_id')->comment('创建者');
             $table->timestamps();
         });

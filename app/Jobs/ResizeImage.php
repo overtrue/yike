@@ -39,7 +39,7 @@ class ResizeImage implements ShouldQueue
                     $constraint->upsize();
                 })->save($this->image['path']);
 
-        $this->image->size = "{$image->width()} x {$image->height()}";
+        $this->image->size = json_encode(['width' => $image->width(), 'height' => $image->height()]);
         $this->image->save();
     }
 }
