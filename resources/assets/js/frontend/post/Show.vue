@@ -7,7 +7,7 @@
       </div>
     </navbar>
     <div class="post-cover" v-if="post.cover">
-      <image-box :src="post.cover" :alt="post.title"></image-box>
+      <image-box :src="post.cover" :alt="post.title" @loadFail="post.cover=null"></image-box>
     </div>
     <div class="bg-white" :class="{'with-cover': post.cover}">
       <div class="w760">

@@ -124,7 +124,6 @@ export default {
       vertical-align: middle;
       user-select: none;
       padding: 0 0.8rem;
-      font-size: 1rem;
       transition: all 0.2s ease-in-out;
 
       .material-icons {
@@ -141,13 +140,12 @@ export default {
     right: 0;
     padding: 15px 0;
     background: #fff;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, .04);
+    box-shadow: 0 2px 2px -2px rgba(0,0,0,.15);
   }
 
   .dropdown {
     .name {
       padding: 0 10px;
-      font-size: 1em;
     }
   }
 
