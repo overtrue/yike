@@ -21,6 +21,7 @@ export default {
   methods: {
     onImageLoadFail() {
       console.error('image load fail:' + this.src)
+      this.$emit('loadFail');
       document.querySelector('.image-box [src="'+this.src+'"]').parentNode.remove()
     }
   }
