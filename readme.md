@@ -10,7 +10,7 @@
 # 软件安装信息
 
 1. nginx 配置文件：`/etc/nginx/nginx.conf`
-2. 站点配置文件：`/etc/nginx/sites-enabled/m.viphuaxin.com.conf`
+2. 站点配置文件：`/etc/nginx/sites-enabled/yike.io.conf`
 3. php cli 模式配置文件：`/etc/php/7.0/cli/php.ini`
 4. php fpm 模式配置文件：`/etc/php/7.0/fpm/php.ini`
 5. php-fpm 服务配置文件：`/etc/php/7.0/fpm/pool.d/www.conf`
@@ -25,7 +25,7 @@
 
 # 项目安装
 
-1. 创建数据库 `viphuaxin` (或者其它名称)
+1. 创建数据库 `yike` (或者其它名称)
 2. 修改目录权限：`chmod 777 ./storage ./bootstrap/cache -R`
 3. 创建ENV文件：`copy .env.example .env`
 4. 安装依赖： `composer install -vvv`
@@ -105,8 +105,6 @@
    ```
 
 # 静态文件
-
-> 此过程需要学会 gulp 的使用
 
 `css`, `js` 等文件在 `resources/assets` 下修改，修改完在项目根目录执行：
 
