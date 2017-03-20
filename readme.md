@@ -106,8 +106,6 @@
 
 # 静态文件
 
-> 此过程需要学会 gulp 的使用
-
 `css`, `js` 等文件在 `resources/assets` 下修改，修改完在项目根目录执行：
 
 ```shell
