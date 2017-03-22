@@ -16,6 +16,7 @@ Route::group([
         Route::patch('/me', 'MeController@update');
         Route::get('/me/followers', 'MeController@getFollowers');
         Route::post('/me/followers', 'MeController@postFollowers');
+        Route::get('/me/notifications', 'MeController@getNotifications');
         Route::post('/auth/token/revoke', 'AuthController@revokeToken');
         Route::post('/posts', 'PostController@store');
         Route::patch('/posts/{id}', 'PostController@update');

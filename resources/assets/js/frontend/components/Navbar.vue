@@ -14,7 +14,7 @@
             </template>
             <template v-else scope>
               <router-link :to="{name:'post.new'}" class="nav-item" v-if="$route.name != 'post.new'"><i class="material-icons">add</i></router-link>
-              <a href="#" class="nav-item"><i class="material-icons">notifications</i></a>
+              <router-link :to="{name:'user.notification'}" class="nav-item"><i class="material-icons">notifications</i></router-link>
               <div class="nav-item">
                 <div class="dropdown">
                   <div class="dropdown-toggle" id="nav-right-action-dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">

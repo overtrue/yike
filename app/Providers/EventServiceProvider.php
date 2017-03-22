@@ -22,6 +22,9 @@ class EventServiceProvider extends ServiceProvider
         'Overtrue\LaravelUploader\Events\FileUploaded' => [
             'App\Listeners\FileUploadedListener',
         ],
+        'App\Events\UserFollow' => [
+            'App\Listeners\UserFollowListener',
+        ],
     ];
 
     /**
