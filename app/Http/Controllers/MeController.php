@@ -3,11 +3,11 @@
 namespace App\Http\Controllers;
 
 use Auth;
-use App\Image;
 use App\User;
+use App\Image;
+use App\Events\UserFollow;
 use Illuminate\Http\Request;
 use App\Http\Requests\MeRequest;
-use App\Notifications\UserFollow;
 use App\Transformers\NotificationTransformer;
 
 class MeController extends ApiController
@@ -30,8 +30,8 @@ class MeController extends ApiController
             $user->unfollow($targetUserId);
         } else {
             $user->follow($targetUserId);
-            $targetUser = User::find($targetUserId);
-            $targetUser->notify(new UserFollow($user));
+
+            event(new UserFollow($user, User::find($targetUserId)));
         }
 
         return $this->response->json(['success' => true]);

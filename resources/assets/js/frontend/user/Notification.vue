@@ -37,7 +37,7 @@ export default {
     }
   },
   created() {
-    this.$http.get(this.$endpoints.me + 'notification')
+    this.$http.get(this.$endpoints.me + 'notifications')
         .then((response) => {
           this.notifications = response.data.data
         })
