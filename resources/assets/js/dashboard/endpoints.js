@@ -9,4 +9,5 @@ export default {
   permissions: prefix + '/permissions/',
   series: prefix + '/series/',
   banners: prefix + '/banners/',
+  statistics: prefix + '/statistics/',
 }

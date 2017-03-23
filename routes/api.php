@@ -30,6 +30,7 @@ Route::group([
             Route::patch('roles/{id}/permission', 'RoleController@updatePermission');
             Route::resource('series', 'SeriesController');
             Route::resource('banners', 'BannerController');
+            Route::get('statistics', 'HomeController@index');
         });
     });
 });

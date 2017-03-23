@@ -29,7 +29,7 @@ export default {
           label: 'Slug',
         },
         {
-          prop: 'creator.data.name',
+          prop: 'user.data.name',
           label: 'Author',
         },
         {
