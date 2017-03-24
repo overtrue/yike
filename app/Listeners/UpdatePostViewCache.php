@@ -16,6 +16,10 @@ class UpdatePostViewCache
      */
     public function handle(ViewPost $event)
     {
-        $event->post->increment('view_cache');
+        $event->post->setActionTypeName($event->post::POST_VIEW);
+
+        $event->post->view_cache = $event->post->view_cache + 1;
+
+        $event->post->save();
     }
 }
