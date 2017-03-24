@@ -31,6 +31,9 @@ export default {
           this.cards.series.total = response.data.series
           this.cards.tag.total = response.data.tags
         })
+
+    this.$http.get(this.$endpoints.actions)
+        .then((response) => console.log(response))
   },
 }
 </script>

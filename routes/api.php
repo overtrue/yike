@@ -31,6 +31,7 @@ Route::group([
             Route::resource('series', 'SeriesController');
             Route::resource('banners', 'BannerController');
             Route::get('statistics', 'HomeController@index');
+            Route::get('actions', 'UserActionController@index');
         });
     });
 });
