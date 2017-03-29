@@ -18,10 +18,16 @@ class CreateSeriesTable extends Migration
             $table->increments('id');
             $table->unsignedInteger('user_id');
 
-            $table->string('title')->nullable();
+            // 专栏头像
+            $table->unsignedInteger('image_id')->nullable();
+
+            $table->string('title');
+            $table->string('slug')->unique();
+            $table->string('description')->nullable();
 
             // 数据缓存
             $table->unsignedInteger('post_cache')->default(0)->index();
+            $table->unsignedInteger('follower_cache')->default(0)->index();
 
             $table->timestamps();
 

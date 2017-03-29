@@ -10,8 +10,8 @@
 
     <data-table api="series" :columns="columns" @table-action="tableActions"></data-table>
 
-    <el-dialog :title="currentSeries.id?'修改栏目':'新增栏目'" v-model="dialogFormVisible" size="tiny" @close="onCloseForm">
-      <series-form @canceled="onCloseForm" @succeed="onSeriesCreated" :series="currentSeries"></series-form>
+    <el-dialog :title="currentSeries?'修改栏目':'新增栏目'" v-model="dialogFormVisible" size="tiny" @close="onCloseForm">
+      <series-form @canceled="onCloseForm" @succeed="onSeriesCreated" :series="currentSeries" :image="currentImage"></series-form>
     </el-dialog>
   </div>
 </template>
@@ -23,7 +23,8 @@
     components: { SeriesForm },
     data() {
       return {
-        currentSeries: {},
+        currentImage: undefined,
+        currentSeries: undefined,
         dialogFormVisible: false,
         columns: [
           {
@@ -59,15 +60,18 @@
       onEdit(series) {
         this.currentSeries = series
         this.dialogFormVisible = true
+        this.currentImage = series.image.data
       },
       onSeriesCreated() {
         this.$emit('reload')
         this.dialogFormVisible = false
-        this.currentSeries = {}
+        this.currentSeries = undefined
+        this.currentImage = undefined
       },
       onCloseForm() {
         this.dialogFormVisible = false
-        this.currentSeries = {}
+        this.currentSeries = undefined
+        this.currentImage = undefined
       },
       onDelete(row) {
         this.$http.delete(this.$endpoints.series + row.id)
