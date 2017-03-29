@@ -5,10 +5,12 @@ Route::group([
 ], function () {
     Route::get('home/banners', 'HomeController@banners');
     Route::get('/posts/{slug}', 'PostController@show');
+    Route::get('/series/{slug}', 'SeriesController@show');
     Route::post('/auth/token/issue', 'AuthController@issueToken');
     Route::post('/auth/token/refresh', 'AuthController@refreshToken');
     Route::resource('/users', 'UserController');
     Route::resource('/posts', 'PostController', ['except' => ['store', 'update']]);
+    Route::resource('/series', 'SeriesController', ['except' => ['store', 'update']]);
     Route::group([
         'middleware' => 'jwt.auth',
     ], function () {

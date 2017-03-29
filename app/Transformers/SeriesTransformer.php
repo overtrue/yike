@@ -13,7 +13,7 @@ class SeriesTransformer extends TransformerAbstract
      * @var array
      */
     protected $availableIncludes = [
-        'user',
+        'user', 'posts', 'image',
     ];
 
     /**
@@ -22,7 +22,7 @@ class SeriesTransformer extends TransformerAbstract
      * @var array
      */
     protected $defaultIncludes = [
-        'user',
+        'user', 'image',
     ];
 
     /**
@@ -36,8 +36,13 @@ class SeriesTransformer extends TransformerAbstract
     {
         return [
             'id' => $series->id,
+            'image_url' => $series->image_id ? $series->image->url : null,
             'title' => $series->title,
+            'slug' => $series->slug,
+            'description' => $series->description,
             'post_cache' => $series->post_cache,
+            'follower_cache' => $series->follower_cache,
+            'follower_cache' => $series->follower_cache,
             'created_at' => $series->created_at->toIso8601String(),
             'updated_at' => $series->updated_at->toIso8601String(),
         ];
@@ -54,6 +59,34 @@ class SeriesTransformer extends TransformerAbstract
     {
         if ($series->user) {
             return $this->item($series->user, new UserTransformer);
+        }
+    }
+
+    /**
+     * Include user.
+     *
+     * @param  Series $series
+     *
+     * @return \League\Fractal\Resource\Item|null
+     */
+    public function includeImage(Series $series)
+    {
+        if ($series->image) {
+            return $this->item($series->image, new ImageTransformer);
+        }
+    }
+
+    /**
+     * Include posts.
+     *
+     * @param  Series $series
+     *
+     * @return \League\Fractal\Resource\Collection|null
+     */
+    public function includePosts(Series $series)
+    {
+        if ($series->posts) {
+            return $this->collection($series->posts, new PostTransformer);
         }
     }
 }

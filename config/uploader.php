@@ -40,6 +40,11 @@ return [
         'post' => [
             'directory' => 'posts/{Y}/{m}/{d}',
         ],
+
+        // series
+        'series' => [
+            'directory' => 'series/{Y}/{m}/{d}',
+        ],
     ],
 ];
 
