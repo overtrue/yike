@@ -17,7 +17,19 @@ class UserController extends ApiController
      */
     public function index(Request $request)
     {
-        $users = User::paginate($request->get('per_page', 20));
+        $users = tap(User::latest(), function ($query) use ($request) {
+            if ($request->has('keyword')) {
+                $query->where('name', 'like', "%{$request->keyword}%")
+                        ->orWhere('username', 'like', "%{$request->keyword}%")
+                        ->orWhere('email', 'like', "%{$request->keyword}%");
+            } else {
+                foreach (['name', 'username', 'email'] as $field) {
+                    if ($request->has($field)) {
+                        $query->where($field, 'like', "%{$request->$field}%");
+                    }
+                }
+            }
+        })->paginate($request->get('per_page', 20));
 
         return $this->response->collection($users);
     }

@@ -12,11 +12,22 @@ class RoleController extends ApiController
     /**
      * Display a listing of the resource.
      *
+     * @param  \Illuminate\Http\Request  $request
+     *
      * @return \Illuminate\Http\Response
      */
     public function index(Request $request)
     {
-        $roles = Role::paginate($request->get('per_page', 20));
+        $roles = tap(Role::latest(), function ($query) use ($request) {
+            if ($request->has('keyword')) {
+                $query->where('name', 'like', "%{$request->keyword}%")
+                        ->orWhere('display_name', 'like', "%{$request->keyword}%");
+            } else {
+                foreach (['name', 'display_name'] as $field) {
+                    $query->where($field, 'like', "%{$request->$field}%");
+                }
+            }
+        })->paginate($request->get('per_page', 20));
 
         return $this->response->collection($roles);
     }

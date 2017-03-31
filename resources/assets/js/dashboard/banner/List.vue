@@ -1,16 +1,12 @@
 <template>
   <div class="wrapper">
-    <el-row style="margin-bottom: 20px">
-      <el-col>
-        <el-button type="primary" @click="dialogFormVisible=!dialogFormVisible">
-          <i class="material-icons">add</i> 新增 Banner
-        </el-button>
-      </el-col>
-    </el-row>
-
-    <data-table api="banners" :columns="columns" @table-action="tableActions">
+    <data-table api="banners" :columns="columns" @table-action="tableActions" :searchables="searchables">
       <template slot="image" scope="props">
           <img class="w-100 my-3" :src="'/'+props.data.row.image.data.path">
+      </template>
+
+      <template slot="right-buttons">
+        <el-button @click="dialogFormVisible=!dialogFormVisible"><i class="material-icons">add</i> 新增 Banner</el-button>
       </template>
     </data-table>
 
@@ -35,6 +31,9 @@
         dialogFormVisible: false,
         previewImage: false,
         imagePath: '',
+        searchables: {
+          title: 'Title',
+        },
         columns: [
           {
             prop: 'id',

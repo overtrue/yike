@@ -1,14 +1,10 @@
 <template>
   <div class="wrapper">
-    <el-row style="margin-bottom: 20px">
-      <el-col>
-        <el-button type="primary" @click="dialogFormVisible=!dialogFormVisible">
-          <i class="material-icons">add</i> 新增栏目
-        </el-button>
-      </el-col>
-    </el-row>
-
-    <data-table api="series" :columns="columns" @table-action="tableActions"></data-table>
+    <data-table api="series" :columns="columns" @table-action="tableActions" :searchables="searchables">
+      <template slot="right-buttons">
+        <el-button @click="dialogFormVisible=!dialogFormVisible"><i class="material-icons">add</i> 新增栏目</el-button>
+      </template>
+    </data-table>
 
     <el-dialog :title="currentSeries?'修改栏目':'新增栏目'" v-model="dialogFormVisible" size="tiny" @close="onCloseForm">
       <series-form @canceled="onCloseForm" @succeed="onSeriesCreated" :series="currentSeries" :image="currentImage"></series-form>
@@ -26,6 +22,9 @@
         currentImage: undefined,
         currentSeries: undefined,
         dialogFormVisible: false,
+        searchables: {
+          title: 'Title',
+        },
         columns: [
           {
             prop: 'id',

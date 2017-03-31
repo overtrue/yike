@@ -34,10 +34,12 @@ class UserActionTransformer extends TransformerAbstract
      */
     public function transform(UserAction $action)
     {
+        $actionType = explode('\\', $action->action_type);
+
         return [
             'id' => $action->id,
             'action_id' => $action->action_id,
-            'action_type' => $action->action_type,
+            'action_type' => end($actionType),
             'action' => $action->action,
             'changes' => $action->changes,
             'created_at' => $action->created_at->toIso8601String(),

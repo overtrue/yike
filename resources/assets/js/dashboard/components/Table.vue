@@ -1,5 +1,25 @@
 <template>
   <div :class="tableWrapper">
+    <el-row>
+      <el-col :span="18" v-if="searchables">
+        <el-form :inline="true" :model="query">
+          <el-form-item v-for="(placeholder, field) in searchables" :key="field">
+            <el-input v-model="query[field]" :placeholder="placeholder"></el-input>
+          </el-form-item>
+          <el-form-item>
+            <el-button type="primary" @click="onSearch">查询</el-button>
+          </el-form-item>
+        </el-form>
+      </el-col>
+      <el-col :span="6">
+        <div :class="searchables ? 'float-right' : ''">
+          <slot name="right-buttons"></slot>
+        </div>
+      </el-col>
+    </el-row>
+    <div class="mb-3">
+      <el-tag v-for="(value, key) in query" :key="key" class="mr-1" @close="delete query[key]; fetch()" :closable="true">{{ searchables[key] }}: {{ value }}</el-tag>
+    </div>
     <el-table :data="items" style="width: 100%">
       <template v-for="column in columns">
         <template v-if="column.name">
@@ -44,9 +64,7 @@
     props: {
       tableWrapper: {
         type: String,
-        default() {
-          return ''
-        }
+        default: null
       },
       paginationWrapper: {
         type: String,
@@ -60,11 +78,23 @@
           return []
         }
       },
+      searchables: {
+        type: Object,
+        default: undefined
+      },
+      query: {
+        type: Object,
+        default() {
+          return {}
+        }
+      },
       api: {
         type: String,
-        default() {
-          return ''
-        }
+        default: null
+      },
+      include: {
+        type: String,
+        default: null
       },
       itemActions: {
         type: Array,
@@ -79,7 +109,6 @@
     data() {
       return {
         items: [],
-        query: {},
         pagination: {
           count: 0,
           current_page: 1,
@@ -98,11 +127,16 @@
       })
     },
     methods: {
+      onSearch() {
+        this.pagination.current_page = 1
+        this.fetch()
+      },
       fetch() {
-        let query = this.query
+        let query = Object.assign({}, this.query)
 
         query['page'] = this.pagination.current_page
         query['per_page'] = this.pagination.per_page
+        query['include'] = this.include
 
         this.$http.get(this.$endpoints[this.api], { params: query })
             .then(({ data }) => {
@@ -127,8 +161,11 @@
 </script>
 
 <style lang="scss" scoped>
-  .pagination-wrapper {
-    text-align: center;
-    margin: 20px 0;
-  }
+.pagination-wrapper {
+  text-align: center;
+  margin: 20px 0;
+}
+.el-form-item {
+    margin-bottom: 12px;
+}
 </style>
