@@ -11,11 +11,25 @@ class SeriesController extends ApiController
     /**
      * Display a listing of the resource.
      *
+     * @param  \Illuminate\Http\Request  $request
+     *
      * @return \Illuminate\Http\Response
      */
     public function index(Request $request)
     {
-        return $this->response->collection(Series::paginate($request->get('per_page')));
+        $series = tap(Series::latest(), function ($query) use ($request) {
+            if ($request->has('keyword')) {
+                $query->where('title', 'like', "%{$request->keyword}%");
+            } else {
+                foreach (['title'] as $field) {
+                    if ($request->has($field)) {
+                        $query->where($field, 'like', "%{$request->$field}%");
+                    }
+                }
+            }
+        })->paginate($request->get('per_page', 20));
+
+        return $this->response->collection($series);
     }
 
     /**

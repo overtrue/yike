@@ -1,6 +1,6 @@
 <template>
   <div class="wrapper">
-    <data-table api="posts" :columns="columns" @table-action="tableActions" :itemActions="itemActions">
+    <data-table api="posts" :columns="columns" @table-action="tableActions" :itemActions="itemActions" :searchables="searchables">
       <template slot="draft" scope="props">
         <el-tag
           :type="props.data.row.is_draft ? 'warning' : 'primary'"
@@ -14,6 +14,10 @@
 export default {
   data() {
     return {
+      searchables: {
+        title: 'Title',
+        slug: 'Slug',
+      },
       columns: [
         {
           prop: 'id',

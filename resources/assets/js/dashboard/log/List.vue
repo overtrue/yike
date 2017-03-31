@@ -1,6 +1,6 @@
 <template>
   <div class="wrapper">
-    <data-table api="actions" :columns="columns"></data-table>
+    <data-table api="actions" :columns="columns" :searchables="searchables"></data-table>
   </div>
 </template>
 
@@ -8,6 +8,10 @@
 export default {
   data() {
     return {
+      searchables: {
+        action: 'Action',
+        action_type: 'Type',
+      },
       columns: [
         {
           prop: 'id',

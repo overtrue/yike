@@ -19,7 +19,15 @@ class BannerController extends ApiController
      */
     public function index(Request $request)
     {
-        $banners = Banner::paginate($request->get('per_page', 20));
+        $banners = tap(Banner::latest(), function ($query) use ($request) {
+            if ($request->has('keyword')) {
+                $query->where('title', 'like', "%{$request->keyword}%");
+            } else {
+                foreach (['title'] as $field) {
+                    $query->where($field, 'like', "%{$request->$field}%");
+                }
+            }
+        })->paginate($request->get('per_page', 20));
 
         return $this->response->collection($banners);
     }
