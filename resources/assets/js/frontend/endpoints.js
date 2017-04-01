@@ -5,6 +5,6 @@ export default {
   series: '/series/',
   tags: '/tags/',
   series: '/series/',
-  followers: '/me/followers',
+  followers: '/me/followers/',
   me: '/me/',
 }

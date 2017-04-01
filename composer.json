@@ -12,7 +12,7 @@
         "laravel/framework": "5.4.*",
         "laravel/tinker": "~1.0",
         "league/fractal": "^0.14.0",
-        "overtrue/laravel-follow": "^1.0",
+        "overtrue/laravel-follow": "dev-master",
         "overtrue/laravel-lang": "^3.0",
         "overtrue/laravel-socialite": "^1.0",
         "overtrue/laravel-uploader": "dev-master",
@@ -55,5 +55,11 @@
         "sort-packages": true
     },
     "minimum-stability": "dev",
-    "prefer-stable": true
+    "prefer-stable": true,
+    "repositories": {
+        "packagist": {
+            "type": "composer",
+            "url": "https://packagist.phpcomposer.com"
+        }
+    }
 }

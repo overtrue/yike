@@ -11,7 +11,7 @@
           </div>
           <div class="col-lg-9">
             <div class="user-info">
-              <h3 class="username">{{ series.title }} <button class="btn btn-sm btn-outline-primary">关注</button></h3>
+              <h3 class="username">{{ series.title }} <follow-button :item="series" api="series"></follow-button></h3>
               <p class="description" v-text="series.description"></p>
             </div>
           </div>
@@ -44,9 +44,10 @@
 import Navbar from 'home/Navbar'
 import PostCard from 'home/PostCard'
 import { getData } from 'utils/get'
+import FollowButton from 'home/FollowButton'
 
 export default {
-  components: { Navbar, PostCard },
+  components: { Navbar, PostCard, FollowButton },
   data() {
     return {
       series: {},
