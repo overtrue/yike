@@ -26,7 +26,7 @@
                     <a :href="user.url">
                       <h5 class="username d-inline-block" v-text="user.name"></h5>
                     </a>
-                    <follow-button :user="user" class="d-inline-block btn-xs"></follow-button>
+                    <follow-button :item="user" class="d-inline-block btn-xs"></follow-button>
                   </div>
                   <div><small><relative-time :datetime="post.created_at" v-text="post.created_at"></relative-time></small></div>
                 </div>

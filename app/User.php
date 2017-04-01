@@ -7,10 +7,11 @@ use Tymon\JWTAuth\Contracts\JWTSubject;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Overtrue\LaravelFollow\FollowTrait;
+use Overtrue\LaravelFollow\FollowerTrait;
 
 class User extends Authenticatable implements JWTSubject
 {
-    use UserAction, Notifiable, FollowTrait;
+    use UserAction, Notifiable, FollowTrait, FollowerTrait;
 
     const USER_CREATE = 'user.create';
     const USER_UPDATE = 'user.update';

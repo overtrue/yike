@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Auth;
 use App\User;
 use App\Image;
+use App\Series;
 use App\Events\UserFollow;
 use Illuminate\Http\Request;
 use App\Http\Requests\MeRequest;
@@ -20,21 +21,37 @@ class MeController extends ApiController
     public function postFollowers(Request $request)
     {
         $this->validate($request, [
-                'user_id' => 'required|exists:users,id',
+                'id' => 'required|exists:users,id',
             ]);
 
         $user = $request->user();
-        $targetUserId = $request->user_id;
+        $target = User::find($request->id);
 
-        if ($user->isFollowing($targetUserId)) {
-            $user->unfollow($targetUserId);
-        } else {
-            $user->follow($targetUserId);
-
-            event(new UserFollow($user, User::find($targetUserId)));
+        if (!$this->toggleFollow($user, $target)) {
+            event(new UserFollow($user, $target));
         }
 
         return $this->response->json(['success' => true]);
+    }
+
+    public function postFollowSeries(Request $request)
+    {
+        $this->validate($request, [
+                'id' => 'required|exists:series,id',
+            ]);
+
+        $this->toggleFollow($request->user(), Series::find($request->id));
+
+        return $this->response->json(['success' => true]);
+    }
+
+    public function toggleFollow($user, $target)
+    {
+        $isFollowing = $user->isFollowing($target);
+
+        $isFollowing ? $user->unfollow($target) : $user->follow($target);
+
+        return $isFollowing;
     }
 
     public function getFollowers()
