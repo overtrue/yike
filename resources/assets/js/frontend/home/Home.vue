@@ -3,9 +3,12 @@
     <navbar></navbar>
     <!-- Banner -->
     <div class="banner">
-      <carousel :interval="4000" indicator-position="none" type="card" height="260px" v-if="banners.length > 0">
-        <carousel-item v-for="banner in banners">
-          <h3><img :src="banner.image.data.url" alt="banner.image.data.title"></h3>
+      <carousel :interval="4000" indicator-position="none" @change="changeCarousel" type="card" height="260px" v-if="banners.length > 0">
+        <carousel-item v-for="(banner, index) in banners">
+          <router-link :to="banner.link" v-if="currentCarousel == index">
+            <h3><img :src="banner.image.data.url" alt="banner.image.data.title"></h3>
+          </router-link>
+          <h3 v-else><img :src="banner.image.data.url" alt="banner.image.data.title"></h3>
         </carousel-item>
       </carousel>
     </div>
@@ -17,18 +20,18 @@
             <div class="box-title">
               <h5>热门文章</h5>
             </div>
-            <div class="card-deck">
-              <div class="card" v-for="n in 3">
-                <div class="card-img-top">
-                  <img src="https://dn-phphub.qbox.me/uploads/banners/Ltw9l2xdkQX2gEv63sUG.jpg?imageView2/1/w/424/h/212" alt="">
-                </div>
+            <div class="row" v-for="items in posts">
+              <div class="card col-md-5 mx-2 px-0" v-for="post in items">
+                <router-link :to="post.url" class="card-img-top">
+                  <img :src="post.cover" :alt="post.title">
+                </router-link>
                 <div class="card-block">
-                  <div class="card-title">This is a test</div>
+                  <router-link :to="post.url" class="card-title" v-text="post.title"></router-link>
                   <div class="extras">
-                    <img class="avatar" src="https://pigjian.com/images/default_avatar.png">
+                    <router-link :to="post.user.data.username"><img class="avatar" :src="post.user.data.avatar"></router-link>
                     <div class="user-info">
-                      <span class="username">Jiajian Chan</span>
-                      <span class="times">3 minute ago</span>
+                      <span class="username" v-text="post.user.data.name"></span>
+                      <relative-time class="times" :datetime="post.created_at" v-text="post.created_at"></relative-time>
                     </div>
                     <div class="actions">
                       <div class="favour">
@@ -104,6 +107,7 @@
 <script>
 import Carousel from '../components/Carousel'
 import CarouselItem from '../components/CarouselItem'
+import RelativeTime from "home/RelativeTime"
 import 'element-ui/lib/theme-default/carousel.css'
 import 'element-ui/lib/theme-default/carousel-item.css'
 import Navbar from "home/Navbar"
@@ -114,10 +118,13 @@ export default {
     Navbar,
     Carousel,
     CarouselItem,
+    RelativeTime,
   },
   data() {
     return {
-      banners: []
+      banners: [],
+      posts: [],
+      currentCarousel: 0,
     }
   },
   methods: {
@@ -126,61 +133,87 @@ export default {
       this.$http.get(this.$endpoints.banners).then((response) => {
         vm.banners = response.data.data
       })
+    },
+    loadPosts() {
+      this.$http.get(this.$endpoints.posts, { params: {sort_by: 'hot'} }).then((response) => {
+        this.posts = this.list(response.data.data)
+      })
+    },
+    list(list) {
+      let items = []
+      let index = 0
+      let section = 3
+
+      for (let i = 0; i < list.length; i++) {
+        index = parseInt(i / section);
+        if (items.length <= index) {
+            items.push([])
+        }
+        items[index].push(list[i])
+      }
+      return items
+    },
+    changeCarousel(val, oldVal) {
+      this.currentCarousel = val
     }
   },
   created() {
     this.loadBanners()
+    this.loadPosts()
   }
 }
 </script>
 
 <style lang="scss" scoped>
-  .banner {
-    margin-top: 5px;
+.banner {
+  margin-top: 5px;
+}
+.el-carousel__item h3 {
+  color: #475669;
+  font-size: 14px;
+  opacity: 0.75;
+  line-height: 260px;
+  margin: 0;
+  text-align: center;
+
+  img {
+    width: 100%;
   }
-  .el-carousel__item h3 {
-    color: #475669;
+}
+.el-carousel__item:nth-child(2n) {
+  background-color: #99a9bf;
+}
+.el-carousel__item:nth-child(2n+1) {
+  background-color: #d3dce6;
+}
+.box-title {
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+.post-box {
+  margin-bottom: 30px;
+  padding-bottom: 50px;
+  border-bottom: 1px solid rgba(49, 43, 43, 0.04);
+}
+.card-title {
+  color: #464a4c;
+}
+.ranking {
+  margin-left: 10px;
+
+  ol {
     font-size: 14px;
-    opacity: 0.75;
-    line-height: 260px;
-    margin: 0;
-    text-align: center;
+    padding-left: 30px;
 
-    img {
-      width: 100%;
+    li {
+      margin-bottom:10px;
+      color:#666
     }
   }
-  .el-carousel__item:nth-child(2n) {
-    background-color: #99a9bf;
+  .avatar {
+    width: 30px;
+    margin-left: 5px;
+    margin-right: 10px;
   }
-  .el-carousel__item:nth-child(2n+1) {
-    background-color: #d3dce6;
-  }
-  .box-title {
-    margin-top: 20px;
-    margin-bottom: 20px;
-  }
-  .post-box {
-    margin-bottom: 30px;
-    padding-bottom: 50px;
-    border-bottom: 1px solid rgba(49, 43, 43, 0.04);
-  }
-  .ranking {
-    margin-left: 10px;
-
-    ol {
-      font-size: 14px;
-      padding-left: 30px;
-
-      li {
-        margin-bottom:10px;
-        color:#666
-      }
-    }
-    .avatar {
-      width: 30px;
-      margin-left: 5px;
-      margin-right: 10px;
-    }
-  }
+}
 </style>
