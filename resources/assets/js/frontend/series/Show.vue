@@ -63,7 +63,7 @@ export default {
 
       query['include'] = 'posts'
 
-      this.$http.get(this.$endpoints.series + slug, { params: query}).then((series) => {
+      this.$http.get(this.$endpoints.series + slug, { params: query }).then((series) => {
         this.series = getData(series).data
         this.posts = this.series.posts.data
       })
