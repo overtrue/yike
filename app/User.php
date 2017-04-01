@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\Traits\UserAction;
 use Tymon\JWTAuth\Contracts\JWTSubject;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -9,7 +10,11 @@ use Overtrue\LaravelFollow\FollowTrait;
 
 class User extends Authenticatable implements JWTSubject
 {
-    use Notifiable, FollowTrait;
+    use UserAction, Notifiable, FollowTrait;
+
+    const USER_CREATE = 'user.create';
+    const USER_UPDATE = 'user.update';
+    const USER_DELETE = 'user.delete';
 
     /**
      * The attributes that are mass assignable.
@@ -32,6 +37,23 @@ class User extends Authenticatable implements JWTSubject
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+    public static function boot()
+    {
+        parent::boot();
+
+        static::creating(function($post){
+            static::setActionTypeName(self::USER_CREATE);
+        });
+
+        static::updating(function($post){
+            static::setActionTypeName(self::USER_UPDATE);
+        });
+
+        static::deleting(function($post){
+            static::setActionTypeName(self::USER_DELETE);
+        });
+    }
 
     public function posts()
     {
@@ -61,6 +83,11 @@ class User extends Authenticatable implements JWTSubject
     public function series()
     {
         return $this->hasMany(Series::class);
+    }
+
+    public function actions()
+    {
+        return $this->morphMany(UserAction::class, 'action');
     }
 
     public function getJWTIdentifier()

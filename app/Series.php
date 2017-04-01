@@ -2,12 +2,13 @@
 
 namespace App;
 
+use Translug;
 use Illuminate\Database\Eloquent\Model;
 
 class Series extends Model
 {
     protected $fillable = [
-        'user_id', 'title', 'post_cache',
+        'user_id', 'image_id', 'title', 'slug', 'description', 'post_cache', 'follower_cache',
     ];
 
     public static function boot()
@@ -16,7 +17,19 @@ class Series extends Model
 
         static::creating(function($series){
             $series->user_id = auth()->id();
+            $series->slug = self::makeUniqueSlug($series);
         });
+    }
+
+    public static function makeUniqueSlug($post)
+    {
+        $title = Translug::translug($post->title);
+
+        while (Series::whereSlug($title)->count()) {
+            $title = substr(mt_rand(10, 99), 0, 4)."-{$title}";
+        }
+
+        return $title;
     }
 
     public function user()
@@ -26,6 +39,11 @@ class Series extends Model
 
     public function posts()
     {
-        return $this->hasManyThrough(Post::class, 'series_post');
+        return $this->belongsToMany(Post::class, 'series_post');
+    }
+
+    public function image()
+    {
+        return $this->belongsTo(Image::class);
     }
 }

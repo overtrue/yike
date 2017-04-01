@@ -1,14 +1,10 @@
 <template>
   <div class="wrapper">
-    <el-row style="margin-bottom: 20px">
-      <el-col>
-        <el-button type="primary" @click="dialogFormVisible=!dialogFormVisible">
-          <i class="material-icons">add</i> 新增角色
-        </el-button>
-      </el-col>
-    </el-row>
-
-    <data-table api="roles" :columns="columns" @table-action="tableActions" :itemActions="itemActions"></data-table>
+    <data-table api="roles" :columns="columns" @table-action="tableActions" :itemActions="itemActions" :searchables="searchables">
+      <template slot="right-buttons">
+        <el-button @click="dialogFormVisible=!dialogFormVisible"><i class="material-icons">add</i> 新增角色</el-button>
+      </template>
+    </data-table>
 
     <el-dialog :title="currentRole.id?'修改角色':'新增角色'" v-model="dialogFormVisible" size="tiny" @close="onCloseForm">
       <role-form @canceled="onCloseForm" @succeed="onRoleCreated" :role="currentRole"></role-form>
@@ -31,6 +27,10 @@ export default {
       permissions: [],
       dialogFormVisible: false,
       editPermissionVisible: false,
+      searchables: {
+        name: 'Name',
+        display_name: 'Display Name',
+      },
       columns: [
         {
           prop: 'id',

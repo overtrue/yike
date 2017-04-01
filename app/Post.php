@@ -4,12 +4,18 @@ namespace App;
 
 use Translug;
 use Facades\Parsedown;
+use App\Traits\UserAction;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Post extends Model
 {
-    use SoftDeletes;
+    use SoftDeletes, UserAction;
+
+    const POST_VIEW = 'post.view';
+    const POST_PUBLISH = 'post.publish';
+    const POST_UPDATE = 'post.update';
+    const POST_DELETE = 'post.delete';
 
     const TYPE_MARKDOWN = 'markdown';
     const TYPE_HTML = 'html';
@@ -39,16 +45,29 @@ class Post extends Model
             $post->user_id = auth()->id();
             $post->content_original = $post->content_original ?: $post->content;
             $post->slug = self::makeUniqueSlug($post);
+            static::setActionTypeName(self::POST_PUBLISH);
+        });
+
+        static::updating(function($post){
+            if (self::$typeName != self::POST_VIEW) {
+                static::setActionTypeName(self::POST_UPDATE);
+            }
+        });
+
+        static::deleting(function($post){
+            static::setActionTypeName(self::POST_DELETE);
         });
 
         static::saving(function($post){
-            $post->last_edit_user_id = auth()->id();
-            $post->is_draft = (bool) $post->is_draft;
-            $post->is_spammed = (bool) $post->is_spammed;
+            if(auth()->check()) {
+                $post->last_edit_user_id = auth()->id();
+                $post->is_draft = (bool) $post->is_draft;
+                $post->is_spammed = (bool) $post->is_spammed;
 
-            if ($post->isDirty('content') && $post->type == self::TYPE_MARKDOWN) {
-                $post->content_original = $post->content;
-                $post->content = preg_replace('/<code>/', '<code class="language-php">', Parsedown::text($post->content));
+                if ($post->isDirty('content') && $post->type == self::TYPE_MARKDOWN) {
+                    $post->content_original = $post->content;
+                    $post->content = preg_replace('/<code>/', '<code class="language-php">', Parsedown::text($post->content));
+                }
             }
         });
     }

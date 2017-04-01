@@ -31,9 +31,19 @@ return [
             'directory' => 'avatars/{Y}/{m}/{d}',
         ],
 
+        // avatar origin extends default
+        'avatar_origin' => [
+            'directory' => 'avatars/origin/{Y}/{m}/{d}'
+        ],
+
         // post
         'post' => [
             'directory' => 'posts/{Y}/{m}/{d}',
+        ],
+
+        // series
+        'series' => [
+            'directory' => 'series/{Y}/{m}/{d}',
         ],
     ],
 ];

@@ -1,21 +1,17 @@
 <template>
   <div class="wrapper">
-    <el-row style="margin-bottom: 20px">
-      <el-col>
-        <el-button type="primary" @click="dialogFormVisible=!dialogFormVisible">
-          <i class="material-icons">add</i> 新增 Banner
-        </el-button>
-      </el-col>
-    </el-row>
-
-    <data-table api="banners" :columns="columns" @table-action="tableActions">
+    <data-table api="banners" :columns="columns" @table-action="tableActions" :searchables="searchables">
       <template slot="image" scope="props">
           <img class="w-100 my-3" :src="'/'+props.data.row.image.data.path">
+      </template>
+
+      <template slot="right-buttons">
+        <el-button @click="dialogFormVisible=!dialogFormVisible"><i class="material-icons">add</i> 新增 Banner</el-button>
       </template>
     </data-table>
 
     <el-dialog :title="currentBanner?'修改 Banner':'新增 Banner'" v-model="dialogFormVisible" size="small" @close="onCloseForm">
-      <banner-form @canceled="onCloseForm" @succeed="onBannerCreated" @preview="onPreview" :banner="currentBanner"></banner-form>
+      <banner-form @canceled="onCloseForm" @succeed="onBannerCreated" @preview="onPreview" :banner="currentBanner" :image="currentImage"></banner-form>
     </el-dialog>
     <el-dialog title="预览图片" v-model="previewImage" size="middle">
       <img class="w-100" :src="imagePath">
@@ -30,10 +26,14 @@
     components: { BannerForm },
     data() {
       return {
+        currentImage: undefined,
         currentBanner: undefined,
         dialogFormVisible: false,
         previewImage: false,
         imagePath: '',
+        searchables: {
+          title: 'Title',
+        },
         columns: [
           {
             prop: 'id',
@@ -71,6 +71,7 @@
       },
       onEdit(row) {
         this.currentBanner = row
+        this.currentImage = row.image.data
         this.dialogFormVisible = true
       },
       onDelete(row) {
@@ -84,11 +85,13 @@
       onBannerCreated() {
         this.$emit('reload')
         this.dialogFormVisible = false
-        this.currentBanner = {}
+        this.currentBanner = undefined
+        this.currentImage = undefined
       },
       onCloseForm() {
         this.dialogFormVisible = false
-        this.currentBanner = {}
+        this.currentBanner = undefined
+        this.currentImage = undefined
       },
       tableActions(action, data) {
         if (action == 'edit-item') {

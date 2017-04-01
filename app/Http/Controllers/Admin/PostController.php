@@ -15,7 +15,18 @@ class PostController extends ApiController
      */
     public function index(Request $request)
     {
-        $posts = Post::paginate($request->get('per_page', 20));
+        $posts = tap(Post::latest(), function ($query) use ($request) {
+            if ($request->keyword) {
+                $query->where('title', 'like', "%{$request->keyword}%")
+                        ->orWhere('slug', 'like', "%{$request->keyword}%");
+            } else {
+                foreach (['title', 'slug'] as $field) {
+                    if ($request->has($field)) {
+                        $query->where($field, 'like', "%{$request->$field}%");
+                    }
+                }
+            }
+        })->paginate($request->get('per_page', 20));
 
         return $this->response->collection($posts);
     }

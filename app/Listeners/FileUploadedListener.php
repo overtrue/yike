@@ -19,22 +19,38 @@ class FileUploadedListener
      */
     public function handle(FileUploaded $event)
     {
-        $file = $event->file;
         $result = $event->result;
 
+        $image = $this->createImage($event->file, $result, $event->strategy);
+
+        if ($event->strategy == 'avatar') auth()->user()->update(['avatar' => $result['url']]);
+
+        $result['image_id'] = $image->id;
+
+        return $result;
+    }
+
+    /**
+     * Create the image's record.
+     *
+     * @param  Illuminate\Http\UploadedFile $file
+     * @param  array $result
+     * @param  string $strategy
+     * @return array
+     */
+    public function createImage($file, $result, $strategy)
+    {
         [$width, $height] = getimagesize($file);
 
         $data = [
             'creator_id' => auth()->id(),
             'title' => $result['original_name'],
             'path' => $result['relative_url'],
-            'size' => "{$width} x {$height}",
+            'mime' => $result['mime'],
+            'size' => json_encode(['width' => $width, 'height' => $height]),
+            'strategy' => $strategy,
         ];
 
-        $image = Image::create($data);
-
-        $result['image_id'] = $image->id;
-
-        return $result;
+        return Image::create($data);
     }
 }

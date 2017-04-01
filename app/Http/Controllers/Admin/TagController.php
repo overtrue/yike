@@ -16,7 +16,17 @@ class TagController extends ApiController
      */
     public function index(Request $request)
     {
-        $tags = Tag::paginate($request->get('per_page', 20));
+        $tags = tap(Tag::latest(), function ($query) use ($request) {
+            if ($request->has('keyword')) {
+                $query->where('name', 'like', "%{$request->keyword}%");
+            } else {
+                foreach (['name'] as $field) {
+                    if ($request->has($field)) {
+                        $query->where($field, 'like', "%{$request->$field}%");
+                    }
+                }
+            }
+        })->paginate($request->get('per_page', 20));
 
         return $this->response->collection($tags);
     }

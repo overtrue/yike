@@ -1,25 +1,22 @@
 <template>
   <div class="wrapper">
-    <el-row style="margin-bottom: 20px">
-      <el-col>
-        <el-button type="primary" @click="dialogFormVisible=!dialogFormVisible">
-          <i class="material-icons">add</i> 新增用户
-        </el-button>
-      </el-col>
-    </el-row>
-
-    <data-table api="users" :columns="columns" @table-action="tableActions">
+    <data-table api="users" :columns="columns" @table-action="tableActions" :searchables="searchables">
       <template slot="avatar" scope="props">
           <img class="avatar" :src="props.data.row.avatar">
       </template>
+
       <template slot="admin" scope="props">
-        <el-tag
-          :type="props.data.row.is_admin ? 'primary' : 'success'"
-          close-transition>{{props.data.row.is_admin ? '管理员' : '成员'}}</el-tag>
+        <el-tag :type="props.data.row.is_admin ? 'success' : 'gray'">
+          {{props.data.row.is_admin ? '管理员' : '成员'}}
+        </el-tag>
+      </template>
+
+      <template slot="right-buttons">
+        <el-button @click="dialogFormVisible=!dialogFormVisible"><i class="material-icons">add</i> 新增用户</el-button>
       </template>
     </data-table>
 
-    <el-dialog title="currentUser.id?'修改用户':'新建用户'" v-model="dialogFormVisible" size="tiny">
+    <el-dialog :title="currentUser?'修改用户':'新建用户'" v-model="dialogFormVisible" size="tiny">
       <user-form @canceled="onCloseForm" @succeed="onUserCreated" :user="currentUser"></user-form>
     </el-dialog>
   </div>
@@ -32,8 +29,12 @@ export default {
   components: { UserForm },
   data() {
     return {
-      currentUser: {},
+      currentUser: undefined,
       dialogFormVisible: false,
+      searchables: {
+        name: 'Name',
+        email: 'Email',
+      },
       columns: [
         {
           prop: 'id',

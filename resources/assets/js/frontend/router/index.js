@@ -4,6 +4,7 @@ import beforeEach from './beforeEach'
 import NotFound from '../components/NotFound'
 import App from '../App'
 import { routes as home } from '../home'
+import { routes as series } from '../series'
 import { routes as auth } from '../auth'
 import { routes as user } from '../user'
 import { routes as post } from '../post'
@@ -20,7 +21,7 @@ const AppRoute = {
   path: '/',
   component: App,
   redirect: {name: 'home'},
-  children: [...auth, ...home, ...user, ...post]
+  children: [...auth, ...home, ...series, ...user, ...post]
 }
 
 const routes = [AppRoute, NotFoundRoute]

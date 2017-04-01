@@ -19,7 +19,15 @@ class BannerController extends ApiController
      */
     public function index(Request $request)
     {
-        $banners = Banner::paginate($request->get('per_page', 20));
+        $banners = tap(Banner::latest(), function ($query) use ($request) {
+            if ($request->has('keyword')) {
+                $query->where('title', 'like', "%{$request->keyword}%");
+            } else {
+                foreach (['title'] as $field) {
+                    $query->where($field, 'like', "%{$request->$field}%");
+                }
+            }
+        })->paginate($request->get('per_page', 20));
 
         return $this->response->collection($banners);
     }
@@ -35,7 +43,7 @@ class BannerController extends ApiController
         $data = $request->all();
 
         $data['enabled_at'] = Carbon::parse($request->get('enabled_at'));
-        $data['expired_at'] = Carbon::parse($request->get('expired_at', date('Y-m-d H:i:s', '+10 day')));
+        $data['expired_at'] = Carbon::parse($request->get('expired_at'));
 
         return $this->response->item(Banner::create($data));
     }

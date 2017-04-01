@@ -126,7 +126,7 @@ export default {
       this.$http[method](url, this.form).then((post) => {
         localforage.removeItem("post.cache")
 
-        this.form.title = this.form.content = ''
+        this.form.cover = this.form.title = this.form.content = ''
         this.editor.setValue('')
 
         this.$message.success(messageType + '成功!')
@@ -142,7 +142,8 @@ export default {
       this.form.cover = null
     },
     setupEditor() {
-      var vm = this
+      let vm = this
+
       this.editor = CodeMirror.fromTextArea(document.getElementById('post-content'), {
         keyMap: "sublime",
         mode:  "markdown",
@@ -187,9 +188,9 @@ export default {
       this.editor.setValue(this.editor.getValue().replace(this.getPlaceholderOfContentImage(name), result))
     },
     setupCoverUploader() {
-      var vm = this
+      let vm = this
 
-      const coverUploader = new FineUploader.FineUploaderBasic(Object.assign({}, this.uploadConfig, {
+      let coverUploader = new FineUploader.FineUploaderBasic(Object.assign({}, this.uploadConfig, {
         button: document.getElementById('cover-picker'),
         callbacks: {
           onComplete(id, name, responseJSON) {
@@ -204,19 +205,21 @@ export default {
     },
 
     setupContentImageUploader() {
-      var vm = this
+      let vm = this
+
       vm.editor.on('paste', function(editor, event){
         if (event.clipboardData.types.indexOf("Files") >= 0) {
           event.preventDefault()
         }
       })
-      const contentUploader = new FineUploader.FineUploaderBasic(Object.assign({}, this.uploadConfig, {
+
+      let contentUploader = new FineUploader.FineUploaderBasic(Object.assign({}, this.uploadConfig, {
         paste: {
           targetElement: document.querySelector('.CodeMirror')
         },
         callbacks: {
           onPasteReceived(file) {
-            var promise = new FineUploader.Promise();
+            let promise = new FineUploader.Promise();
 
             if (typeof file.type == 'undefined' || file.type.indexOf('image/')) {
               return promise.failure('not a image.')

@@ -14,19 +14,19 @@
             </template>
             <template v-else scope>
               <router-link :to="{name:'post.new'}" class="nav-item" v-if="$route.name != 'post.new'"><i class="material-icons">add</i></router-link>
-              <a href="#" class="nav-item"><i class="material-icons">notifications</i></a>
+              <router-link :to="{name:'user.notification'}" class="nav-item"><i class="material-icons">notifications</i></router-link>
               <div class="nav-item">
                 <div class="dropdown">
                   <div class="dropdown-toggle" id="nav-right-action-dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    <avatar size="xxs"></avatar>
+                    <avatar :user="currentUser" size="xxs"></avatar>
                   </div>
                   <div class="dropdown-menu text-center dropdown-menu-right" aria-labelledby="nav-right-action-dropdown">
-                      <router-link class="dropdown-item" :to="{ name:'user.show', params: { username: currentUser.username }}">个人主页</router-link>
-                      <router-link class="dropdown-item" :to="{ name:'user.profile' }">账号设置</router-link>
-                      <a class="dropdown-item" href="/topics" v-if="currentUser.is_admin">我的专栏</a>
-                      <a class="dropdown-item" href="/dashboard" v-if="currentUser.is_admin">管理中心</a>
-                      <div class="dropdown-divider"></div>
-                      <a class="dropdown-item" href="#" @click="logout">注销</a>
+                    <router-link class="dropdown-item" :to="{ name:'user.show', params: { username: currentUser.username }}">个人主页</router-link>
+                    <router-link class="dropdown-item" :to="{ name:'user.profile' }">账号设置</router-link>
+                    <router-link class="dropdown-item" :to="{ name:'series.list' }" v-if="currentUser.is_admin">我的专栏</router-link>
+                    <a class="dropdown-item" href="/dashboard" v-if="currentUser.is_admin">管理中心</a>
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item" href="#" @click="logout">注销</a>
                   </div>
                 </div>
               </div>
