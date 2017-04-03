@@ -2,8 +2,9 @@ import Vue from 'vue'
 import { sync } from 'vuex-router-sync'
 import {vuex as store, router} from "./frontend"
 import Root from "./frontend/Root"
-import { Message } from 'element-ui'
+import { Message, Input } from 'element-ui'
 import 'element-ui/lib/theme-default/message.css'
+import 'element-ui/lib/theme-default/input.css'
 
 /**
 * $http plugin based on axios
@@ -30,6 +31,7 @@ Vue.use(httpPlugin, { store, router })
 * Make $bus avaible to all components
 */
 Vue.use(eventbus)
+Vue.use(Input)
 Vue.prototype.$message = Message
 Vue.prototype.$config = require("./config")
 Vue.prototype.$endpoints = require("./frontend/endpoints").default

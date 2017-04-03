@@ -12,7 +12,7 @@
       </div>
     </div>
     <div class="user-card-actions d-flex justify-content-end align-items-center">
-      <follow-button :user="user"></follow-button>
+      <follow-button :item="user"></follow-button>
     </div>
   </div>
 </template>
