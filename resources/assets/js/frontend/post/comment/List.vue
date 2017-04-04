@@ -6,7 +6,7 @@
     </div>
     <div class="editor d-flex align-items-start my-4">
       <template v-if="isLogged">
-        <img width="33" :src="currentUser.avatar" class="avatar mx-4">
+        <avatar :user="currentUser" size="xxs" class="mx-4"></avatar>
         <div class="editor-input">
           <el-input
             type="textarea"
@@ -29,7 +29,7 @@
     </div>
     <div class="comment-list">
       <div class="item mt-4 d-flex align-items-start" v-for="comment in list">
-        <img width="33" :src="comment.user.data.avatar" class="avatar mx-4">
+        <avatar :user="comment.user.data" size="xxs" class="mx-4"></avatar>
         <section class="comment-body" v-html="comment.content"></section>
       </div>
     </div>
@@ -38,8 +38,10 @@
 
 <script>
 import { mapGetters } from 'vuex'
+import Avatar from "home/Avatar"
 
 export default {
+  components: { Avatar },
   props: {
     list: {
       type: Array,
