@@ -7,6 +7,7 @@ import { routes as home } from '../home'
 import { routes as auth } from 'app/auth'
 import { routes as user } from '../user'
 import { routes as post } from '../post'
+import { routes as comment } from '../comment'
 import { routes as tag } from '../tag'
 import { routes as role } from '../role'
 import { routes as series } from '../series'
@@ -30,6 +31,7 @@ const routes = [{
     ...home,
     ...user,
     ...post,
+    ...comment,
     ...tag,
     ...role,
     ...series,

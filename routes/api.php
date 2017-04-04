@@ -18,14 +18,17 @@ Route::group([
         Route::patch('/me', 'MeController@update');
         Route::get('/me/followers', 'MeController@getFollowers');
         Route::post('/me/followers', 'MeController@postFollowers');
+        Route::post('/me/followers/series', 'MeController@postFollowSeries');
         Route::get('/me/notifications', 'MeController@getNotifications');
         Route::post('/auth/token/revoke', 'AuthController@revokeToken');
         Route::post('/posts', 'PostController@store');
         Route::patch('/posts/{id}', 'PostController@update');
+        Route::post('/posts/{id}/comment', 'PostController@storeComment');
 
         Route::group(['prefix' => 'dashboard', 'namespace' => 'Admin'], function(){
             Route::resource('users', 'UserController');
             Route::resource('posts', 'PostController');
+            Route::resource('comments', 'CommentController');
             Route::resource('tags', 'TagController');
             Route::resource('roles', 'RoleController');
             Route::get('permissions', 'RoleController@permissions');

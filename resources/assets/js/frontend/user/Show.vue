@@ -20,7 +20,7 @@
                 </div>
               </div>
               <div class="ml-auto text-right">
-                <follow-button :user="user"></follow-button>
+                <follow-button :item="user"></follow-button>
               </div>
             </div>
             <div class="post-menus mt-5 pt-3">

@@ -4,9 +4,12 @@ namespace App;
 
 use Translug;
 use Illuminate\Database\Eloquent\Model;
+use Overtrue\LaravelFollow\FollowerTrait;
 
 class Series extends Model
 {
+    use FollowerTrait;
+
     protected $fillable = [
         'user_id', 'image_id', 'title', 'slug', 'description', 'post_cache', 'follower_cache',
     ];
