@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Post;
 use App\User;
+use App\Comment;
 use App\Events\ViewPost;
 use App\Http\Requests\PostRequest;
 use Illuminate\Http\Request;
@@ -43,6 +44,22 @@ class PostController extends ApiController
     public function store(PostRequest $request)
     {
         return $this->response->item(Post::create($request->all()));
+    }
+
+    /**
+     * Store a newly created comment.
+     *
+     * @param  \Illuminate\Http\Request $request
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function storeComment(Request $request, $id)
+    {
+        $post = Post::whereId($id)->orWhere('slug', $id)->firstOrFail();
+
+        $comment = $post->comments()->create($request->all());
+
+        return $this->response->item($comment);
     }
 
     /**

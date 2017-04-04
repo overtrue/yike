@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "aa531bc9a89b6effa12fe48142fab0e0",
-    "content-hash": "750ca2939dd67af6b525748c84d1d175",
+    "hash": "957e6214e544c0a78e2ee17b70b92a41",
+    "content-hash": "39a357dab0fe7bab2aea02074957e379",
     "packages": [
         {
             "name": "caouecs/laravel-lang",
@@ -17,7 +17,7 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://files.phpcomposer.com/files/caouecs/Laravel-lang/4787a876ec8234f5e8fa8c0b2aee400d5732d631.zip",
+                "url": "https://api.github.com/repos/caouecs/Laravel-lang/zipball/4787a876ec8234f5e8fa8c0b2aee400d5732d631",
                 "reference": "4787a876ec8234f5e8fa8c0b2aee400d5732d631",
                 "shasum": ""
             },
@@ -73,7 +73,7 @@
                     "XdgBaseDir\\": "src/"
                 }
             },
-            "notification-url": "http://pkg.overtrue.me/downloads/",
+            "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "MIT"
             ],
@@ -111,7 +111,7 @@
                     "Doctrine\\Common\\Inflector\\": "lib/"
                 }
             },
-            "notification-url": "http://pkg.overtrue.me/downloads/",
+            "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "MIT"
             ],
@@ -157,7 +157,7 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://files.phpcomposer.com/files/erusev/parsedown/1bf24f7334fe16c88bf9d467863309ceaf285b01.zip",
+                "url": "https://api.github.com/repos/erusev/parsedown/zipball/1bf24f7334fe16c88bf9d467863309ceaf285b01",
                 "reference": "1bf24f7334fe16c88bf9d467863309ceaf285b01",
                 "shasum": ""
             },
@@ -199,7 +199,7 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://files.phpcomposer.com/files/guzzle/guzzle/8d6c6cc55186db87b7dc5009827429ba4e9dc006.zip",
+                "url": "https://api.github.com/repos/guzzle/guzzle/zipball/8d6c6cc55186db87b7dc5009827429ba4e9dc006",
                 "reference": "8d6c6cc55186db87b7dc5009827429ba4e9dc006",
                 "shasum": ""
             },
@@ -285,7 +285,7 @@
                     "src/functions_include.php"
                 ]
             },
-            "notification-url": "http://pkg.overtrue.me/downloads/",
+            "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "MIT"
             ],
@@ -312,7 +312,7 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://files.phpcomposer.com/files/guzzle/psr7/f5b8a8512e2b58b0071a7280e39f14f72e05d87c.zip",
+                "url": "https://api.github.com/repos/guzzle/psr7/zipball/f5b8a8512e2b58b0071a7280e39f14f72e05d87c",
                 "reference": "f5b8a8512e2b58b0071a7280e39f14f72e05d87c",
                 "shasum": ""
             },
@@ -406,7 +406,7 @@
                     "Intervention\\Image\\": "src/Intervention/Image"
                 }
             },
-            "notification-url": "http://pkg.overtrue.me/downloads/",
+            "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "MIT"
             ],
@@ -459,7 +459,7 @@
                     "JakubOnderka\\PhpConsoleColor": "src/"
                 }
             },
-            "notification-url": "http://pkg.overtrue.me/downloads/",
+            "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "BSD-2-Clause"
             ],
@@ -503,7 +503,7 @@
                     "JakubOnderka\\PhpConsoleHighlighter": "src/"
                 }
             },
-            "notification-url": "http://pkg.overtrue.me/downloads/",
+            "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "MIT"
             ],
@@ -526,7 +526,7 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://files.phpcomposer.com/files/JellyBool/translug/c055e25378223f47ee77a9f097fea47baa895366.zip",
+                "url": "https://api.github.com/repos/JellyBool/translug/zipball/c055e25378223f47ee77a9f097fea47baa895366",
                 "reference": "c055e25378223f47ee77a9f097fea47baa895366",
                 "shasum": ""
             },
@@ -574,7 +574,7 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://files.phpcomposer.com/files/laravel/framework/6cf379ec34d08bcdc9c7183e369a8fdf04ade80d.zip",
+                "url": "https://api.github.com/repos/laravel/framework/zipball/6cf379ec34d08bcdc9c7183e369a8fdf04ade80d",
                 "reference": "6cf379ec34d08bcdc9c7183e369a8fdf04ade80d",
                 "shasum": ""
             },
@@ -732,7 +732,7 @@
                     "Laravel\\Tinker\\": "src/"
                 }
             },
-            "notification-url": "http://pkg.overtrue.me/downloads/",
+            "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "MIT"
             ],
@@ -761,7 +761,7 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://files.phpcomposer.com/files/thephpleague/flysystem/78b5cc4feb61a882302df4fbaf63b7662e5e4ccd.zip",
+                "url": "https://api.github.com/repos/thephpleague/flysystem/zipball/78b5cc4feb61a882302df4fbaf63b7662e5e4ccd",
                 "reference": "78b5cc4feb61a882302df4fbaf63b7662e5e4ccd",
                 "shasum": ""
             },
@@ -875,7 +875,7 @@
                     "League\\Fractal\\": "src"
                 }
             },
-            "notification-url": "http://pkg.overtrue.me/downloads/",
+            "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "MIT"
             ],
@@ -907,7 +907,7 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://files.phpcomposer.com/files/Seldaek/monolog/1e044bc4b34e91743943479f1be7a1d5eb93add0.zip",
+                "url": "https://api.github.com/repos/Seldaek/monolog/zipball/1e044bc4b34e91743943479f1be7a1d5eb93add0",
                 "reference": "1e044bc4b34e91743943479f1be7a1d5eb93add0",
                 "shasum": ""
             },
@@ -1001,7 +1001,7 @@
                     "Cron\\": "src/Cron/"
                 }
             },
-            "notification-url": "http://pkg.overtrue.me/downloads/",
+            "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "MIT"
             ],
@@ -1057,7 +1057,7 @@
                     "Namshi\\JOSE\\": "src/Namshi/JOSE/"
                 }
             },
-            "notification-url": "http://pkg.overtrue.me/downloads/",
+            "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "MIT"
             ],
@@ -1115,7 +1115,7 @@
                     "Carbon\\": "src/Carbon/"
                 }
             },
-            "notification-url": "http://pkg.overtrue.me/downloads/",
+            "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "MIT"
             ],
@@ -1145,7 +1145,7 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://files.phpcomposer.com/files/nikic/PHP-Parser/2b9e2f71b722f7c53918ab0c25f7646c2013f17d.zip",
+                "url": "https://api.github.com/repos/nikic/PHP-Parser/zipball/2b9e2f71b722f7c53918ab0c25f7646c2013f17d",
                 "reference": "2b9e2f71b722f7c53918ab0c25f7646c2013f17d",
                 "shasum": ""
             },
@@ -1196,7 +1196,7 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://files.phpcomposer.com/files/overtrue/laravel-follow/f3c5cb079e8090822977ad2912499a21939f2b98.zip",
+                "url": "https://api.github.com/repos/overtrue/laravel-follow/zipball/f3c5cb079e8090822977ad2912499a21939f2b98",
                 "reference": "f3c5cb079e8090822977ad2912499a21939f2b98",
                 "shasum": ""
             },
@@ -1252,7 +1252,7 @@
                     "src/helpers.php"
                 ]
             },
-            "notification-url": "http://pkg.overtrue.me/downloads/",
+            "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "MIT"
             ],
@@ -1293,7 +1293,7 @@
                     "Overtrue\\LaravelSocialite\\": "src/"
                 }
             },
-            "notification-url": "http://pkg.overtrue.me/downloads/",
+            "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "MIT"
             ],
@@ -1312,12 +1312,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/overtrue/laravel-uploader.git",
-                "reference": "5250422144ec81b57aa9217faa2bf6e32d03a97e"
+                "reference": "919fc97838bd0b0e28699970b015135b5fb0ccf4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://files.phpcomposer.com/files/overtrue/laravel-uploader/5250422144ec81b57aa9217faa2bf6e32d03a97e.zip",
-                "reference": "5250422144ec81b57aa9217faa2bf6e32d03a97e",
+                "url": "https://api.github.com/repos/overtrue/laravel-uploader/zipball/919fc97838bd0b0e28699970b015135b5fb0ccf4",
+                "reference": "919fc97838bd0b0e28699970b015135b5fb0ccf4",
                 "shasum": ""
             },
             "require": {
@@ -1342,7 +1342,7 @@
                     "email": "i@overtrue.me"
                 }
             ],
-            "time": "2017-02-24 03:50:09"
+            "time": "2017-04-02 05:55:28"
         },
         {
             "name": "overtrue/socialite",
@@ -1354,7 +1354,7 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://files.phpcomposer.com/files/overtrue/socialite/a8ac52707db5fbef78d025d5d31c13da615ecb2d.zip",
+                "url": "https://api.github.com/repos/overtrue/socialite/zipball/a8ac52707db5fbef78d025d5d31c13da615ecb2d",
                 "reference": "a8ac52707db5fbef78d025d5d31c13da615ecb2d",
                 "shasum": ""
             },
@@ -1404,7 +1404,7 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://files.phpcomposer.com/files/paragonie/random_compat/634bae8e911eefa89c1abfbf1b66da679ac8f54d.zip",
+                "url": "https://api.github.com/repos/paragonie/random_compat/zipball/634bae8e911eefa89c1abfbf1b66da679ac8f54d",
                 "reference": "634bae8e911eefa89c1abfbf1b66da679ac8f54d",
                 "shasum": ""
             },
@@ -1472,7 +1472,7 @@
                     "Predis\\": "src/"
                 }
             },
-            "notification-url": "http://pkg.overtrue.me/downloads/",
+            "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "MIT"
             ],
@@ -1520,7 +1520,7 @@
                     "Psr\\Http\\Message\\": "src/"
                 }
             },
-            "notification-url": "http://pkg.overtrue.me/downloads/",
+            "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "MIT"
             ],
@@ -1570,7 +1570,7 @@
                     "Psr\\Log\\": "Psr/Log/"
                 }
             },
-            "notification-url": "http://pkg.overtrue.me/downloads/",
+            "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "MIT"
             ],
@@ -1599,7 +1599,7 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://files.phpcomposer.com/files/bobthecow/psysh/1dd4bbbc64d71e7ec075ffe82b42d9e096dc8d5e.zip",
+                "url": "https://api.github.com/repos/bobthecow/psysh/zipball/1dd4bbbc64d71e7ec075ffe82b42d9e096dc8d5e",
                 "reference": "1dd4bbbc64d71e7ec075ffe82b42d9e096dc8d5e",
                 "shasum": ""
             },
@@ -1672,7 +1672,7 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://files.phpcomposer.com/files/ramsey/uuid/4ae32dd9ab8860a4bbd750ad269cba7f06f7934e.zip",
+                "url": "https://api.github.com/repos/ramsey/uuid/zipball/4ae32dd9ab8860a4bbd750ad269cba7f06f7934e",
                 "reference": "4ae32dd9ab8860a4bbd750ad269cba7f06f7934e",
                 "shasum": ""
             },
@@ -1776,7 +1776,7 @@
                     "lib/swift_required.php"
                 ]
             },
-            "notification-url": "http://pkg.overtrue.me/downloads/",
+            "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "MIT"
             ],
@@ -1808,7 +1808,7 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://files.phpcomposer.com/files/symfony/console/28fb243a2b5727774ca309ec2d92da240f1af0dd.zip",
+                "url": "https://api.github.com/repos/symfony/console/zipball/28fb243a2b5727774ca309ec2d92da240f1af0dd",
                 "reference": "28fb243a2b5727774ca309ec2d92da240f1af0dd",
                 "shasum": ""
             },
@@ -1871,7 +1871,7 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://files.phpcomposer.com/files/symfony/css-selector/a48f13dc83c168f1253a5d2a5a4fb46c36244c4c.zip",
+                "url": "https://api.github.com/repos/symfony/css-selector/zipball/a48f13dc83c168f1253a5d2a5a4fb46c36244c4c",
                 "reference": "a48f13dc83c168f1253a5d2a5a4fb46c36244c4c",
                 "shasum": ""
             },
@@ -1924,7 +1924,7 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://files.phpcomposer.com/files/symfony/debug/b90c9f91ad8ac37d9f114e369042d3226b34dc1a.zip",
+                "url": "https://api.github.com/repos/symfony/debug/zipball/b90c9f91ad8ac37d9f114e369042d3226b34dc1a",
                 "reference": "b90c9f91ad8ac37d9f114e369042d3226b34dc1a",
                 "shasum": ""
             },
@@ -1981,7 +1981,7 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://files.phpcomposer.com/files/symfony/event-dispatcher/b7a1b9e0a0f623ce43b4c8d775eb138f190c9d8d.zip",
+                "url": "https://api.github.com/repos/symfony/event-dispatcher/zipball/b7a1b9e0a0f623ce43b4c8d775eb138f190c9d8d",
                 "reference": "b7a1b9e0a0f623ce43b4c8d775eb138f190c9d8d",
                 "shasum": ""
             },
@@ -2041,7 +2041,7 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://files.phpcomposer.com/files/symfony/finder/92d7476d2df60cd851a3e13e078664b1deb8ce10.zip",
+                "url": "https://api.github.com/repos/symfony/finder/zipball/92d7476d2df60cd851a3e13e078664b1deb8ce10",
                 "reference": "92d7476d2df60cd851a3e13e078664b1deb8ce10",
                 "shasum": ""
             },
@@ -2090,7 +2090,7 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://files.phpcomposer.com/files/symfony/http-foundation/c57009887010eb4e58bfca2970314a5b820b24b9.zip",
+                "url": "https://api.github.com/repos/symfony/http-foundation/zipball/c57009887010eb4e58bfca2970314a5b820b24b9",
                 "reference": "c57009887010eb4e58bfca2970314a5b820b24b9",
                 "shasum": ""
             },
@@ -2143,7 +2143,7 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://files.phpcomposer.com/files/symfony/http-kernel/bc909e85b8585c9edf043d0fca871308c41bb9b4.zip",
+                "url": "https://api.github.com/repos/symfony/http-kernel/zipball/bc909e85b8585c9edf043d0fca871308c41bb9b4",
                 "reference": "bc909e85b8585c9edf043d0fca871308c41bb9b4",
                 "shasum": ""
             },
@@ -2249,7 +2249,7 @@
                     "bootstrap.php"
                 ]
             },
-            "notification-url": "http://pkg.overtrue.me/downloads/",
+            "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "MIT"
             ],
@@ -2306,7 +2306,7 @@
                     "bootstrap.php"
                 ]
             },
-            "notification-url": "http://pkg.overtrue.me/downloads/",
+            "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "MIT"
             ],
@@ -2358,7 +2358,7 @@
                     "Symfony\\Polyfill\\Util\\": ""
                 }
             },
-            "notification-url": "http://pkg.overtrue.me/downloads/",
+            "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "MIT"
             ],
@@ -2392,7 +2392,7 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://files.phpcomposer.com/files/symfony/process/68bfa8c83f24c0ac04ea7193bcdcda4519f41892.zip",
+                "url": "https://api.github.com/repos/symfony/process/zipball/68bfa8c83f24c0ac04ea7193bcdcda4519f41892",
                 "reference": "68bfa8c83f24c0ac04ea7193bcdcda4519f41892",
                 "shasum": ""
             },
@@ -2441,7 +2441,7 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://files.phpcomposer.com/files/symfony/routing/d6605f9a5767bc5bc4895e1c762ba93964608aee.zip",
+                "url": "https://api.github.com/repos/symfony/routing/zipball/d6605f9a5767bc5bc4895e1c762ba93964608aee",
                 "reference": "d6605f9a5767bc5bc4895e1c762ba93964608aee",
                 "shasum": ""
             },
@@ -2516,7 +2516,7 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://files.phpcomposer.com/files/symfony/translation/0e1b15ce8fbf3890f4ccdac430ed5e07fdfe0690.zip",
+                "url": "https://api.github.com/repos/symfony/translation/zipball/0e1b15ce8fbf3890f4ccdac430ed5e07fdfe0690",
                 "reference": "0e1b15ce8fbf3890f4ccdac430ed5e07fdfe0690",
                 "shasum": ""
             },
@@ -2580,7 +2580,7 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://files.phpcomposer.com/files/symfony/var-dumper/4100f347aff890bc16b0b4b42843b599db257b2d.zip",
+                "url": "https://api.github.com/repos/symfony/var-dumper/zipball/4100f347aff890bc16b0b4b42843b599db257b2d",
                 "reference": "4100f347aff890bc16b0b4b42843b599db257b2d",
                 "shasum": ""
             },
@@ -2668,7 +2668,7 @@
                     "TijsVerkoyen\\CssToInlineStyles\\": "src"
                 }
             },
-            "notification-url": "http://pkg.overtrue.me/downloads/",
+            "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "BSD-3-Clause"
             ],
@@ -2693,7 +2693,7 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://files.phpcomposer.com/files/tymondesigns/jwt-auth/41c2cffd8454bb5b8134c06c87721b22950939e0.zip",
+                "url": "https://api.github.com/repos/tymondesigns/jwt-auth/zipball/41c2cffd8454bb5b8134c06c87721b22950939e0",
                 "reference": "41c2cffd8454bb5b8134c06c87721b22950939e0",
                 "shasum": ""
             },
@@ -2779,7 +2779,7 @@
                     "Dotenv\\": "src/"
                 }
             },
-            "notification-url": "http://pkg.overtrue.me/downloads/",
+            "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "BSD-3-Clause-Attribution"
             ],
@@ -2835,7 +2835,7 @@
                     "Doctrine\\Instantiator\\": "src/Doctrine/Instantiator/"
                 }
             },
-            "notification-url": "http://pkg.overtrue.me/downloads/",
+            "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "MIT"
             ],
@@ -2885,7 +2885,7 @@
                     "Faker\\": "src/Faker/"
                 }
             },
-            "notification-url": "http://pkg.overtrue.me/downloads/",
+            "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "MIT"
             ],
@@ -2937,7 +2937,7 @@
                     "hamcrest/Hamcrest.php"
                 ]
             },
-            "notification-url": "http://pkg.overtrue.me/downloads/",
+            "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "BSD"
             ],
@@ -2957,7 +2957,7 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://files.phpcomposer.com/files/padraic/mockery/6fdb61243844dc924071d3404bb23994ea0b6856.zip",
+                "url": "https://api.github.com/repos/padraic/mockery/zipball/6fdb61243844dc924071d3404bb23994ea0b6856",
                 "reference": "6fdb61243844dc924071d3404bb23994ea0b6856",
                 "shasum": ""
             },
@@ -3039,7 +3039,7 @@
                     "DeepCopy\\": "src/DeepCopy/"
                 }
             },
-            "notification-url": "http://pkg.overtrue.me/downloads/",
+            "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "MIT"
             ],
@@ -3087,7 +3087,7 @@
                     ]
                 }
             },
-            "notification-url": "http://pkg.overtrue.me/downloads/",
+            "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "MIT"
             ],
@@ -3140,7 +3140,7 @@
                     ]
                 }
             },
-            "notification-url": "http://pkg.overtrue.me/downloads/",
+            "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "MIT"
             ],
@@ -3188,7 +3188,7 @@
                     ]
                 }
             },
-            "notification-url": "http://pkg.overtrue.me/downloads/",
+            "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "MIT"
             ],
@@ -3210,7 +3210,7 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://files.phpcomposer.com/files/phpspec/prophecy/93d39f1f7f9326d746203c7c056f300f7f126073.zip",
+                "url": "https://api.github.com/repos/phpspec/prophecy/zipball/93d39f1f7f9326d746203c7c056f300f7f126073",
                 "reference": "93d39f1f7f9326d746203c7c056f300f7f126073",
                 "shasum": ""
             },
@@ -3265,16 +3265,16 @@
         },
         {
             "name": "phpunit/php-code-coverage",
-            "version": "4.0.7",
+            "version": "4.0.8",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/php-code-coverage.git",
-                "reference": "09e2277d14ea467e5a984010f501343ef29ffc69"
+                "reference": "ef7b2f56815df854e66ceaee8ebe9393ae36a40d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://files.phpcomposer.com/files/sebastianbergmann/php-code-coverage/09e2277d14ea467e5a984010f501343ef29ffc69.zip",
-                "reference": "09e2277d14ea467e5a984010f501343ef29ffc69",
+                "url": "https://api.github.com/repos/sebastianbergmann/php-code-coverage/zipball/ef7b2f56815df854e66ceaee8ebe9393ae36a40d",
+                "reference": "ef7b2f56815df854e66ceaee8ebe9393ae36a40d",
                 "shasum": ""
             },
             "require": {
@@ -3324,7 +3324,7 @@
                 "testing",
                 "xunit"
             ],
-            "time": "2017-03-01 09:12:17"
+            "time": "2017-04-02 07:44:40"
         },
         {
             "name": "phpunit/php-file-iterator",
@@ -3354,7 +3354,7 @@
                     "src/"
                 ]
             },
-            "notification-url": "http://pkg.overtrue.me/downloads/",
+            "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "BSD-3-Clause"
             ],
@@ -3396,7 +3396,7 @@
                     "src/"
                 ]
             },
-            "notification-url": "http://pkg.overtrue.me/downloads/",
+            "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "BSD-3-Clause"
             ],
@@ -3424,7 +3424,7 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://files.phpcomposer.com/files/sebastianbergmann/php-timer/3dcf38ca72b158baf0bc245e9184d3fdffa9c46f.zip",
+                "url": "https://api.github.com/repos/sebastianbergmann/php-timer/zipball/3dcf38ca72b158baf0bc245e9184d3fdffa9c46f",
                 "reference": "3dcf38ca72b158baf0bc245e9184d3fdffa9c46f",
                 "shasum": ""
             },
@@ -3473,7 +3473,7 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://files.phpcomposer.com/files/sebastianbergmann/php-token-stream/e03f8f67534427a787e21a385a67ec3ca6978ea7.zip",
+                "url": "https://api.github.com/repos/sebastianbergmann/php-token-stream/zipball/e03f8f67534427a787e21a385a67ec3ca6978ea7",
                 "reference": "e03f8f67534427a787e21a385a67ec3ca6978ea7",
                 "shasum": ""
             },
@@ -3514,16 +3514,16 @@
         },
         {
             "name": "phpunit/phpunit",
-            "version": "5.7.17",
+            "version": "5.7.19",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/phpunit.git",
-                "reference": "68752b665d3875f9a38a357e3ecb35c79f8673bf"
+                "reference": "69c4f49ff376af2692bad9cebd883d17ebaa98a1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://files.phpcomposer.com/files/sebastianbergmann/phpunit/68752b665d3875f9a38a357e3ecb35c79f8673bf.zip",
-                "reference": "68752b665d3875f9a38a357e3ecb35c79f8673bf",
+                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/69c4f49ff376af2692bad9cebd883d17ebaa98a1",
+                "reference": "69c4f49ff376af2692bad9cebd883d17ebaa98a1",
                 "shasum": ""
             },
             "require": {
@@ -3592,7 +3592,7 @@
                 "testing",
                 "xunit"
             ],
-            "time": "2017-03-19 16:52:12"
+            "time": "2017-04-03 02:22:27"
         },
         {
             "name": "phpunit/phpunit-mock-objects",
@@ -3634,7 +3634,7 @@
                     "src/"
                 ]
             },
-            "notification-url": "http://pkg.overtrue.me/downloads/",
+            "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "BSD-3-Clause"
             ],
@@ -3663,7 +3663,7 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://files.phpcomposer.com/files/sebastianbergmann/code-unit-reverse-lookup/4419fcdb5eabb9caa61a27c7a1db532a6b55dd18.zip",
+                "url": "https://api.github.com/repos/sebastianbergmann/code-unit-reverse-lookup/zipball/4419fcdb5eabb9caa61a27c7a1db532a6b55dd18",
                 "reference": "4419fcdb5eabb9caa61a27c7a1db532a6b55dd18",
                 "shasum": ""
             },
@@ -3731,7 +3731,7 @@
                     "src/"
                 ]
             },
-            "notification-url": "http://pkg.overtrue.me/downloads/",
+            "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "BSD-3-Clause"
             ],
@@ -3793,7 +3793,7 @@
                     "src/"
                 ]
             },
-            "notification-url": "http://pkg.overtrue.me/downloads/",
+            "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "BSD-3-Clause"
             ],
@@ -3845,7 +3845,7 @@
                     "src/"
                 ]
             },
-            "notification-url": "http://pkg.overtrue.me/downloads/",
+            "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "BSD-3-Clause"
             ],
@@ -3897,7 +3897,7 @@
                     "src/"
                 ]
             },
-            "notification-url": "http://pkg.overtrue.me/downloads/",
+            "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "BSD-3-Clause"
             ],
@@ -3965,7 +3965,7 @@
                     "src/"
                 ]
             },
-            "notification-url": "http://pkg.overtrue.me/downloads/",
+            "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "BSD-3-Clause"
             ],
@@ -4014,7 +4014,7 @@
                     "src/"
                 ]
             },
-            "notification-url": "http://pkg.overtrue.me/downloads/",
+            "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "BSD-3-Clause"
             ],
@@ -4059,7 +4059,7 @@
                     "src/"
                 ]
             },
-            "notification-url": "http://pkg.overtrue.me/downloads/",
+            "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "BSD-3-Clause"
             ],
@@ -4109,7 +4109,7 @@
                     "src/"
                 ]
             },
-            "notification-url": "http://pkg.overtrue.me/downloads/",
+            "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "BSD-3-Clause"
             ],
@@ -4151,7 +4151,7 @@
                     "src/"
                 ]
             },
-            "notification-url": "http://pkg.overtrue.me/downloads/",
+            "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "BSD-3-Clause"
             ],
@@ -4176,7 +4176,7 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://files.phpcomposer.com/files/symfony/yaml/093e416ad096355149e265ea2e4cc1f9ee40ab1a.zip",
+                "url": "https://api.github.com/repos/symfony/yaml/zipball/093e416ad096355149e265ea2e4cc1f9ee40ab1a",
                 "reference": "093e416ad096355149e265ea2e4cc1f9ee40ab1a",
                 "shasum": ""
             },
@@ -4253,7 +4253,7 @@
                     "Webmozart\\Assert\\": "src/"
                 }
             },
-            "notification-url": "http://pkg.overtrue.me/downloads/",
+            "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "MIT"
             ],

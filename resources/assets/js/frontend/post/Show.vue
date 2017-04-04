@@ -54,6 +54,7 @@
             <user-card :user="user"></user-card>
           </div>
         </div>
+        <comment-list :list="comments"></comment-list>
       </div>
     </div>
   </div>
@@ -69,6 +70,7 @@ import RelativeTime from "home/RelativeTime"
 import { getData } from 'utils/get'
 import { mapGetters } from "vuex"
 import Prism from "../../plugins/prism"
+import CommentList from "./comment/List"
 
 require("clipboard")
 require("./theme/github.css")
@@ -76,11 +78,12 @@ require("../../plugins/prism.css")
 
 export default {
   name: 'post-show',
-  components: { Navbar, Avatar, ImageBox, FollowButton, UserCard, RelativeTime },
+  components: { Navbar, Avatar, ImageBox, FollowButton, UserCard, RelativeTime, CommentList },
   data() {
     return {
       post: {},
-      user: {}
+      user: {},
+      comments: []
     }
   },
   created() {
@@ -99,10 +102,11 @@ export default {
   },
   methods: {
     loadPost: function(slug) {
-      this.$http.get(this.$endpoints.posts + slug)
+      this.$http.get(this.$endpoints.posts + slug + '?include=comments')
               .then((post) => {
                 this.post = getData(post).data
                 this.user = this.post.user.data
+                this.comments = this.post.comments.data
               }).catch(function(err){
                 console.log(err)
               });
@@ -148,6 +152,7 @@ $cover-height: 400px;
     margin-top: $cover-height;
     position: relative;
     z-index: 2;
+    height: 100%;
   }
   .post-actions {
     margin-top: 2em;

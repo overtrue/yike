@@ -108,6 +108,11 @@ class Post extends Model
         return $this->belongsTo(Image::class);
     }
 
+    public function comments()
+    {
+        return $this->morphMany(Comment::class, 'commentable');
+    }
+
     public function series()
     {
         return $this->hasManyThrough(Series::class, 'series_post');
