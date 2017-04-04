@@ -1,5 +1,6 @@
 const { mix } = require('laravel-mix');
 const path = require('path');
+const BabiliPlugin = require("babili-webpack-plugin");
 
 // mix.config.versioning.enabled = true;
 
@@ -43,5 +44,10 @@ mix.webpackConfig({
         loader: 'style-loader!css-loader'
       }
     ]
-  }
+  },
+  plugins: [
+    new BabiliPlugin()
+  ]
 });
+
+mix.options({ uglify: false });
