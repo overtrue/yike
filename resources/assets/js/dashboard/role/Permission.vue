@@ -1,7 +1,9 @@
 <template>
   <div class="permission-form">
     <el-checkbox-group v-model="checkedPremission" @change="handleCheckedChange">
-      <el-checkbox v-for="permission in permissions" :label="permission.id">{{ permission.display_name }}</el-checkbox>
+      <template v-for="permission in permissions">
+        <el-checkbox :label="permission.id">{{ permission.display_name }}</el-checkbox>
+      </template>
     </el-checkbox-group>
   </div>
 </template>

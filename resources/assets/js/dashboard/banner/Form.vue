@@ -30,11 +30,12 @@
         <el-col :span="12">
           <el-form-item label="Target" prop="target">
             <el-select v-model="banner.target" placeholder="请选择">
-              <el-option
-                v-for="target in targets"
-                :label="target.name"
-                :value="target.name">
-              </el-option>
+              <template v-for="target in targets">
+                <el-option
+                  :label="target.name"
+                  :value="target.name">
+                </el-option>
+              </template>
             </el-select>
           </el-form-item>
         </el-col>

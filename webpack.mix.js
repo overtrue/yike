@@ -19,6 +19,13 @@ mix.js('resources/assets/js/app.js', 'public/js')
    .js('resources/assets/js/admin.js', 'public/js')
    .sass('resources/assets/sass/app.scss', 'public/css');
 
+let plugins = [];
+
+if (process.env.NODE_ENV === 'production') {
+  plugins.push(new BabiliPlugin())
+};
+
+mix.options({ uglify: false });
 
 mix.webpackConfig({
   resolve: {
@@ -45,9 +52,5 @@ mix.webpackConfig({
       }
     ]
   },
-  plugins: [
-    new BabiliPlugin()
-  ]
+  plugins
 });
-
-mix.options({ uglify: false });

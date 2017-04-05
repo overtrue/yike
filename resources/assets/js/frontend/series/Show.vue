@@ -22,7 +22,7 @@
       <div class="row">
         <div class="col-lg-10 offset-lg-1">
           <template v-if="posts.length > 0">
-            <post-card v-for="post in posts" :post="post" class="mt-3"></post-card>
+            <post-card v-for="post in posts" :key="post.id" :post="post" class="mt-3"></post-card>
           </template>
           <template v-else>
             <h4 class="text-center mt-4">该专栏没有文章</h4>
