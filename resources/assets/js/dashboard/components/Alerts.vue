@@ -1,4 +1,3 @@
-
 <script>
   import { mapState, mapActions } from 'vuex'
   import { isEmpty } from 'lodash'
