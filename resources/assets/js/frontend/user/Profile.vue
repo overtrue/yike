@@ -9,7 +9,9 @@
           <input type="file" name="avatar" @change="upload">
         </a>
 
-        <user-item wrapper="setting-item row" v-for="item in items" :item="item" :user="user"></user-item>
+        <template v-for="item in items">
+          <user-item wrapper="setting-item row" :item="item" :user="user"></user-item>
+        </template>
 
       </div>
     </div>

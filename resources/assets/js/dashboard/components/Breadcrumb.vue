@@ -1,8 +1,10 @@
 <template>
   <el-breadcrumb separator="/" class="text-right">
-    <el-breadcrumb-item v-for="(item, index) in breadcrumbs" :to="item.path">
-      {{ item.meta.title }}
-    </el-breadcrumb-item>
+    <template v-for="(item, index) in breadcrumbs">
+      <el-breadcrumb-item :to="item.path">
+        {{ item.meta.title }}
+      </el-breadcrumb-item>
+    </template>
   </el-breadcrumb>
 </template>
 

@@ -26,11 +26,12 @@
           <template v-if="column.name == '__actions'">
             <el-table-column :label="column.label" :width="column.width">
               <template scope="scope">
-                <el-button
-                  v-for="action in itemActions"
-                  :size="action.size?action.size:'small'"
-                  :type="action.type?action.type:''"
-                  @click="callAction(action.name, scope)">{{ action.label }}</el-button>
+                <template v-for="action in itemActions">
+                  <el-button
+                    :size="action.size?action.size:'small'"
+                    :type="action.type?action.type:''"
+                    @click="callAction(action.name, scope)">{{ action.label }}</el-button>
+                </template>
               </template>
             </el-table-column>
           </template>

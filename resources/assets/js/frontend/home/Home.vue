@@ -4,7 +4,7 @@
     <!-- Banner -->
     <div class="banner">
       <carousel :interval="4000" indicator-position="none" @change="changeCarousel" type="card" height="260px" v-if="banners.length > 0">
-        <carousel-item v-for="(banner, index) in banners">
+        <carousel-item v-for="(banner, index) in banners" :key="banner.id">
           <router-link :to="banner.link" v-if="currentCarousel == index">
             <h3><img :src="banner.image.data.url" alt="banner.image.data.title"></h3>
           </router-link>
