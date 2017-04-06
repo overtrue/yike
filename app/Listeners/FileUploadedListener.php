@@ -2,6 +2,7 @@
 
 namespace App\Listeners;
 
+use Storage;
 use App\Image;
 use Overtrue\LaravelUploader\Events\FileUploaded;
 use Illuminate\Queue\InteractsWithQueue;
@@ -45,7 +46,7 @@ class FileUploadedListener
         $data = [
             'creator_id' => auth()->id(),
             'title' => $result['original_name'],
-            'path' => $result['relative_url'],
+            'path' => ltrim(Storage::url($result['relative_url']), '/'),
             'mime' => $result['mime'],
             'size' => json_encode(['width' => $width, 'height' => $height]),
             'strategy' => $strategy,

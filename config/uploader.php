@@ -16,7 +16,7 @@ return [
          */
         'default' => [
             'mimes' => ['image/jpeg', 'image/png', 'image/bmp', 'image/gif'],
-            'storeage' => 'images',
+            'disk' => 'public',
             'directory' => '/{Y}/{m}/{d}', // directory,
             'max_file_size' => '2m',
         ],
