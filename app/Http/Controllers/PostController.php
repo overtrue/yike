@@ -6,7 +6,7 @@ use App\Post;
 use App\User;
 use App\Comment;
 use App\Events\ViewPost;
-use App\Events\UserCredit;
+use App\Events\UserCreditChanged;
 use Illuminate\Http\Request;
 use App\Http\Requests\PostRequest;
 
@@ -44,7 +44,7 @@ class PostController extends ApiController
      */
     public function store(PostRequest $request)
     {
-        event(new UserCredit(2));
+        event(new UserCreditChanged(2));
 
         return $this->response->item(Post::create($request->all()));
     }
