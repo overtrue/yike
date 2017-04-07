@@ -25,6 +25,9 @@ class EventServiceProvider extends ServiceProvider
         'App\Events\UserFollow' => [
             'App\Listeners\UserFollowListener',
         ],
+        'App\Events\UserCreditChanged' => [
+            'App\Listeners\AddUserCreditListener',
+        ],
     ];
 
     /**

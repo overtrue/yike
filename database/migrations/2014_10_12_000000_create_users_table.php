@@ -31,6 +31,7 @@ class CreateUsersTable extends Migration
             $table->boolean('is_verified')->default(false)->index();
 
             // 数据缓存
+            $table->unsignedInteger('credit_cache')->default(0)->index();
             $table->unsignedInteger('post_cache')->default(0)->index();
             $table->unsignedInteger('comment_cache')->default(0)->index();
             $table->unsignedInteger('follower_cache')->default(0)->index();

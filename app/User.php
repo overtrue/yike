@@ -16,6 +16,7 @@ class User extends Authenticatable implements JWTSubject
     const USER_CREATE = 'user.create';
     const USER_UPDATE = 'user.update';
     const USER_DELETE = 'user.delete';
+    const USER_CREDIT = 'user.credit';
 
     /**
      * The attributes that are mass assignable.
@@ -48,7 +49,9 @@ class User extends Authenticatable implements JWTSubject
         });
 
         static::updating(function($post){
-            static::setActionTypeName(self::USER_UPDATE);
+            if (self::$typeName != self::USER_CREDIT) {
+                static::setActionTypeName(self::USER_UPDATE);
+            }
         });
 
         static::deleting(function($post){
