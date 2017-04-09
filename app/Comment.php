@@ -3,10 +3,15 @@
 namespace App;
 
 use Facades\Parsedown;
+use App\Traits\UserAction;
 use Illuminate\Database\Eloquent\Model;
 
 class Comment extends Model
 {
+    use UserAction;
+
+    const COMMENT_CREATE = 'comment.create';
+
     const TYPE_MARKDOWN = 'markdown';
     const TYPE_HTML = 'html';
 
@@ -22,6 +27,7 @@ class Comment extends Model
         static::creating(function($comment){
             $comment->user_id = auth()->id();
             $comment->content_original = $comment->content_original ?: $comment->content;
+            static::setActionTypeName(self::COMMENT_CREATE);
         });
 
         static::saving(function ($comment) {
