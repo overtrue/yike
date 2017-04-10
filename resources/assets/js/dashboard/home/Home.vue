@@ -19,7 +19,7 @@ export default {
         user: { icon: 'people', total: 0, description: 'users' },
         post: { icon: 'description', total: 0, description: 'posts' },
         series: { icon: 'featured_play_list', total: 0, description: 'series' },
-        tag: { icon: 'label', total: 0, description: 'tags' },
+        comment: { icon: 'question_answer', total: 0, description: 'comments' },
       },
     }
   },
@@ -29,11 +29,8 @@ export default {
           this.cards.user.total = response.data.users
           this.cards.post.total = response.data.posts
           this.cards.series.total = response.data.series
-          this.cards.tag.total = response.data.tags
+          this.cards.comment.total = response.data.comments
         })
-
-    this.$http.get(this.$endpoints.actions)
-        .then((response) => console.log(response))
   },
 }
 </script>

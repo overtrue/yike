@@ -2,9 +2,9 @@
   <div class="wrapper">
     <data-table api="posts" :columns="columns" @table-action="tableActions" :itemActions="itemActions" :searchables="searchables">
       <template slot="draft" scope="props">
-        <el-tag
-          :type="props.data.row.is_draft ? 'warning' : 'primary'"
-          close-transition>{{props.data.row.is_draft ? '是' : '否'}}</el-tag>
+        <el-tag :type="props.data.row.is_draft ? 'warning' : 'primary'">
+          {{props.data.row.is_draft ? '是' : '否'}}
+        </el-tag>
       </template>
     </data-table>
   </div>

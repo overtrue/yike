@@ -11,6 +11,10 @@ export default (http, store, router) => {
     */
     (error) => {
       const { response } = error
+
+      if ([404].indexOf(response.status) >= 0 && !store.isAuthPage) {
+        router.push({ name: '404' })
+      }
       /**
       * If token is either expired, not provided or invalid
       * then redirect to login. On server side the error
