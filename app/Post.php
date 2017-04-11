@@ -12,6 +12,8 @@ class Post extends Model
 {
     use SoftDeletes, UserAction;
 
+    const POST_UP_VOTE = 'post.up_vote';
+    const POST_DOWN_VOTE = 'post.down_vote';
     const POST_VIEW = 'post.view';
     const POST_PUBLISH = 'post.publish';
     const POST_UPDATE = 'post.update';
@@ -49,7 +51,7 @@ class Post extends Model
         });
 
         static::updating(function($post){
-            if (self::$typeName != self::POST_VIEW) {
+            if (!in_array(self::$typeName, [self::POST_VIEW, self::POST_UP_VOTE, self::POST_DOWN_VOTE])) {
                 static::setActionTypeName(self::POST_UPDATE);
             }
         });
@@ -96,11 +98,6 @@ class Post extends Model
     public function user()
     {
         return $this->belongsTo(User::class);
-    }
-
-    public function votes()
-    {
-        return $this->morphMany(Vote::class, 'votable');
     }
 
     public function image()

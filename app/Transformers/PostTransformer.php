@@ -49,6 +49,7 @@ class PostTransformer extends TransformerAbstract
             'view_count' => $post->view_cache,
             'type' => $post->type,
             'url' => '/'.$post->user->username.'/'.$post->slug,
+            'is_voting' => auth()->check() ? auth()->user()->hasVoted($post) : false,
             'created_at' => $post->created_at->toIso8601String(),
             'updated_at' => $post->updated_at->toIso8601String(),
         ];
