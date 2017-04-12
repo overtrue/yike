@@ -4,8 +4,10 @@ namespace App\Http\Controllers;
 
 use Auth;
 use App\User;
+use App\Post;
 use App\Image;
 use App\Series;
+use App\Events\VotePost;
 use App\Events\UserFollow;
 use Illuminate\Http\Request;
 use App\Http\Requests\MeRequest;
@@ -34,6 +36,22 @@ class MeController extends ApiController
         return $this->response->json(['success' => true]);
     }
 
+    public function postVotePost(Request $request)
+    {
+        $this->validate($request, [
+                'id' => 'required|exists:posts,id',
+            ]);
+
+        $user = $request->user();
+        $post = Post::find($request->id);
+
+        $type = !$this->toggleVote($user, $post) ? $post::POST_UP_VOTE : $post::POST_DOWN_VOTE;
+
+        event(new VotePost($post, $type));
+
+        return $this->response->json(['success' => true]);
+    }
+
     public function postFollowSeries(Request $request)
     {
         $this->validate($request, [
@@ -52,6 +70,15 @@ class MeController extends ApiController
         $isFollowing ? $user->unfollow($target) : $user->follow($target);
 
         return $isFollowing;
+    }
+
+    public function toggleVote($user, $target)
+    {
+        $hasVoted = $user->hasVoted($target);
+
+        $hasVoted ? $user->downVote($target) : $user->upVote($target);
+
+        return $hasVoted;
     }
 
     public function getFollowers()

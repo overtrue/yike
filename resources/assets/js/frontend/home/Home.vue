@@ -34,10 +34,7 @@
                       <relative-time class="times" :datetime="post.created_at" v-text="post.created_at"></relative-time>
                     </div>
                     <div class="actions">
-                      <div class="favour">
-                        <i class="material-icons">favorite_border</i>
-                        <span>123</span>
-                      </div>
+                      <vote-button :item="post" api="post"></vote-button>
                       <div class="collect">
                         <i class="material-icons">turned_in_not</i>
                       </div>
@@ -105,12 +102,13 @@
 </template>
 
 <script>
-import Carousel from '../components/Carousel'
-import CarouselItem from '../components/CarouselItem'
+import Carousel from "home/Carousel"
+import CarouselItem from "home/CarouselItem"
 import RelativeTime from "home/RelativeTime"
-import 'element-ui/lib/theme-default/carousel.css'
-import 'element-ui/lib/theme-default/carousel-item.css'
+import "element-ui/lib/theme-default/carousel.css"
+import "element-ui/lib/theme-default/carousel-item.css"
 import Navbar from "home/Navbar"
+import VoteButton from "home/VoteButton"
 
 export default {
   name: 'home',
@@ -119,6 +117,7 @@ export default {
     Carousel,
     CarouselItem,
     RelativeTime,
+    VoteButton,
   },
   data() {
     return {
