@@ -522,12 +522,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/jcc/laravel-vote.git",
-                "reference": "d6d91f57f9b9e9783477018fe49cb886435421a1"
+                "reference": "5506fd9533d03c04fb7cb9dd86a94f8d4b0ecd32"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/jcc/laravel-vote/zipball/d6d91f57f9b9e9783477018fe49cb886435421a1",
-                "reference": "d6d91f57f9b9e9783477018fe49cb886435421a1",
+                "url": "https://api.github.com/repos/jcc/laravel-vote/zipball/5506fd9533d03c04fb7cb9dd86a94f8d4b0ecd32",
+                "reference": "5506fd9533d03c04fb7cb9dd86a94f8d4b0ecd32",
                 "shasum": ""
             },
             "require": {
@@ -553,7 +553,7 @@
                 }
             ],
             "description": "The package helps you to add user based vote system to your model",
-            "time": "2017-04-11 12:44:47"
+            "time": "2017-04-12 02:56:10"
         },
         {
             "name": "jellybool/translug",
@@ -1231,12 +1231,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/overtrue/laravel-follow.git",
-                "reference": "f3c5cb079e8090822977ad2912499a21939f2b98"
+                "reference": "a955d45af0a5be51c4d8818793783c65e0387a05"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/overtrue/laravel-follow/zipball/f3c5cb079e8090822977ad2912499a21939f2b98",
-                "reference": "f3c5cb079e8090822977ad2912499a21939f2b98",
+                "url": "https://api.github.com/repos/overtrue/laravel-follow/zipball/a955d45af0a5be51c4d8818793783c65e0387a05",
+                "reference": "a955d45af0a5be51c4d8818793783c65e0387a05",
                 "shasum": ""
             },
             "require": {
@@ -1263,7 +1263,7 @@
                 }
             ],
             "description": "Laravel 5 User Based System",
-            "time": "2017-03-31 09:21:56"
+            "time": "2017-04-12 03:24:11"
         },
         {
             "name": "overtrue/laravel-lang",
