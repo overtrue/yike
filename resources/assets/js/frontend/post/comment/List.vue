@@ -30,7 +30,18 @@
     <div class="comment-list">
       <div class="item mt-4 d-flex align-items-start" v-for="comment in list">
         <avatar :user="comment.user.data" size="xxs" class="mx-4"></avatar>
-        <section class="comment-body" v-html="comment.content"></section>
+        <div class="comment-main w-100">
+          <div class="heading clearfix">
+            <router-link class="float-left mr-2" :to="{ name:'user.show', params: { username: comment.user.data.username }}">
+              {{ comment.user.data.username }}
+            </router-link>
+            <small> ⋅ <relative-time :datetime="comment.created_at" v-text="comment.created_at"></relative-time></small>
+            <div class="action float-right">
+              <vote-button :item="comment" api="comment"></vote-button>
+            </div>
+          </div>
+          <section class="comment-body" v-html="comment.content"></section>
+        </div>
       </div>
     </div>
   </div>
@@ -39,9 +50,11 @@
 <script>
 import { mapGetters } from 'vuex'
 import Avatar from "home/Avatar"
+import VoteButton from "home/VoteButton"
+import RelativeTime from "home/RelativeTime"
 
 export default {
-  components: { Avatar },
+  components: { Avatar, VoteButton, RelativeTime },
   props: {
     list: {
       type: Array,

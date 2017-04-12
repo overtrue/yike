@@ -43,6 +43,7 @@ class CommentTransformer extends TransformerAbstract
             'content' => $comment->content,
             'raw_content' => $comment->content_original,
             'vote_count' => $comment->vote_cache,
+            'is_voting' => auth()->check() ? auth()->user()->hasVoted($comment) : false,
             'created_at' => $comment->created_at->toIso8601String(),
             'updated_at' => $comment->updated_at->toIso8601String(),
         ];

@@ -10,6 +10,8 @@ class Comment extends Model
 {
     use UserAction;
 
+    const COMMENT_UP_VOTE = 'comment.up_vote';
+    const COMMENT_DOWN_VOTE = 'comment.down_vote';
     const COMMENT_CREATE = 'comment.create';
 
     const TYPE_MARKDOWN = 'markdown';
