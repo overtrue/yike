@@ -4,6 +4,7 @@ Route::group([
     'middleware' => ['api', 'jwt.check'],
 ], function () {
     Route::get('home/banners', 'HomeController@banners');
+    Route::get('home/ranks', 'HomeController@ranks');
     Route::get('/posts/{slug}', 'PostController@show');
     Route::get('/series/{slug}', 'SeriesController@show');
     Route::post('/auth/token/issue', 'AuthController@issueToken');

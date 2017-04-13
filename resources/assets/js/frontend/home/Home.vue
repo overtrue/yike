@@ -44,39 +44,6 @@
               </div>
             </div>
           </div>
-
-          <!-- Weekly Host Post -->
-          <div class="post-box">
-            <div class="box-title">
-              <h5>本周热门</h5>
-            </div>
-            <div class="card-deck">
-              <div class="card" v-for="n in 3">
-                <div class="card-img-top">
-                  <img src="https://dn-phphub.qbox.me/uploads/banners/Ltw9l2xdkQX2gEv63sUG.jpg?imageView2/1/w/424/h/212" alt="">
-                </div>
-                <div class="card-block">
-                  <div class="card-title">This is a test</div>
-                  <div class="extras">
-                    <img class="avatar" src="https://pigjian.com/images/default_avatar.png">
-                    <div class="user-info">
-                      <span class="username">Jiajian Chan</span>
-                      <span class="times">3 minute ago</span>
-                    </div>
-                    <div class="actions">
-                      <div class="favour">
-                        <i class="material-icons">favorite_border</i>
-                        <span>123</span>
-                      </div>
-                      <div class="collect">
-                        <i class="material-icons">turned_in_not</i>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
         </div>
 
         <div class="col-md-4">
@@ -86,12 +53,12 @@
               <h5>排行榜</h5>
             </div>
             <ol>
-              <li v-for="n in 10">
-                <img class="avatar" src="https://pigjian.com/images/default_avatar.png">
-                <a href="/u/xiaoming_5835ca0462b83">
-                  Jiajian Chan
-                </a>
-                <span class="float-right">+62</span>
+              <li v-for="user in ranks">
+                <img class="avatar" :src="user.avatar">
+                <router-link :to="{ name:'user.show', params: { username: user.username }}">
+                  {{ user.username }}
+                </router-link>
+                <span class="float-right">{{ user.credit_count }}</span>
               </li>
             </ol>
           </div>
@@ -122,6 +89,7 @@ export default {
   data() {
     return {
       banners: [],
+      ranks: [],
       posts: [],
       currentCarousel: 0,
     }
@@ -131,6 +99,11 @@ export default {
       let vm = this
       this.$http.get(this.$endpoints.banners).then((response) => {
         vm.banners = response.data.data
+      })
+    },
+    loadRanks() {
+      this.$http.get(this.$endpoints.ranks).then((response) => {
+        this.ranks = response.data.data
       })
     },
     loadPosts() {
@@ -159,6 +132,7 @@ export default {
   created() {
     this.loadBanners()
     this.loadPosts()
+    this.loadRanks()
   }
 }
 </script>

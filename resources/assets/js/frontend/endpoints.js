@@ -1,5 +1,6 @@
 export default {
   banners: '/home/banners',
+  ranks: '/home/ranks',
   users: '/users/',
   posts: '/posts/',
   series: '/series/',
