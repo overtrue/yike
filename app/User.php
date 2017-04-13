@@ -6,14 +6,13 @@ use App\Traits\UserAction;
 use Tymon\JWTAuth\Contracts\JWTSubject;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
-use Jcc\LaravelVote\VoteTrait;
-use Jcc\LaravelVote\VoterTrait;
-use Overtrue\LaravelFollow\FollowTrait;
-use Overtrue\LaravelFollow\FollowerTrait;
+use Jcc\LaravelVote\Vote;
+use Overtrue\LaravelFollow\CanFollow;
+use Overtrue\LaravelFollow\CanBeFollowed;
 
 class User extends Authenticatable implements JWTSubject
 {
-    use UserAction, Notifiable, FollowTrait, FollowerTrait, VoteTrait;
+    use UserAction, Notifiable, CanFollow, CanBeFollowed, Vote;
 
     const USER_CREATE = 'user.create';
     const USER_UPDATE = 'user.update';

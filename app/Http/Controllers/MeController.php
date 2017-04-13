@@ -7,7 +7,9 @@ use App\User;
 use App\Post;
 use App\Image;
 use App\Series;
+use App\Comment;
 use App\Events\VotePost;
+use App\Events\VoteComment;
 use App\Events\UserFollow;
 use Illuminate\Http\Request;
 use App\Http\Requests\MeRequest;
@@ -48,6 +50,22 @@ class MeController extends ApiController
         $type = !$this->toggleVote($user, $post) ? $post::POST_UP_VOTE : $post::POST_DOWN_VOTE;
 
         event(new VotePost($post, $type));
+
+        return $this->response->json(['success' => true]);
+    }
+
+    public function postVoteComment(Request $request)
+    {
+        $this->validate($request, [
+                'id' => 'required|exists:comments,id',
+            ]);
+
+        $user = $request->user();
+        $comment = Comment::find($request->id);
+
+        $type = !$this->toggleVote($user, $comment) ? $comment::COMMENT_UP_VOTE : $comment::COMMENT_DOWN_VOTE;
+
+        event(new VoteComment($comment, $type));
 
         return $this->response->json(['success' => true]);
     }
