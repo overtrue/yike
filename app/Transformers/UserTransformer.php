@@ -29,6 +29,7 @@ class UserTransformer extends TransformerAbstract
             'is_verified' => $user->is_verified,
             'is_following' => auth()->check() ? auth()->user()->isFollowing($user->id) : false,
             'is_follow_me' => auth()->check() ? $user->isFollowing(auth()->id()) : false,
+            'credit_count' => $user->credit_cache,
             'post_count' => $user->post_cache,
             'comment_count' => $user->comment_cache,
             'follower_count' => $user->follower_cache,

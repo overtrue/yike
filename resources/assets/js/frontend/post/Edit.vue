@@ -1,5 +1,5 @@
 <template>
-  <div class="bg-white">
+  <div class="bg-white fh-100">
     <post-form :post="post"></post-form>
   </div>
 </template>
