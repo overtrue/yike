@@ -78,7 +78,7 @@ export default {
   watch: {
     list(items) {
       items.forEach((item) => {
-        item.content = Emojione.toImage(item.content)
+        item.content = Emojione.shortnameToUnicode(item.content)
       })
 
       return items
@@ -103,7 +103,7 @@ export default {
             this.form.content = ''
             this.showButton = false
             let comment = response.data.data
-            comment.content = Emojione.toImage(comment.content)
+            comment.content = Emojione.shortnameToUnicode(comment.content)
             this.list.push(comment)
           })
     },

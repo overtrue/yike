@@ -106,7 +106,7 @@ export default {
       this.$http.get(this.$endpoints.posts + slug + '?include=comments')
               .then((post) => {
                 this.post = getData(post).data
-                this.post.content = Emojione.toImage(this.post.content)
+                this.post.content = Emojione.shortnameToUnicode(this.post.content)
                 this.user = this.post.user.data
                 this.comments = this.post.comments.data
               }).catch(function(err){
