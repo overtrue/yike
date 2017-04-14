@@ -52,6 +52,7 @@ import { mapGetters } from 'vuex'
 import Avatar from "home/Avatar"
 import VoteButton from "home/VoteButton"
 import RelativeTime from "home/RelativeTime"
+import Emojione from 'emojione'
 
 export default {
   components: { Avatar, VoteButton, RelativeTime },
@@ -74,6 +75,15 @@ export default {
   computed: {
     ...mapGetters(['isLogged', 'currentUser']),
   },
+  watch: {
+    list(items) {
+      items.forEach((item) => {
+        item.content = Emojione.toImage(item.content)
+      })
+
+      return items
+    }
+  },
   methods: {
     onFocus() {
       this.showButton = true
@@ -92,7 +102,9 @@ export default {
           .then((response) => {
             this.form.content = ''
             this.showButton = false
-            this.list.push(response.data.data)
+            let comment = response.data.data
+            comment.content = Emojione.toImage(comment.content)
+            this.list.push(comment)
           })
     },
   }

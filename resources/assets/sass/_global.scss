@@ -22,6 +22,11 @@
     transform: translateY(-100%);
 }
 
+// Emojione
+img.emojione {
+    width: 1em;
+}
+
 @include text-emphasis-variant('.text-gray', $gray);
 @include text-emphasis-variant('.text-gray-light', $gray-light);
 @include text-emphasis-variant('.text-gray-lighter', darken($gray-lighter, 20%));
