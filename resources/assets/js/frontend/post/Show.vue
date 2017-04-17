@@ -71,6 +71,7 @@ import { getData } from 'utils/get'
 import { mapGetters } from "vuex"
 import Prism from "../../plugins/prism"
 import CommentList from "./comment/List"
+import Emojione from "emojione"
 
 require("clipboard")
 require("./theme/github.css")
@@ -105,6 +106,7 @@ export default {
       this.$http.get(this.$endpoints.posts + slug + '?include=comments')
               .then((post) => {
                 this.post = getData(post).data
+                this.post.content = Emojione.shortnameToUnicode(this.post.content)
                 this.user = this.post.user.data
                 this.comments = this.post.comments.data
               }).catch(function(err){

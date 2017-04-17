@@ -15,18 +15,19 @@
     "bootstrap": "v4.0.0-alpha.6",
     "clipboard": "^1.5.16",
     "codemirror": "^5.22.2",
+    "cropperjs": "^1.0.0-beta.2",
     "element-ui": "^1.2.1",
+    "emojione": "^2.2.7",
+    "fine-uploader": "^5.14.0",
     "headroom.js": "^0.9.3",
     "laravel-mix": "^0.10.0",
     "localforage": "^1.4.3",
     "lodash": "^4.16.2",
     "path-to-regexp": "^1.7.0",
+    "timeago.js": "^2.0.5",
     "vue": "^2.2.1",
     "vue-router": "^2.3.0",
     "vuex": "^2.2.1",
-    "vuex-router-sync": "^3.0.0",
-    "cropperjs": "^1.0.0-beta.2",
-    "fine-uploader": "^5.14.0",
-    "timeago.js": "^2.0.5"
+    "vuex-router-sync": "^3.0.0"
   }
 }
