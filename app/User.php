@@ -2,7 +2,7 @@
 
 namespace App;
 
-use App\Traits\UserAction;
+use App\Traits\Loggable;
 use Tymon\JWTAuth\Contracts\JWTSubject;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -12,7 +12,7 @@ use Overtrue\LaravelFollow\CanBeFollowed;
 
 class User extends Authenticatable implements JWTSubject
 {
-    use UserAction, Notifiable, CanFollow, CanBeFollowed, Vote;
+    use Loggable, Notifiable, CanFollow, CanBeFollowed, Vote;
 
     const USER_CREATE = 'user.create';
     const USER_UPDATE = 'user.update';

@@ -94,7 +94,7 @@ class MeController extends ApiController
     {
         $hasVoted = $user->hasVoted($target);
 
-        $hasVoted ? $user->downVote($target) : $user->upVote($target);
+        $hasVoted ? $user->cancelVote($target) : $user->upVote($target);
 
         return $hasVoted;
     }

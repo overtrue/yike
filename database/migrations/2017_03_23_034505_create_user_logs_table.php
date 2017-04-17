@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateUserActionsTable extends Migration
+class CreateUserLogsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -14,7 +14,7 @@ class CreateUserActionsTable extends Migration
      */
     public function up()
     {
-        Schema::create('user_actions', function (Blueprint $table) {
+        Schema::create('user_logs', function (Blueprint $table) {
             $table->increments('id');
             $table->unsignedInteger('user_id')->nullable()->comment('用户 ID');
             $table->unsignedInteger('action_id')->comment('操作 ID');
@@ -37,6 +37,6 @@ class CreateUserActionsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('user_actions');
+        Schema::dropIfExists('user_logs');
     }
 }
