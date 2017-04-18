@@ -5,7 +5,7 @@ namespace App\Transformers;
 use App\UserAction;
 use League\Fractal\TransformerAbstract;
 
-class UserActionTransformer extends TransformerAbstract
+class UserLogTransformer extends TransformerAbstract
 {
     /**
      * List of resources possible to include.
@@ -26,13 +26,13 @@ class UserActionTransformer extends TransformerAbstract
     ];
 
     /**
-     * Transform a UserAction
+     * Transform a UserLog
      *
-     * @param  UserAction $action
+     * @param  UserLog $action
      *
      * @return array
      */
-    public function transform(UserAction $action)
+    public function transform(UserLog $action)
     {
         $actionType = explode('\\', $action->action_type);
 
@@ -50,11 +50,11 @@ class UserActionTransformer extends TransformerAbstract
     /**
      * Include user.
      *
-     * @param  Post $post
+     * @param  UserLog $action
      *
      * @return \League\Fractal\Resource\Item|null
      */
-    public function includeUser(UserAction $action)
+    public function includeUser(UserLog $action)
     {
         if($action->user) {
             return $this->item($action->user, new UserTransformer);

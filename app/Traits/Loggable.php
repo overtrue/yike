@@ -2,13 +2,13 @@
 
 namespace App\Traits;
 
-use App\UserAction as Action;
+use App\UserLog;
 
-trait UserAction
+trait Loggable
 {
     public static $typeName;
 
-    public static function bootUserAction()
+    public static function bootLoggable()
     {
         static::created(function($model) {
             $userId = auth()->id();
@@ -51,7 +51,7 @@ trait UserAction
 
     public static function storeAction($actionTypeName, $userId, $model, $changes = [])
     {
-        Action::create([
+        UserLog::create([
             'user_id' => $userId,
             'action_id' => $model->id,
             'action_type' => get_class($model),

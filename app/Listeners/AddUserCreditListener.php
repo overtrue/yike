@@ -2,7 +2,7 @@
 
 namespace App\Listeners;
 
-use App\Events\UserCredit;
+use App\Events\UserCreditChanged;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
 
@@ -11,10 +11,10 @@ class AddUserCreditListener
     /**
      * Handle the event.
      *
-     * @param  UserCredit  $event
+     * @param  UserCreditChanged  $event
      * @return void
      */
-    public function handle(UserCredit $event)
+    public function handle(UserCreditChanged $event)
     {
         $event->user->setActionTypeName($event->user::USER_CREDIT);
 

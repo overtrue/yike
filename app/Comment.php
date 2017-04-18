@@ -3,12 +3,12 @@
 namespace App;
 
 use Facades\Parsedown;
-use App\Traits\UserAction;
+use App\Traits\Loggable;
 use Illuminate\Database\Eloquent\Model;
 
 class Comment extends Model
 {
-    use UserAction;
+    use Loggable;
 
     const COMMENT_UP_VOTE = 'comment.up_vote';
     const COMMENT_DOWN_VOTE = 'comment.down_vote';

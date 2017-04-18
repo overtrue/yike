@@ -4,13 +4,13 @@ namespace App;
 
 use Translug;
 use Facades\Parsedown;
-use App\Traits\UserAction;
+use App\Traits\Loggable;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Post extends Model
 {
-    use SoftDeletes, UserAction;
+    use SoftDeletes, Loggable;
 
     const POST_UP_VOTE = 'post.up_vote';
     const POST_DOWN_VOTE = 'post.down_vote';

@@ -102,8 +102,10 @@ export default {
           .then((response) => {
             this.form.content = ''
             this.showButton = false
+
             let comment = response.data.data
             comment.content = Emojione.shortnameToUnicode(comment.content)
+
             this.list.push(comment)
           })
     },
