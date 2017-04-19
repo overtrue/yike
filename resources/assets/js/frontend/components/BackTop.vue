@@ -55,7 +55,7 @@
   height: 38px;
   line-height: 38px;
   font-size: 2.5em;
-  color: #bfcbd9;
+  color: #dce7f4;
   text-align: center;
   -moz-transform:scaleY(-1);
   -webkit-transform:scaleY(-1);
@@ -63,5 +63,9 @@
   transform:scaleY(-1);
   cursor: pointer;
   z-index: 1000000;
+
+  &:hover {
+    color: #bfcbd9;
+  }
 }
 </style>
