@@ -120,6 +120,9 @@
       }
     },
     created() {
+      this.pagination.current_page = parseInt(this.$route.query.page) || this.pagination.current_page
+      this.pagination.per_page = parseInt(this.$route.query.per_page) || this.pagination.per_page
+
       this.fetch()
     },
     mounted() {
@@ -137,6 +140,9 @@
 
         query['page'] = this.pagination.current_page
         query['per_page'] = this.pagination.per_page
+
+        this.$router.push({ name: this.$route.name, query: query })
+
         query['include'] = this.include
 
         this.$http.get(this.$endpoints[this.api], { params: query })
