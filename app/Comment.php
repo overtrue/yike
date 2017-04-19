@@ -4,15 +4,21 @@ namespace App;
 
 use Facades\Parsedown;
 use App\Traits\Loggable;
+use Jcc\LaravelVote\CanBeVoted;
 use Illuminate\Database\Eloquent\Model;
 
 class Comment extends Model
 {
-    use Loggable;
+    use Loggable, CanBeVoted;
 
+    protected $vote = User::class;
+
+    const COMMENT_CREATE = 'comment.create';
     const COMMENT_UP_VOTE = 'comment.up_vote';
     const COMMENT_DOWN_VOTE = 'comment.down_vote';
-    const COMMENT_CREATE = 'comment.create';
+    const COMMENT_CANCEL_UP_VOTE = 'comment.cancel_up_vote';
+    const COMMENT_CANCEL_DOWN_VOTE = 'comment.cancel_down_vote';
+    const COMMENT_UP_TO_DOWN_VOTE = 'comment.up_to_down_vote';
 
     const TYPE_MARKDOWN = 'markdown';
     const TYPE_HTML = 'html';

@@ -38,38 +38,6 @@ class MeController extends ApiController
         return $this->response->json(['success' => true]);
     }
 
-    public function postVotePost(Request $request)
-    {
-        $this->validate($request, [
-                'id' => 'required|exists:posts,id',
-            ]);
-
-        $user = $request->user();
-        $post = Post::find($request->id);
-
-        $type = !$this->toggleVote($user, $post) ? $post::POST_UP_VOTE : $post::POST_DOWN_VOTE;
-
-        event(new VotePost($post, $type));
-
-        return $this->response->json(['success' => true]);
-    }
-
-    public function postVoteComment(Request $request)
-    {
-        $this->validate($request, [
-                'id' => 'required|exists:comments,id',
-            ]);
-
-        $user = $request->user();
-        $comment = Comment::find($request->id);
-
-        $type = !$this->toggleVote($user, $comment) ? $comment::COMMENT_UP_VOTE : $comment::COMMENT_DOWN_VOTE;
-
-        event(new VoteComment($comment, $type));
-
-        return $this->response->json(['success' => true]);
-    }
-
     public function postFollowSeries(Request $request)
     {
         $this->validate($request, [
@@ -90,13 +58,46 @@ class MeController extends ApiController
         return $isFollowing;
     }
 
+    public function postVoteComment(Request $request, $type)
+    {
+        $this->validate($request, [
+                'id' => 'required|exists:comments,id',
+            ]);
+
+        $user = $request->user();
+        $comment = Comment::find($request->id);
+
+        $voteType = ($type == 'up')
+                    ? $this->toggleVote($user, $comment)
+                    : $this->toggleDownVote($user, $comment);
+
+        event(new VoteComment($comment, $voteType));
+
+        return $this->response->json(['success' => true]);
+    }
+
     public function toggleVote($user, $target)
     {
-        $hasVoted = $user->hasVoted($target);
+        $hasVoted = $user->hasUpVoted($target);
 
         $hasVoted ? $user->cancelVote($target) : $user->upVote($target);
 
-        return $hasVoted;
+        return $hasVoted ? $target::COMMENT_CANCEL_UP_VOTE : $target::COMMENT_UP_VOTE;
+    }
+
+    public function toggleDownVote($user, $target)
+    {
+        $hasDownVoted = $user->hasDownVoted($target);
+
+        if ($hasDownVoted) {
+            $type = $target::COMMENT_CANCEL_DOWN_VOTE;
+            $user->cancelVote($target);
+        } else {
+            $type = $user->hasUpVoted($target) ? $target::COMMENT_UP_TO_DOWN_VOTE : $target::COMMENT_DOWN_VOTE;
+            $user->downVote($target);
+        }
+
+        return $type;
     }
 
     public function getFollowers()

@@ -36,11 +36,11 @@
               {{ comment.user.data.username }}
             </router-link>
             <small> ⋅ <relative-time :datetime="comment.created_at" v-text="comment.created_at"></relative-time></small>
-            <div class="action float-right">
-              <vote-button :item="comment" api="comment"></vote-button>
-            </div>
           </div>
           <section class="comment-body" v-html="comment.content"></section>
+          <div class="comment-footer">
+            <vote-button :item="comment" api="comment"></vote-button>
+          </div>
         </div>
       </div>
     </div>
