@@ -39,7 +39,7 @@
       handleScroll() {
         let clientHeight = document.body.clientHeight
         let top = document.body.scrollTop
-        console.log(top, clientHeight)
+
         this.visible = top > clientHeight
       }
     }
