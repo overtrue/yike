@@ -34,7 +34,10 @@
                       <relative-time class="times" :datetime="post.created_at" v-text="post.created_at"></relative-time>
                     </div>
                     <div class="actions">
-                      <vote-button :item="post" api="post"></vote-button>
+                      <div class="favour">
+                        <i class="material-icons">favorite_border</i>
+                        <span>123</span>
+                      </div>
                       <div class="collect">
                         <i class="material-icons">turned_in_not</i>
                       </div>
@@ -84,7 +87,6 @@ export default {
     Carousel,
     CarouselItem,
     RelativeTime,
-    VoteButton,
   },
   data() {
     return {

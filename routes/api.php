@@ -20,8 +20,7 @@ Route::group([
         Route::get('/me/followers', 'MeController@getFollowers');
         Route::post('/me/followers', 'MeController@postFollowers');
         Route::post('/me/followers/series', 'MeController@postFollowSeries');
-        Route::post('/me/voters/post', 'MeController@postVotePost');
-        Route::post('/me/voters/comment', 'MeController@postVoteComment');
+        Route::post('/me/voters/comment/{type}', 'MeController@postVoteComment')->where('type', 'up|down');
         Route::get('/me/notifications', 'MeController@getNotifications');
         Route::post('/auth/token/revoke', 'AuthController@revokeToken');
         Route::post('/posts', 'PostController@store');

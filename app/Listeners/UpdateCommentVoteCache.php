@@ -18,9 +18,14 @@ class UpdateCommentVoteCache
     {
         $event->comment->setActionTypeName($event->type);
 
+        $types = [
+            $event->comment::COMMENT_CANCEL_UP_VOTE,
+            $event->comment::COMMENT_UP_TO_DOWN_VOTE,
+        ];
+
         if ($event->type == $event->comment::COMMENT_UP_VOTE) {
             $event->comment->vote_cache ++;
-        } else if ($event->type == $event->comment::COMMENT_DOWN_VOTE){
+        } else if (in_array($event->type, $types)){
             $event->comment->vote_cache --;
         }
 
