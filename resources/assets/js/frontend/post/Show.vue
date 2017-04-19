@@ -57,6 +57,7 @@
         <comment-list :list="comments"></comment-list>
       </div>
     </div>
+    <back-top></back-top>
   </div>
 </template>
 
@@ -72,6 +73,7 @@ import { mapGetters } from "vuex"
 import Prism from "../../plugins/prism"
 import CommentList from "./comment/List"
 import Emojione from "emojione"
+import BackTop from "home/BackTop"
 
 require("clipboard")
 require("./theme/github.css")
@@ -79,7 +81,7 @@ require("../../plugins/prism.css")
 
 export default {
   name: 'post-show',
-  components: { Navbar, Avatar, ImageBox, FollowButton, UserCard, RelativeTime, CommentList },
+  components: { Navbar, Avatar, ImageBox, FollowButton, UserCard, RelativeTime, CommentList, BackTop },
   data() {
     return {
       post: {},
