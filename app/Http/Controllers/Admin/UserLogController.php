@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\UserAction;
+use App\UserLog;
 use Illuminate\Http\Request;
 use App\Http\Controllers\ApiController;
 
-class UserActionController extends ApiController
+class UserLogController extends ApiController
 {
     /**
      * Display a listing of the resource.
@@ -17,7 +17,7 @@ class UserActionController extends ApiController
      */
     public function index(Request $request)
     {
-        $actions = tap(UserAction::latest(), function ($query) use ($request) {
+        $actions = tap(UserLog::latest(), function ($query) use ($request) {
             if ($request->has('keyword')) {
                 $query->where('action', 'like', "%{$request->keyword}%")
                         ->orWhere('action_type', 'like', "%{$request->keyword}%");

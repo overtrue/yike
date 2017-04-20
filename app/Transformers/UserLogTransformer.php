@@ -2,7 +2,7 @@
 
 namespace App\Transformers;
 
-use App\UserAction;
+use App\UserLog;
 use League\Fractal\TransformerAbstract;
 
 class UserLogTransformer extends TransformerAbstract

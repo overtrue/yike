@@ -11,5 +11,5 @@ export default {
   series: prefix + '/series/',
   banners: prefix + '/banners/',
   statistics: prefix + '/statistics/',
-  actions: prefix + '/actions/',
+  logs: prefix + '/logs/',
 }
