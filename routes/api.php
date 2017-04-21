@@ -7,6 +7,7 @@ Route::group([
     Route::get('home/ranks', 'HomeController@ranks');
     Route::get('/posts/{slug}', 'PostController@show');
     Route::get('/series/{slug}', 'SeriesController@show');
+    Route::post('/auth/register', 'AuthController@register');
     Route::post('/auth/token/issue', 'AuthController@issueToken');
     Route::post('/auth/token/refresh', 'AuthController@refreshToken');
     Route::resource('/users', 'UserController');

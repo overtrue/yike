@@ -4,9 +4,11 @@ namespace App\Http\Controllers;
 
 use Auth;
 use Lang;
+use App\User;
 use App\Services\Jwt;
 use Illuminate\Http\Request;
 use App\Transformers\UserTransformer;
+use App\Http\Requests\RegisterRequest;
 use Illuminate\Foundation\Auth\ThrottlesLogins;
 
 class AuthController extends ApiController
@@ -35,8 +37,10 @@ class AuthController extends ApiController
 
         // Attempt to verify the credentials and create a token for the user.
         if ($token = Auth::guard('api')->attempt($credentials)) {
+            // Clear the login locks for the given user credentials.
+            $this->clearLoginAttempts($request);
             // All good so return the json with token and user.
-            return $this->sendLoginResponse($request, $token);
+            return $this->sendLoginResponse(Auth::guard('api')->user(), $token);
         }
 
         // Increments login attempts.
@@ -46,19 +50,53 @@ class AuthController extends ApiController
     }
 
     /**
+     * Issue a JWT token when register a new user.
+     *
+     * @param RegisterRequest $request
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function register(RegisterRequest $request)
+    {
+        $user = $this->create($request->all());
+
+        if($token = Auth::guard('api')->fromUser($user)) {
+            // All good so return the json with token and user.
+            return $this->sendLoginResponse($user, $token);
+        }
+
+        // Increments login attempts.
+        $this->incrementLoginAttempts($request);
+
+        return $this->sendFailedLoginResponse($request);
+    }
+
+    /**
+     * Create a new user instance after a valid registration.
+     *
+     * @param  array  $data
+     * @return User
+     */
+    protected function create(array $data)
+    {
+        return User::create([
+            'name'     => $data['username'],
+            'username' => $data['username'],
+            'email'    => $data['email'],
+            'password' => bcrypt($data['password']),
+        ]);
+    }
+
+    /**
      * Return the token and current user authenticated.
      *
-     * @param Request $request
+     * @param App\User $user
      * @param $token
      * @return \Illuminate\Http\JsonResponse
      */
-    protected function sendLoginResponse(Request $request, $token)
+    protected function sendLoginResponse(User $user, $token)
     {
-        // Clear the login locks for the given user credentials.
-        $this->clearLoginAttempts($request);
-
         // Get current user authenticated.
-        $user = $this->response->transform->item(Auth::guard('api')->user(), new UserTransformer());
+        $user = $this->response->transform->item($user);
 
         // get time to live of token form JWT service.
         $token_ttl = (new Jwt($token))->getTokenTTL();

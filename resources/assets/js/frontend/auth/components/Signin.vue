@@ -4,7 +4,7 @@
       <logo size="medium" :showSlogan="true"></logo>
     </div>
     <div class="form-group">
-      <input type="email" class="form-control" id="email" v-model="email" placeholder="邮箱">
+      <input type="email" class="form-control" id="email" v-model="email" placeholder="邮箱" autofocus>
     </div>
     <div class="form-group">
       <input type="password" class="form-control" id="password" v-model="password" placeholder="密码">
@@ -49,6 +49,7 @@
         this.attemptLogin({ email, password }) // this is a Vuex action
           .then(() => {
             this.resetMessages()
+            this.reset()
             let redirect = {name: 'home'}
 
             if (this.$route.query.redirect) {

@@ -4,13 +4,13 @@
       <logo size="medium" :showSlogan="true"></logo>
     </div>
     <div class="form-group">
+      <input type="text" class="form-control" id="username" v-model="username" placeholder="用户名" autofocus>
+    </div>
+    <div class="form-group">
       <input type="email" class="form-control" id="email" v-model="email" placeholder="邮箱">
     </div>
     <div class="form-group">
       <input type="password" class="form-control" id="password" v-model="password" placeholder="密码">
-    </div>
-    <div class="form-group">
-      <input type="password" class="form-control" id="password" v-model="password" placeholder="确认密码">
     </div>
     <div class="form-group">
       <button class="btn btn-primary btn-block" type="submit">注册</button>
@@ -28,6 +28,7 @@
     */
     data() {
       return {
+        username: '',
         email: '',
         password: '',
       }
@@ -40,17 +41,18 @@
       * Map the actions from Vuex to this component.
       * https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Spread_operator
       */
-      ...mapActions(['attemptLogin', 'resetMessages']),
+      ...mapActions(['attemptRegister', 'resetMessages']),
 
       /**
       * Handle form's submit event
       */
       submit() {
-        const { email, password } = this // http://wesbos.com/destructuring-objects/
-        this.attemptLogin({ email, password }) // this is a Vuex action
+        const { username, email, password } = this // http://wesbos.com/destructuring-objects/
+
+        this.attemptRegister({ username, email, password }) // this is a Vuex action
           .then(() => {
             this.resetMessages()
-
+            this.reset()
             let redirect = {name: 'home'}
 
             if (this.$route.query.redirect) {
@@ -64,6 +66,7 @@
       * Reset component's local state
       */
       reset() {
+        this.username = ''
         this.email = ''
         this.password = ''
       },

@@ -14,6 +14,15 @@ export const attemptLogin = ({ dispatch }, payload) =>
       return user // keep promise chain
     })
 
+export const attemptRegister = ({ dispatch }, payload) =>
+    services.postRegister(payload)
+    .then(({ token, user }) => {
+      dispatch('setUser', user.data)
+      dispatch('setToken', token)
+
+      return user // keep promise chain
+    })
+
 export const logout = ({ dispatch }) => {
   services.revokeToken()
 
