@@ -110,9 +110,11 @@ export default {
                 this.comments = this.post.comments.data
 
                 this.$nextTick(() => {
-                  setTimeout(function () {
-                    $('html,body').animate({scrollTop:$(window.location.hash).offset().top}, 1000)
-                  }, 500);
+                  if (window.location.hash) {
+                    setTimeout(function () {
+                      $('html,body').animate({scrollTop:$(window.location.hash).offset().top}, 1000)
+                    }, 500);
+                  }
                 })
               }).catch(function(err){
                 console.log(err)
