@@ -21,6 +21,10 @@ export const postLogin = ({ email, password }) => {
  .then(getData) // .then(response => getData(response))
 }
 
+export const postRegister = ({ username, email, password }) => {
+  return http.post('/auth/register', { username, email, password }).then(getData)
+}
+
 // get current user's data
 export const loadUserData = () => http.get('/me').then(getData)
 
