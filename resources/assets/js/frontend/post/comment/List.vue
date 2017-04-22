@@ -30,12 +30,12 @@
     <div class="comment-list">
       <div class="item mt-4 d-flex align-items-start" v-for="comment in list">
         <avatar :user="comment.user.data" size="xxs" class="mx-4"></avatar>
-        <div class="comment-main w-100">
+        <div :id="'comment-' + comment.id" class="comment-main w-100">
           <div class="heading clearfix">
             <router-link class="float-left mr-2" :to="{ name:'user.show', params: { username: comment.user.data.username }}">
               {{ comment.user.data.username }}
             </router-link>
-            <small> ⋅ <relative-time :datetime="comment.created_at" v-text="comment.created_at"></relative-time></small>
+            <small> ⋅ <a :href="'#comment-' + comment.id"><relative-time :datetime="comment.created_at" v-text="comment.created_at"></relative-time></a></small>
           </div>
           <section class="comment-body" v-html="comment.content"></section>
           <div class="comment-footer">
