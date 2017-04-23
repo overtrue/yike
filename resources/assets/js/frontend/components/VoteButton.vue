@@ -1,7 +1,7 @@
 <template>
   <div class="vote-button">
     <div class="vote" :class="item.is_voting ? 'active' : ''" @click="upVote(item.id)">
-      <i class="material-icons">thumb_up</i> {{ item.vote_count }}
+      <i class="material-icons">thumb_up</i> {{ item.vote_count > 0 ? item.vote_count : '' }}
     </div>
     <i class="vote material-icons" :class="item.is_down_voting ? 'active' : ''" @click="downVote(item.id)">thumb_down</i>
   </div>

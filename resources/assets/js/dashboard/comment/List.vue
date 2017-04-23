@@ -1,6 +1,6 @@
 <template>
   <div class="wrapper">
-    <data-table api="comments" :columns="columns" :searchables="searchables"></data-table>
+    <data-table api="comments" include="post" :columns="columns" @table-action="tableActions" :itemActions="itemActions" :searchables="searchables"></data-table>
   </div>
 </template>
 
@@ -33,10 +33,23 @@ export default {
           prop: 'created_at',
           label: 'Created',
         },
-      ]
+        {
+          label: 'Actions',
+          name: '__actions',
+        },
+      ],
+      itemActions: [
+        { name: 'preview-item', label: '预览', type: 'success' },
+      ],
     }
   },
   methods: {
+    tableActions(action, data) {
+      if (action == 'preview-item') {
+        let post = data.row.post.data
+        window.open('/' + post.user.data.username + '/' + post.slug + '#comment-' + data.row.id)
+      }
+    },
   }
 }
 </script>

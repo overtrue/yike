@@ -2,6 +2,7 @@
 
 namespace App\Transformers;
 
+use App\Post;
 use App\Comment;
 use League\Fractal\TransformerAbstract;
 
@@ -13,7 +14,7 @@ class CommentTransformer extends TransformerAbstract
      * @var array
      */
     protected $availableIncludes = [
-        'user',
+        'user', 'post',
     ];
 
     /**
@@ -61,6 +62,20 @@ class CommentTransformer extends TransformerAbstract
     {
         if ($comment->user) {
             return $this->item($comment->user, new UserTransformer);
+        }
+    }
+
+    /**
+     * Include post.
+     *
+     * @param  Comment $comment
+     *
+     * @return \League\Fractal\Resource\Item|null
+     */
+    public function includePost(Comment $comment)
+    {
+        if ($comment->commentable_type == Post::class && $comment->commentable) {
+            return $this->item($comment->commentable, new PostTransformer);
         }
     }
 }

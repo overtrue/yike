@@ -30,9 +30,6 @@
                   </div>
                   <div><small><relative-time :datetime="post.created_at" v-text="post.created_at"></relative-time></small></div>
                 </div>
-                <div class="btns">
-
-                </div>
               </div>
             </div>
           </header><!-- /header -->
@@ -111,6 +108,14 @@ export default {
                 this.post.content = Emojione.shortnameToUnicode(this.post.content)
                 this.user = this.post.user.data
                 this.comments = this.post.comments.data
+
+                this.$nextTick(() => {
+                  if (window.location.hash) {
+                    setTimeout(function () {
+                      $('html,body').animate({scrollTop:$(window.location.hash).offset().top}, 1000)
+                    }, 500);
+                  }
+                })
               }).catch(function(err){
                 console.log(err)
               });
