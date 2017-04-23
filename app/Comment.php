@@ -6,14 +6,16 @@ use Facades\Parsedown;
 use App\Traits\Loggable;
 use Jcc\LaravelVote\CanBeVoted;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Comment extends Model
 {
-    use Loggable, CanBeVoted;
+    use SoftDeletes, Loggable, CanBeVoted;
 
     protected $vote = User::class;
 
     const COMMENT_CREATE = 'comment.create';
+    const COMMENT_DELETE = 'comment.delete';
     const COMMENT_UP_VOTE = 'comment.up_vote';
     const COMMENT_DOWN_VOTE = 'comment.down_vote';
     const COMMENT_CANCEL_UP_VOTE = 'comment.cancel_up_vote';
@@ -43,6 +45,10 @@ class Comment extends Model
                 $comment->content_original = $comment->content;
                 $comment->content = preg_replace('/<code>/', '<code class="language-php">', Parsedown::text($comment->content));
             }
+        });
+
+        static::deleting(function ($comment) {
+            static::setActionTypeName(self::COMMENT_DELETE);
         });
     }
 
