@@ -102,6 +102,7 @@ export default {
   },
   methods: {
     loadPost: function(slug) {
+      let that = this
       this.$http.get(this.$endpoints.posts + slug + '?include=comments')
               .then((post) => {
                 this.post = getData(post).data
@@ -112,7 +113,9 @@ export default {
                 this.$nextTick(() => {
                   if (window.location.hash) {
                     setTimeout(function () {
-                      $('html,body').animate({scrollTop:$(window.location.hash).offset().top}, 1000)
+                      $('html,body').animate({
+                        scrollTop: that.getElementTop(document.querySelector(window.location.hash))
+                      }, 1500)
                     }, 500);
                   }
                 })
@@ -125,6 +128,22 @@ export default {
     },
     handleEdit() {
       this.$router.push({name: 'post.edit', params: {username: this.user.username, slug: this.post.slug}})
+    },
+    getElementTop(element){
+      let actualTop = element.offsetTop;
+      let current = element.offsetParent;
+      let elementScrollTop = 0
+
+      while (current !== null){
+      　actualTop += current.offsetTop;
+      　current = current.offsetParent;
+      }
+
+      elementScrollTop = document.compatMode == 'BackCompat'
+                          ? document.body.scrollTop
+                          : document.documentElement.scrollTop;
+
+      return actualTop-elementScrollTop;
     }
   }
 }
