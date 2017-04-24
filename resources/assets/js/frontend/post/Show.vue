@@ -42,7 +42,7 @@
                 <a href="#" class=""><i class="material-icons">favorite</i> 0</a>
               </div>
               <div class="right-actions d-flex justify-content-end">
-                <a href="#"><i class="material-icons">share</i> 分享</a>
+                <share :title="post.title" :url="url" :image="post.cover"></share>
                 <a href="#"><i class="material-icons">report</i> 举报</a>
               </div>
             </div>
@@ -71,6 +71,7 @@ import Prism from "../../plugins/prism"
 import CommentList from "./comment/List"
 import Emojione from "emojione"
 import BackTop from "home/BackTop"
+import Share from "home/Share"
 
 require("clipboard")
 require("./theme/github.css")
@@ -78,7 +79,17 @@ require("../../plugins/prism.css")
 
 export default {
   name: 'post-show',
-  components: { Navbar, Avatar, ImageBox, FollowButton, UserCard, RelativeTime, CommentList, BackTop },
+  components: {
+    Navbar,
+    Avatar,
+    ImageBox,
+    FollowButton,
+    UserCard,
+    RelativeTime,
+    CommentList,
+    BackTop,
+    Share,
+  },
   data() {
     return {
       post: {},
@@ -98,7 +109,10 @@ export default {
     ...mapGetters(['currentUser']),
     canEdit: function() {
       return this.currentUser.is_admin || this.post.user_id == this.currentUser.id
-    }
+    },
+    url() {
+      return window.location.href
+    },
   },
   methods: {
     loadPost: function(slug) {
