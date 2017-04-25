@@ -1,6 +1,6 @@
 <template>
   <div class="wrapper">
-    <data-table api="posts" :columns="columns" @table-action="tableActions" :itemActions="itemActions" :searchables="searchables">
+    <data-table api="posts" :hideQuery="hideQuery" :columns="columns" @table-action="tableActions" :itemActions="itemActions" :searchables="searchables">
       <template slot="draft" scope="props">
         <el-tag :type="props.data.row.is_draft ? 'warning' : 'primary'">
           {{props.data.row.is_draft ? '是' : '否'}}
@@ -17,6 +17,9 @@ export default {
       searchables: {
         title: 'Title',
         slug: 'Slug',
+      },
+      hideQuery: {
+        id: this.$route.query.id
       },
       columns: [
         {

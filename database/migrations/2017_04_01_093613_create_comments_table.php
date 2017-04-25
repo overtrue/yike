@@ -26,7 +26,12 @@ class CreateCommentsTable extends Migration
             $table->text('content');
             $table->text('content_original')->nullable();
 
+            // 状态缓存
             $table->unsignedInteger('vote_cache')->default(0)->index();
+
+            // 是否 ban 掉
+            $table->boolean('is_banned')->default(0);
+            $table->string('banned_reason')->nullable();
 
             $table->timestamps();
             $table->softDeletes();

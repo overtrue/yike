@@ -40,6 +40,7 @@ Route::group([
             Route::resource('banners', 'BannerController');
             Route::get('statistics', 'HomeController@index');
             Route::get('logs', 'UserLogController@index');
+            Route::get('reports', 'ReportController@index');
         });
     });
 });

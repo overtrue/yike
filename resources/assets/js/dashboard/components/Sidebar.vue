@@ -21,6 +21,7 @@
         <el-menu-item index="/dashboard/tag"><i class="material-icons">label</i><span>Tags</span></el-menu-item>
         <el-menu-item index="/dashboard/role"><i class="material-icons">security</i><span>Roles</span></el-menu-item>
         <el-menu-item index="/dashboard/banner"><i class="material-icons">view_carousel</i><span>Banners</span></el-menu-item>
+        <el-menu-item index="/dashboard/report"><i class="material-icons">report</i><span>Reports</span></el-menu-item>
       </el-menu-item-group>
       <el-menu-item-group title="System Management">
         <el-submenu index="/dashboard/settings">
@@ -28,6 +29,7 @@
           <el-menu-item index="/dashboard/settings/system">System</el-menu-item>
           <el-menu-item index="/dashboard/settings/rank">Rank</el-menu-item>
         </el-submenu>
+        <el-menu-item index="/dashboard/report/rule"><i class="material-icons">filter_list</i><span>Report Rule</span></el-menu-item>
         <el-menu-item index="/dashboard/log"><i class="material-icons">warning</i><span>Logs</span></el-menu-item>
       </el-menu-item-group>
     </el-menu>
