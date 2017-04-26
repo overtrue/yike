@@ -19,6 +19,7 @@
     </el-row>
     <div class="mb-3">
       <el-tag v-for="(value, key) in query" :key="key" class="mr-1" @close="delete query[key]; fetch()" :closable="true">{{ searchables[key] }}: {{ value }}</el-tag>
+      <el-tag v-if="showHideTips" class="mr-1" @close="resetHideQuery" :closable="true">Cancel Hide Query</el-tag>
     </div>
     <el-table :data="items" style="width: 100%">
       <template v-for="column in columns">
@@ -89,6 +90,12 @@
           return {}
         }
       },
+      hideQuery: {
+        type: Object,
+        default() {
+          return undefined
+        }
+      },
       api: {
         type: String,
         default: null
@@ -105,11 +112,13 @@
             { name: 'delete-item', label: '删除', type: 'danger' }
           ]
         }
-      }
+      },
     },
     data() {
       return {
         items: [],
+        showHideTips: false,
+        hideQueryList: this.hideQuery,
         pagination: {
           count: 0,
           current_page: 1,
@@ -136,12 +145,20 @@
         this.fetch()
       },
       fetch() {
+        let that = this
         let query = Object.assign({}, this.query)
+
+        if (this.hideQueryList != undefined) {
+          query = Object.assign(query, this.hideQueryList)
+          Object.keys(this.hideQueryList).forEach(function(key) {
+            if (that.$route.query[key] != undefined) that.showHideTips = true
+          });
+        }
 
         query['page'] = this.pagination.current_page
         query['per_page'] = this.pagination.per_page
 
-        this.$router.push({ name: this.$route.name, query: query })
+        this.$router.replace({ name: this.$route.name, query: query })
 
         query['include'] = this.include
 
@@ -162,6 +179,11 @@
       },
       callAction(action, data) {
         this.$emit('table-action', action, data)
+      },
+      resetHideQuery() {
+        this.hideQueryList = undefined
+        this.showHideTips = false
+        this.fetch()
       },
     }
   }

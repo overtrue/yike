@@ -12,4 +12,5 @@ export default {
   banners: prefix + '/banners/',
   statistics: prefix + '/statistics/',
   logs: prefix + '/logs/',
+  reports: prefix + '/reports/',
 }

@@ -1,6 +1,6 @@
 <template>
   <div class="wrapper">
-    <data-table api="comments" include="post" :columns="columns" @table-action="tableActions" :itemActions="itemActions" :searchables="searchables"></data-table>
+    <data-table api="comments" :hideQuery="hideQuery" include="post" :columns="columns" @table-action="tableActions" :itemActions="itemActions" :searchables="searchables"></data-table>
   </div>
 </template>
 
@@ -10,6 +10,9 @@ export default {
     return {
       searchables: {
         commentable_type: 'Type',
+      },
+      hideQuery: {
+        id: this.$route.query.id
       },
       columns: [
         {

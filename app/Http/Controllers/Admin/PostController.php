@@ -25,6 +25,10 @@ class PostController extends ApiController
                         $query->where($field, 'like', "%{$request->$field}%");
                     }
                 }
+
+                if ($request->has('id')) {
+                    $query->where('id', $request->id);
+                }
             }
         })->paginate($request->get('per_page', 20));
 
