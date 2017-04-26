@@ -35,12 +35,10 @@ class CommentTransformer extends TransformerAbstract
      */
     public function transform(Comment $comment)
     {
-        $commentableType = explode('\\', $comment->commentable_type);
-
         return [
             'id' => $comment->id,
             'user_id' => $comment->user_id,
-            'type' => end($commentableType),
+            'type' => class_basename($comment->commentable_type),
             'content' => $comment->content,
             'raw_content' => $comment->content_original,
             'vote_count'  => $comment->vote_cache,

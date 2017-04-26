@@ -39,8 +39,8 @@ class CreatePostsTable extends Migration
             $table->text('content_original')->nullable();
 
             // 是否 ban 掉
-            $table->boolean('is_banned')->default(0);
             $table->string('banned_reason')->nullable();
+            $table->timestamp('banned_at')->nullable()->comment('禁止时间');
 
             // 发布时间
             $table->timestamp('published_at')->nullable()->comment('发布时间');

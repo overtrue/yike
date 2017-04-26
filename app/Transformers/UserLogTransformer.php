@@ -34,12 +34,10 @@ class UserLogTransformer extends TransformerAbstract
      */
     public function transform(UserLog $action)
     {
-        $actionType = explode('\\', $action->action_type);
-
         return [
             'id' => $action->id,
             'action_id' => $action->action_id,
-            'action_type' => end($actionType),
+            'action_type' => class_basename($action->action_type),
             'action' => $action->action,
             'changes' => $action->changes,
             'created_at' => $action->created_at->toIso8601String(),

@@ -25,7 +25,9 @@ class CommentController extends ApiController
                     }
                 }
 
-                if ($request->has('id')) $query->where('id', $request->id);
+                if ($request->has('id')) {
+                    $query->where('id', $request->id);
+                }
             }
         })->paginate($request->get('per_page', 20));
 

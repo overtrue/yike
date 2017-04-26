@@ -34,13 +34,11 @@ class ReportTransformer extends TransformerAbstract
      */
     public function transform(Report $report)
     {
-        $reportType = explode('\\', $report->reportable_type);
-
         return [
             'id' => $report->id,
             'user_id' => $report->user_id,
             'reason' => $report->reason,
-            'type' => end($reportType),
+            'type' => class_basename($report->reportable_type),
             'type_id' => $report->reportable_id,
             'created_at' => $report->created_at->toIso8601String(),
             'updated_at' => $report->updated_at->toIso8601String(),

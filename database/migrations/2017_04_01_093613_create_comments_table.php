@@ -30,8 +30,8 @@ class CreateCommentsTable extends Migration
             $table->unsignedInteger('vote_cache')->default(0)->index();
 
             // 是否 ban 掉
-            $table->boolean('is_banned')->default(0);
             $table->string('banned_reason')->nullable();
+            $table->timestamp('banned_at')->nullable()->comment('禁止时间');
 
             $table->timestamps();
             $table->softDeletes();

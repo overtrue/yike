@@ -13,7 +13,7 @@ class CreateRulesTable extends Migration
      */
     public function up()
     {
-        Schema::create('rules', function (Blueprint $table) {
+        Schema::create('report_rules', function (Blueprint $table) {
             $table->increments('id');
             $table->unsignedInteger('creator_id')->nullable()->default(null);
             $table->unsignedInteger('parent_id')->default(0);
@@ -35,6 +35,6 @@ class CreateRulesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('rules');
+        Schema::dropIfExists('report_rules');
     }
 }
