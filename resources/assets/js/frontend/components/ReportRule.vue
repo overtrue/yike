@@ -86,7 +86,7 @@ export default {
         return this.$router.push({name: 'auth.signin', query: { redirect: window.location.href }})
       }
 
-      let url = this.api + this.item.id + '/report'
+      let url = this.api + this.item.id + '/reports'
 
       this.$http.post(url, { reason: this.reason })
           .then((response) => this.cancel())

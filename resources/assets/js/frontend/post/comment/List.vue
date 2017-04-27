@@ -98,7 +98,7 @@ export default {
 
       this.form.type = 'markdown'
 
-      this.$http.post(this.$endpoints.posts + this.$route.params.slug + '/comment', this.form)
+      this.$http.post(this.$endpoints.posts + this.$route.params.slug + '/comments', this.form)
           .then((response) => {
             this.form.content = ''
             this.showButton = false
