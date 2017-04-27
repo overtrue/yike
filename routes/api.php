@@ -27,6 +27,7 @@ Route::group([
         Route::post('/posts', 'PostController@store');
         Route::patch('/posts/{id}', 'PostController@update');
         Route::post('/posts/{id}/comment', 'PostController@storeComment');
+        Route::post('/posts/{id}/report', 'PostController@storeReport');
 
         Route::group(['prefix' => 'dashboard', 'namespace' => 'Admin'], function(){
             Route::resource('users', 'UserController');
