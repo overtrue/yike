@@ -66,6 +66,22 @@ class PostController extends ApiController
     }
 
     /**
+     * Store a newly created report.
+     *
+     * @param  \Illuminate\Http\Request $request
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function storeReport(Request $request, $id)
+    {
+        $post = Post::whereId($id)->orWhere('slug', $id)->firstOrFail();
+
+        $report = $post->reports()->create($request->all());
+
+        return $this->response->withNoContent();
+    }
+
+    /**
      * Display the specified resource.
      *
      * @param  int  $id

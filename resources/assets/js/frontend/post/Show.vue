@@ -43,7 +43,7 @@
               </div>
               <div class="right-actions d-flex justify-content-end">
                 <share :title="post.title" :url="url" :image="post.cover"></share>
-                <a href="#"><i class="material-icons">report</i> 举报</a>
+                <a href="javascript:void(0);" @click="visibleReport=true"><i class="material-icons">report</i> 举报</a>
               </div>
             </div>
           </div>
@@ -54,6 +54,7 @@
         <comment-list :list="comments"></comment-list>
       </div>
     </div>
+    <report-rule :item="post" :rules="rules" :api="$endpoints.posts" :show="visibleReport" @cancel="visibleReport=false"></report-rule>
     <back-top></back-top>
   </div>
 </template>
@@ -72,6 +73,8 @@ import CommentList from "./comment/List"
 import Emojione from "emojione"
 import BackTop from "home/BackTop"
 import Share from "home/Share"
+import ReportRule from "home/ReportRule"
+import { default as ReportRules } from "app/reportRules"
 
 require("clipboard")
 require("./theme/github.css")
@@ -89,12 +92,15 @@ export default {
     CommentList,
     BackTop,
     Share,
+    ReportRule,
   },
   data() {
     return {
       post: {},
       user: {},
-      comments: []
+      comments: [],
+      visibleReport: false,
+      rules: ReportRules
     }
   },
   created() {

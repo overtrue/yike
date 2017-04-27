@@ -113,8 +113,6 @@ export default {
 
 <style lang="scss" scoped>
   .nav-bar {
-    position: relative;
-    z-index: 100;
     height: 60px;
 
     .nav-item {

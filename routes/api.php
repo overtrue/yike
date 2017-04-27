@@ -26,7 +26,8 @@ Route::group([
         Route::post('/auth/token/revoke', 'AuthController@revokeToken');
         Route::post('/posts', 'PostController@store');
         Route::patch('/posts/{id}', 'PostController@update');
-        Route::post('/posts/{id}/comment', 'PostController@storeComment');
+        Route::post('/posts/{id}/comments', 'PostController@storeComment');
+        Route::post('/posts/{id}/reports', 'PostController@storeReport');
 
         Route::group(['prefix' => 'dashboard', 'namespace' => 'Admin'], function(){
             Route::resource('users', 'UserController');

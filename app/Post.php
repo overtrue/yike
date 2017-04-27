@@ -108,6 +108,11 @@ class Post extends Model
         return $this->morphMany(Comment::class, 'commentable');
     }
 
+    public function reports()
+    {
+        return $this->morphMany(Report::class, 'reportable');
+    }
+
     public function series()
     {
         return $this->hasManyThrough(Series::class, 'series_post');

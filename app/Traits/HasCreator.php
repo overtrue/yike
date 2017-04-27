@@ -2,12 +2,14 @@
 
 namespace App\Traits;
 
+use App\User;
+
 trait HasCreator
 {
     public static function bootHasCreator()
     {
         static::creating(function ($object) {
-            $object->creator = $object->creator_id ?: auth()->id();
+            $object->creator_id = $object->creator_id ?: auth()->id();
         });
     }
 

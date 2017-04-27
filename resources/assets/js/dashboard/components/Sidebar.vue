@@ -29,7 +29,6 @@
           <el-menu-item index="/dashboard/settings/system">System</el-menu-item>
           <el-menu-item index="/dashboard/settings/rank">Rank</el-menu-item>
         </el-submenu>
-        <el-menu-item index="/dashboard/report/rule"><i class="material-icons">filter_list</i><span>Report Rule</span></el-menu-item>
         <el-menu-item index="/dashboard/log"><i class="material-icons">warning</i><span>Logs</span></el-menu-item>
       </el-menu-item-group>
     </el-menu>
