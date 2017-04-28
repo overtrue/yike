@@ -15,9 +15,9 @@
     </data-table>
 
     <el-dialog title="禁止原因" v-model="reasonFormVisible" size="tiny" @close="onCloseForm">
-      <el-form label-width="90px">
+      <el-form ref="reason" :model="reasonForm" label-width="90px" :rules="rules">
         <el-form-item label="原因" prop="reason">
-          <el-input placeholder="请输入禁止原因" v-model="reason"></el-input>
+          <el-input placeholder="请输入禁止原因" v-model="reasonForm.reason"></el-input>
         </el-form-item>
         <el-form-item>
           <el-button type="primary" :disabled="busying" @click="onBanned">确定</el-button>
@@ -32,8 +32,10 @@
 export default {
   data() {
     return {
-      reason: '',
       busying: false,
+      reasonForm: {
+        reason: ''
+      },
       currentPost: undefined,
       reasonFormVisible: false,
       searchables: {
@@ -85,6 +87,15 @@ export default {
       ],
     }
   },
+  computed: {
+    rules() {
+      return {
+        reason: [
+          { type: 'string', required: true, message: '请填写禁止原因', trigger: 'blur'}
+        ]
+      }
+    },
+  },
   methods: {
     onRecommend(row) {
       this.$http.patch(this.$endpoints.posts + row.id + '/recommend')
@@ -107,13 +118,25 @@ export default {
       this.reasonFormVisible=true
     },
     onBanned() {
-      this.$http.patch(this.$endpoints.posts + this.currentPost.id + '/ban', { reason: this.reason })
-          .then(({ data }) => {
-            this.$message.success('禁止成功')
-            this.reasonFormVisible = false
-            this.$emit('reload')
-          })
-          .catch(response => console.log(response))
+      this.$refs.reason.validate((passed) => {
+        if (passed) {
+          this.busying = true
+          this.$http.patch(this.$endpoints.posts + this.currentPost.id + '/ban', { reason: this.reason })
+              .then(({ data }) => {
+                this.busying = false
+                this.reasonForm.reason = ''
+                this.reasonFormVisible = false
+                this.$message.success('禁止成功')
+                this.$emit('reload')
+              })
+              .catch((response) => {
+                this.busying = false
+                this.$message.success('禁止失败')
+              })
+        } else {
+          this.busying = false
+        }
+      })
     },
     onLifted(row) {
       this.$http.patch(this.$endpoints.posts + row.id + '/lift')
@@ -132,6 +155,8 @@ export default {
           .catch(response => console.log(response))
     },
     onCloseForm() {
+      this.busying = false
+      this.reasonForm.reason = ''
       this.currentPost = undefined
       this.reasonFormVisible = false
     },

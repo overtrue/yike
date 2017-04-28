@@ -36,6 +36,8 @@ Route::group([
             Route::patch('posts/{id}/ban', 'PostController@ban');
             Route::patch('posts/{id}/lift', 'PostController@lift');
             Route::resource('posts', 'PostController');
+            Route::patch('comments/{id}/ban', 'CommentController@ban');
+            Route::patch('comments/{id}/lift', 'CommentController@lift');
             Route::resource('comments', 'CommentController');
             Route::resource('tags', 'TagController');
             Route::resource('roles', 'RoleController');

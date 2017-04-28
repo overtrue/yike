@@ -15,6 +15,7 @@ class Comment extends Model
     protected $vote = User::class;
 
     const COMMENT_CREATE = 'comment.create';
+    const COMMENT_UPDATE = 'comment.update';
     const COMMENT_DELETE = 'comment.delete';
     const COMMENT_UP_VOTE = 'comment.up_vote';
     const COMMENT_DOWN_VOTE = 'comment.down_vote';
@@ -28,6 +29,7 @@ class Comment extends Model
     protected $fillable = [
         'user_id', 'commentable_id', 'commentable_type',
         'type', 'content', 'content_original', 'vote_cache',
+        'banned_reason', 'banned_at',
     ];
 
     public static function boot()
@@ -38,6 +40,10 @@ class Comment extends Model
             $comment->user_id = auth()->id();
             $comment->content_original = $comment->content_original ?: $comment->content;
             static::setActionTypeName(self::COMMENT_CREATE);
+        });
+
+        static::updating(function($post){
+            static::setActionTypeName(self::COMMENT_UPDATE);
         });
 
         static::saving(function ($comment) {
