@@ -31,6 +31,10 @@ Route::group([
 
         Route::group(['prefix' => 'dashboard', 'namespace' => 'Admin'], function(){
             Route::resource('users', 'UserController');
+            Route::patch('posts/{id}/recommend', 'PostController@recommend');
+            Route::patch('posts/{id}/off', 'PostController@off');
+            Route::patch('posts/{id}/ban', 'PostController@ban');
+            Route::patch('posts/{id}/lift', 'PostController@lift');
             Route::resource('posts', 'PostController');
             Route::resource('comments', 'CommentController');
             Route::resource('tags', 'TagController');

@@ -49,6 +49,8 @@ class PostTransformer extends TransformerAbstract
             'view_count' => $post->view_cache,
             'type' => $post->type,
             'url' => '/'.$post->user->username.'/'.$post->slug,
+            'is_recommended' => $post->recommended_at ? true : false,
+            'is_banned' => $post->banned_at ? true : false,
             'created_at' => $post->created_at->toIso8601String(),
             'updated_at' => $post->updated_at->toIso8601String(),
         ];
