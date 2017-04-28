@@ -4,7 +4,7 @@ export default [{
   name: 'dashboard.comment',
   path: 'comment',
   component: List,
-  mata: {
+  meta: {
     title: 'Comment',
   }
 }]
