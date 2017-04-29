@@ -1,6 +1,6 @@
 <template>
   <div class="wrapper">
-    <data-table api="feedbacks" :columns="columns" @table-action="tableActions" :itemActions="itemActions" :searchables="searchables"></data-table>
+    <data-table api="feedback" :columns="columns" @table-action="tableActions" :itemActions="itemActions" :searchables="searchables"></data-table>
   </div>
 </template>
 
