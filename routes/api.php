@@ -42,6 +42,7 @@ Route::group([
             Route::get('statistics', 'HomeController@index');
             Route::get('logs', 'UserLogController@index');
             Route::get('reports', 'ReportController@index');
+            Route::resource('feedbacks', 'FeedbackController');
         });
     });
 });
