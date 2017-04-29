@@ -14,6 +14,7 @@ import { routes as series } from '../series'
 import { routes as banner } from '../banner'
 import { routes as report } from '../report'
 import { routes as log } from '../log'
+import { routes as feedback } from '../feedback'
 
 Vue.use(Router)
 
@@ -39,6 +40,7 @@ const routes = [{
     ...banner,
     ...report,
     ...log,
+    ...feedback,
     NotFoundRoute,
   ]
 }]

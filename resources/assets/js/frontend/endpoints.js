@@ -9,4 +9,5 @@ export default {
   followers: '/me/followers/',
   voters: '/me/voters/',
   me: '/me/',
+  feedback: '/feedback/',
 }

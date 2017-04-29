@@ -46,8 +46,8 @@ class CreateUsersTable extends Migration
             $table->timestamp('last_active_at')->nullable();
 
             $table->rememberToken();
-            $table->softDeletes();
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 
