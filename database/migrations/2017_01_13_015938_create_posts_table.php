@@ -44,7 +44,7 @@ class CreatePostsTable extends Migration
 
             // 发布时间
             $table->timestamp('published_at')->nullable()->comment('发布时间');
-            $table->timestamp('recommend_at')->nullable()->comment('推荐时间');
+            $table->timestamp('recommended_at')->nullable()->comment('推荐时间');
 
             $table->timestamps();
             $table->softDeletes();

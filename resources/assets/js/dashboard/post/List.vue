@@ -6,7 +6,25 @@
           {{props.data.row.is_draft ? '是' : '否'}}
         </el-tag>
       </template>
+      <template slot="advanced" scope="props">
+        <el-button size="small" type="info" v-if="!props.data.row.is_recommended" @click="onRecommend(props.data.row)">推荐</el-button>
+        <el-button size="small" type="danger" v-else @click="onOff(props.data.row)">下架</el-button>
+        <el-button size="small" type="warning" v-if="!props.data.row.is_banned" @click="onSetReason(props.data.row)">禁止</el-button>
+        <el-button size="small" type="success" v-else @click="onLifted(props.data.row)">解禁</el-button>
+      </template>
     </data-table>
+
+    <el-dialog title="禁止原因" v-model="reasonFormVisible" size="tiny" @close="onCloseForm">
+      <el-form ref="reason" :model="reasonForm" label-width="90px" :rules="rules">
+        <el-form-item label="原因" prop="reason">
+          <el-input placeholder="请输入禁止原因" v-model="reasonForm.reason"></el-input>
+        </el-form-item>
+        <el-form-item>
+          <el-button type="primary" :disabled="busying" @click="onBanned">确定</el-button>
+          <el-button @click="onCloseForm">取消</el-button>
+        </el-form-item>
+      </el-form>
+    </el-dialog>
   </div>
 </template>
 
@@ -14,6 +32,12 @@
 export default {
   data() {
     return {
+      busying: false,
+      reasonForm: {
+        reason: ''
+      },
+      currentPost: undefined,
+      reasonFormVisible: false,
       searchables: {
         title: 'Title',
         slug: 'Slug',
@@ -49,7 +73,11 @@ export default {
           label: 'Created At',
         },
         {
-          label: 'Actions',
+          width: '140',
+          name: 'advanced',
+        },
+        {
+          width: '135',
           name: '__actions',
         },
       ],
@@ -59,7 +87,65 @@ export default {
       ],
     }
   },
+  computed: {
+    rules() {
+      return {
+        reason: [
+          { type: 'string', required: true, message: '请填写禁止原因', trigger: 'blur'}
+        ]
+      }
+    },
+  },
   methods: {
+    onRecommend(row) {
+      this.$http.patch(this.$endpoints.posts + row.id + '/recommend')
+          .then(({ data }) => {
+            this.$message.success('推荐成功')
+            this.$emit('reload')
+          })
+          .catch(response => console.log(response))
+    },
+    onOff(row) {
+      this.$http.patch(this.$endpoints.posts + row.id + '/off')
+          .then(({ data }) => {
+            this.$message.success('下架成功')
+            this.$emit('reload')
+          })
+          .catch(response => console.log(response))
+    },
+    onSetReason(row) {
+      this.currentPost = row
+      this.reasonFormVisible=true
+    },
+    onBanned() {
+      this.$refs.reason.validate((passed) => {
+        if (passed) {
+          this.busying = true
+          this.$http.patch(this.$endpoints.posts + this.currentPost.id + '/ban', { reason: this.reason })
+              .then(({ data }) => {
+                this.busying = false
+                this.reasonForm.reason = ''
+                this.reasonFormVisible = false
+                this.$message.success('禁止成功')
+                this.$emit('reload')
+              })
+              .catch((response) => {
+                this.busying = false
+                this.$message.success('禁止失败')
+              })
+        } else {
+          this.busying = false
+        }
+      })
+    },
+    onLifted(row) {
+      this.$http.patch(this.$endpoints.posts + row.id + '/lift')
+          .then(({ data }) => {
+            this.$message.success('解禁成功')
+            this.$emit('reload')
+          })
+          .catch(response => console.log(response))
+    },
     onDelete(row) {
       this.$http.delete(this.$endpoints.posts + row.id)
           .then(({ data }) => {
@@ -68,9 +154,19 @@ export default {
           })
           .catch(response => console.log(response))
     },
+    onCloseForm() {
+      this.busying = false
+      this.reasonForm.reason = ''
+      this.currentPost = undefined
+      this.reasonFormVisible = false
+    },
     tableActions(action, data) {
       if (action == 'preview-item') {
         window.open('/' + data.row.user.data.username + '/' + data.row.slug)
+      } else if (action == 'recommend-item') {
+        this.onRecommend(data.row)
+      } else if (action == 'ban-item') {
+        this.onBan(data.row)
       } else if (action == 'delete-item') {
         this.onDelete(data.row)
       }

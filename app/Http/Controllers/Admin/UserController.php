@@ -42,7 +42,10 @@ class UserController extends ApiController
      */
     public function store(Request $request)
     {
-        $data = array_merge($request->all(), [ 'username' => $request->get('name') ]);
+        $data = array_merge($request->all(), [
+            'username' => $request->name,
+            'password' => bcrypt($request->password),
+        ]);
 
         return $this->response->item(User::create($data));
     }

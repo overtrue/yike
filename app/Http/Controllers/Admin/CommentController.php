@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Comment;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use App\Http\Controllers\ApiController;
 
@@ -32,6 +33,30 @@ class CommentController extends ApiController
         })->paginate($request->get('per_page', 20));
 
         return $this->response->collection($comments);
+    }
+
+    public function ban(Request $request, $id)
+    {
+        $comment = Comment::findOrFail($id);
+
+        $comment->update([
+            'banned_at' => Carbon::now(),
+            'banned_reason' => $request->reason
+        ]);
+
+        return $this->response->item($comment);
+    }
+
+    public function lift($id)
+    {
+        $comment = Comment::findOrFail($id);
+
+        $comment->update([
+            'banned_at' => null,
+            'banned_reason' => null
+        ]);
+
+        return $this->response->item($comment);
     }
 
     /**

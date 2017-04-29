@@ -33,7 +33,13 @@ Route::group([
 
         Route::group(['prefix' => 'dashboard', 'namespace' => 'Admin'], function(){
             Route::resource('users', 'UserController');
+            Route::patch('posts/{id}/recommend', 'PostController@recommend');
+            Route::patch('posts/{id}/off', 'PostController@off');
+            Route::patch('posts/{id}/ban', 'PostController@ban');
+            Route::patch('posts/{id}/lift', 'PostController@lift');
             Route::resource('posts', 'PostController');
+            Route::patch('comments/{id}/ban', 'CommentController@ban');
+            Route::patch('comments/{id}/lift', 'CommentController@lift');
             Route::resource('comments', 'CommentController');
             Route::resource('tags', 'TagController');
             Route::resource('roles', 'RoleController');

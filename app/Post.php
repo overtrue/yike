@@ -23,6 +23,7 @@ class Post extends Model
     protected $fillable = [
         'user_id', 'is_spammed', 'is_draft', 'title', 'slug', 'type',
         'content', 'content_original', 'published_at', 'image_id', 'last_edit_user_id',
+        'recommended_at', 'banned_reason', 'banned_at',
     ];
 
     /**
