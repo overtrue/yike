@@ -16,6 +16,7 @@ class Feedback extends Model
 
         static::creating(function ($feedback) {
             $feedback->user_id = $feedback->user_id ?? auth()->id();
+            $feedback->ip = $feedback->ip ?? request()->ip();
         });
     }
 }

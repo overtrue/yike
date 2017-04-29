@@ -13,5 +13,5 @@ export default {
   statistics: prefix + '/statistics/',
   logs: prefix + '/logs/',
   reports: prefix + '/reports/',
-  feedbacks: prefix + '/feedbacks/',
+  feedback: prefix + '/feedback/',
 }

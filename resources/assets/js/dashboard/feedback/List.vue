@@ -41,7 +41,7 @@ export default {
   },
   methods: {
     onDelete(row) {
-      this.$http.delete(this.$endpoints.feedbacks + row.id)
+      this.$http.delete(this.$endpoints.feedback + row.id)
           .then(({ data }) => {
             this.$message.success('删除成功')
             this.$emit('reload')

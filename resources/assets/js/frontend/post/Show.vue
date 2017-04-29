@@ -56,6 +56,7 @@
     </div>
     <report-rule :item="post" :rules="rules" :api="$endpoints.posts" :show="visibleReport" @cancel="visibleReport=false"></report-rule>
     <back-top></back-top>
+    <feedback></feedback>
   </div>
 </template>
 
@@ -75,6 +76,7 @@ import BackTop from "home/BackTop"
 import Share from "home/Share"
 import ReportRule from "home/ReportRule"
 import { default as ReportRules } from "app/reportRules"
+import Feedback from "home/Feedback"
 
 require("clipboard")
 require("./theme/github.css")
@@ -93,6 +95,7 @@ export default {
     BackTop,
     Share,
     ReportRule,
+    Feedback,
   },
   data() {
     return {

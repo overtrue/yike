@@ -49,7 +49,7 @@
 <style lang="scss" scoped>
 .back-top {
   position: fixed;
-  bottom: 30px;
+  bottom: 20px;
   right: 30px;
   width: 38px;
   height: 38px;

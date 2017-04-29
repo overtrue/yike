@@ -43,7 +43,7 @@ export default {
 .modal {
   display: block;
   position: fixed;
-  z-index: 9998;
+  z-index: 1001;
   top: 0;
   left: 0;
   width: 100%;
@@ -54,9 +54,6 @@ export default {
   .modal-dialog {
     margin-top: 80px;
     max-width: 400px;
-  }
-  .modal-body {
-    padding: 30px 60px;
   }
 }
 </style>
