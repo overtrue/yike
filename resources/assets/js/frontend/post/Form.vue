@@ -198,7 +198,7 @@ export default {
               return vm.$store.dispatch('setMessage', { type: 'error', message: ['图片上传失败'] })
             }
             vm.form.image_id = responseJSON.image_id
-            vm.form.cover = '/' + responseJSON.relative_url
+            vm.form.cover = responseJSON.url
           }
         }
       }))
