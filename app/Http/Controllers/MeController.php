@@ -38,13 +38,35 @@ class MeController extends ApiController
         return $this->response->json(['success' => true]);
     }
 
-    public function postFollowSeries(Request $request)
+    public function postSubscribeSeries(Request $request)
     {
         $this->validate($request, [
                 'id' => 'required|exists:series,id',
             ]);
 
-        $this->toggleFollow($request->user(), Series::find($request->id));
+        $this->toggleAction($request->user(), Series::find($request->id), 'subscrib');
+
+        return $this->response->json(['success' => true]);
+    }
+
+    public function postLikePost(Request $request)
+    {
+        $this->validate($request, [
+                'id' => 'required|exists:posts,id',
+            ]);
+
+        $this->toggleAction($request->user(), Post::find($request->id), 'like');
+
+        return $this->response->json(['success' => true]);
+    }
+
+    public function postFavouritePost(Request $request)
+    {
+        $this->validate($request, [
+                'id' => 'required|exists:posts,id',
+            ]);
+
+        $this->toggleAction($request->user(), Post::find($request->id), 'favorite');
 
         return $this->response->json(['success' => true]);
     }
@@ -54,6 +76,24 @@ class MeController extends ApiController
         $isFollowing = $user->isFollowing($target);
 
         $isFollowing ? $user->unfollow($target) : $user->follow($target);
+
+        return $isFollowing;
+    }
+
+    public function toggleAction($user, $target, $type)
+    {
+        $isFollowing = $user->{ 'has' . ucfirst($type) . 'd' }($target);
+
+        $isFollowing ? $user->{ 'un' . $type }($target) : $user->{ $type }($target);
+
+        return $isFollowing;
+    }
+
+    public function toggleSubscribe($user, $target)
+    {
+        $isFollowing = $user->hasSubscribed($target);
+
+        $isFollowing ? $user->unsubscribe($target) : $user->subscribe($target);
 
         return $isFollowing;
     }

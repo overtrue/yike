@@ -31,7 +31,8 @@ class CreatePostsTable extends Migration
 
             // 状态缓存
             $table->unsignedInteger('comment_cache')->default(0)->index();
-            $table->unsignedInteger('vote_cache')->default(0)->index();
+            $table->unsignedInteger('like_cache')->default(0)->index();
+            $table->unsignedInteger('favorite_count')->default(0)->index();
             $table->unsignedInteger('view_cache')->default(0)->index();
 
             // 内容

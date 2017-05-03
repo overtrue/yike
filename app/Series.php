@@ -4,11 +4,11 @@ namespace App;
 
 use Translug;
 use Illuminate\Database\Eloquent\Model;
-use Overtrue\LaravelFollow\CanBeFollowed;
+use Overtrue\LaravelFollow\Traits\CanBeSubscribed;
 
 class Series extends Model
 {
-    use CanBeFollowed;
+    use CanBeSubscribed;
 
     protected $fillable = [
         'user_id', 'image_id', 'title', 'slug', 'description', 'post_cache', 'follower_cache',

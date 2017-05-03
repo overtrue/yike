@@ -8,6 +8,8 @@ export default {
   series: '/series/',
   followers: '/me/followers/',
   voters: '/me/voters/',
+  likers: '/me/likers/',
+  favoriters: '/me/favoriters/',
   me: '/me/',
   feedback: '/feedback/',
 }
