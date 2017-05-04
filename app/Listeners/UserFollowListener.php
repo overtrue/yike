@@ -17,6 +17,16 @@ class UserFollowListener
      */
     public function handle(UserFollow $event)
     {
-        $event->targetUser->notify(new UserFollowNotification($event->user));
+        $event->targetUser->setActionTypeName($event->type);
+
+        if ($event->type == $event->user::USER_FOLLOW) {
+            $event->targetUser->follower_cache ++;
+
+            $event->targetUser->notify(new UserFollowNotification($event->user));
+        } else if ($event->type == $event->user::USER_UNFOLLOW){
+            $event->targetUser->follower_cache --;
+        }
+
+        $event->targetUser->save();
     }
 }

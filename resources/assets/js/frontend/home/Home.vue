@@ -34,8 +34,13 @@
                       <relative-time class="times" :datetime="post.created_at" v-text="post.created_at"></relative-time>
                     </div>
                     <div class="actions">
-                      <like-button :item="post" api="post"></like-button>
-                      <favorite-button :item="post" api="post"></favorite-button>
+                      <icon-button :item="post" api="post" show-statistics></icon-button>
+                      <icon-button
+                        :item="post"
+                        api="post"
+                        type="favorite"
+                        :icons="{positive: 'turned_in', negative: 'turned_in_not'}"
+                        button-class="collect"></icon-button>
                     </div>
                   </div>
                 </div>
@@ -73,8 +78,7 @@ import RelativeTime from "home/RelativeTime"
 import "element-ui/lib/theme-default/carousel.css"
 import "element-ui/lib/theme-default/carousel-item.css"
 import Navbar from "home/Navbar"
-import LikeButton from "home/LikeButton"
-import FavoriteButton from "home/FavoriteButton"
+import IconButton from "home/IconButton"
 
 export default {
   name: 'home',
@@ -83,8 +87,7 @@ export default {
     Carousel,
     CarouselItem,
     RelativeTime,
-    LikeButton,
-    FavoriteButton,
+    IconButton,
   },
   data() {
     return {

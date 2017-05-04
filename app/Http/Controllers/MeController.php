@@ -8,9 +8,12 @@ use App\Post;
 use App\Image;
 use App\Series;
 use App\Comment;
+use App\Events\LikePost;
 use App\Events\VotePost;
 use App\Events\VoteComment;
 use App\Events\UserFollow;
+use App\Events\FavoritePost;
+use App\Events\SubscribeSeries;
 use Illuminate\Http\Request;
 use App\Http\Requests\MeRequest;
 use App\Transformers\NotificationTransformer;
@@ -31,9 +34,11 @@ class MeController extends ApiController
         $user = $request->user();
         $target = User::find($request->id);
 
-        if (!$this->toggleFollow($user, $target)) {
-            event(new UserFollow($user, $target));
-        }
+        $type = count($user->toggleFollow($target)['attached'])
+                ? $user::USER_FOLLOW
+                : $user::USER_UNFOLLOW;
+
+        event(new UserFollow($target, $type));
 
         return $this->response->json(['success' => true]);
     }
@@ -44,7 +49,16 @@ class MeController extends ApiController
                 'id' => 'required|exists:series,id',
             ]);
 
-        $this->toggleAction($request->user(), Series::find($request->id), 'subscrib');
+        $user = $request->user();
+        $series = Series::find($request->id);
+
+        $type = count($user->toggleLike($series)['attached'])
+                ? $series::SERIES_SUBSCRIBE
+                : $series::SERIES_UNSUBSCRIBE;
+
+        event(new SubscribeSeries($series, $type));
+
+        $request->user()->toggleSubscribe(Series::find($request->id));
 
         return $this->response->json(['success' => true]);
     }
@@ -55,7 +69,14 @@ class MeController extends ApiController
                 'id' => 'required|exists:posts,id',
             ]);
 
-        $this->toggleAction($request->user(), Post::find($request->id), 'like');
+        $user = $request->user();
+        $post = Post::find($request->id);
+
+        $type = count($user->toggleLike($post)['attached'])
+                ? $post::POST_LIKE
+                : $post::POST_UNLIKE;
+
+        event(new LikePost($post, $type));
 
         return $this->response->json(['success' => true]);
     }
@@ -66,36 +87,16 @@ class MeController extends ApiController
                 'id' => 'required|exists:posts,id',
             ]);
 
-        $this->toggleAction($request->user(), Post::find($request->id), 'favorite');
+        $user = $request->user();
+        $post = Post::find($request->id);
+
+        $type = count($user->toggleFavorite($post)['attached'])
+                ? $post::POST_FAVORITE
+                : $post::POST_UNFAVORITE;
+
+        event(new FavoritePost($post, $type));
 
         return $this->response->json(['success' => true]);
-    }
-
-    public function toggleFollow($user, $target)
-    {
-        $isFollowing = $user->isFollowing($target);
-
-        $isFollowing ? $user->unfollow($target) : $user->follow($target);
-
-        return $isFollowing;
-    }
-
-    public function toggleAction($user, $target, $type)
-    {
-        $isFollowing = $user->{ 'has' . ucfirst($type) . 'd' }($target);
-
-        $isFollowing ? $user->{ 'un' . $type }($target) : $user->{ $type }($target);
-
-        return $isFollowing;
-    }
-
-    public function toggleSubscribe($user, $target)
-    {
-        $isFollowing = $user->hasSubscribed($target);
-
-        $isFollowing ? $user->unsubscribe($target) : $user->subscribe($target);
-
-        return $isFollowing;
     }
 
     public function postVoteComment(Request $request, $type)

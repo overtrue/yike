@@ -27,7 +27,7 @@ class CreateSeriesTable extends Migration
 
             // 数据缓存
             $table->unsignedInteger('post_cache')->default(0)->index();
-            $table->unsignedInteger('follower_cache')->default(0)->index();
+            $table->unsignedInteger('subscribe_cache')->default(0)->index();
 
             $table->timestamps();
 

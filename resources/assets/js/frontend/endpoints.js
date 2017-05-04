@@ -10,6 +10,7 @@ export default {
   voters: '/me/voters/',
   likers: '/me/likers/',
   favoriters: '/me/favoriters/',
+  subscribers: '/me/subscribers/',
   me: '/me/',
   feedback: '/feedback/',
 }

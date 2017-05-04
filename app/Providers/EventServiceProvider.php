@@ -34,6 +34,15 @@ class EventServiceProvider extends ServiceProvider
         'App\Events\UserCreditChanged' => [
             'App\Listeners\AddUserCreditListener',
         ],
+        'App\Events\LikePost' => [
+            'App\Listeners\UpdatePostLikeCache',
+        ],
+        'App\Events\FavoritePost' => [
+            'App\Listeners\UpdatePostFavoriteCache',
+        ],
+        'App\Events\SubscribeSeries' => [
+            'App\Listeners\UpdateSeriesSubscribeCache',
+        ],
     ];
 
     /**
