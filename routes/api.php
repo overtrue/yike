@@ -22,7 +22,10 @@ Route::group([
         Route::patch('me', 'MeController@update');
         Route::get('me/followers', 'MeController@getFollowers');
         Route::post('me/followers', 'MeController@postFollowers');
-        Route::post('me/followers/series', 'MeController@postFollowSeries');
+        Route::post('me/followers/series', 'MeController@postSubscribeSeries');
+        Route::post('me/subscribers/series', 'MeController@postSubscribeSeries');
+        Route::post('me/likers/post', 'MeController@postLikePost');
+        Route::post('me/favoriters/post/', 'MeController@postFavouritePost');
         Route::post('me/voters/comment/{type}', 'MeController@postVoteComment')->where('type', 'up|down');
         Route::get('me/notifications', 'MeController@getNotifications');
         Route::post('auth/token/revoke', 'AuthController@revokeToken');

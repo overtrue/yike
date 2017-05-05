@@ -8,9 +8,12 @@ use App\Post;
 use App\Image;
 use App\Series;
 use App\Comment;
+use App\Events\LikePost;
 use App\Events\VotePost;
 use App\Events\VoteComment;
 use App\Events\UserFollow;
+use App\Events\FavoritePost;
+use App\Events\SubscribeSeries;
 use Illuminate\Http\Request;
 use App\Http\Requests\MeRequest;
 use App\Transformers\NotificationTransformer;
@@ -31,31 +34,69 @@ class MeController extends ApiController
         $user = $request->user();
         $target = User::find($request->id);
 
-        if (!$this->toggleFollow($user, $target)) {
-            event(new UserFollow($user, $target));
-        }
+        $type = count($user->toggleFollow($target)['attached'])
+                ? $user::USER_FOLLOW
+                : $user::USER_UNFOLLOW;
+
+        event(new UserFollow($target, $type));
 
         return $this->response->json(['success' => true]);
     }
 
-    public function postFollowSeries(Request $request)
+    public function postSubscribeSeries(Request $request)
     {
         $this->validate($request, [
                 'id' => 'required|exists:series,id',
             ]);
 
-        $this->toggleFollow($request->user(), Series::find($request->id));
+        $user = $request->user();
+        $series = Series::find($request->id);
+
+        $type = count($user->toggleLike($series)['attached'])
+                ? $series::SERIES_SUBSCRIBE
+                : $series::SERIES_UNSUBSCRIBE;
+
+        event(new SubscribeSeries($series, $type));
+
+        $request->user()->toggleSubscribe(Series::find($request->id));
 
         return $this->response->json(['success' => true]);
     }
 
-    public function toggleFollow($user, $target)
+    public function postLikePost(Request $request)
     {
-        $isFollowing = $user->isFollowing($target);
+        $this->validate($request, [
+                'id' => 'required|exists:posts,id',
+            ]);
 
-        $isFollowing ? $user->unfollow($target) : $user->follow($target);
+        $user = $request->user();
+        $post = Post::find($request->id);
 
-        return $isFollowing;
+        $type = count($user->toggleLike($post)['attached'])
+                ? $post::POST_LIKE
+                : $post::POST_UNLIKE;
+
+        event(new LikePost($post, $type));
+
+        return $this->response->json(['success' => true]);
+    }
+
+    public function postFavouritePost(Request $request)
+    {
+        $this->validate($request, [
+                'id' => 'required|exists:posts,id',
+            ]);
+
+        $user = $request->user();
+        $post = Post::find($request->id);
+
+        $type = count($user->toggleFavorite($post)['attached'])
+                ? $post::POST_FAVORITE
+                : $post::POST_UNFAVORITE;
+
+        event(new FavoritePost($post, $type));
+
+        return $this->response->json(['success' => true]);
     }
 
     public function postVoteComment(Request $request, $type)

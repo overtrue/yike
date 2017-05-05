@@ -11,7 +11,15 @@
           </div>
           <div class="col-lg-9">
             <div class="user-info">
-              <h3 class="username">{{ series.title }} <follow-button :item="series" api="series"></follow-button></h3>
+              <h3 class="username">
+                {{ series.title }}
+                <follow-button
+                  :labels="{ positive: '订阅', negative: '已订阅' }"
+                  :item="series"
+                  @updateStatistics="updateSubscribeCache"
+                  check-field="has_subscribed"
+                  endpoint="subscribers"
+                  api="series"></follow-button></h3>
               <p class="description" v-text="series.description"></p>
             </div>
           </div>
@@ -31,7 +39,7 @@
         <div class="col-lg-4">
           <section class="section mt-3 p-2">
             <div class="title">专栏统计</div>
-            <p><small>关注数：</small>{{ series.follower_cache }}</p>
+            <p><small>关注数：</small>{{ series.subscriber_cache }}</p>
             <p><small>文章数：</small>{{ series.post_cache }}</p>
           </section>
         </div>
@@ -67,7 +75,10 @@ export default {
         this.series = getData(series).data
         this.posts = this.series.posts.data
       })
-    }
+    },
+    updateSubscribeCache(value) {
+      value ? this.series.subscriber_cache ++ : this.series.subscriber_cache --
+    },
   }
 }
 </script>

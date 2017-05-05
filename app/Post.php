@@ -16,6 +16,10 @@ class Post extends Model
     const POST_PUBLISH = 'post.publish';
     const POST_UPDATE = 'post.update';
     const POST_DELETE = 'post.delete';
+    const POST_LIKE = 'post.like';
+    const POST_UNLIKE = 'post.unlike';
+    const POST_FAVORITE = 'post.favorite';
+    const POST_UNFAVORITE = 'post.unfavorite';
 
     const TYPE_MARKDOWN = 'markdown';
     const TYPE_HTML = 'html';
@@ -50,7 +54,14 @@ class Post extends Model
         });
 
         static::updating(function($post){
-            if (!in_array(self::$typeName, [self::POST_VIEW])) {
+            $types = [
+                self::POST_VIEW,
+                self::POST_LIKE,
+                self::POST_UNLIKE,
+                self::POST_FAVORITE,
+                self::POST_UNFAVORITE
+            ];
+            if (!in_array(self::$typeName, $types)) {
                 static::setActionTypeName(self::POST_UPDATE);
             }
         });

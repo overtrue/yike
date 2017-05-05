@@ -2,7 +2,7 @@
 
 namespace App\Events;
 
-use App\User;
+use App\Post;
 use Illuminate\Broadcasting\Channel;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Broadcasting\PrivateChannel;
@@ -11,24 +11,24 @@ use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Broadcasting\InteractsWithSockets;
 use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
 
-class UserFollow
+class FavoritePost
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
 
     public $user;
-    public $targetUser;
     public $type;
+    public $post;
 
     /**
      * Create a new event instance.
      *
      * @return void
      */
-    public function __construct(User $targetUser, string $type)
+    public function __construct(Post $post, string $type)
     {
-        $this->user = auth()->user();
-        $this->targetUser = $targetUser;
+        $this->post = $post;
         $this->type = $type;
+        $this->user = auth()->user();
     }
 
     /**

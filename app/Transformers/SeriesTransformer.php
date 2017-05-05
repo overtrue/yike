@@ -41,9 +41,8 @@ class SeriesTransformer extends TransformerAbstract
             'slug' => $series->slug,
             'description' => $series->description,
             'post_cache' => $series->post_cache,
-            'follower_cache' => $series->follower_cache,
-            'follower_cache' => $series->follower_cache,
-            'is_following' => auth()->check() ? auth()->user()->isFollowing($series) : false,
+            'subscriber_cache' => $series->subscriber_cache,
+            'has_subscribed' => auth()->check() ? auth()->user()->hasSubscribed($series) : false,
             'created_at' => $series->created_at->toIso8601String(),
             'updated_at' => $series->updated_at->toIso8601String(),
         ];

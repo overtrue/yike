@@ -7,17 +7,22 @@ use Tymon\JWTAuth\Contracts\JWTSubject;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Jcc\LaravelVote\Vote;
-use Overtrue\LaravelFollow\CanFollow;
-use Overtrue\LaravelFollow\CanBeFollowed;
+use Overtrue\LaravelFollow\Traits\CanSubscribe;
+use Overtrue\LaravelFollow\Traits\CanLike;
+use Overtrue\LaravelFollow\Traits\CanFavorite;
+use Overtrue\LaravelFollow\Traits\CanFollow;
+use Overtrue\LaravelFollow\Traits\CanBeFollowed;
 
 class User extends Authenticatable implements JWTSubject
 {
-    use Loggable, Notifiable, CanFollow, CanBeFollowed, Vote;
+    use Loggable, Notifiable, CanSubscribe, CanLike, CanFavorite, CanFollow, CanBeFollowed, Vote;
 
     const USER_CREATE = 'user.create';
     const USER_UPDATE = 'user.update';
     const USER_DELETE = 'user.delete';
     const USER_CREDIT = 'user.credit';
+    const USER_FOLLOW = 'user.follow';
+    const USER_UNFOLLOW = 'user.unfollow';
 
     /**
      * The attributes that are mass assignable.
@@ -50,7 +55,13 @@ class User extends Authenticatable implements JWTSubject
         });
 
         static::updating(function($post){
-            if (self::$typeName != self::USER_CREDIT) {
+            $types = [
+                self::USER_CREDIT,
+                self::USER_FOLLOW,
+                self::USER_UNFOLLOW
+            ];
+
+            if (!in_array(self::$typeName, $types)) {
                 static::setActionTypeName(self::USER_UPDATE);
             }
         });
