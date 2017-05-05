@@ -16,7 +16,7 @@
                 <follow-button
                   :labels="{ positive: '订阅', negative: '已订阅' }"
                   :item="series"
-                  @updateStatistics="updateSubscribeCache"
+                  @update-statistics="updateSubscribeCache"
                   check-field="has_subscribed"
                   endpoint="subscribers"
                   api="series"></follow-button></h3>
