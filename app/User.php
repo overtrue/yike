@@ -3,19 +3,20 @@
 namespace App;
 
 use App\Traits\Loggable;
+use Jcc\LaravelVote\Vote;
 use Tymon\JWTAuth\Contracts\JWTSubject;
 use Illuminate\Notifications\Notifiable;
-use Illuminate\Foundation\Auth\User as Authenticatable;
-use Jcc\LaravelVote\Vote;
-use Overtrue\LaravelFollow\Traits\CanSubscribe;
 use Overtrue\LaravelFollow\Traits\CanLike;
-use Overtrue\LaravelFollow\Traits\CanFavorite;
 use Overtrue\LaravelFollow\Traits\CanFollow;
+use Illuminate\Database\Eloquent\SoftDeletes;
+use Overtrue\LaravelFollow\Traits\CanFavorite;
+use Overtrue\LaravelFollow\Traits\CanSubscribe;
 use Overtrue\LaravelFollow\Traits\CanBeFollowed;
+use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class User extends Authenticatable implements JWTSubject
 {
-    use Loggable, Notifiable, CanSubscribe, CanLike, CanFavorite, CanFollow, CanBeFollowed, Vote;
+    use Loggable, SoftDeletes, Notifiable, CanSubscribe, CanLike, CanFavorite, CanFollow, CanBeFollowed, Vote;
 
     const USER_CREATE = 'user.create';
     const USER_UPDATE = 'user.update';
