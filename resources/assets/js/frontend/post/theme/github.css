@@ -86,7 +86,7 @@
 
 .post-body a:hover,
 .post-body a:active {
-  text-decoration: underline;
+  text-decoration: underline !important;
 }
 
 .post-body strong {
