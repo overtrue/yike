@@ -86,7 +86,8 @@
 
 .post-body a:hover,
 .post-body a:active {
-  text-decoration: underline !important;
+    padding-bottom: 2px;
+    border-bottom: 1px solid #4078c0;
 }
 
 .post-body strong {
