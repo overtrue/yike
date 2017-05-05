@@ -1,6 +1,6 @@
 <template>
   <div class="wrapper">
-    <data-table api="users" :columns="columns" @table-action="tableActions" :searchables="searchables">
+    <data-table api="users" :columns="columns" @table-action="tableActions" :item-actions="itemActions" :searchables="searchables">
       <template slot="avatar" scope="props">
           <img class="avatar" :src="props.data.row.avatar">
       </template>
@@ -68,7 +68,12 @@ export default {
           label: 'Actions',
           name: '__actions',
         },
-      ]
+      ],
+      itemActions: [
+        { name: 'preview-item', label: '预览', type: 'success' },
+        { name: 'edit-item', label: '编辑', type: 'info' },
+        { name: 'delete-item', label: '删除', type: 'danger' },
+      ],
     }
   },
   methods: {
@@ -96,6 +101,8 @@ export default {
     tableActions(action, data) {
       if (action == 'edit-item') {
         this.onEdit(data.row)
+      } else if (action == 'preview-item') {
+        window.open('/' + data.row.username)
       } else if (action == 'delete-item') {
         this.onDelete(data.row)
       }

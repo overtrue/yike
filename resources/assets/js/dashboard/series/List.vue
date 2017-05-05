@@ -1,6 +1,6 @@
 <template>
   <div class="wrapper">
-    <data-table api="series" :columns="columns" @table-action="tableActions" :searchables="searchables">
+    <data-table api="series" :columns="columns" @table-action="tableActions" :item-actions="itemActions" :searchables="searchables">
       <template slot="right-buttons">
         <el-button @click="dialogFormVisible=!dialogFormVisible"><i class="material-icons">add</i> 新增栏目</el-button>
       </template>
@@ -52,7 +52,12 @@
             label: 'Actions',
             name: '__actions',
           },
-        ]
+        ],
+        itemActions: [
+          { name: 'preview-item', label: '预览', type: 'success' },
+          { name: 'edit-item', label: '编辑', type: 'info' },
+          { name: 'delete-item', label: '删除', type: 'danger' },
+        ],
       }
     },
     methods: {
@@ -83,6 +88,8 @@
       tableActions(action, data) {
         if (action == 'edit-item') {
           this.onEdit(data.row)
+        } else if (action == 'preview-item') {
+          window.open('/series/' + data.row.slug)
         } else if (action == 'delete-item') {
           this.onDelete(data.row)
         }

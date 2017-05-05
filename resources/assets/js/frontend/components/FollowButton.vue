@@ -60,7 +60,7 @@ export default {
     toggleStatus() {
       this.item[this.checkField] = !this.item[this.checkField]
 
-      this.$emit('updateStatistics', this.item[this.checkField] ? 1 : 0)
+      this.$emit('update-statistics', this.item[this.checkField] ? 1 : 0)
     }
   }
 }

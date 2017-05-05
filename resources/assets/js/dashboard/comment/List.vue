@@ -1,6 +1,6 @@
 <template>
   <div class="wrapper">
-    <data-table api="comments" :hideQuery="hideQuery" include="post" :columns="columns" @table-action="tableActions" :itemActions="itemActions" :searchables="searchables">
+    <data-table api="comments" :hideQuery="hideQuery" include="post" :columns="columns" @table-action="tableActions" :item-actions="itemActions" :searchables="searchables">
       <template slot="advanced" scope="props">
         <el-button size="small" type="warning" v-if="!props.data.row.is_banned" @click="onSetReason(props.data.row)">禁止</el-button>
         <el-button size="small" type="success" v-else @click="onLifted(props.data.row)">解禁</el-button>
