@@ -24,7 +24,7 @@ class PostRequest extends FormRequest
     public function rules()
     {
         return [
-            'title' => 'required',
+            'title' => 'required|unique:posts,title,NULL,id,user_id,' . auth()->id(),
             'content' => 'required|min:1',
         ];
     }
