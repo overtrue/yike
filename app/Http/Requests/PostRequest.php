@@ -23,9 +23,22 @@ class PostRequest extends FormRequest
      */
     public function rules()
     {
-        return [
-            'title' => 'required|unique:posts,title,NULL,id,user_id,' . auth()->id(),
-            'content' => 'required|min:1',
-        ];
+        switch ($this->method()) {
+            case 'GET':
+            case 'DELETE':
+                return [];
+            case 'POST':
+                return [
+                    'title' => 'required|unique:posts,title,NULL,id,user_id,' . auth()->id(),
+                    'content' => 'required|min:1',
+                ];
+            case 'PUT':
+            case 'PATCH':
+                return [
+                    'title' => 'required|unique:posts,title,' . $this->id . ',id,user_id,' . auth()->id(),
+                    'content' => 'required|min:1',
+                ];
+            default:break;
+        }
     }
 }
