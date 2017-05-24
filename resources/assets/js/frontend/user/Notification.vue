@@ -24,6 +24,7 @@ import Navbar from 'home/Navbar'
 import UserFollow from 'app/notification/UserFollow'
 import LikePost from 'app/notification/LikePost'
 import FavoritePost from 'app/notification/FavoritePost'
+import SubscribeSeries from 'app/notification/SubscribeSeries'
 
 export default {
   components: {
@@ -31,6 +32,7 @@ export default {
     UserFollow,
     LikePost,
     FavoritePost,
+    SubscribeSeries,
   },
   data() {
     return {
