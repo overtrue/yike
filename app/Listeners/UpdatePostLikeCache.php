@@ -3,9 +3,9 @@
 namespace App\Listeners;
 
 use App\Events\LikePost;
-use App\Notifications\LikePost as LikePostNotification;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
+use App\Notifications\LikePost as LikePostNotification;
 
 class UpdatePostLikeCache
 {
