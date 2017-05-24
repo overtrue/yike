@@ -7,10 +7,11 @@ use Facades\Parsedown;
 use App\Traits\Loggable;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Overtrue\LaravelFollow\Traits\CanBeLiked;
 
 class Post extends Model
 {
-    use SoftDeletes, Loggable;
+    use SoftDeletes, Loggable, CanBeLiked;
 
     const POST_VIEW = 'post.view';
     const POST_PUBLISH = 'post.publish';

@@ -8,16 +8,9 @@
       <ul class="notification-list pl-0 mb-0">
         <template v-if="notifications.length > 0">
           <li class="mb-4" v-for="notification in notifications">
-            <div class="d-flex justify-content-between" v-if="notification.type == 'user_follow'">
-              <div class="content">
-                <a href="">
-                  <img class="rounded-circle mr-2" width="30" :src="notification.data.avatar">
-                  {{ notification.data.name }}
-                </a>
-                <span class="mx-2" style="color: #888;">关注了你</span>
-              </div>
-              <div class="date">{{ notification.created_at }}</div>
-            </div>
+            <keep-alive>
+              <component :is="notification.type.split('_').join('-')" :notification="notification"></component>
+            </keep-alive>
           </li>
         </template>
         <h6 v-else class="text-center">无新的通知</h6>
@@ -28,9 +21,15 @@
 
 <script>
 import Navbar from 'home/Navbar'
+import UserFollow from 'app/notification/UserFollow'
+import LikePost from 'app/notification/LikePost'
 
 export default {
-  components: { Navbar },
+  components: {
+    Navbar,
+    UserFollow,
+    LikePost,
+  },
   data() {
     return {
       notifications: []
