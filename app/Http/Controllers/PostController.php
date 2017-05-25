@@ -6,9 +6,10 @@ use App\Post;
 use App\User;
 use App\Comment;
 use App\Events\ViewPost;
-use App\Events\UserCreditChanged;
 use Illuminate\Http\Request;
+use App\Events\UserCreditChanged;
 use App\Http\Requests\PostRequest;
+use App\Notifications\UserComment;
 
 class PostController extends ApiController
 {
@@ -61,6 +62,8 @@ class PostController extends ApiController
         $post = Post::whereId($id)->orWhere('slug', $id)->firstOrFail();
 
         $comment = $post->comments()->create($request->all());
+
+        $post->user->notify(new UserComment($post, $comment));
 
         return $this->response->item($comment);
     }
