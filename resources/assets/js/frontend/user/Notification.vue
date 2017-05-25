@@ -21,8 +21,10 @@
 
 <script>
 import Navbar from 'home/Navbar'
-import UserFollow from 'app/notification/UserFollow'
 import LikePost from 'app/notification/LikePost'
+import UserFollow from 'app/notification/UserFollow'
+import UserComment from 'app/notification/UserComment'
+import PublishPost from 'app/notification/PublishPost'
 import FavoritePost from 'app/notification/FavoritePost'
 import SubscribeSeries from 'app/notification/SubscribeSeries'
 
@@ -33,6 +35,8 @@ export default {
     LikePost,
     FavoritePost,
     SubscribeSeries,
+    UserComment,
+    PublishPost,
   },
   data() {
     return {
