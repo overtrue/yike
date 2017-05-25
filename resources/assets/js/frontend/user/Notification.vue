@@ -3,11 +3,11 @@
     <navbar></navbar>
     <div class="notification px-4 pt-1 pb-3 my-4">
       <div class="readable clearfix mb-3 py-2">
-        <button class="btn btn-sm btn-outline-primary float-right">全部标记为已读</button>
+        <button class="btn btn-sm btn-outline-primary float-right" @click="markAsRead">全部标记为已读</button>
       </div>
       <ul class="notification-list pl-0 mb-0">
         <template v-if="notifications.length > 0">
-          <li class="mb-4" v-for="notification in notifications">
+          <li class="mb-4" v-for="(notification, index) in notifications" :class="{read: notification.read_at}" @click="markOneAsRead(notification, index)">
             <keep-alive>
               <component :is="notification.type.split('_').join('-')" :notification="notification"></component>
             </keep-alive>
@@ -40,15 +40,35 @@ export default {
   },
   data() {
     return {
-      notifications: []
+      notifications: [],
+      readApi: this.$endpoints.me + 'notifications/read',
     }
   },
   created() {
-    this.$http.get(this.$endpoints.me + 'notifications')
-        .then((response) => {
-          this.notifications = response.data.data
-        })
+    this.loadNotifications()
   },
+  methods: {
+    markOneAsRead(item, index) {
+      if(item.read_at == null) {
+        this.$http.post(this.readApi + '/' + item.id)
+            .then(() => {
+              this.notifications[index].read_at = new Date()
+            })
+      }
+    },
+    markAsRead() {
+      this.$http.post(this.readApi)
+          .then(() => {
+            this.loadNotifications()
+          })
+    },
+    loadNotifications() {
+      this.$http.get(this.$endpoints.me + 'notifications')
+          .then((response) => {
+            this.notifications = response.data.data
+          })
+    }
+  }
 }
 </script>
 
@@ -65,6 +85,9 @@ h6 {
 }
 .readable {
   border-bottom: 1px solid #f8f8f8;
+}
+.read {
+  color: #888;
 }
 ul.notification-list {
   font-size: .8rem;

@@ -28,6 +28,8 @@ Route::group([
         Route::post('me/favoriters/post/', 'MeController@postFavouritePost');
         Route::post('me/voters/comment/{type}', 'MeController@postVoteComment')->where('type', 'up|down');
         Route::get('me/notifications', 'MeController@getNotifications');
+        Route::post('me/notifications/read', 'MeController@markAsRead');
+        Route::post('me/notifications/read/{id?}', 'MeController@markAsRead');
         Route::post('auth/token/revoke', 'AuthController@revokeToken');
         Route::post('posts', 'PostController@store');
         Route::patch('posts/{id}', 'PostController@update');
