@@ -3,11 +3,11 @@
     <navbar></navbar>
     <div class="notification px-4 pt-1 pb-3 my-4">
       <div class="readable clearfix mb-3 py-2">
-        <button class="btn btn-sm btn-outline-primary float-right" @click="markAsRead">全部标记为已读</button>
+        <button class="btn btn-sm btn-outline-primary float-right" @click="markAllRead">全部标记为已读</button>
       </div>
       <ul class="notification-list pl-0 mb-0">
         <template v-if="notifications.length > 0">
-          <li class="mb-4" v-for="(notification, index) in notifications" :class="{read: notification.read_at}" @click="markOneAsRead(notification, index)">
+          <li class="mb-4" v-for="(notification, index) in notifications" :class="{read: notification.read_at}" @click="markOneRead(notification, index)">
             <keep-alive>
               <component :is="notification.type.split('_').join('-')" :notification="notification"></component>
             </keep-alive>
@@ -20,6 +20,7 @@
 </template>
 
 <script>
+import { mapActions, mapGetters } from 'vuex'
 import Navbar from 'home/Navbar'
 import LikePost from 'app/notification/LikePost'
 import UserFollow from 'app/notification/UserFollow'
@@ -44,23 +45,31 @@ export default {
       readApi: this.$endpoints.me + 'notifications/read',
     }
   },
+  computed: {
+    ...mapGetters(['currentUser']),
+  },
   created() {
     this.loadNotifications()
   },
   methods: {
-    markOneAsRead(item, index) {
-      if(item.read_at == null) {
+    ...mapActions(['markAllAsRead', 'markOneAsRead']),
+    markOneRead(item, index) {
+      if (item.read_at == null) {
         this.$http.post(this.readApi + '/' + item.id)
             .then(() => {
               this.notifications[index].read_at = new Date()
+              this.markOneAsRead()
             })
       }
     },
-    markAsRead() {
-      this.$http.post(this.readApi)
-          .then(() => {
-            this.loadNotifications()
-          })
+    markAllRead() {
+      if (this.currentUser.unread_count) {
+        this.$http.post(this.readApi)
+            .then(() => {
+              this.markAllAsRead()
+              this.loadNotifications()
+            })
+      }
     },
     loadNotifications() {
       this.$http.get(this.$endpoints.me + 'notifications')

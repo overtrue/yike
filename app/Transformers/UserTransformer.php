@@ -33,6 +33,7 @@ class UserTransformer extends TransformerAbstract
             'post_count' => $user->post_cache,
             'comment_count' => $user->comment_cache,
             'follower_count' => $user->follower_cache,
+            'unread_count' => $user->unreadNotifications()->count(),
             'github_id' => $user->github_id,
             'linkedin_id' => $user->linkedin_id,
             'twitter_id' => $user->twitter_id,
