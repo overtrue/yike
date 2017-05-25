@@ -10,6 +10,7 @@ use Illuminate\Http\Request;
 use App\Events\UserCreditChanged;
 use App\Http\Requests\PostRequest;
 use App\Notifications\UserComment;
+use App\Notifications\PublishPost;
 
 class PostController extends ApiController
 {
@@ -47,7 +48,13 @@ class PostController extends ApiController
     {
         event(new UserCreditChanged(2));
 
-        return $this->response->item(Post::create($request->all()));
+        $post = Post::create($request->all());
+
+        foreach (auth()->user()->followers as $user) {
+            $user->notify(new PublishPost($post));
+        }
+
+        return $this->response->item($post);
     }
 
     /**
