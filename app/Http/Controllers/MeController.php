@@ -8,6 +8,7 @@ use App\Post;
 use App\Image;
 use App\Series;
 use App\Comment;
+use Carbon\Carbon;
 use App\Events\LikePost;
 use App\Events\VotePost;
 use App\Events\VoteComment;
@@ -158,5 +159,16 @@ class MeController extends ApiController
     public function getNotifications()
     {
         return $this->response->collection(auth()->user()->notifications, new NotificationTransformer);
+    }
+
+    public function markAsRead($id = null)
+    {
+        $notifications = auth()->user()->unreadNotifications();
+
+        if ($id) $notifications->where('id', $id);
+
+        $notifications->update(['read_at' => Carbon::now()]);
+
+        return $this->response->withNoContent();
     }
 }

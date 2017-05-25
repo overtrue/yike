@@ -5,7 +5,7 @@
         <img class="rounded-circle mr-2" width="30" :src="notification.data.user.avatar">
         {{ notification.data.user.name }}
       </router-link>
-      <span class="mx-2" style="color: #888;">评论了你的文章 <router-link :to="url">《{{ notification.data.post.title }}》</router-link></span>
+      <span class="mx-2">评论了你的文章 <router-link :to="url">《{{ notification.data.post.title }}》</router-link></span>
     </div>
     <div class="date">{{ notification.created_at }}</div>
   </div>

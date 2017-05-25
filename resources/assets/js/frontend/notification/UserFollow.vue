@@ -5,7 +5,7 @@
         <img class="rounded-circle mr-2" width="30" :src="notification.data.avatar">
         {{ notification.data.name }}
       </router-link>
-      <span class="mx-2" style="color: #888;">关注了你</span>
+      <span class="mx-2">关注了你</span>
     </div>
     <div class="date">{{ notification.created_at }}</div>
   </div>
