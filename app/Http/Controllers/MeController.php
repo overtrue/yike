@@ -165,7 +165,9 @@ class MeController extends ApiController
     {
         $notifications = auth()->user()->unreadNotifications();
 
-        if ($id) $notifications->where('id', $id);
+        if ($id) {
+            $notifications->where('id', $id);
+        }
 
         $notifications->update(['read_at' => Carbon::now()]);
 
