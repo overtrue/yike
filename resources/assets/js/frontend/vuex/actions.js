@@ -14,4 +14,12 @@ export default {
     commit('MAIN_SET_MESSAGE', { type: 'warning', message: '' })
     commit('MAIN_SET_MESSAGE', { type: 'validation', message: {} })
   },
+
+  markAllAsRead({ commit }) {
+    commit('MARK_NOTIFICATION_AS_READ')
+  },
+
+  markOneAsRead({ commit }) {
+    commit('MARK_ONE_NOTIFICATION_AS_READ')
+  },
 }
