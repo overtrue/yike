@@ -198,7 +198,7 @@ export default {
           }
         },
         messages: {
-          minWidthImageError: '最小宽度不能小于 1200 像素'
+          minWidthImageError: '你选择的图片太小啦，请选择大于 1200px 的图片哦 ~'
         },
         callbacks: {
           onComplete(id, name, responseJSON) {
