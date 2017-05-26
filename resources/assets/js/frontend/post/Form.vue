@@ -192,6 +192,14 @@ export default {
 
       let coverUploader = new FineUploader.FineUploaderBasic(Object.assign({}, this.uploadConfig, {
         button: document.getElementById('cover-picker'),
+        validation: {
+          image: {
+            minWidth: 1200
+          }
+        },
+        messages: {
+          minWidthImageError: '你选择的图片太小啦，请选择大于 1200px 的图片哦 ~'
+        },
         callbacks: {
           onComplete(id, name, responseJSON) {
             if (typeof responseJSON['image_id'] == 'undefined') {
@@ -199,6 +207,9 @@ export default {
             }
             vm.form.image_id = responseJSON.image_id
             vm.form.cover = responseJSON.url
+          },
+          onError(id, name, errorReason, xhrOrXdr) {
+            vm.$store.dispatch('setMessage', {type: 'error', message: [errorReason]})
           }
         }
       }))
