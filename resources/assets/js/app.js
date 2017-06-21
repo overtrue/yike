@@ -2,7 +2,8 @@ import Vue from 'vue'
 import { sync } from 'vuex-router-sync'
 import {vuex as store, router} from "./frontend"
 import Root from "./frontend/Root"
-import { Message, Input } from 'element-ui'
+import { Input } from 'element-ui'
+import Message from "home/message"
 import 'element-ui/lib/theme-default/message.css'
 import 'element-ui/lib/theme-default/input.css'
 

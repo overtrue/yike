@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests;
 
+use App\Post;
 use Illuminate\Foundation\Http\FormRequest;
 
 class PostRequest extends FormRequest
@@ -40,5 +41,22 @@ class PostRequest extends FormRequest
                 ];
             default:break;
         }
+    }
+
+    /**
+     * Get the error messages for the defined validation rules.
+     *
+     * @return array
+     */
+    public function messages()
+    {
+        return [
+            'title.required' => '文章标题必填。',
+            'title.unique'   => [
+                'error' => '文章标题已存在。',
+                'slug' => $this->title ? Post::where('title', $this->title)->where('user_id', auth()->id())->first()->slug ?? '' : '',
+            ],
+            'content.required' => '文章内容必填。',
+        ];
     }
 }

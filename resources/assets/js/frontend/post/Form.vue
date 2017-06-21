@@ -28,6 +28,7 @@
 </template>
 
 <script>
+import { mapGetters, mapActions } from "vuex"
 import CodeMirror from "codemirror"
 import localforage from "localforage"
 import Navbar from "home/Navbar"
@@ -84,6 +85,7 @@ export default {
     }
   },
   computed: {
+    ...mapGetters(['currentUser']),
     mode: function() {
       return this.form.id ? 'edit' : 'new'
     },
@@ -108,12 +110,14 @@ export default {
     this.fetchAuthToken().then(this.setupCoverUploader).then(this.setupContentImageUploader)
   },
   methods: {
+    ...mapActions(['setMessage']),
     handleCancel() {
       localforage.removeItem("post.cache")
       this.$router.push({name: 'post.show', params: this.$route.params})
     },
     handleSubmit(messageType = '发布', publish = true) {
       if (this.form.title.trim().length <= 0 || this.form.content.trim().length <= 0) {
+        this.$message.error('标题和内容不能为空！')
         return
       }
 
@@ -131,8 +135,15 @@ export default {
 
         this.$message.success(messageType + '成功!')
         this.$router.push(getData(post).data.url)
-      }).catch((err) => {
-        console.error(err)
+      }).catch(({response}) => {
+        let msg = response.data.title[0]
+
+        if(typeof msg === 'object') {
+          let url = location.protocol + '//' + document.domain + '/' + this.currentUser.username + '/' + msg.slug
+          this.$message.error(msg.error + ' <a href="' + url + '" target="_blank">' + this.form.title + '</a>')
+        } else {
+          this.setMessage(response.data)
+        }
       })
     },
     reUploadCover() {

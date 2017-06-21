@@ -9,22 +9,24 @@
     "packages": [
         {
             "name": "caouecs/laravel-lang",
-            "version": "3.0.25",
+            "version": "3.0.32",
             "source": {
                 "type": "git",
                 "url": "https://github.com/caouecs/Laravel-lang.git",
-                "reference": "4787a876ec8234f5e8fa8c0b2aee400d5732d631"
+                "reference": "f9e44e9718add90791680ab27abb19099656d18d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/caouecs/Laravel-lang/zipball/4787a876ec8234f5e8fa8c0b2aee400d5732d631",
-                "reference": "4787a876ec8234f5e8fa8c0b2aee400d5732d631",
+                "url": "https://api.github.com/repos/caouecs/Laravel-lang/zipball/f9e44e9718add90791680ab27abb19099656d18d",
+                "reference": "f9e44e9718add90791680ab27abb19099656d18d",
                 "shasum": ""
             },
             "require-dev": {
                 "friendsofphp/php-cs-fixer": "^1.10"
             },
             "suggest": {
+                "ablunier/laravel-lang-installer": "Command for easily add languages to a Laravel project",
+                "arcanedev/laravel-lang": "Translations manager and checker for Laravel 5",
                 "overtrue/laravel-lang": "Command to add languages in your project"
             },
             "type": "library",
@@ -45,7 +47,7 @@
                 "laravel",
                 "lpm"
             ],
-            "time": "2017-03-22 16:40:16"
+            "time": "2017-05-24 07:51:40"
         },
         {
             "name": "dnoegel/php-xdg-base-dir",
@@ -522,12 +524,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/jcc/laravel-vote.git",
-                "reference": "54b422db872acbc647be86d7d478e99d57069228"
+                "reference": "495bcd9b873671b9d7f4d7b42a8b93c60cf283c4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/jcc/laravel-vote/zipball/54b422db872acbc647be86d7d478e99d57069228",
-                "reference": "54b422db872acbc647be86d7d478e99d57069228",
+                "url": "https://api.github.com/repos/jcc/laravel-vote/zipball/495bcd9b873671b9d7f4d7b42a8b93c60cf283c4",
+                "reference": "495bcd9b873671b9d7f4d7b42a8b93c60cf283c4",
                 "shasum": ""
             },
             "require": {
@@ -553,7 +555,7 @@
                 }
             ],
             "description": "The package helps you to add user based vote system to your model",
-            "time": "2017-05-03 01:49:28"
+            "time": "2017-05-10 05:56:13"
         },
         {
             "name": "jellybool/translug",
@@ -605,16 +607,16 @@
         },
         {
             "name": "laravel/framework",
-            "version": "v5.4.21",
+            "version": "v5.4.23",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/framework.git",
-                "reference": "2ed668f96d1a6ca42f50d5c87ee9ceecfc0a6eee"
+                "reference": "ad82327705658dbf5f0ce72805caa950dfbe150d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/framework/zipball/2ed668f96d1a6ca42f50d5c87ee9ceecfc0a6eee",
-                "reference": "2ed668f96d1a6ca42f50d5c87ee9ceecfc0a6eee",
+                "url": "https://api.github.com/repos/laravel/framework/zipball/ad82327705658dbf5f0ce72805caa950dfbe150d",
+                "reference": "ad82327705658dbf5f0ce72805caa950dfbe150d",
                 "shasum": ""
             },
             "require": {
@@ -730,7 +732,7 @@
                 "framework",
                 "laravel"
             ],
-            "time": "2017-04-28 15:40:01"
+            "time": "2017-05-11 20:10:35"
         },
         {
             "name": "laravel/tinker",
@@ -1231,12 +1233,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/overtrue/laravel-follow.git",
-                "reference": "88c944707b115ab46fc0a18a3782a255d008e131"
+                "reference": "0ed0b2b5e5d6c34de5ef29023eb09948127fa93b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/overtrue/laravel-follow/zipball/88c944707b115ab46fc0a18a3782a255d008e131",
-                "reference": "88c944707b115ab46fc0a18a3782a255d008e131",
+                "url": "https://api.github.com/repos/overtrue/laravel-follow/zipball/0ed0b2b5e5d6c34de5ef29023eb09948127fa93b",
+                "reference": "0ed0b2b5e5d6c34de5ef29023eb09948127fa93b",
                 "shasum": ""
             },
             "require": {
@@ -1264,20 +1266,20 @@
                 }
             ],
             "description": "Laravel 5 User Based System",
-            "time": "2017-05-04 07:17:50"
+            "time": "2017-05-24 05:06:41"
         },
         {
             "name": "overtrue/laravel-lang",
-            "version": "3.0.3",
+            "version": "3.0.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/overtrue/laravel-lang.git",
-                "reference": "e8ec3e6ca054295bc781791596d104b00b22e505"
+                "reference": "c980eba644dd78f470f186afc1a6327167b02e1f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/overtrue/laravel-lang/zipball/e8ec3e6ca054295bc781791596d104b00b22e505",
-                "reference": "e8ec3e6ca054295bc781791596d104b00b22e505",
+                "url": "https://api.github.com/repos/overtrue/laravel-lang/zipball/c980eba644dd78f470f186afc1a6327167b02e1f",
+                "reference": "c980eba644dd78f470f186afc1a6327167b02e1f",
                 "shasum": ""
             },
             "require": {
@@ -1308,7 +1310,7 @@
                 "laravel",
                 "overtrue"
             ],
-            "time": "2017-02-14 10:03:14"
+            "time": "2017-05-10 12:49:48"
         },
         {
             "name": "overtrue/laravel-socialite",
@@ -1386,16 +1388,16 @@
         },
         {
             "name": "overtrue/socialite",
-            "version": "1.0.24",
+            "version": "1.0.25",
             "source": {
                 "type": "git",
                 "url": "https://github.com/overtrue/socialite.git",
-                "reference": "2040343fd871e6d745a1d2ffb9b353097efffa36"
+                "reference": "234b3051e7864bc94744c7cfa2a9fb1999a9ca2c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/overtrue/socialite/zipball/2040343fd871e6d745a1d2ffb9b353097efffa36",
-                "reference": "2040343fd871e6d745a1d2ffb9b353097efffa36",
+                "url": "https://api.github.com/repos/overtrue/socialite/zipball/234b3051e7864bc94744c7cfa2a9fb1999a9ca2c",
+                "reference": "234b3051e7864bc94744c7cfa2a9fb1999a9ca2c",
                 "shasum": ""
             },
             "require": {
@@ -1432,7 +1434,7 @@
                 "wechat",
                 "weibo"
             ],
-            "time": "2017-04-08 11:39:52"
+            "time": "2017-05-16 15:34:16"
         },
         {
             "name": "paragonie/random_compat",
@@ -1631,16 +1633,16 @@
         },
         {
             "name": "psy/psysh",
-            "version": "v0.8.3",
+            "version": "v0.8.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/bobthecow/psysh.git",
-                "reference": "1dd4bbbc64d71e7ec075ffe82b42d9e096dc8d5e"
+                "reference": "38a9d21406597a0440690eafbcb0222f528c8ac6"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/bobthecow/psysh/zipball/1dd4bbbc64d71e7ec075ffe82b42d9e096dc8d5e",
-                "reference": "1dd4bbbc64d71e7ec075ffe82b42d9e096dc8d5e",
+                "url": "https://api.github.com/repos/bobthecow/psysh/zipball/38a9d21406597a0440690eafbcb0222f528c8ac6",
+                "reference": "38a9d21406597a0440690eafbcb0222f528c8ac6",
                 "shasum": ""
             },
             "require": {
@@ -1700,7 +1702,7 @@
                 "interactive",
                 "shell"
             ],
-            "time": "2017-03-19 21:40:44"
+            "time": "2017-05-17 06:49:19"
         },
         {
             "name": "ramsey/uuid",
@@ -1786,16 +1788,16 @@
         },
         {
             "name": "swiftmailer/swiftmailer",
-            "version": "v5.4.7",
+            "version": "v5.4.8",
             "source": {
                 "type": "git",
                 "url": "https://github.com/swiftmailer/swiftmailer.git",
-                "reference": "56db4ed32a6d5c9824c3ecc1d2e538f663f47eb4"
+                "reference": "9a06dc570a0367850280eefd3f1dc2da45aef517"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/swiftmailer/swiftmailer/zipball/56db4ed32a6d5c9824c3ecc1d2e538f663f47eb4",
-                "reference": "56db4ed32a6d5c9824c3ecc1d2e538f663f47eb4",
+                "url": "https://api.github.com/repos/swiftmailer/swiftmailer/zipball/9a06dc570a0367850280eefd3f1dc2da45aef517",
+                "reference": "9a06dc570a0367850280eefd3f1dc2da45aef517",
                 "shasum": ""
             },
             "require": {
@@ -1836,7 +1838,7 @@
                 "mail",
                 "mailer"
             ],
-            "time": "2017-04-20 17:32:18"
+            "time": "2017-05-01 15:54:03"
         },
         {
             "name": "symfony/console",
@@ -2731,12 +2733,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/tymondesigns/jwt-auth.git",
-                "reference": "9f759fe9e3112e1de50920c05537d752780cf966"
+                "reference": "ef4e5c9711c4d42ed581ddde6ffe341917f29607"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/tymondesigns/jwt-auth/zipball/9f759fe9e3112e1de50920c05537d752780cf966",
-                "reference": "9f759fe9e3112e1de50920c05537d752780cf966",
+                "url": "https://api.github.com/repos/tymondesigns/jwt-auth/zipball/ef4e5c9711c4d42ed581ddde6ffe341917f29607",
+                "reference": "ef4e5c9711c4d42ed581ddde6ffe341917f29607",
                 "shasum": ""
             },
             "require": {
@@ -2788,7 +2790,7 @@
                 "jwt",
                 "laravel"
             ],
-            "time": "2017-04-22 18:21:34"
+            "time": "2017-05-19 18:10:23"
         },
         {
             "name": "vlucas/phpdotenv",
@@ -3556,16 +3558,16 @@
         },
         {
             "name": "phpunit/phpunit",
-            "version": "5.7.19",
+            "version": "5.7.20",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/phpunit.git",
-                "reference": "69c4f49ff376af2692bad9cebd883d17ebaa98a1"
+                "reference": "3cb94a5f8c07a03c8b7527ed7468a2926203f58b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/69c4f49ff376af2692bad9cebd883d17ebaa98a1",
-                "reference": "69c4f49ff376af2692bad9cebd883d17ebaa98a1",
+                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/3cb94a5f8c07a03c8b7527ed7468a2926203f58b",
+                "reference": "3cb94a5f8c07a03c8b7527ed7468a2926203f58b",
                 "shasum": ""
             },
             "require": {
@@ -3583,7 +3585,7 @@
                 "phpunit/php-timer": "^1.0.6",
                 "phpunit/phpunit-mock-objects": "^3.2",
                 "sebastian/comparator": "^1.2.4",
-                "sebastian/diff": "~1.2",
+                "sebastian/diff": "^1.4.3",
                 "sebastian/environment": "^1.3.4 || ^2.0",
                 "sebastian/exporter": "~2.0",
                 "sebastian/global-state": "^1.1",
@@ -3634,7 +3636,7 @@
                 "testing",
                 "xunit"
             ],
-            "time": "2017-04-03 02:22:27"
+            "time": "2017-05-22 07:42:55"
         },
         {
             "name": "phpunit/phpunit-mock-objects",
@@ -3806,23 +3808,23 @@
         },
         {
             "name": "sebastian/diff",
-            "version": "1.4.1",
+            "version": "1.4.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/diff.git",
-                "reference": "13edfd8706462032c2f52b4b862974dd46b71c9e"
+                "reference": "7f066a26a962dbe58ddea9f72a4e82874a3975a4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/diff/zipball/13edfd8706462032c2f52b4b862974dd46b71c9e",
-                "reference": "13edfd8706462032c2f52b4b862974dd46b71c9e",
+                "url": "https://api.github.com/repos/sebastianbergmann/diff/zipball/7f066a26a962dbe58ddea9f72a4e82874a3975a4",
+                "reference": "7f066a26a962dbe58ddea9f72a4e82874a3975a4",
                 "shasum": ""
             },
             "require": {
-                "php": ">=5.3.3"
+                "php": "^5.3.3 || ^7.0"
             },
             "require-dev": {
-                "phpunit/phpunit": "~4.8"
+                "phpunit/phpunit": "^4.8.35 || ^5.7 || ^6.0"
             },
             "type": "library",
             "extra": {
@@ -3854,7 +3856,7 @@
             "keywords": [
                 "diff"
             ],
-            "time": "2015-12-08 07:14:41"
+            "time": "2017-05-22 07:24:03"
         },
         {
             "name": "sebastian/environment",
