@@ -5,11 +5,12 @@ namespace App;
 use Translug;
 use App\Traits\Loggable;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Overtrue\LaravelFollow\Traits\CanBeSubscribed;
 
 class Series extends Model
 {
-    use Loggable, CanBeSubscribed;
+    use Loggable, SoftDeletes, CanBeSubscribed;
 
     const SERIES_CREATE = 'series.create';
     const SERIES_UPDATE = 'series.update';

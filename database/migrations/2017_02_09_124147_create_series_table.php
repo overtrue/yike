@@ -30,6 +30,7 @@ class CreateSeriesTable extends Migration
             $table->unsignedInteger('subscribe_cache')->default(0)->index();
 
             $table->timestamps();
+            $table->softDeletes();
 
             $table->foreign('user_id')
                 ->references('id')

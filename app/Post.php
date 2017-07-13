@@ -2,7 +2,6 @@
 
 namespace App;
 
-use Translug;
 use Facades\Parsedown;
 use App\Traits\Loggable;
 use Illuminate\Database\Eloquent\Model;
@@ -87,7 +86,7 @@ class Post extends Model
 
     public static function makeUniqueSlug($post)
     {
-        $title = Translug::translug($post->title);
+        $title = translug($post->title);
 
         while (Post::whereSlug($title)->count()) {
             $title = substr(mt_rand(10, 99), 0, 4)."-{$title}";
