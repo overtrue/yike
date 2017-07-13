@@ -21,7 +21,7 @@ class PostController extends ApiController
      */
     public function index(Request $request)
     {
-        $posts = tap(Post::with('user'), function($query) use ($request) {
+        $posts = tap(Post::with('user'), function ($query) use ($request) {
             if ($request->has('user_id')) {
                 $query->where('user_id', $request->user_id);
 
