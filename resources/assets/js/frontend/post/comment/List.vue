@@ -8,14 +8,13 @@
       <template v-if="isLogged">
         <avatar :user="currentUser" size="xxs" class="mx-4"></avatar>
         <div class="editor-input">
-          <el-input
-            type="textarea"
+          <text-complete
             resize="none"
             autosize
+            :strategies="strategies"
             placeholder="请输入内容"
             v-model="form.content"
-            @focus="onFocus">
-          </el-input>
+            @focus="onFocus"></text-complete>
           <div class="buttons text-right mt-3" v-if="showButton">
             <button class="btn btn-link" @click="onCancel">取消</button>
             <button v-if="form.content.trim().length > 0" class="btn-outline-info btn" @click="handleSubmit">评论</button>
@@ -53,9 +52,11 @@ import Avatar from "home/Avatar"
 import VoteButton from "home/VoteButton"
 import RelativeTime from "home/RelativeTime"
 import Emojione from 'emojione'
+import TextComplete from 'v-textcomplete'
+import { default as githubEmoji } from 'vendor/github_emoji'
 
 export default {
-  components: { Avatar, VoteButton, RelativeTime },
+  components: { Avatar, VoteButton, RelativeTime, TextComplete },
   props: {
     list: {
       type: Array,
@@ -70,6 +71,20 @@ export default {
       form: {
         content: ''
       },
+      strategies: [{
+        match: /(^|\s):([a-z0-9+\-\_]*)$/,
+        search(term, callback) {
+          callback(Object.keys(githubEmoji).filter(function (name) {
+            return name.startsWith(term);
+          }).slice(0, 10))
+        },
+        template(name) {
+          return '<img width="17" src="' + githubEmoji[name] + '"></img> ' + name;
+        },
+        replace(value) {
+          return '$1:' + value + ': '
+        },
+      }]
     }
   },
   computed: {
@@ -140,6 +155,7 @@ export default {
 }
 .editor-input {
   width: 85%;
+  margin: .2em 0;
 }
 .btn-link:hover {
   text-decoration: none;
