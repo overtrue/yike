@@ -3,9 +3,12 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Feedback extends Model
 {
+    use SoftDeletes;
+
     protected $fillable = [
         'user_id', 'image_id', 'ip', 'content',
     ];

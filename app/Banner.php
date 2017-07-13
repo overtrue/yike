@@ -3,10 +3,18 @@
 namespace App;
 
 use Carbon\Carbon;
+use App\Traits\Loggable;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Banner extends Model
 {
+    use Loggable, SoftDeletes;
+
+    const BANNER_CREATE = 'banner.create';
+    const BANNER_UPDATE = 'banner.update';
+    const BANNER_DELETE = 'banner.delete';
+
     protected $dates = [
         'enabled_at',
         'expired_at',
@@ -24,6 +32,15 @@ class Banner extends Model
 
         static::creating(function ($banner) {
             $banner->creator_id = auth()->id();
+            static::setActionTypeName(self::BANNER_CREATE);
+        });
+
+        static::updating(function($post){
+            static::setActionTypeName(self::BANNER_UPDATE);
+        });
+
+        static::deleting(function($post){
+            static::setActionTypeName(self::BANNER_DELETE);
         });
     }
 
