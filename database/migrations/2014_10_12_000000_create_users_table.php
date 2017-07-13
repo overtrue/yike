@@ -39,9 +39,9 @@ class CreateUsersTable extends Migration
 
             // 账户
             $table->string('github_id')->nullable()->index();
-            $table->string('linkedin_id')->nullable()->nullable();
-            $table->string('twitter_id')->nullable()->nullable();
-            $table->string('weibo_url')->nullable()->nullable();
+            $table->string('linkedin_id')->nullable()->index();
+            $table->string('twitter_id')->nullable()->index();
+            $table->string('weibo_url')->nullable()->index();
 
             $table->timestamp('last_active_at')->nullable();
 
