@@ -8,7 +8,7 @@
         "php": ">=5.6.4",
         "erusev/parsedown": "^1.6",
         "intervention/image": "^2.3",
-        "jellybool/translug": "^1.0",
+        "jellybool/translug": "~2.0",
         "laravel/framework": "5.4.*",
         "laravel/tinker": "~1.0",
         "league/fractal": "^0.14.0",
