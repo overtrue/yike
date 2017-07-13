@@ -12,7 +12,7 @@ trait Loggable
     {
         static::created(function($model) {
             $userId = auth()->id();
-            static::storeAction(self::$typeName, $userId, $model);
+            static::storeAction(self::$typeName, $userId, $model, $model->toArray());
         });
 
         static::updated(function($model) {
