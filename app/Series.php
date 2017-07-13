@@ -11,6 +11,9 @@ class Series extends Model
 {
     use Loggable, CanBeSubscribed;
 
+    const SERIES_CREATE = 'series.create';
+    const SERIES_UPDATE = 'series.update';
+    const SERIES_DELETE = 'series.delete';
     const SERIES_SUBSCRIBE = 'series.subscribe';
     const SERIES_UNSUBSCRIBE = 'series.unsubscribe';
 
@@ -25,6 +28,15 @@ class Series extends Model
         static::creating(function($series){
             $series->user_id = auth()->id();
             $series->slug = self::makeUniqueSlug($series);
+            static::setActionTypeName(self::SERIES_CREATE);
+        });
+
+        static::updating(function($post){
+            static::setActionTypeName(self::SERIES_UPDATE);
+        });
+
+        static::deleting(function($post){
+            static::setActionTypeName(self::SERIES_DELETE);
         });
     }
 
