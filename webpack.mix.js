@@ -38,6 +38,7 @@ mix.webpackConfig({
       'app': 'assets/js/frontend/',
       'home': 'assets/js/frontend/components/',
       'dashboard': 'assets/js/dashboard/',
+      'vendor': 'assets/js/vendor/',
     },
     modules: [
       'node_modules',
