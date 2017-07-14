@@ -24,7 +24,9 @@ class FileUploadedListener
 
         $image = $this->createImage($event->file, $result, $event->strategy);
 
-        if ($event->strategy == 'avatar') auth()->user()->update(['avatar' => $result['url']]);
+        if ($event->strategy == 'avatar') {
+            auth()->user()->update(['avatar' => $result['url']]);
+        }
 
         $result['image_id'] = $image->id;
 
@@ -41,7 +43,7 @@ class FileUploadedListener
      */
     public function createImage($file, $result, $strategy)
     {
-        [$width, $height] = getimagesize($file);
+        list($width, $height) = getimagesize($file);
 
         $data = [
             'creator_id' => auth()->id(),

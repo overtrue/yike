@@ -25,7 +25,7 @@
             </div>
             <div class="post-menus mt-5 pt-3">
               <div class="d-flex justify-content-center">
-                <a  href="#" @click="loadPosts('hot')" :class="{active: sortBy == 'hot'}">热门</a>
+                <a href="#" @click="loadPosts('hot')" :class="{active: sortBy == 'hot'}">热门</a>
                 <a href="#" @click="loadPosts('latest')" :class="{active: sortBy == 'latest'}">最新</a>
                 <a href="#" @click="loadPosts('featured')" :class="{active: sortBy == 'featured'}">置顶</a>
                 <a href="#" @click="loadPosts('recommends')" :class="{active: sortBy == 'recommends'}">推荐</a>
@@ -65,14 +65,13 @@ export default {
   created() {
     http.get(this.$endpoints.users+this.$route.params.username).then((data) => {
       this.user = data.data.data
+      this.loadPosts(this.sortBy)
     })
-
-    this.loadPosts(this.sortBy)
   },
   methods: {
     loadPosts(sortBy) {
       this.sortBy = sortBy
-      http.get(this.$endpoints.posts, {params:{creator_id: this.user.id, sort_by: this.sortBy}}).then((data) => {
+      http.get(this.$endpoints.posts, {params:{user_id: this.user.id, sort_by: this.sortBy}}).then((data) => {
         this.posts = data.data.data
       })
     }
