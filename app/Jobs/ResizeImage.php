@@ -35,9 +35,11 @@ class ResizeImage implements ShouldQueue
      */
     public function handle()
     {
-        $image = Image::make($this->image['path'])->widen(2200, function ($constraint) {
+        $path = $this->image['path'];
+        $realpath = storage_path(str_replace('storage/', 'app/public/', $path));
+        $image = Image::make($realpath)->widen(2200, function ($constraint) {
                     $constraint->upsize();
-                })->save($this->image['path']);
+                })->save($realpath);
 
         $this->image->size = json_encode(['width' => $image->width(), 'height' => $image->height()]);
         $this->image->save();

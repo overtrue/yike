@@ -52,7 +52,18 @@
    WEIXIN_PAY_KEY
    WEIXIN_PAY_CERT_PATH
    WEIXIN_PAY_KEY_PATH
+  
+   # 有道智云翻译服务 `translug` 插件
+   YOUDAO_APP_KEY
+   YOUDAO_APP_SECRET
    ```
+
+然后再执行一些初始化命令：
+
+```
+php artisan key:generate
+php artisan jwt:secret
+```
 
 6. 建立数据表与默认数据：`./artisan migrate:refresh --seed --force`
 7. 建立目录软链接：`./artisan storage:link`
@@ -81,7 +92,7 @@
 
 1. 页面正常显示
 
-2. supervisor 进程运行正常：`ps aufx | grep supervisord | grep -v grep`
+2. supervisor 进程运行正常：`ps aux | grep supervisord | grep -v grep`
 
    ```
    能看到：/usr/bin/python /usr/bin/supervisord -n -c /etc/supervisor/supervisord.conf
